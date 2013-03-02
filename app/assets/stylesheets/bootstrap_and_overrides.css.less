@@ -1,0 +1,471 @@
+@import "twitter/bootstrap/bootstrap";
+
+body { 
+	padding-top: 80px !important; 
+	background-color: #E9EEF4;
+  div.container-fluid{
+    width: 960px;
+    margin: 0 auto;
+  }
+}
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
+@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
+@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2");
+
+// Font Awesome
+@import "fontawesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+.navbar-fixed-top{
+  position: fixed !important;
+}
+div.row {
+    margin-left: 0px !important;
+}
+div.nav-collapse{
+  margin-top: 40px;
+  a{
+    font-size:16px;
+  }
+}
+div.navbar-inner{
+	background-color: #576372;
+	min-height: 80px;  
+	background-image: none;  
+  padding-bottom:0px;
+  a:hover{
+    background:transparent;
+  }
+}
+div.navbar-inner .container-fluid{
+	margin-top: 25px;
+}
+div.navbar .brand {
+    color: white;
+    display: block;
+    float: left;
+    font-size: 40px;
+    font-weight: 200;
+    margin-left: 95px;
+    padding: 15px 0px 0px 0px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+div.navbar .nav > li > a {
+    color: white;
+    float: none;
+    padding: 10px 15px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+div.navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
+    background-color: transparent;
+    color: #eaeaea;
+    text-decoration: none;
+}
+
+
+/* styles for layout */
+html,body
+{
+ /*   height:100%;*/
+}
+
+#wrap
+{
+  /*min-height: 100%; */
+}
+ 
+#main
+{
+    overflow:auto;
+    padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+ 
+.footer
+{
+  position: relative;  
+  height: 80px;
+  clear:both;
+  padding-top: 20px;
+  margin-top: 20px;
+  color:#fff;
+  .container{
+    ul {
+      li{
+        float: left;
+        list-style: none outside none;
+        margin-left: 10px;
+        margin-top: 3px;
+        a{
+          color:white;
+          font-size: 16px;
+        }
+        a:hover {
+          background: transparent;
+        }
+        label{
+          color:white;
+        }
+      }
+    } 
+    [class*="span"]{
+      margin-left:0px;
+      margin-right: 20px;
+    }
+    .span4{
+      margin-top:20px;
+    }
+    .span3{
+      margin-top:20px;
+    }
+  }  
+}
+
+
+
+// hompage style
+
+﻿div.about{
+  div.double_bordered {
+    border-top: 1px solid #9fa3aa;    
+    height: 3px;
+    margin-top: 9px !important;
+  }
+
+}
+div.about > span{
+	font-size: 20px;
+	color: #9fa3aa;
+	display: inline-block;
+	width: 50px;
+}
+
+div.feature_description{
+	display:inline-block;
+	p {
+		font-size: 18px;
+		color: #3f3e3e;
+		word-spacing: -1px;
+	}
+}
+
+div.testimonial_description{
+	margin-top:30px;
+	p{
+		font-size: 18px;
+		color: #3f3e3e;
+		word-spacing: -1px;
+	}
+}
+ 
+#flash-banner {
+//#notice-message, #alert-message,
+.flash.notice, .flash.alert {
+  z-index: 999;
+  /*display:none;*/
+  /*position:fixed;*/
+  left:10px;
+  top:10px;
+  -moz-border-radius : 4px;
+  border-radius : 4px;
+  padding: 5px 8px;
+  margin: 0 auto 10px;
+
+  /* width: 492px; */
+  text-align:center;
+}
+
+//#notice-message,
+.flash.notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+
+#alert-message,
+  .flash.alert {
+    background-color: #FCC;
+    border: solid 1px #C66;
+  }
+}
+
+form.form-horizontal label{
+  font-weight: bolder;
+}
+a.btn-success {color: white !important;}
+
+div.hero-unit{
+  background-color:white !important;
+  border: solid 3px #eeeeee;
+  padding: 100px 60px 150px !important;
+}
+
+div.field_with_errors{
+  background-color: white !important;
+  display: block !important;
+  padding: 0px !important;
+}
+div.field_with_errors label{
+  border: solid 3px red !important;  
+  border-radius: 5px;
+}
+#error_explanation{
+  border-radius:8px;
+}
+div.sign-in-page{
+  border: 3px solid #eaeaea;
+  border-radius: 10px 10px 10px 10px;
+  margin-bottom: 30px;
+  padding-bottom: 80px;
+  padding-top: 60px;
+  background-color:white;
+  top:130px;
+  z-index:10000;
+  left: 420px;
+}
+a.btn-link{
+    color: #0093F0 !important;
+}
+input.btn{
+  height: 33px !important;
+}
+.form-horizontal .control-label{
+  text-align: left !important;
+  font-weight: bold;  
+  font-family: serif !important;
+}
+a, p, span{
+ font-family: serif !important; 
+}
+
+.navbar-inner{  
+  padding-bottom: 2px;
+  border:medium none;
+  .container{
+    .nav-collapse{
+      margin-left: 0px;
+      margin-top: 8px;
+      ul.nav-tabs{
+        margin-left: 0px;
+        margin-top: 30px;
+        .nav-tabs{
+          border:none;
+          margin-left:30px;
+          li{
+            width:100px;
+            a{
+              text-align:center;
+            }
+            a:focus{
+              color:white;
+              background-color:#7B8796;
+              cursor: pointer;
+            }
+            a:hover{
+              background-color:#7B8796;          
+            }        
+          }              
+        }
+        li.isCurrent{
+          a{
+            color:#576372;
+            font-weight:bold;
+            background-color:white;
+          }
+          a:hover{
+            color:#576372;
+            background-color:white;
+          }
+        }
+      }
+      .nav-right{
+        margin-top: 30px;        
+        float:right; 
+        margin-right: 95px;
+      }  
+    }       
+  }  
+}
+
+
+// POST PAGE STYLE
+
+div.post-main-page{
+  /*  wrapper divs */
+  min-height:800px;
+  .custom-checkbox, .custom-radio { position: relative; }
+    
+  /* input, label positioning */
+  .custom-checkbox input, 
+  .custom-radio input {
+    position: absolute;
+    left: 2px;
+    top: 3px;
+    margin: 0;
+    z-index: 0;
+  }
+
+  .custom-checkbox label, 
+  .custom-radio label {
+    display: block;
+    position: relative;
+    z-index: 1;
+    font-size: 1.3em;
+    padding-right: 1em;
+    line-height: 1;
+    padding: .3em 0 .5em 30px;
+    margin: 0 0 .3em;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+    
+  /* states */
+  .custom-checkbox label { background: url(checkbox.gif) no-repeat; }
+
+  .custom-radio label { background: url(radiobutton.gif) no-repeat; }
+
+  .custom-checkbox label, .custom-radio label {
+    background-position: -10px -14px;
+  }
+
+  .custom-checkbox label.hover,
+  .custom-checkbox label.focus,
+  .custom-radio label.hover,
+  .custom-radio label.focus {
+    background-position: -10px -114px;
+  }
+
+  .custom-checkbox label.checked, 
+  .custom-radio label.checked {
+    background-position: -10px -214px;
+  }
+
+  .custom-checkbox label.checkedHover, 
+  .custom-checkbox label.checkedFocus {
+    background-position: -10px -314px;
+  }
+
+  .custom-checkbox label.focus, 
+  .custom-radio label.focus {
+    outline: 1px dotted #ccc;
+  }
+
+
+
+  background-color: white;
+  .nav-link{
+    background-color: white;
+    height: 40px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: medium none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    ul{
+      margin-left: 195px;
+      list-style: none;
+      li{
+        float: left;
+        font-size: 16px;
+        margin-left: 10px;
+        padding-top: 10px;
+        width: 90px;
+        a{
+          color: black;
+        }
+        a:hover{
+          color:black;
+          background: transparent;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+      li.current-tab:before {
+        background: none repeat scroll 0 0 #fff;
+        box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.28);
+        content: "";
+        display: inline-block;
+        height: 10px;
+        margin-left: 14px;
+        position: absolute;
+        transform: rotate(56deg) skew(0deg, -20deg);
+        -webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.28);
+        -moz-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.28);        
+        -webkit-transform: rotate(56deg) skew(0deg,-20deg);
+        -moz-transform: rotate(56deg) skew(0deg,-20deg);
+        -ms-transform: rotate(56deg) skew(0deg,-20deg);
+        -o-transform: rotate(56deg) skew(0deg,-20deg);
+        transform: rotate(56deg) skew(0deg,-20deg);
+        width: 9px;
+        margin-top:25px;
+      }      
+    }
+  }
+  .first-row{
+    height:300px;
+    .row{
+      margin-top: 20px;
+    }
+  }
+  .second-row{
+    margin-bottom:10px;
+  }
+  label.radio{
+    img{
+      cursor: pointer;
+    }
+  }
+}
+
+div.edit-box{
+  form{
+    width: 95%;
+    padding: 20px;
+  }
+}
+
+div.show-postings-tab-box{
+  padding-left:30px;
+  p.page-title{
+    color:#5BB75B;
+    font-size:40px;
+    font-family: serif;
+    margin-top: 20px;
+  }
+  #tabs{
+    li{
+      width: 175px;
+      a{
+        color: black;
+      }
+      a:hover{
+        color: black;
+        background-color: #f0f0f0;
+      }
+    }
+  }
+}

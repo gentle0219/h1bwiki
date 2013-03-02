@@ -1,0 +1,49 @@
+.row.post-main-page
+	=render "layouts/nav-link-secondary"
+	.row.first-row
+		.span11
+			.row
+				- model_class = PostTraining
+				.page-header
+					%h1=t '.title', :default => model_class.model_name.human
+			.row
+				.span2
+					%strong Title
+				.span5
+					= @post_training.job_title
+			.row
+				.span2
+					%strong Technology
+				.span5
+					= @post_training.get_techtype
+			.row
+				.span2
+					%strong Instruction Mode
+				.span5
+					= @post_training.get_instruction_mode
+			.row
+				.span2
+					%strong Placement
+				.span5
+					= @post_training.job_placement == '1' ? 'Yes' : 'No'
+			.row
+				.span2
+					%strong Accomodation
+				.span5
+					= @post_training.job_accomodation == '1' ? 'Yes' : 'No'
+			.row
+				.span2
+					%strong Duration
+				.span5
+					= @post_training.job_duration
+			.row
+				.span2
+					%strong Description
+				.span5
+					= @post_training.job_description
+	.row.last-row
+		.span11
+			.form-actions
+				= link_to t('.back', :default => t("helpers.links.back")), post_trainings_path, :class => 'btn'
+				= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_training_path(@post_training), :class => 'btn'
+				= link_to t('.destroy', :default => t("helpers.links.destroy")), post_training_path(@post_training), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

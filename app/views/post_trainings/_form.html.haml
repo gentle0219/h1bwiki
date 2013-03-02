@@ -1,0 +1,35 @@
+= form_for @post_training, :html => { :class => 'form-horizontal' } do |f|
+	= f.hidden_field :user_id, :class => 'number_field', :value=>current_user.id
+	.control-group
+		= f.label :job_title, "Title", :class => 'control-label'
+		.controls
+			= f.text_field :job_title, :class => 'text_field large-field'
+	.control-group
+		= f.label "Technology", :class => 'control-label'
+		.controls.custom-select
+			= f.select(:job_technology,[['Java',0],['Datastage',1]] )
+	.control-group
+		= f.label "Instruction Mode", :class => 'control-label'
+		.controls.custom-select
+			= f.select(:job_instruction, [['Class Room',0],['Online',1],['Class Room & Online',2]] )
+	.control-group
+		= f.label "Placement", :class => 'control-label'
+		.controls.custom-select
+			= f.select(:job_placement,[['Yes',1],['No',0]] )
+	.control-group
+		= f.label "Accomodation", :class => 'control-label'
+		.controls.custom-select
+			= f.select(:job_accomodation,[['Yes',1],['No',0]] )
+	.control-group
+		= f.label :job_duration, "Duration", :class => 'control-label'
+		.controls
+			= f.text_field :job_duration, :class => 'text_field'
+	.control-group
+		= f.label :job_description, "Description", :class => 'control-label'
+		.controls
+			= f.text_area :job_description, :class => 'text_area', :rows => 3
+	.form-actions
+		= link_to( '< Back ', post_main_path, :class => "btn" ) 
+		= f.submit 'Post a Training/Placement', :class => 'btn btn-success'
+		= link_to( 'Preview ', 'preview', :class => "btn" ) 
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), post_trainings_path, :class => 'btn'

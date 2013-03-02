@@ -1,0 +1,32 @@
+= form_for @post_job, :html => { :class => 'form-horizontal' } do |f|
+	-if @post_job.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@post_job.errors.count, "error")} prohibited this post_job from being saved:"
+			%ul
+				- @post_job.errors.full_messages.each do |msg|
+					%li= msg
+	= f.hidden_field :user_id, :class => 'number_field', :value=>current_user.id
+	.control-group
+		= f.label :job_title, "Title",:class => 'control-label'
+		.controls
+			= f.text_field :job_title, :class => 'text_field large-field'
+	.control-group
+		= f.label :job_type, "Type", :class => 'control-label custom-select'
+		.controls.custom-select
+			= f.select(:job_type,[['Full Time',0],['Contract',1],['Contract to Hire',2]] )
+	.control-group
+		= f.label :job_description,"Description", :class => 'control-label'
+		.controls
+			= f.text_area :job_description, :class => 'text_area', :rows=>3
+	.control-group
+		= f.fields_for :skills do |skill|
+			= skill.label :skill_list_id, "Skills Require", :class => 'control-label'
+			.controls				
+				= skill.text_field :skill_list_id, :class => 'text_field large-field', :id => "skill_input_box"
+	.form-actions
+		= link_to( '< Back ', post_main_path, :class => "btn" ) 
+		= f.submit 'Post a Job', :class => 'btn btn-success'
+		= link_to( 'Preview ', 'preview', :class => "btn" ) 
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), post_jobs_path, :class => 'btn'
+
+//				= skill.text_field :skill_name, :class => 'text_field large-field'
