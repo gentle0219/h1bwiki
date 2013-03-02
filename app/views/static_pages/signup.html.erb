@@ -7,30 +7,32 @@ a.control-label:hover{
 	background-color: transparent !important;
 }
 </style>
-<h1>START USING H1BWIKI JOBS</h1>
-<div class="hero-unit form-horizontal" style="min-width:480px;">
-	<div class='row'>		
-			<p style="font-size:20px; font-weight:bolder">Already a H1BWIKI member? <%= link_to "Log in", new_user_session_path, :class => "btn btn-link" %> now.</p>		
-	</div>
-	<div class='row'>
-		<div class='row'>
-			<p style="font-size:16px;">Let's get Started!</p>    
-		</div>    	
+<div style = "min-height: 700px; padding-top: 100px;">
+	<h1>START USING H1BWIKI JOBS</h1>
+	<div class="hero-unit form-horizontal" style="min-width:480px;">
 		<div class='row'>		
-			<div class='span5 control-group' style="margin-left:0px;">
-				<%= link_to image_tag("jobseeker.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label" %>
-				<div class="controls">
-					<h4>Are you a Job Seeker?</h4>
-					<%= link_to "Sign Up", new_jobseeker_path, :class => "btn btn-success" %>
-				</div>				
-			</div>
-			<div class='span5 control-group' style="margin-left:0px;">
-				<%= link_to image_tag("employer.jpg", :class => "img-rounded" ), new_employer_path, :class=>"control-label" %>
-				<div class="controls">
-					<h4>Are you a H1bWIKI Employer / Sponsor?</h4>
-					<%= link_to "Sign Up", new_employer_path, :class => "btn btn-success" %>
-				</div>				
-			</div>
+				<p style="font-size:20px; font-weight:bolder">Already a H1BWIKI member? <%= link_to "Log in", new_user_session_path, :class => "btn btn-link" %> now.</p>		
 		</div>
-	</div>	
+		<div class='row'>
+			<div class='row'>
+				<p style="font-size:16px;">Let's get Started!</p>    
+			</div>    	
+			<div class='row'>		
+				<div class='span5 control-group' style="margin-left:0px;">
+					<%= link_to image_tag("jobseeker.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label" %>
+					<div class="controls">
+						<h4>Are you a Job Seeker?</h4>
+						<%= link_to "Sign Up", new_jobseeker_path, :class => "btn btn-success" %>
+					</div>				
+				</div>
+				<div class='span5 control-group' style="margin-left:0px;">
+					<%= link_to image_tag("employer.jpg", :class => "img-rounded" ), new_employer_path, :class=>"control-label" %>
+					<div class="controls">
+						<h4>Are you a H1bWIKI Employer / Sponsor?</h4>
+						<%= link_to "Sign Up", new_employer_path, :class => "btn btn-success" %>
+					</div>				
+				</div>
+			</div>
+		</div>	
+	</div>
 </div>
