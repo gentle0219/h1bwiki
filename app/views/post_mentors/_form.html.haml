@@ -22,3 +22,5 @@
 		= f.submit nil, :class => 'btn btn-success'
 		= link_to( 'Preview ', 'preview', :class => "btn" ) 
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), post_mentors_path, :class => 'btn'
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

@@ -20,3 +20,5 @@
 		.span3.offset1
 			%form#post-type-form{:action => new_post_job_path}
 				%input{:type => "submit", :value => "Continue >", :class => "btn btn-success"}/
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

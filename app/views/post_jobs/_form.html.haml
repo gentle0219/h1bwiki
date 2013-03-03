@@ -30,3 +30,5 @@
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), post_jobs_path, :class => 'btn'
 
 //				= skill.text_field :skill_name, :class => 'text_field large-field'
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

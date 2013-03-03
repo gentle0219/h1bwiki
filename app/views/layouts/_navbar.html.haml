@@ -8,7 +8,7 @@
       = link_to image_tag("logo.png"), "/", :class=>"brand"
       .nav-collapse        
         %ul.nav.nav-tabs
-          %li.isCurrent
+          %li
             =link_to("Post", posts_view_path)
           %li
             %a{:href=>"#"} Contact
@@ -16,10 +16,12 @@
             %a{:href=>"#"} About
         %ul.nav.nav-right
           .row
-            - if user_signed_in?
-              %p.user-name 
-                Hi &nbsp;
+            %p.user-name                           
+              - if user_signed_in?            
+                Hi &nbsp; 
                 =current_user.user_name
+              -else
+                &nbsp;
           - if user_signed_in?
             %li= link_to "My Account", edit_user_registration_path(current_user)
             %li 

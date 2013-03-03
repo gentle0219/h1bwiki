@@ -30,3 +30,5 @@
 				.row.last-row
 					.span10.control-box
 						= link_to t('.new', :default => t("helpers.links.new")), new_post_job_path, :class => 'btn btn-success'
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

@@ -29,3 +29,5 @@
 	.row								
 		.span3
 			= link_to t('.new', :default => t("helpers.links.new")), new_post_mentor_path, :class => 'btn btn-success'
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
