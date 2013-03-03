@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar      
       = link_to image_tag("logo.png"), "/", :class=>"brand"
-      .nav-collapse
+      .nav-collapse        
         %ul.nav.nav-tabs
           %li.isCurrent
             =link_to("Post", posts_view_path)
@@ -15,11 +15,19 @@
           %li
             %a{:href=>"#"} About
         %ul.nav.nav-right
+          .row
+            - if user_signed_in?
+              %p.user-name 
+                Hi &nbsp;
+                =current_user.user_name
           - if user_signed_in?
-            %li= link_to current_user.user_name, edit_user_registration_path(current_user)
-            %li= link_to "Log out", destroy_user_session_path, :method => :delete
+            %li= link_to "My Account", edit_user_registration_path(current_user)
+            %li 
+              %label{:style=>"color:white; padding-top:10px;"}|
+            %li= link_to "Sign Out", destroy_user_session_path, :method => :delete
           - else
             %li= link_to "Register", signup_path
+            %li |
             %li= link_to "Log in", new_user_session_path
 //            %li= link_to "Register", new_user_registration_path
-            
+          
