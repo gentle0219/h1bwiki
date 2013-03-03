@@ -74,19 +74,6 @@ div.navbar .brand {
     text-shadow: 0 1px 0 #FFFFFF;
 }
 
-div.navbar .nav > li > a {
-    color: white;
-    float: none;
-    padding: 10px 25px;
-    text-decoration: none;
-    text-shadow: 0 0px 0 #FFFFFF;
-}
-
-div.navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
-    background-color: transparent;
-    color: #eaeaea;
-    text-decoration: none;
-}
 
 
 /* styles for layout */
@@ -273,27 +260,32 @@ a, p, span{
       ul.nav-tabs{
         margin-left: 0px;
         margin-top: 30px;
-        .nav-tabs{
-          border:none;
-          margin-left:30px;
-          li{
-            width:100px;
-            a{
-              text-align:center;
-              border-radius: 10px 10px 0 0;
-              margin-left: 4px;
-              margin-right: 0;
-            }
-            a:focus{
-              color:white;
-              background-color:#7B8796;
-              cursor: pointer;
-            }
-            a:hover{
-              background-color:#7B8796;          
-            }        
-          }              
-        }
+        border:none;
+        margin-left:30px;
+        li{
+          width:100px;
+          a{
+            text-align:center;
+            border-radius: 10px 10px 0 0;
+            margin-left: 4px;
+            margin-right: 0;
+            color: white;
+            float: none;
+            padding: 10px 25px;
+            text-decoration: none;
+            text-shadow: 0 0px 0 #FFFFFF;
+          }
+          a:focus{
+            color:white;
+            background-color:#7B8796;
+            cursor: pointer;
+          }
+          a:hover{
+            background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);              
+            color: #eaeaea;
+            text-decoration: none;
+          }        
+        }              
         li.isCurrent{
           a{
             color:#576372;
@@ -301,15 +293,24 @@ a, p, span{
             background-color:white;
           }
           a:hover{
-            color:#576372;
-            background-color:white;
+            color: white;
+            background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
           }
         }
-      }
-      .nav-right{
+      }      
+      ul.nav-right{
         margin-top: 30px;        
         float:right; 
         margin-right: 95px;
+        li{
+          a{
+            color:white;
+            border-radius: 10px 10px 0 0;
+          }
+          a:hover{          
+            background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
+          }          
+        }
       }  
     }       
   }  
