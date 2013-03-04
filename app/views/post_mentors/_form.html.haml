@@ -5,10 +5,9 @@
 		.controls
 			= f.text_field :job_title, :class => 'text_field large-field'
 	.control-group
-		= f.fields_for :skills do |skill|
-			= skill.label "Skills Require", :class => 'control-label'
-			.controls
-				= skill.text_field :skill_list_id, :class => 'text_field large-field', :id => "skill_input_box"
+		= f.label :skill_tokens, "Require Skills",:class => 'control-label'
+		.controls
+			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_mentor.skill_lists.map(&:attributes).to_json
 	.control-group
 		= f.label "Interview Support", :class => 'control-label'
 		.controls.custom-select

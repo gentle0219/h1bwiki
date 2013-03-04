@@ -19,10 +19,9 @@
 		.controls
 			= f.text_area :job_description, :class => 'text_area', :rows=>3
 	.control-group
-		= f.fields_for :skills do |skill|
-			= skill.label :skill_list_id, "Skills Require", :class => 'control-label'
-			.controls				
-				= skill.text_field :skill_list_id, :class => 'text_field large-field', :id => "skill_input_box"
+		= f.label :skill_tokens, "Require Skills",:class => 'control-label'
+		.controls
+			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_job.skill_lists.map(&:attributes).to_json
 	.form-actions
 		= link_to( '< Back ', post_main_path, :class => "btn" ) 
 		= f.submit 'Post a Job', :class => 'btn btn-success'
