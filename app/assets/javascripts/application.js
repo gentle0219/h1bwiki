@@ -21,7 +21,6 @@
 
 $(function(){	
 	var height = screen.height;
-	console.log(height);
 	$("div.post-main-page").css("min-height", height*0.74);
 	$("div.devise-pages").css("min-height", height*0.74);
 	
