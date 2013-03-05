@@ -1,7 +1,7 @@
-.row.post-main-page
+.row.post-main-page{:style => "min-height:200px;"}
 	=render "layouts/nav-link-secondary"
 	.row.first-row
-		.span11
+		.span11.offset1
 			.row
 				%label.radio
 					%input#radio-1.post-type{:name => "opinions", :type => "radio", :value => "/post_jobs/new"}/
@@ -17,7 +17,7 @@
 					%input#radio-3.post-type{:name => "opinions", :type => "radio", :value => "/post_mentors/new"}/
 					%label{:for => "radio-3"}  Mentor Assistance 		
 	.row.second-row
-		.span3.offset1
+		.span3.offset3
 			%form#post-type-form{:action => new_post_job_path}
 				%input{:type => "submit", :value => "Continue >", :class => "btn btn-success"}/
 :javascript 
