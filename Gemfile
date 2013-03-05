@@ -6,7 +6,7 @@ gem 'devise'
 gem 'rmagick'
 gem 'recaptcha'
 gem 'rails_tokeninput'
-
+gem 'twitter-bootstrap-form-builder'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
