@@ -1,9 +1,9 @@
-= form_for @post_training, :html => { :class => 'form-horizontal' } do |f|
+= form_for @post_training, :html => { :class => 'form-horizontal', "data-validate" => "parsley" } do |f|
 	= f.hidden_field :user_id, :class => 'number_field', :value=>current_user.id
 	.control-group
 		= f.label :job_title, "Title", :class => 'control-label'
 		.controls
-			= f.text_field :job_title, :class => 'text_field large-field'
+			= f.text_field :job_title, :class => 'text_field large-field', "data-required"=>"true", "data-rangelength"=>"[5,50]"
 	.control-group
 		= f.label "Technology", :class => 'control-label'
 		.controls.custom-select
@@ -23,11 +23,11 @@
 	.control-group
 		= f.label :job_duration, "Duration", :class => 'control-label'
 		.controls
-			= f.text_field :job_duration, :class => 'text_field'
+			= f.text_field :job_duration, :class => 'text_field', "data-required"=>"true"
 	.control-group
 		= f.label :job_description, "Description", :class => 'control-label'
 		.controls
-			= f.text_area :job_description, :class => 'text_area', :rows => 3
+			= f.text_area :job_description, :class => 'text_area', :rows => 3, "data-required"=>"true", "data-rangelength"=>"[5,500]"
 	.form-actions
 		= link_to( '< Back ', post_main_path, :class => "btn" ) 
 		= f.submit 'Post a Training/Placement', :class => 'btn btn-success'

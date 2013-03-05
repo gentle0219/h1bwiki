@@ -1,4 +1,4 @@
-= form_for @post_job, :html => { :class => 'form-horizontal', :data_validate => 'parsley' } do |f|
+= form_for @post_job, :html => { :class => 'form-horizontal', "data-validate" => "parsley" } do |f|
 	-if @post_job.errors.any?
 		#error_explanation
 			%h2= "#{pluralize(@post_job.errors.count, "error")} prohibited this post_job from being saved:"
@@ -9,7 +9,7 @@
 	.control-group
 		= f.label :job_title, "Title",:class => 'control-label'
 		.controls
-			= f.text_field :job_title, :class => 'text_field large-field'
+			= f.text_field :job_title, :class => 'text_field large-field', "data-required"=>"true", "data-rangelength"=>"[5,50]"
 	.control-group
 		= f.label :job_type, "Type", :class => 'control-label custom-select'
 		.controls.custom-select
@@ -17,11 +17,11 @@
 	.control-group
 		= f.label :job_description,"Description", :class => 'control-label'
 		.controls
-			= f.text_area :job_description, :class => 'text_area', :rows=>3
+			= f.text_area :job_description, :class => 'text_area', :rows=>3, "data-required"=>"true", "data-rangelength"=>"[5,500]"
 	.control-group
 		= f.label :skill_tokens, "Require Skills",:class => 'control-label'
 		.controls
-			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_job.skill_lists.map(&:attributes).to_json
+			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_job.skill_lists.map(&:attributes).to_json, "data-required"=>"true"
 	.form-actions
 		= link_to( '< Back ', post_main_path, :class => "btn" ) 
 		= f.submit 'Post a Job', :class => 'btn btn-success'
