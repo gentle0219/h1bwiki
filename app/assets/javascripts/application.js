@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.tokeninput
+//= require parsley
+//= require parsley.extend
 //= require_tree .
 
 

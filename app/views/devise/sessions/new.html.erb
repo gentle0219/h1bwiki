@@ -1,16 +1,5 @@
-<style>
-  div.form-inline a.btn-link{
-    color: #0093F0 !important;
-  }
 
-  body {
-    height: 500px !important;
-  }
-  div.wrap{
-    height: 100%;
-  }
-</style>
-<div style = "min-height:600px; padding-top:100px;">
+<div style = "min-height:640px; padding-top:150px;">
   <div class="row sign-in-page span10 ">
     <div class="span6 offset1">
       <p style="font-size: 24px;  font-weight: bolder;" class="span8 offset1">Log in and get to work</p><br />
@@ -42,7 +31,7 @@
       <% end %>
       <p>&nbsp;</p>
       <div class="row form-inline">
-        <div class="span8 offset1">
+        <div class="span9 offset1">
           <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
             <%= link_to "Forgot your password?", new_password_path(resource_name), :class => "btn btn-link" %>
           <% end -%>
