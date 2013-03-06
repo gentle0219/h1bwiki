@@ -20,9 +20,6 @@
 
 
 $(function(){	
-	var height = screen.height;
-	$("div.post-main-page").css("min-height", height*0.74);
-	$("div.devise-pages").css("min-height", height*0.74);
 	
 	$('input').customInput();
 	$("label.first-label").addClass('checked');	
@@ -33,4 +30,11 @@ $(function(){
     propertyToSearch: "name",
     theme: "facebook"
   });
+  var height = $(window).height();
+	$("div.wrap").css("height", height*0.78);
+	
+  $(window).resize(function() {
+  	var height = $(window).height();
+		$("div.wrap").css("height", height*0.78);	
+	});
 });

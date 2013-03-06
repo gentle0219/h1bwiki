@@ -1,11 +1,12 @@
 H1bwiki::Application.routes.draw do
 
   resources :post_mentors
-  resources :post_trainings
+  resources :post_trainings  
   resources :post_jobs
+  post 'post_jobs/preview'
+
   resources :skills
-
-
+  
   resources :post_trainings  
   resources :countries
 
@@ -15,13 +16,9 @@ H1bwiki::Application.routes.draw do
   end
 
   get "static_pages/home"
-
   get "static_pages/about"
-
   get "static_pages/help"
-
-  get "static_pages/contact"
-  
+  get "static_pages/contact"  
   get "static_pages/post_main", :as =>"post_main"
   get "static_pages/posts", :as => "posts_view"
   match 'signup' => 'static_pages#signup'

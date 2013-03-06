@@ -29,6 +29,6 @@
 									= link_to t('.destroy', :default => t("helpers.links.destroy")), post_job_path(post_job), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 				.row.last-row
 					.span10.control-box
-						= link_to t('.new', :default => t("helpers.links.new")), new_post_job_path, :class => 'btn btn-success'
+						= link_to t('.new', :default => t("helpers.links.new")), new_post_job_path, :class => 'btn btn-primary'
 :javascript 
 	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

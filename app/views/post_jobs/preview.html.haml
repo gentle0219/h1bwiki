@@ -1,0 +1,26 @@
+.row.post-main-page
+	=render "layouts/nav-link-secondary"
+	.row
+		.span10.post-jobs-show-box
+			.row
+				.span10
+					%h1= post_job.job_title
+			.row
+				.span10
+					%strong Hourly - 
+			.row
+				.span10
+					%h2 Job Description				
+			.row
+				.span10
+					= post_job.job_description
+			.row
+				.span10
+					%h3 Skills Required
+			.row
+				.span10
+					-post_job.skill_lists.each do |skill_name|
+						%a.h1bwiki-skill{:href=>"#"}=skill_name.name
+			
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

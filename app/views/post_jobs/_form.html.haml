@@ -24,8 +24,8 @@
 			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_job.skill_lists.map(&:attributes).to_json, "data-required"=>"true"
 	.form-actions
 		= link_to( '< Back ', post_main_path, :class => "btn" ) 
-		= f.submit 'Post a Job', :class => 'btn btn-success'
-		= link_to( 'Preview ', @post_job, :class => "btn" ) 
+		= f.submit 'Post a Job', :class => 'btn btn-primary'
+		= link_to( 'Preview ', post_job_preview_path, :class => "btn", :method => :post ) 
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), post_jobs_path, :class => 'btn'
 
 //				= skill.text_field :skill_name, :class => 'text_field large-field'

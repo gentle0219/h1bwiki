@@ -71,6 +71,17 @@ class PostJobsController < ApplicationController
       end
     end
   end
+  
+  # POST /post_jobs
+  # POST /post_jobs.json
+  def preview
+    @post_job = PostJob.new(params[:post_job])
+render :text => @post_job.job_title and return
+    respond_to do |format|
+      format.html # preview.html.erb
+      format.json { render json: @post_job }
+    end
+  end
 
   # DELETE /post_jobs/1
   # DELETE /post_jobs/1.json
