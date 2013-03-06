@@ -25,7 +25,7 @@
 	.form-actions
 		= link_to( '< Back ', post_main_path, :class => "btn" ) 
 		= f.submit 'Post a Job', :class => 'btn btn-success'
-		= link_to( 'Preview ', 'preview', :class => "btn" ) 
+		= link_to( 'Preview ', @post_job, :class => "btn" ) 
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), post_jobs_path, :class => 'btn'
 
 //				= skill.text_field :skill_name, :class => 'text_field large-field'

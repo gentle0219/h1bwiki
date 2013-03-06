@@ -26,11 +26,13 @@
 									%tbody
 										- @post_jobs.each do |post_job|
 											%tr
-												%td= post_job.job_title
+												%td= link_to post_job.job_title, post_job, :class=>"link-job-title"
 												%td=l post_job.created_at, :format =>"%Y-%m-%d %H:%M"
 												%td
-													= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_job_path(post_job), :class => 'btn btn-mini'
-													= link_to t('.destroy', :default => t("helpers.links.destroy")), post_job_path(post_job), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+													= link_to edit_post_job_path(post_job), :class => 'btn btn-mini' do
+														%i.icon-edit &nbsp;Edit
+													= link_to post_job, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
+														%i.icon-trash &nbsp;Delete
 
 						#trainings.tab-pane
 							.span12			
@@ -43,11 +45,14 @@
 									%tbody
 										- @post_trainings.each do |post_training|
 											%tr
-												%td= post_training.job_title
+												%td= link_to post_training.job_title, post_training, :class=>"link-job-title"
 												%td=l post_training.created_at, :format =>"%Y-%m-%d %H:%M"
 												%td
-													= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_training_path(post_training), :class => 'btn btn-mini'
-													= link_to t('.destroy', :default => t("helpers.links.destroy")), post_training_path(post_training), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+													= link_to edit_post_training_path(post_training), :class => 'btn btn-mini' do
+														%i.icon-edit &nbsp;Edit
+													= link_to post_training, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
+														%i.icon-trash &nbsp;Delete
+
 						#mentors.tab-pane
 							.span12.show-box
 								%table.table.table-striped
@@ -59,11 +64,13 @@
 									%tbody
 										- @post_mentors.each do |post_mentor|
 											%tr
-												%td= post_mentor.job_title
+												%td= link_to post_mentor.job_title, post_mentor, :class=>"link-job-title"
 												%td=l post_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
 												%td
-													= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_mentor_path(post_mentor), :class => 'btn btn-mini'
-													= link_to t('.destroy', :default => t("helpers.links.destroy")), post_mentor_path(post_mentor), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+													= link_to edit_post_mentor_path(post_mentor), :class => 'btn btn-mini' do
+														%i.icon-edit &nbsp;Edit
+													= link_to post_mentor, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
+														%i.icon-trash &nbsp;Delete
 :javascript 
 	$('div.nav-link ul li').eq(1).removeClass('current-tab');
 	$('div.nav-link ul li').eq(0).addClass('current-tab');
