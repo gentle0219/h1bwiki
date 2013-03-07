@@ -5,7 +5,7 @@
 			.row
 				%label.radio
 					%input#radio-1.post-type{:name => "opinions", :type => "radio", :value => "/post_jobs/new"}/
-					%label{:for => "radio-1", :class => "first-label"} Job		
+					%label{:for => "radio-1", :class => "first-label checked"} Job		
 
 			.row
 				%label.radio
@@ -20,6 +20,7 @@
 		.span10.offset1.form-actions
 			.span3.offset3
 				%form#post-type-form{:action => new_post_job_path}
-					%input{:type => "submit", :value => "Continue >", :class => "btn btn-primary"}/
+					%input{:type => "submit", :value => "Continue >", :class => "m-btn blue"}/
 :javascript 
-	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');	
+

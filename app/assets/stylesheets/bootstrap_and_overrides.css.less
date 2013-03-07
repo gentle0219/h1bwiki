@@ -96,6 +96,7 @@ div.wrap
 .footer
 {
   position: fixed;  
+  z-index: 555;
   height: 80px;
   clear:both;
   /*margin-top: 20px;*/
@@ -271,6 +272,7 @@ a, p, span{
         margin-top: 30px;
         border:none;
         margin-left:30px;
+        float: left;
         li{
           width:100px;
           a{
@@ -342,6 +344,37 @@ a, p, span{
 // POST PAGE STYLE
 
 div.post-main-page{
+  .page-msg-box{
+    background-color: #f5fcff;
+    border: 2px solid #b9e9fa;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 50px !important;
+    margin-top: 10px;
+    padding: 20px 0 15px 25px;
+    p{
+      font-size: 18px;
+      color: #222;
+      text-shadow: none;
+    }
+    a{
+      color: #4d90fe
+    }
+    a:hover{
+      background-color: transparent;
+      text-decoration: none;
+    }
+  }
+  input.m-btn{
+    margin-top:0px;
+    height: 34px;
+  }  
+  input.blue{
+    margin-top:0px;
+    height: 34px;
+  }
+  #btn_post_preview{
+    width: 120px;
+  }
   div.edit-box{
     form{
       width: 95%;
@@ -349,7 +382,7 @@ div.post-main-page{
     }  
   }
   p.page-title{
-    color: #0044CC;
+    color: #4d90fe;
     font-size:40px;
     font-family: serif;
     margin-top: 20px;
@@ -426,6 +459,7 @@ div.post-main-page{
 
   .custom-checkbox label, .custom-radio label {
     background-position: -10px -14px;
+    color: #4d90fe;
   }
 
   .custom-checkbox label.hover,
@@ -433,6 +467,7 @@ div.post-main-page{
   .custom-radio label.hover,
   .custom-radio label.focus {
     background-position: -10px -114px;
+    color: #4787ed;
   }
 
   .custom-checkbox label.checked, 

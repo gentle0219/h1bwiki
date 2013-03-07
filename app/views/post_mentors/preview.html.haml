@@ -8,7 +8,7 @@
 		.span10.post-jobs-show-box
 			.row
 				.span10
-					%h1= @post_job.job_title
+					%h1= @post_mentor.job_title
 			.row
 				.span10
 					%strong Hourly - 
@@ -17,13 +17,13 @@
 					%h2 Job Description				
 			.row
 				.span10
-					= @post_job.job_description
+					= @post_mentor.job_description
 			.row
 				.span10
 					%h3 Skills Required
 			.row
 				.span10
-					-@post_job.skill_lists.each do |skill_name|
+					-@post_mentor.skill_lists.each do |skill_name|
 						%a.h1bwiki-skill{:href=>"#"}=skill_name.name
 			
 :javascript 

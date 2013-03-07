@@ -71,7 +71,14 @@ class PostMentorsController < ApplicationController
       end
     end
   end
-
+  # POST /post_mentors/preview
+  def preview
+    @post_mentor = PostMentor.new(params[:post_mentor])
+    respond_to do |format|
+      format.html # preview.html.haml
+      format.json { render json: @post_mentor }
+    end
+  end
   # DELETE /post_mentors/1
   # DELETE /post_mentors/1.json
   def destroy

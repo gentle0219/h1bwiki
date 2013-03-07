@@ -1,10 +1,14 @@
 H1bwiki::Application.routes.draw do
 
-  resources :post_mentors
-  resources :post_trainings  
   resources :post_jobs
   post 'post_jobs/preview'
-
+  resources :post_trainings  
+  post 'post_trainings/preview'
+  resources :post_mentors
+  post 'post_mentors/preview'
+  
+  
+  
   resources :skills
   
   resources :post_trainings  

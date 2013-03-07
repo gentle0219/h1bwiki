@@ -22,7 +22,8 @@
 $(function(){	
 	
 	$('input').customInput();
-	$("label.first-label").addClass('checked');	
+	$("label.radio label").removeClass("checked");
+	$("label.first-label").addClass('checked');
 
 	$("#skill_input_box").tokenInput("/skills.json", {
     crossDomain: false,
@@ -32,9 +33,25 @@ $(function(){
   });
   var height = $(window).height();
 	$("div.wrap").css("height", height*0.78);
-	
-  $(window).resize(function() {
+	$(window).resize(function() {
   	var height = $(window).height();
 		$("div.wrap").css("height", height*0.78);	
 	});
+
+	var pre_action = $("#job_post_form").attr("action");	
+	$('#btn_post_preview').click(function(){		
+		var preview = "/preview";
+		var re = new RegExp("\/[a-z]*_[a-z]*[^\/]", "i");		
+		var controller = pre_action.match(re);
+
+		$("#job_post_form").attr("target", "_blink");
+		$("#job_post_form").attr("action", controller+preview);
+	});
+	$('#btn_post_create').click(function(){
+		$("#job_post_form").attr("target", "_self");
+		$("#job_post_form").attr("action", pre_action);
+	});
+
+
+
 });

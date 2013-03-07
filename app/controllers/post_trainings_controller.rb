@@ -16,7 +16,7 @@ class PostTrainingsController < ApplicationController
   # GET /post_trainings/1.json
   def show
     @post_training = PostTraining.find(params[:id])
-
+    flash[notice] = nil
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post_training }
@@ -70,7 +70,14 @@ class PostTrainingsController < ApplicationController
       end
     end
   end
+ def preview
+    @post_training = PostTraining.new(params[:post_training])
 
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @post_training }
+    end
+  end
   # DELETE /post_trainings/1
   # DELETE /post_trainings/1.json
   def destroy

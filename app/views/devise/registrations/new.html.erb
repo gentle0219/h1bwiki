@@ -9,7 +9,7 @@
     </h2>
     <h4>Already have an Account? <%= link_to "Login Here", new_user_session_path, :class => "btn btn-link" %> </h4>
     
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal", "data-validate" => "parsley" }) do |f| %>
       <%= devise_error_messages! %>
       
       <div class="control-group">
@@ -81,14 +81,14 @@
           <div class="control-group">
             <%= f.label :password, :class => "control-label" %>
             <div class="controls">
-              <%= f.password_field :password %>
+              <%= f.password_field :password, "data-required"=>"true", "data-rangelength"=>"[8,25]" %>
             </div>
           </div>
 
           <div class="control-group">
             <%= f.label :password_confirmation, :class => "control-label" %>
             <div class="controls">
-              <%= f.password_field :password_confirmation %>
+              <%= f.password_field :password_confirmation, "data-required"=>"true", "data-rangelength"=>"[8,25]" %>
             </div>
           </div>          
           <div class="control-group">
@@ -105,10 +105,10 @@
           <% end %>
 
 	      <label class="checkbox offset1">
-	        <input type="checkbox" id="agree-privacy"> I agree to terms and privacy
+	        <input type="checkbox" name="rangecheck" data-required="true" value="foo" class="parsley-validated" id="agree-privacy"> I agree to terms and privacy
 	      </label>
 	      <br />
-	      <div class="span2 offset1"><%= f.submit "Sign up", :class => "btn btn-primary btn-block", :id => "btn-sign-up", :disabled => "disabled" %></div> 
+	      <div class="span2 offset1"><%= f.submit "Sign up", :class => "m-btn blue btn-block", :id => "btn-sign-up", :disabled => "disabled" %></div> 
 
     <% end %>
   </div>

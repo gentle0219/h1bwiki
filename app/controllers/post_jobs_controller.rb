@@ -16,7 +16,7 @@ class PostJobsController < ApplicationController
   # GET /post_jobs/1.json
   def show
     @post_job = PostJob.find(params[:id])
-
+    flash[notice] = nil
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post_job }
@@ -76,7 +76,7 @@ class PostJobsController < ApplicationController
   # POST /post_jobs.json
   def preview
     @post_job = PostJob.new(params[:post_job])
-render :text => @post_job.job_title and return
+
     respond_to do |format|
       format.html # preview.html.erb
       format.json { render json: @post_job }

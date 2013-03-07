@@ -1,4 +1,4 @@
-= form_for @post_training, :html => { :class => 'form-horizontal', "data-validate" => "parsley" } do |f|
+= form_for @post_training, :html => { :class => 'form-horizontal', "data-validate" => "parsley", :id => "job_post_form" } do |f|
 	= f.hidden_field :user_id, :class => 'number_field', :value=>current_user.id
 	.control-group
 		= f.label :job_title, "Title", :class => 'control-label'
@@ -29,10 +29,13 @@
 		.controls
 			= f.text_area :job_description, :class => 'text_area', :rows => 3, "data-required"=>"true", "data-rangelength"=>"[5,500]"
 	.form-actions
-		= link_to( '< Back ', post_main_path, :class => "btn" ) 
-		= f.submit 'Post a Training/Placement', :class => 'btn btn-primary'
-		= link_to( 'Preview ', 'preview', :class => "btn" ) 
-		= link_to t('.cancel', :default => t("helpers.links.cancel")), post_trainings_path, :class => 'btn'
-		
+		= link_to( '< Back ', post_main_path, :class => "m-btn" ) 
+		= f.submit 'Post a Training/Placement', :class => 'm-btn blue', :id => "btn_post_create"
+		= f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), post_trainings_path, :class => 'm-btn'
+// %input#btn_post_preview{:type => "button", :vale=>"PRE" }		
+// 		= f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_job_preview"
+
 :javascript 
 	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
+	
