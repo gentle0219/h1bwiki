@@ -3,6 +3,7 @@ class PostMentorsController < ApplicationController
   # GET /post_mentors
   # GET /post_mentors.json
   def index
+    redirect_to posts_view_path and return
     @post_mentors = current_user.post_mentors.paginate(:page => params[:page], :per_page => 15)
 
     respond_to do |format|

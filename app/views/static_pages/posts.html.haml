@@ -76,3 +76,6 @@
 										%tr
 											%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @post_mentors, :param_name => 'mentor_page'
 :javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
+	$('div.nav-link ul li').eq(1).removeClass('current-tab');
+	$('div.nav-link ul li').eq(0).addClass('current-tab');	
