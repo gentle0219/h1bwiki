@@ -3,7 +3,7 @@ class PostMentorsController < ApplicationController
   # GET /post_mentors
   # GET /post_mentors.json
   def index
-    @post_mentors = current_user.post_mentors.all
+    @post_mentors = current_user.post_mentors.paginate(:page => params[:page], :per_page => 15)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class PostMentorsController < ApplicationController
   # GET /post_mentors/1.json
   def show
     @post_mentor = PostMentor.find(params[:id])
-
+    flash[notice] = nil
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post_mentor }

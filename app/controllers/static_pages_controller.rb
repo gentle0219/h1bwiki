@@ -19,9 +19,9 @@ class StaticPagesController < ApplicationController
     if !user_signed_in?
       redirect_to new_user_session_path
     else
-      @post_jobs = current_user.post_jobs.all
-      @post_trainings = current_user.post_trainings.all
-      @post_mentors = current_user.post_mentors.all
+      @post_jobs = current_user.post_jobs.paginate(:page => params[:job_page], :per_page => 15)
+      @post_trainings = current_user.post_trainings.paginate(:page => params[:trining_page], :per_page => 15)
+      @post_mentors = current_user.post_mentors.paginate(:page => params[:mentor_page], :per_page => 15)
     end
   end
 end

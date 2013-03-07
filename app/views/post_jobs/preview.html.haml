@@ -10,19 +10,22 @@
 				.span10
 					%h1= @post_job.job_title
 			.row
-				.span10
-					%strong Hourly - 
+				.span2
+					%strong 
+						Job Type: 
+				.span8
+					%span=@post_job.get_jobtype
 			.row
-				.span10
-					%h2 Job Description				
+				.span2
+					%strong 
+						Description: 
+				.span8
+					%label= @post_job.job_description
 			.row
-				.span10
-					= @post_job.job_description
-			.row
-				.span10
-					%h3 Skills Required
-			.row
-				.span10
+				.span2
+					%strong 
+						Skills: 
+				.span8
 					-@post_job.skill_lists.each do |skill_name|
 						%a.h1bwiki-skill{:href=>"#"}=skill_name.name
 			

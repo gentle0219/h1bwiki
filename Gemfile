@@ -28,6 +28,8 @@ end
 
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'will_paginate'
+gem 'will_paginate_twitter_bootstrap'
 
 group :development do
   gem 'sqlite3'

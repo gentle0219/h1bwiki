@@ -6,8 +6,7 @@ H1bwiki::Application.routes.draw do
   post 'post_trainings/preview'
   resources :post_mentors
   post 'post_mentors/preview'
-  
-  
+    
   
   resources :skills
   

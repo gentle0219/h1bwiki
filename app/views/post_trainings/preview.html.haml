@@ -10,17 +10,35 @@
 				.span10
 					%h1= @post_training.job_title
 			.row
-				.span10
-					%strong Hourly - 
+				.span3
+					%strong Technology:
+				.span8
+					%span=@post_training.get_techtype
 			.row
-				.span10
-					%h2 Job Description				
+				.span3
+					%strong Instruction mode: 					
+				.span8
+					%span=@post_training.get_instruction_mode
 			.row
-				.span10
-					= @post_training.job_description
+				.span3
+					%strong Placement:
+				.span8
+					%span=@post_training.job_placement == '1' ? 'Yes' : 'No'
 			.row
-				.span10
-					%h3 Skills Required
+				.span3
+					%strong Accomodation:
+				.span8
+					%label=@post_training.job_accomodation == '1' ? 'Yes' : 'No'
+			.row
+				.span3
+					%strong Duration:
+				.span8						
+					%span=@post_training.job_duration						
+			.row
+				.span3
+					%strong Job Description:
+				.span8
+					%label= @post_training.job_description
 			
 :javascript 
 	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

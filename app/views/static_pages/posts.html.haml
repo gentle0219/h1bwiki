@@ -32,6 +32,8 @@
 														%i.icon-edit &nbsp;Edit
 													= link_to post_job, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
 														%i.icon-trash &nbsp;Delete
+										%tr
+											%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @post_jobs, :param_name => 'job_page'
 
 						#trainings.tab-pane
 							.span12			
@@ -51,7 +53,8 @@
 														%i.icon-edit &nbsp;Edit
 													= link_to post_training, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
 														%i.icon-trash &nbsp;Delete
-
+										%tr
+											%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @post_trainings, :param_name => 'trining_page'
 						#mentors.tab-pane
 							.span12.show-box
 								%table.table.table-striped
@@ -70,7 +73,6 @@
 														%i.icon-edit &nbsp;Edit
 													= link_to post_mentor, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
 														%i.icon-trash &nbsp;Delete
+										%tr
+											%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @post_mentors, :param_name => 'mentor_page'
 :javascript 
-	$('div.nav-link ul li').eq(1).removeClass('current-tab');
-	$('div.nav-link ul li').eq(0).addClass('current-tab');
-	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

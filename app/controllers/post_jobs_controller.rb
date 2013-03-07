@@ -4,7 +4,7 @@ class PostJobsController < ApplicationController
   # GET /post_jobs.json
   before_filter :require_login_job
   def index
-    @post_jobs = current_user.post_jobs.all
+    @post_jobs = current_user.post_jobs.paginate(:page => params[:page], :per_page => 15)
 
     respond_to do |format|
       format.html # index.html.erb
