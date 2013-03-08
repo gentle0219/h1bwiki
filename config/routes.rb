@@ -1,5 +1,12 @@
 H1bwiki::Application.routes.draw do
 
+  resources :jobseeker_jobs
+  post 'jobseeker_jobs/preview'
+  resources :jobseeker_trainings
+  post 'jobseeker_trainings/preview'
+  resources :jobseeker_mentors
+  post 'jobseeker_mentors/preview'
+
   resources :post_jobs
   post 'post_jobs/preview'
   resources :post_trainings  
@@ -24,7 +31,10 @@ H1bwiki::Application.routes.draw do
   get "static_pages/contact"  
   get "static_pages/post_main", :as =>"post_main"
   get "static_pages/posts", :as => "posts_view"
+
+  get "static_pages/jobseeker_post_main", :as =>"jobseeker_post_main"
+  get "static_pages/jobseeker_posts", :as => "jobseeker_posts"
+
   match 'signup' => 'static_pages#signup'
-  
   root :to => "static_pages#home"
 end

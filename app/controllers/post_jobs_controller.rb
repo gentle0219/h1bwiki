@@ -1,8 +1,7 @@
 class PostJobsController < ApplicationController
-  before_filter :require_login_job
+  before_filter :require_login_employer
   # GET /post_jobs
   # GET /post_jobs.json
-  before_filter :require_login_job
   def index
     redirect_to posts_view_path and return
     @post_jobs = current_user.post_jobs.paginate(:page => params[:page], :per_page => 15)

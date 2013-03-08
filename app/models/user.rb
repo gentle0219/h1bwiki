@@ -14,4 +14,9 @@ class User < ActiveRecord::Base
   has_many :post_jobs
   has_many :post_trainings
   has_many :post_mentors
+
+  has_many :jobseeker_jobs
+  has_many :jobseeker_trainings
+  has_many :jobseeker_mentors
+  
 end

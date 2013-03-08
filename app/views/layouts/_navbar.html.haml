@@ -9,7 +9,7 @@
       .nav-collapse        
         %ul.nav.nav-tabs
           %li
-            =link_to("Post", posts_view_path)
+            =link_to("Post", user_signed_in? ? (employer? ? posts_view_path : jobseeker_posts_path ) : posts_view_path )
           %li
             %a{:href=>"#"} Contact
           %li

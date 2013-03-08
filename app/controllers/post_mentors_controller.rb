@@ -1,5 +1,5 @@
 class PostMentorsController < ApplicationController
-  before_filter :require_login_job
+  before_filter :require_login_employer
   # GET /post_mentors
   # GET /post_mentors.json
   def index

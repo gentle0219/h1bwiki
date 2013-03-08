@@ -1,5 +1,5 @@
 class PostTrainingsController < ApplicationController  
-  before_filter :require_login_job
+  before_filter :require_login_employer
 
   # GET /post_trainings
   # GET /post_trainings.json

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301204924) do
+ActiveRecord::Schema.define(:version => 20130307222408) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,44 @@ ActiveRecord::Schema.define(:version => 20130301204924) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  create_table "jobseeker_jobs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.integer  "transfer"
+    t.integer  "status"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "jobseeker_jobs", ["user_id"], :name => "index_jobseeker_jobs_on_user_id"
+
+  create_table "jobseeker_mentors", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.integer  "support"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "jobseeker_mentors", ["user_id"], :name => "index_jobseeker_mentors_on_user_id"
+
+  create_table "jobseeker_trainings", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.integer  "status"
+    t.integer  "transfer"
+    t.string   "technology"
+    t.integer  "instruction_mod"
+    t.integer  "accomodation"
+    t.text     "description"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "jobseeker_trainings", ["user_id"], :name => "index_jobseeker_trainings_on_user_id"
 
   create_table "post_jobs", :force => true do |t|
     t.integer  "user_id"

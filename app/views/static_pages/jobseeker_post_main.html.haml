@@ -1,0 +1,28 @@
+.row.post-main-page{:style => "min-height:200px;"}
+	=render "layouts/nav-link-secondary"
+	.row.first-row
+		.span11.offset1
+			.row
+				%p.page-title What type of Posting is this:
+			.span8.offset3
+				.row
+					%label.radio
+						%input#radio-1.post-type{:name => "opinions", :type => "radio", :value => "/jobseeker_jobs/new"}/
+						%label{:for => "radio-1", :class => "first-label checked"} Job / H-1B Sponsorship Wanted
+				.row
+					%label.radio
+						%input#radio-2.post-type{:name => "opinions", :type => "radio", :value => "/jobseeker_trainings/new"}/
+						%label{:for => "radio-2"}  Training / Placement Wanted
+
+				.row
+					%label.radio
+						%input#radio-3.post-type{:name => "opinions", :type => "radio", :value => "/jobseeker_mentors/new"}/
+						%label{:for => "radio-3"}  Mentor Assistance / Job Support Wanted
+	.row.second-row
+		.span10.offset1.form-actions
+			.span3.offset5
+				%form#post-type-form{:action => new_jobseeker_job_path}
+					%input{:type => "submit", :value => "Continue >", :class => "m-btn blue"}/
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
+

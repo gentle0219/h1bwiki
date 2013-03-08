@@ -178,30 +178,35 @@ div.testimonial_description{
 }
  
 #flash-banner {
-//#notice-message, #alert-message,
-.flash.notice, .flash.alert {
-  z-index: 999;
-  /*display:none;*/
-  /*position:fixed;*/
-  left:10px;
-  top:10px;
-  -moz-border-radius : 4px;
-  border-radius : 4px;
-  padding: 5px 8px;
-  margin: 0 auto 10px;
+  //#notice-message, #alert-message,
+  .flash.notice, .flash.alert {
+    z-index: 999;
+    /*display:none;*/
+    /*position:fixed;*/
+    left:10px;
+    top:10px;
+    -moz-border-radius : 4px;
+    border-radius : 4px;
+    padding: 5px 8px;
+    margin: 0 auto 10px;
 
-  /* width: 492px; */
-  text-align:center;
-}
+    /* width: 492px; */
+    text-align:center;
+  }
 
-//#notice-message,
-.flash.notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
-}
+  //#notice-message,
+  .flash.notice {
+    background-color: #CCFFCC;
+    border: 1px solid #66CC66;
+    left: 19%;
+    position: fixed;
+    top: 80px;
+    width: 60%;
+    z-index: 9999;
+  }
 
 
-#alert-message,
+  #alert-message,
   .flash.alert {
     background-color: #FCC;
     border: solid 1px #C66;
@@ -384,9 +389,30 @@ div.post-main-page{
   }
   p.page-title{
     color: #4d90fe;
-    font-size:40px;
+    font-size:28px;
     font-family: serif;
     margin-top: 20px;
+    text-shadow: none;
+  }
+  .show-box{
+    padding:20px 0 0 50px;
+    h1{
+      font-size: 30px;
+      margin: 20px 0 25px 10px;
+      color: #4d90fe;
+    }
+    .span2 strong{
+      font-size:14px;
+    }
+    .span3 strong{
+      font-size:14px;
+    }
+    .span8 label{
+      font-size: 14px;
+    }
+    .span8 span{
+      font-size: 14px;
+    }
   }
   .post-jobs-show-box{
     padding:20px 0 0 50px;
@@ -509,7 +535,7 @@ div.post-main-page{
       li{
         float: left;
         font-size: 16px;
-        margin-left: 10px;
+        margin-left: 20px;
         padding-top: 10px;
         width: 90px;
         a{
@@ -533,7 +559,7 @@ div.post-main-page{
         content: "";
         display: inline-block;
         height: 10px;
-        margin-left: 14px;
+        margin-left: 30px;
         position: absolute;
         transform: rotate(56deg) skew(0deg, -20deg);
         -webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.28);
@@ -550,7 +576,7 @@ div.post-main-page{
   }
   .first-row{
     height:200px;
-    margin-top: 80px;
+    margin-top: 50px;
     .row{
       margin-top: 20px;
     }
