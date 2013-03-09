@@ -10,19 +10,48 @@
 				.span10
 					%h1= @post_job.job_title
 			.row
-				.span2
+				.span3
 					%strong 
 						Job Type: 
 				.span8
 					%span=@post_job.get_jobtype
 			.row
-				.span2
+				.span3
+					%strong 
+						City: 
+				.span8
+					%label= @post_job.job_city
+			.row
+				.span3
+					%strong 
+						State: 
+				.span8
+					%label= @post_job.job_state
+			.row
+				.span3
+					%strong 
+						Duration: 
+				.span8
+					%label= @post_job.job_duration
+			.row
+				.span3
+					%strong 
+						Work Authorization: 
+				.span8					
+					-@post_job.work_authorizations.each do |autho|
+						.row
+							.span1
+								=image_tag("view_tick.png")
+							.span6
+								%label=autho.desc
+			.row
+				.span3
 					%strong 
 						Description: 
 				.span8
 					%label= @post_job.job_description
 			.row
-				.span2
+				.span3
 					%strong 
 						Skills: 
 				.span8

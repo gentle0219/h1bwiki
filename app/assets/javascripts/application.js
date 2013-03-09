@@ -20,8 +20,11 @@
 
 
 $(function(){	
-	
-	$('input').customInput();
+	console.log();
+	$('input[type="radio"]').customInput();
+//	$('#authors_names_0').addClass("parsley-validated");
+//	$('#authors_names_0').attr("data-mincheck", "1");
+
 	$("label.radio label").removeClass("checked");
 	$("label.first-label").addClass('checked');
 
@@ -43,11 +46,12 @@ $(function(){
 		var preview = "/preview";
 		var re = new RegExp("\/[a-z]*_[a-z]*[^\/]", "i");		
 		var controller = pre_action.match(re);
-
+		$("#job_post_form input[name='_method']").val("post")
 		$("#job_post_form").attr("target", "_blink");
 		$("#job_post_form").attr("action", controller+preview);
 	});
 	$('#btn_post_create').click(function(){
+		$("#job_post_form input[name='_method']").val("put")
 		$("#job_post_form").attr("target", "_self");
 		$("#job_post_form").attr("action", pre_action);
 	});

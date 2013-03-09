@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'devise'
 
 gem 'rmagick'
@@ -30,6 +30,10 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'will_paginate'
 gem 'will_paginate_twitter_bootstrap'
+gem 'binding_of_caller', '~> 0.7.1'
+gem 'debug_inspector', '>= 0.0.1'
+gem 'bacon'
+gem 'rake'
 
 group :development do
   gem 'sqlite3'

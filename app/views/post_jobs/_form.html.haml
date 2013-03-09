@@ -15,6 +15,25 @@
 		.controls.custom-select
 			= f.select(:job_type,[['Full Time',0],['Contract',1],['Contract to Hire',2]] )
 	.control-group
+		= f.label :job_city, "City",:class => 'control-label'
+		.controls
+			= f.text_field :job_city, :class => 'text_field', "data-required"=>"true"
+	.control-group
+		= f.label :job_state, "State",:class => 'control-label'
+		.controls
+			= f.text_field :job_state, :class => 'text_field', "data-required"=>"true"
+	.control-group
+		= f.label :job_duration, "Duration",:class => 'control-label'
+		.controls
+			= f.text_field :job_duration, :class => 'text_field', "data-required"=>"true"
+	.control-group
+		%label.control-label Work Authorization
+		=f.fields_for :work_authorizations, WorkAuthorization.available_consts do |autho|									
+			.controls.span2
+				%label.checkbox
+					= autho.check_box :workauthorization_index, {}, autho.object.workauthorization_index, '-1'
+					= autho.object.desc
+	.control-group
 		= f.label :job_description,"Description", :class => 'control-label'
 		.controls
 			= f.text_area :job_description, :class => 'text_area', :rows=>3, "data-required"=>"true", "data-rangelength"=>"[5,2500]"
@@ -30,9 +49,14 @@
 
 :javascript 
 	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
+	$('label.checkbox input[type="checkbox"]').each(function(){
+		$(this).removeAttr("checked");
+	});
+	$('label.checkbox').each(function(){
+	});
 	
-
 //				= skill.text_field :skill_name, :class => 'text_field large-field'
 //		= f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"
 // %input#btn_post_preview{:type => "button", :vale=>"PRE" }
+//		$(this).children("input[type='checkbox']").insertBefore($(this).children("input[type='hidden']"));
 		

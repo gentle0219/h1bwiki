@@ -28,6 +28,8 @@ class PostJobsController < ApplicationController
   def new
     @post_job = PostJob.new
     @post_job.skills.build
+    @post_job.work_authorizations.build
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post_job }
@@ -38,6 +40,7 @@ class PostJobsController < ApplicationController
   def edit
     @post_job = PostJob.find(params[:id])
     @post_job.skills.build if @post_job.skills.nil?
+    @post_job.work_authorizations.build if @post_job.work_authorizations.nil? 
   end
 
   # POST /post_jobs
@@ -76,7 +79,7 @@ class PostJobsController < ApplicationController
   # POST /post_jobs.json
   def preview
     @post_job = PostJob.new(params[:post_job])
-
+    #render :text => params[:post_job].inspect and return
     respond_to do |format|
       format.html # preview.html.erb
       format.json { render json: @post_job }

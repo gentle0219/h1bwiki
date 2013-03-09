@@ -1,0 +1,11 @@
+p = PostJob.new({"user_id"=>"1", "job_title"=>"asdfasdfasdfasdf", "job_type"=>"0", "job_city"=>"asdfasdfas", "job_state"=>"asdfas", "job_duration"=>"1month", "job_description"=>"asdfasdf", "skill_tokens"=>"1,7"})
+
+p = PostJob.new({"user_id"=>"1", "job_title"=>"asdfasdfasdfasdf", "job_type"=>"0", "job_city"=>"asdfasdfas", "job_state"=>"asdfas", "job_duration"=>"1month", "work_authorizations_attributes"=>{"0"=>{"name"=>"US Citizen"}}, "job_description"=>"asdfasdf", "skill_tokens"=>"1,7"})
+
+.control-group
+		%label.control-label Work Authorization
+		=f.fields_for :work_authorizations, WorkAuthorization.available_consts, :builder => CustomFormBuilder do |autho|									
+			.controls.span2
+				%label.checkbox
+					= autho.check_box :workauthorization_index, {:saved_values => [f.object.work_authorizations, [:workauthorization_index, :desc]]}, autho.object.workauthorization_index, '-1'
+					= autho.object.desc

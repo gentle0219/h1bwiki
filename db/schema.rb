@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307222408) do
+ActiveRecord::Schema.define(:version => 20130308173508) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -66,6 +66,9 @@ ActiveRecord::Schema.define(:version => 20130307222408) do
     t.integer  "user_id"
     t.string   "job_title"
     t.integer  "job_type"
+    t.string   "job_city"
+    t.string   "job_state"
+    t.string   "job_duration"
     t.text     "job_description"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
@@ -91,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20130307222408) do
     t.integer  "job_instruction"
     t.string   "job_placement"
     t.string   "job_accomodation"
+    t.string   "job_city"
+    t.string   "job_state"
     t.string   "job_duration"
     t.text     "job_description"
     t.datetime "created_at",       :null => false
@@ -146,5 +151,14 @@ ActiveRecord::Schema.define(:version => 20130307222408) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "work_authorizations", :force => true do |t|
+    t.integer  "post_job_id"
+    t.integer  "workauthorization_index"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "work_authorizations", ["post_job_id"], :name => "index_work_authorizations_on_post_job_id"
 
 end

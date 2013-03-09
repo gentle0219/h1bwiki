@@ -21,6 +21,14 @@
 		.controls.custom-select
 			= f.select(:job_accomodation,[['Yes',1],['No',0]] )
 	.control-group
+		= f.label :job_city, "City", :class => 'control-label'
+		.controls
+			= f.text_field :job_city, :class => 'text_field', "data-required"=>"true"
+	.control-group
+		= f.label :job_state, "State", :class => 'control-label'
+		.controls
+			= f.text_field :job_state, :class => 'text_field', "data-required"=>"true"			
+	.control-group
 		= f.label :job_duration, "Duration", :class => 'control-label'
 		.controls
 			= f.text_field :job_duration, :class => 'text_field', "data-required"=>"true"

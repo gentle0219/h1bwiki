@@ -7,6 +7,8 @@ class CreatePostTrainings < ActiveRecord::Migration
       t.integer :job_instruction
       t.string :job_placement
       t.string :job_accomodation
+      t.string :job_city      #add field
+      t.string :job_state     #add field
       t.string :job_duration
       t.text :job_description
 
