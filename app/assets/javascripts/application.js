@@ -20,7 +20,6 @@
 
 
 $(function(){	
-	console.log();
 	$('input[type="radio"]').customInput();
 //	$('#authors_names_0').addClass("parsley-validated");
 //	$('#authors_names_0').attr("data-mincheck", "1");
@@ -55,7 +54,5 @@ $(function(){
 		$("#job_post_form").attr("target", "_self");
 		$("#job_post_form").attr("action", pre_action);
 	});
-
-
 
 });

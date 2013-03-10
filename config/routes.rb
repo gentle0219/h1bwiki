@@ -1,5 +1,7 @@
 H1bwiki::Application.routes.draw do
 
+  metropoli_for :cities, :states, :countries
+
   resources :jobseeker_jobs
   post 'jobseeker_jobs/preview'
   resources :jobseeker_trainings
@@ -34,6 +36,8 @@ H1bwiki::Application.routes.draw do
 
   get "static_pages/jobseeker_post_main", :as =>"jobseeker_post_main"
   get "static_pages/jobseeker_posts", :as => "jobseeker_posts"
+  
+  get "static_pages/search_home", :as => "search_home"
 
   match 'signup' => 'static_pages#signup'
   root :to => "static_pages#home"

@@ -5,3 +5,5 @@ $ ->
 	$("input.post-type").each (index) ->
 		$(this).click ->
 			$("#post-type-form").attr "action", $(this).val()
+
+	

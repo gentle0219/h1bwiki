@@ -1,3 +1,13 @@
+=begin
+  t.belongs_to :user
+  t.string :title
+  t.integer :status
+  t.integer :transfer
+  t.string :technology
+  t.integer :instruction_mod
+  t.integer :accomodation
+  t.text :description
+=end
 class JobseekerTraining < ActiveRecord::Base
   belongs_to :user
   attr_accessible :user_id, :accomodation, :description, :instruction_mod, :status, :technology, :title, :transfer
@@ -9,5 +19,8 @@ class JobseekerTraining < ActiveRecord::Base
   end
   def get_instruction_mode
   	INSTRUCTION_MODE[self.instruction_mod.to_i]
+  end
+  def self.search( title )
+    all :conditions => ["job_title LIKE ? ", "%"+title+"%" ], :order => :created_at
   end
 end

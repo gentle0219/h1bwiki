@@ -715,3 +715,125 @@ ul.parsley-error-list{
 .btn-primary{
   color:white !important;
 }
+
+
+
+div.search-page-main{
+  p, label, a{
+    text-shadow: none;
+  }
+  .first-row{
+    margin-top: 30px;
+    .show-search-tab-box{
+      padding-left: 20px;
+      #content{
+        ul.nav-tabs{
+          margin-bottom: 0px;
+          li{
+            width: 180px;
+            a:hover{
+              color: black;
+            }
+          }
+        }
+        div.tab-content{
+          .search-conditions-box{
+            border: solid 1px #ddd;
+            border-top: none;
+            padding: 30px 0px 20px 20px;
+          }          
+        }
+      }
+    }
+    .search-results-box{
+      margin-left:0px;
+      .search-result-item{
+        border: solid 1px;
+        border-bottom: none;
+        padding: 10px;
+        div.title-row{
+          margin: 10px 10px;
+          p.item-title{
+            font-size: 30px;
+            font-weight: bold;
+            color: blue;          
+          }
+          p.created-date{
+            font-size: 16px;
+            text-align: right;
+          }
+        }
+        div.compnay-row{
+          margin: 5px 10px;
+          p.item-company-name{
+            font-size: 18px;
+            font-weight: bold;
+          }
+        }
+        p.skill-tags{
+          font-size: 16px;
+          font-weight: bold;
+        }
+        div.button-box{
+          input[type="button"]{
+            width: 150px;
+            heght: 35px;
+          }
+        }
+        a.skill-tags{
+          background-color: #f2f2ed;
+          border-radius: 4px;
+          font-size: 14px;
+          font-weight: bold;
+          display: inline-block;
+          line-height: 1;
+          padding: 7px 9px;
+          color: #222;
+          margin: 2px 0;
+          text-shadow: none;
+        }
+        a.skill-tags:hover{
+          cursor: pointer;
+          background: #00aeec;
+          color: #fff;
+          text-decoration: none;      
+        }
+        a.view-details{
+          font-size: 14px;
+          color: #4d90fe;
+        }
+        a.view-details:hover{
+          color: #4d90fe;
+          text-decoration: underline;
+          background-color: transparent;
+          cursor: pointer;
+        }
+        div.view-details-box{
+          height: 15px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+  .second-row{
+    margin-top: 20px;
+    .first-row{
+      border-bottom: solid 1px;
+      p{
+        font-size: 20px;
+        font-weight: bold;
+        color: #4d90fe;
+        text-align: center;        
+      }
+    }
+    label{
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .border{
+      border-right: 1px solid;
+      padding-right: 20px;
+    }
+  }
+}

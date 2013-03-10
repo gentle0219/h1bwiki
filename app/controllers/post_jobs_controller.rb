@@ -5,7 +5,7 @@ class PostJobsController < ApplicationController
   def index
     redirect_to posts_view_path and return
     @post_jobs = current_user.post_jobs.paginate(:page => params[:page], :per_page => 15)
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @post_jobs }

@@ -28,10 +28,10 @@
 			= f.text_field :job_duration, :class => 'text_field', "data-required"=>"true"
 	.control-group
 		%label.control-label Work Authorization
-		=f.fields_for :work_authorizations, WorkAuthorization.available_consts do |autho|									
+		=f.fields_for :work_authorizations, WorkAuthorization.available_consts, :builder => CustomFormBuilder do |autho|
 			.controls.span2
 				%label.checkbox
-					= autho.check_box :workauthorization_index, {}, autho.object.workauthorization_index, '-1'
+					= autho.check_box :workauthorization_index, {:saved_values => [f.object.work_authorizations, ["workauthorization_index", "desc"]]}, autho.object.workauthorization_index, '-1'
 					= autho.object.desc
 	.control-group
 		= f.label :job_description,"Description", :class => 'control-label'
@@ -48,12 +48,7 @@
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), posts_view_path, :class => 'm-btn'
 
 :javascript 
-	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
-	$('label.checkbox input[type="checkbox"]').each(function(){
-		$(this).removeAttr("checked");
-	});
-	$('label.checkbox').each(function(){
-	});
+	$('ul.nav-tabs li').eq(1).addClass('isCurrent');
 	
 //				= skill.text_field :skill_name, :class => 'text_field large-field'
 //		= f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"

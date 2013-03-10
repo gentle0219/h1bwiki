@@ -1,3 +1,17 @@
+
+=begin
+  Schema Info
+  t.belongs_to    :user
+  t.string        :job_title
+  t.integer       :job_technology
+  t.integer       :job_instruction
+  t.string        :job_placement
+  t.string        :job_accomodation
+  t.string        :job_city      #add field
+  t.string        :job_state     #add field
+  t.string        :job_duration
+  t.text          :job_description
+=end
 class PostMentor < ActiveRecord::Base
   belongs_to :user
   has_many :skills, :as => :skillable
@@ -19,5 +33,8 @@ class PostMentor < ActiveRecord::Base
       skills += skill_name.name + " "
     end
     skills
+  end
+  def self.search( title )
+    all :conditions => ["job_title LIKE ? ", "%"+title+"%" ], :order => :created_at
   end
 end

@@ -1,3 +1,13 @@
+=begin 
+schema info
+  t.belongs_to    :user
+  t.string        :job_title
+  t.integer       :job_type
+  t.string        :job_city        #add  2013-3-8
+  t.string        :job_state       #add  2013-3-8
+  t.string        :job_duration    #add  2013-3-8
+  t.text          :job_description
+=end  
 class PostJob < ActiveRecord::Base
 	attr_accessible :user_id, :job_description, :job_title, :job_type, :job_city, :job_state, :job_duration, :skills_attributes, :skill_tokens, :work_authorizations_attributes, :authors_names
   belongs_to :user
@@ -32,4 +42,39 @@ class PostJob < ActiveRecord::Base
     end
     skills
   end
+
+  def self.search( title, city )
+    cond_text, cond_values = [], []
+    if title.present?
+      cond_text << "job_title LIKE ?"
+      cond_values << "%#{title}%"
+    end
+    if city.present?
+      cond_text << "job_city LIKE ?"
+      cond_values << "%#{city}%"
+    end
+    unless cond_text.empty?      
+      all :conditions => [cond_text.join(" AND "), *cond_values], :order => :created_at
+    else
+      all
+    end
+  end
+=begin  
+  def self.search(str)
+    return [] if str.blank?
+    cond_text   = str.split.map{|w| "tag_name LIKE ? "}.join(" OR ")
+    cond_values = str.split.map{|w| "%#{w}%"}
+    all(:conditions =>  (str ? [cond_text, *cond_values] : []))
+  end
+  def self.search( *args )
+    return [] if args.blank?
+    cond_text, cond_values = [], []
+    args.each do |str|
+      next if str.blank?  
+      cond_text << "( %s )" % str.split.map{|w| "tag_name LIKE ? "}.join(" OR ")
+      cond_values.concat(str.split.map{|w| "%#{w}%"})
+    end
+    all :conditions =>  [cond_text.join(" AND "), *cond_values]
+  end
+=end  
 end

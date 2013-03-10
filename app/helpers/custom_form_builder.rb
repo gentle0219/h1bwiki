@@ -1,6 +1,5 @@
 class CustomFormBuilder < ActionView::Helpers::FormBuilder
   def check_box(label, *args)
-
     names = args[0][:saved_values][1]
     _id = names[0]
     _value = names[1]
@@ -18,8 +17,8 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
     end
 
     args[0][:saved_values] = nil
-
-    super(label, *args, id ) + @template.content_tag("label", value, {:for=>_for})
+    
+    super(label, *args )
   end
 
   def custom_text_field(label, *args, names)
