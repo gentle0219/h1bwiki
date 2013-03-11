@@ -92,7 +92,7 @@ class StaticPagesController < ApplicationController
         end        
         @search_emp_jobs = []
       else
-        @search_emp_jobs = PostJob.search(params[:title], params[:city])
+        @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_seeker_jobs = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '1'
@@ -103,19 +103,19 @@ class StaticPagesController < ApplicationController
         @search_seeker_trainings = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_emp_trainings = []
       else
-        @search_emp_trainings = PostTraining.find(:all, :order=>"created_at DESC")
+        @search_emp_trainings = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_seeker_trainings = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '2'
       if @job_type == '1'
-        @search_emp_mentors = PostMentor.paginate(:page => params[:page_num], :per_page => 1, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_emp_mentors = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_seeker_mentors = []
       elsif @job_type == '2'
-        @search_seeker_mentors = JobseekerMentor.paginate(:page => params[:page_num], :per_page => 1, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_seeker_mentors = JobseekerMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_emp_mentors = []
       else
-        @search_emp_mentors = PostMentor.search(params[:title])
-        @search_seeker_mentors = JobseekerMentor.search(params[:title])
+        @search_emp_mentors = PostMentor.paginate(:page => params[:page_num], :per_page => 5, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_seeker_mentors = JobseekerMentor.paginate(:page => params[:page_num], :per_page => 5, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
       end
     end
   end  
