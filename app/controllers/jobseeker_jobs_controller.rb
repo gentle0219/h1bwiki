@@ -1,5 +1,5 @@
 class JobseekerJobsController < ApplicationController
-  before_filter :require_login_job_seeker
+  before_filter :require_login_job_seeker, :except => [ :index, :show ]
   # GET /jobseeker_jobs
   # GET /jobseeker_jobs.json
   def index
@@ -14,7 +14,7 @@ class JobseekerJobsController < ApplicationController
 
   # GET /jobseeker_jobs/1
   # GET /jobseeker_jobs/1.json
-  def show
+  def show    
     @jobseeker_job = JobseekerJob.find(params[:id])
 
     respond_to do |format|

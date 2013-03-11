@@ -1,5 +1,5 @@
 class PostTrainingsController < ApplicationController  
-  before_filter :require_login_employer
+  before_filter :require_login_employer, :except => [ :index, :show ]
 
   # GET /post_trainings
   # GET /post_trainings.json

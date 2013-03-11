@@ -56,3 +56,21 @@ $(function(){
 	});
 
 });
+
+
+
+
+
+
+/*	
+	$("a.view-details").each(function(){
+		$(this).click(function(){
+			var sibl_item = $(this).siblings(0);
+			if(sibl_item.height() == 40){
+				sibl_item.animate({height:"80px"})
+			}else{
+				sibl_item.animate({height:"40px"})
+			}			
+		});
+	});
+*/

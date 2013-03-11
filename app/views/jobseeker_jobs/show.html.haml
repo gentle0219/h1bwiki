@@ -1,32 +1,36 @@
 .row.post-main-page
-	=render "layouts/nav-link-secondary"
-	.row.first-row.post-job-page
-		.span12.show-box
-			.page-header
-				%p.page-title Need a Job / H-1B Sponsorship
+	.row
+		.span10.post-jobs-show-box
+			.row
+				.span10
+					%h1= @jobseeker_job.title
+			.row
+				- user = User.find_by_id(@jobseeker_job.user_id)
+				%p.company-name 
+					#{user.company_name.nil? ? user.user_name : user.company_name }
 			.row
 				.span3
-					%strong Title:
+					%strong 
+						Need H-1B/Transfer: 
 				.span8
-					%label= @jobseeker_job.title
+					%span=@jobseeker_job.transfer == 1 ? 'Yes' : 'No'
 			.row
 				.span3
-					%strong Need H-1B Transfer:
+					%strong 
+						Immigration Status: 
 				.span8
-					%label= @jobseeker_job.transfer
+					%span=@jobseeker_job.get_immigration_status
 			.row
 				.span3
-					%strong Immigration Status:
+					%strong 
+						Description: 
 				.span8
-					%label= @jobseeker_job.status == 1 ? 'Yes' : 'No'
-			.row
-				.span3
-					%strong Description:
-				.span8
-					%label= @jobseeker_job.description
-
-
-.form-actions
-	= link_to t('.back', :default => t("helpers.links.back")), jobseeker_jobs_path, :class => 'btn'
-	= link_to t('.edit', :default => t("helpers.links.edit")), edit_jobseeker_job_path(@jobseeker_job), :class => 'btn'
-	= link_to t('.destroy', :default => t("helpers.links.destroy")), jobseeker_job_path(@jobseeker_job), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+					%label= @jobseeker_job.description			
+	
+	.row.last-row
+		.span2.offset3
+			%input.m-btn.blue{:type=>"button", :value=>"Contact"}				
+		.span2
+			%input.m-btn.blue{:type=>"button", :value=>"Forward"}					
+		.span2
+			%input.m-btn.blue{:type=>"button", :value=>"Close"}

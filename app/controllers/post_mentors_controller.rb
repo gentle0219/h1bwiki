@@ -1,5 +1,5 @@
 class PostMentorsController < ApplicationController
-  before_filter :require_login_employer
+  before_filter :require_login_employer, :except => [ :index, :show ]
   # GET /post_mentors
   # GET /post_mentors.json
   def index

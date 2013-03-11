@@ -1,5 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
+    if user_signed_in?
+      redirect_to search_home_path
+    end
   end
 
   def about
@@ -42,6 +45,7 @@ class StaticPagesController < ApplicationController
 
     @search_type = params[:search_type].blank? ? 0 : params[:search_type]
     @job_type = params[:type]
+=begin
     if params[:search_type].blank?
       @search_emp_jobs = PostJob.find(:all, :order=>"created_at DESC")
       @search_seeker_jobs = JobseekerJob.find(:all, :order=>"created_at DESC")
@@ -52,7 +56,7 @@ class StaticPagesController < ApplicationController
       @search_emp_mentors = PostMentor.find(:all, :order=>"created_at DESC")
       @search_seeker_mentors = JobseekerMentor.find(:all, :order=>"created_at DESC")
     end
-
+=end
     if @search_type == '0'
       if @job_type == '1'
         @search_emp_jobs = PostJob.search(params[:title], params[:city])

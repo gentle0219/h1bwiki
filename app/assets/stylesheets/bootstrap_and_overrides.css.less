@@ -349,6 +349,12 @@ a, p, span{
 // POST PAGE STYLE
 
 div.post-main-page{
+  .last-row{
+    margin-top: 30px;
+    input.m-btn{
+      width: 100px;
+    }
+  }
   .page-msg-box{
     background-color: #f5fcff;
     border: 2px solid #4d90fe;
@@ -423,7 +429,7 @@ div.post-main-page{
     padding:20px 0 0 50px;
     h1{
       font-size: 30px;
-      margin: 20px 0 25px 10px;
+      margin: 10px 0 5px 0px;
       color: #4d90fe;
     }
     .span2 strong{
@@ -437,6 +443,10 @@ div.post-main-page{
     }
     .span8 span{
       font-size: 14px;
+    }
+    p.company-name {
+      font-size: 16px;
+      margin-bottom: 25px;
     }
     a.h1bwiki-skill{
       background-color: #f2f2ed;
@@ -721,6 +731,7 @@ ul.parsley-error-list{
 div.search-page-main{
   p, label, a{
     text-shadow: none;
+    font-family: sans-serif;
   }
   .first-row{
     margin-top: 30px;
@@ -731,8 +742,12 @@ div.search-page-main{
           margin-bottom: 0px;
           li{
             width: 180px;
+            a{
+              font-weight: bold;
+            }
             a:hover{
               color: black;
+              border-color: #DDDDDD #DDDDDD transparent;
             }
           }
         }
@@ -754,10 +769,15 @@ div.search-page-main{
         padding: 10px;
         div.title-row{
           margin: 10px 10px;
-          p.item-title{
-            font-size: 30px;
+          a.item-title{
+            font-size: 20px;
             font-weight: bold;
-            color: blue;          
+            color: #4d90fe;          
+          }
+          a.item-title:hover{
+            background-color: transparent;
+            text-decoration: underline;
+            cursor: pointer;
           }
           p.created-date{
             font-size: 16px;
@@ -767,12 +787,12 @@ div.search-page-main{
         div.compnay-row{
           margin: 5px 10px;
           p.item-company-name{
-            font-size: 18px;
+            font-size: 12px;
             font-weight: bold;
           }
         }
         p.skill-tags{
-          font-size: 16px;
+          font-size: 12px;
           font-weight: bold;
         }
         div.button-box{
@@ -800,7 +820,7 @@ div.search-page-main{
           text-decoration: none;      
         }
         a.view-details{
-          font-size: 14px;
+          font-size: 12px;
           color: #4d90fe;
         }
         a.view-details:hover{
@@ -810,13 +830,15 @@ div.search-page-main{
           cursor: pointer;
         }
         div.view-details-box{
-          height: 15px;
+          height: 40px;
           overflow: hidden;
         }
       }
     }
   }
   .second-row{
+    display: none;
+    visibility: hidden;
     margin-top: 20px;
     .first-row{
       border-bottom: solid 1px;
