@@ -65,6 +65,9 @@
 												.span12													
 													.view-details-box= search_emp_job.job_description
 													= link_to "View Details >", post_job_path(search_emp_job), :class=>"view-details", :target => "_blink"
+								-if @search_emp_jobs.present?
+									.row
+										=will_paginate @search_emp_jobs, :param_name => 'page_num'
 								- @search_seeker_jobs.each do |search_seeker_job|
 									.row
 										.span12.search-result-item
@@ -79,13 +82,14 @@
 												.span8.company-name
 													%p.item-company-name 
 														- user = User.find_by_id(search_seeker_job.user_id)
-														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city} ,  #{user.address1}
+														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city}
 												.span2.offset1.button-box
 													%input.m-btn.blue{:type=>"button", :value => "Contact"}
 											.row
 												.span12													
 													.view-details-box= search_seeker_job.description
 													= link_to "View Details >", jobseeker_job_path(search_seeker_job), :class=>"view-details", :target => "_blink"
+								
 						#trainings.tab-pane
 							.span12.search-conditions-box
 								.row
@@ -137,6 +141,9 @@
 												.span12
 													.view-details-box= search_emp_training.job_description
 													= link_to "View Details >", post_training_path(search_emp_training), :class=>"view-details", :target => "_blink"
+								-if @search_emp_trainings.present?
+									.row
+										=will_paginate @search_emp_trainings, :param_name => 'page_num'
 								- @search_seeker_trainings.each do |search_seeker_training|
 									.row
 										.span12.search-result-item
@@ -151,7 +158,7 @@
 												.span8.company-name
 													%p.item-company-name 
 														- user = User.find_by_id(search_seeker_training.user_id)
-														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city} ,  #{user.address1}
+														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city}
 												.span2.offset1.button-box
 													%input.m-btn.blue{:type=>"button", :value => "Contact"}												
 											.row
@@ -206,6 +213,9 @@
 												.span12													
 													.view-details-box= search_emp_mentor.job_description
 													= link_to "View Details >", post_mentor_path(search_emp_mentor), :class=>"view-details", :target => "_blink"
+								-if @search_emp_mentors.present?
+									.row
+										=will_paginate @search_emp_mentors, :param_name => 'page_num'
 								- @search_seeker_mentors.each do |search_seeker_mentor|
 									.row
 										.span12.search-result-item
@@ -220,13 +230,16 @@
 												.span8.company-name
 													%p.item-company-name 
 														- user = User.find_by_id(search_seeker_mentor.user_id)
-														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city} ,  #{user.address1}
+														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city}
 												.span2.offset1.button-box
 													%input.m-btn.blue{:type=>"button", :value => "Contact"}
 											.row
 												.span12
 													.view-details-box= search_seeker_mentor.description
 													= link_to "View Details >", jobseeker_mentor_path(search_seeker_mentor), :class=>"view-details", :target => "_blink"
+								-if @search_seeker_mentors.present?
+									.row
+										=will_paginate @search_seeker_mentors, :param_name => 'page_num'
 	.row.second-row
 		.span4.jobseeker-jobs
 			.border

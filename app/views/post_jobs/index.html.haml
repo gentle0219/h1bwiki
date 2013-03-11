@@ -18,7 +18,7 @@
 					%tbody
 						- @post_jobs.each do |post_job|
 							%tr
-								%td= link_to post_job.id, post_job_path(post_job)
+								%td= post_job.id, post_job_path(post_job)
 								%td= post_job.job_title
 								%td= post_job.get_jobtype
 								%td= post_job.job_description

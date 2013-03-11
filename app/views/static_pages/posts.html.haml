@@ -25,7 +25,7 @@
 									%tbody
 										- @post_jobs.each do |post_job|
 											%tr
-												%td= link_to post_job.job_title, post_job, :class=>"link-job-title"
+												%td= link_to post_job.job_title, edit_post_job_path(post_job), :class=>"link-job-title"
 												%td=l post_job.created_at, :format =>"%Y-%m-%d %H:%M"
 												%td
 													= link_to edit_post_job_path(post_job), :class => 'btn btn-mini' do
@@ -46,7 +46,7 @@
 									%tbody
 										- @post_trainings.each do |post_training|
 											%tr
-												%td= link_to post_training.job_title, post_training, :class=>"link-job-title"
+												%td= link_to post_training.job_title, edit_post_training_path(post_training), :class=>"link-job-title"
 												%td=l post_training.created_at, :format =>"%Y-%m-%d %H:%M"
 												%td
 													= link_to edit_post_training_path(post_training), :class => 'btn btn-mini' do
@@ -66,7 +66,7 @@
 									%tbody
 										- @post_mentors.each do |post_mentor|
 											%tr
-												%td= link_to post_mentor.job_title, post_mentor, :class=>"link-job-title"
+												%td= link_to post_mentor.job_title, edit_post_mentor_path(post_mentor), :class=>"link-job-title"
 												%td=l post_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
 												%td
 													= link_to edit_post_mentor_path(post_mentor), :class => 'btn btn-mini' do
