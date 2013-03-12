@@ -1,0 +1,54 @@
+.row
+	= form_tag search_home_path, :method => :get, :id=>"home_search_form" do
+		= hidden_field_tag :search_type, '0', :id => "hidden_post_type"
+		= hidden_field_tag :type, '0', :id => "hidden_search_type"
+		.span11.home-search-box	
+			.span2
+				.row
+					.btn-group						
+						%a.btn.search-type-button-caption Jobs
+						%a.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+							%span.caret
+						%ul.dropdown-menu
+							%li
+								%a{:class => "post-type"} Jobs
+							%li
+								%a{:class => "post-type"} Trainings
+							%li
+								%a{:class => "post-type"} Mentors
+			.span3
+				.row
+					= text_field_tag :title, params[:title], :placeholder => "What?"
+			.span3
+				.row
+					= text_field_tag :city, params[:city], :placeholder => "Where?"
+			.span2
+				.row
+					.btn-group
+						%a.btn.type-button-caption All
+						%a.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+							%span.caret
+						%ul.dropdown-menu
+							%li
+								%a{:class => "search-type"} All
+							%li
+								%a{:class => "search-type"} Offered
+							%li
+								%a{:class => "search-type"} Wanted
+			.span2
+				.row
+					= submit_tag "Search", :name => nil, :class=>"m-btn blue"
+:javascript
+	$('ul.dropdown-menu a.post-type').each(function(index){
+		$(this).click(function(){
+			$("#hidden_post_type").val(index);
+			$("a.search-type-button-caption").text($(this).text());
+		});
+	});
+
+	$('ul.dropdown-menu a.search-type').each(function(index){
+		$(this).click(function(){
+			$("#hidden_search_type").val(index);
+			$("a.type-button-caption").text($(this).text());
+		});
+	});
