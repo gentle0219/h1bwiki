@@ -1,268 +1,290 @@
-.row.search-page-main
-	=render "layouts/nav-link-search-secondary"
-	.row.first-row			
-		.span12.show-search-tab-box
-			.row		
-				#content
-					%ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
-						%li.active
-							%a{"data-toggle" => "tab", :href => "#jobs"} Jobs
-						%li
-							%a{"data-toggle" => "tab", :href => "#trainings"} Trainings/Placement
-						%li
-							%a{"data-toggle" => "tab", :href => "#mentors"} Mentor Assitance
-					#my-tab-content.tab-content
-						#jobs.tab-pane.active
-							.span12.search-conditions-box
-								.row
-									= form_tag search_home_path, :method => :get do
-										= hidden_field_tag :search_type, '0'
-										.span3
-											.row
-												= text_field_tag :title, params[:title], :placeholder => "What?"
-											.row
-											%label (Job Title, Keywords or Company)
-										.span3
-											.row
-												= text_field_tag :city, params[:city], :placeholder => "Where?"
-											.row
-												%label (Zipcode or City)												
-										.span3
-											.row
-												= select_tag(:type, options_for_select([['All Jobs',0],['Jobs Offred',1],['Jobs Wanted',2]], @job_type))
-											.row
-												%label (In: Jobs Offered or Jobs Wanted)
-										.span2
-											.row
-												= submit_tag "Search", :name => nil, :class=>"m-btn blue"
-											.row
-												%label &nbsp;
-							.span12.search-results-box
-								- @search_emp_jobs.each do |search_emp_job|
+.container-fluid
+	.row.search-page-main
+		=render "layouts/nav-link-search-secondary"
+		.row.first-row			
+			.span12.show-search-tab-box
+				.row		
+					#content
+						%ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
+							%li.active
+								%a{"data-toggle" => "tab", :href => "#jobs"} Jobs
+							%li
+								%a{"data-toggle" => "tab", :href => "#trainings"} Trainings/Placement
+							%li
+								%a{"data-toggle" => "tab", :href => "#mentors"} Mentor Assitance
+						#my-tab-content.tab-content
+							#jobs.tab-pane.active
+								.span12.search-conditions-box
 									.row
-										.span12.search-result-item
-											.row.title-row
-												.span8
-													= link_to search_emp_job.job_title, post_job_path(search_emp_job), :class=>"item-title", :target => "_blink"
-												.span4
-													%p.created-date
-														Date Posted:
-														=l search_emp_job.created_at, :format =>"%Y-%m-%d %H:%M"
-											.row.compnay-row
-												.span12.company-name
-													%p.item-company-name 
-														- user = User.find_by_id(search_emp_job.user_id)
-														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{search_emp_job.job_city} ,  #{search_emp_job.job_state}
-											.row
-												.span8.skill-tags
-													%p.skill-tags 
-														Skills Needed : 
-														-search_emp_job.skill_lists.each do |skill_name|
-															%a.skill-tags{:href=>"#"}=skill_name.name
-												.span2.offset1.button-box
-													%input.m-btn.blue{:type=>"button", :value => "Contact"}															
-											.row
-												.span12													
-													.view-details-box= search_emp_job.job_description
-													= link_to "View Details >", post_job_path(search_emp_job), :class=>"view-details", :target => "_blink"
-								-if @search_emp_jobs.present?
+										= form_tag search_home_path, :method => :get do
+											= hidden_field_tag :search_type, '0'
+											.span3
+												.row
+													= text_field_tag :title, params[:title], :placeholder => "What?"
+												.row
+												%label (Job Title, Keywords or Company)
+											.span3
+												.row
+													= text_field_tag :city, params[:city], :placeholder => "Where?"
+												.row
+													%label (Zipcode or City)												
+											.span3
+												.row
+													= select_tag(:type, options_for_select([['All Jobs',0],['Jobs Offered',1],['Jobs Wanted',2]], @job_type))
+												.row
+													%label (In: Jobs Offered or Jobs Wanted)
+											.span2
+												.row
+													= submit_tag "Search", :name => nil, :class=>"m-btn blue"
+												.row
+													%label &nbsp;
+								.span12.search-results-box
+									- @search_emp_jobs.each do |search_emp_job|
+										.row
+											.span12.search-result-item
+												.row.title-row
+													.span9
+														= link_to search_emp_job.job_title, post_job_path(search_emp_job), :class=>"item-title", :target => "_blink"
+													.span3
+														%p.created-date
+															Date Posted:
+															=l search_emp_job.created_at, :format =>"%Y-%m-%d %H:%M"
+												.row.compnay-row
+													.span9.company-name
+														%p.item-company-name 
+															- user = User.find_by_id(search_emp_job.user_id)
+															#{user.company_name.nil? ? user.user_name : user.company_name } -  #{search_emp_job.job_city} ,  #{search_emp_job.job_state}
+													.span3
+														%p.post-type Jobs Offered
+												.row
+													.span8.skill-tags
+														%p.skill-tags 
+															Skills Needed : 
+															-search_emp_job.skill_lists.each do |skill_name|
+																%a.skill-tags{:href=>"#"}=skill_name.name
+													.span2.offset1.button-box
+														%input.m-btn.blue{:type=>"button", :value => "Contact"}															
+												.row
+													.span12													
+														.view-details-box= search_emp_job.job_description
+														= link_to "View Details >", post_job_path(search_emp_job), :class=>"view-details", :target => "_blink"
+									-if @search_emp_jobs.present?
+										.row
+											=will_paginate @search_emp_jobs, :param_name => 'page_num'
+									- @search_seeker_jobs.each do |search_seeker_job|
+										.row
+											.span12.search-result-item
+												.row.title-row
+													.span9
+														= link_to search_seeker_job.title, jobseeker_job_path(search_seeker_job), :class=>"item-title", :target => "_blink"
+													.span3
+														%p.created-date
+															Date Posted:
+															=l search_seeker_job.created_at, :format =>"%Y-%m-%d %H:%M"
+												.row.compnay-row
+													.row
+														.span9.company-name
+															%p.item-company-name 
+																- user = User.find_by_id(search_seeker_job.user_id)
+																#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city}
+														.span3
+															%p.post-type Jobs Wanted
+													.row
+														.span8													
+														.span2.offset1.button-box
+															%input.m-btn.blue{:type=>"button", :value => "Contact"}
+												.row
+													.span12													
+														.view-details-box= search_seeker_job.description
+														= link_to "View Details >", jobseeker_job_path(search_seeker_job), :class=>"view-details", :target => "_blink"								
+							#trainings.tab-pane
+								.span12.search-conditions-box
 									.row
-										=will_paginate @search_emp_jobs, :param_name => 'page_num'
-								- @search_seeker_jobs.each do |search_seeker_job|
+										= form_tag search_home_path, :method => :get do
+											= hidden_field_tag :search_type, '1'
+											.span3
+												.row
+													= text_field_tag :title, params[:title], :placeholder => "What?"
+												.row
+												%label (Job Title, Keywords or Company)
+											.span3
+												.row
+													= text_field_tag :city, params[:city], :placeholder => "Where?"
+												.row
+													%label (Zipcode or City)												
+											.span3
+												.row
+													= select_tag(:type, options_for_select([['All Trainings',0],[' Trainings Offered',1],['Trainings Wanted',2]], @job_type))
+												.row
+													%label (In: Jobs Offered or Jobs Wanted)
+											.span2
+												.row
+													= submit_tag "Search", :name => nil, :class=>"m-btn blue"
+												.row
+													%label &nbsp;
+								.span12.search-results-box
+									- @search_emp_trainings.each do |search_emp_training|
+										.row
+											.span12.search-result-item
+												.row.title-row
+													.span9
+														= link_to search_emp_training.job_title, post_training_path(search_emp_training), :class=>"item-title", :target => "_blink"
+													.span3
+														%p.created-date
+															Date Posted:
+															=l search_emp_training.created_at, :format =>"%Y-%m-%d %H:%M"
+												.row.compnay-row
+													.span9.company-name
+														%p.item-company-name 
+															- user = User.find_by_id(search_emp_training.user_id)
+															#{user.company_name.nil? ? user.user_name : user.company_name } -  #{search_emp_training.job_city} ,  #{search_emp_training.job_state}
+													.span3
+														%p.post-type Trainings Offered
+												.row
+													.span8.option-tags
+														%p.option-tags Technology : #{search_emp_training.get_techtype} | Duration : #{search_emp_training.job_duration} | Accommodation : #{search_emp_training.job_accomodation=="1" ? "Yes" : "No"} | Placement : #{search_emp_training.job_placement=="1" ? "Yes" : "No"}
+														%p.option-tags Instruction Mode : #{search_emp_training.get_instruction_mode}
+													.span2.offset1.button-box
+														%input.m-btn.blue{:type=>"button", :value => "Contact"}																										
+												.row
+													.span12
+														.view-details-box= search_emp_training.job_description
+														= link_to "View Details >", post_training_path(search_emp_training), :class=>"view-details", :target => "_blink"
+									-if @search_emp_trainings.present?
+										.row
+											=will_paginate @search_emp_trainings, :param_name => 'page_num'
+									- @search_seeker_trainings.each do |search_seeker_training|
+										.row
+											.span12.search-result-item
+												.row.title-row
+													.span9
+														= link_to search_seeker_training.title, jobseeker_training_path(search_seeker_training), :class=>"item-title", :target => "_blink"
+													.span3
+														%p.created-date
+															Date Posted:
+															=l search_seeker_training.created_at, :format =>"%Y-%m-%d %H:%M"
+												.row.compnay-row
+													.row
+														.span9.company-name
+															%p.item-company-name 
+																- user = User.find_by_id(search_seeker_training.user_id)
+																#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city}
+														.span3														
+															%p.post-type Trainings Wanted
+													.row
+														.span8
+														.span2.offset1.button-box
+															%input.m-btn.blue{:type=>"button", :value => "Contact"}												
+												.row
+													.span12													
+														.view-details-box= search_seeker_training.description
+														= link_to "View Details >", jobseeker_training_path(search_seeker_training), :class=>"view-details", :target => "_blink"
+							#mentors.tab-pane
+								.span12.search-conditions-box
 									.row
-										.span12.search-result-item
-											.row.title-row
-												.span8
-													= link_to search_seeker_job.title, jobseeker_job_path(search_seeker_job), :class=>"item-title", :target => "_blink"
-												.span4
-													%p.created-date
-														Date Posted:
-														=l search_seeker_job.created_at, :format =>"%Y-%m-%d %H:%M"
-											.row.compnay-row
-												.span8.company-name
-													%p.item-company-name 
-														- user = User.find_by_id(search_seeker_job.user_id)
-														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city}
-												.span2.offset1.button-box
-													%input.m-btn.blue{:type=>"button", :value => "Contact"}
-											.row
-												.span12													
-													.view-details-box= search_seeker_job.description
-													= link_to "View Details >", jobseeker_job_path(search_seeker_job), :class=>"view-details", :target => "_blink"								
-						#trainings.tab-pane
-							.span12.search-conditions-box
-								.row
-									= form_tag search_home_path, :method => :get do
-										= hidden_field_tag :search_type, '1'
-										.span3
-											.row
-												= text_field_tag :title, params[:title], :placeholder => "What?"
-											.row
-											%label (Job Title, Keywords or Company)
-										.span3
-											.row
-												= text_field_tag :city, params[:city], :placeholder => "Where?"
-											.row
-												%label (Zipcode or City)												
-										.span3
-											.row
-												= select_tag(:type, options_for_select([['All Trainings',0],[' Trainigs Offered',1],['Trainigs Wanted',2]], @job_type))
-											.row
-												%label (In: Jobs Offered or Jobs Wanted)
-										.span2
-											.row
-												= submit_tag "Search", :name => nil, :class=>"m-btn blue"
-											.row
-												%label &nbsp;
-							.span12.search-results-box
-								- @search_emp_trainings.each do |search_emp_training|
-									.row
-										.span12.search-result-item
-											.row.title-row
-												.span8
-													= link_to search_emp_training.job_title, post_training_path(search_emp_training), :class=>"item-title", :target => "_blink"
-												.span4
-													%p.created-date
-														Date Posted:
-														=l search_emp_training.created_at, :format =>"%Y-%m-%d %H:%M"
-											.row.compnay-row
-												.span12.company-name
-													%p.item-company-name 
-														- user = User.find_by_id(search_emp_training.user_id)
-														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{search_emp_training.job_city} ,  #{search_emp_training.job_state}
-											.row
-												.span8.option-tags
-													%p.option-tags Technology : #{search_emp_training.get_techtype} | Duration : #{search_emp_training.job_duration} | Accommodation : #{search_emp_training.job_accomodation=="1" ? "Yes" : "No"} | Placement : #{search_emp_training.job_placement=="1" ? "Yes" : "No"}
-													%p.option-tags Instruction Mode : #{search_emp_training.get_instruction_mode}
-												.span2.offset1.button-box
-													%input.m-btn.blue{:type=>"button", :value => "Contact"}																										
-											.row
-												.span12
-													.view-details-box= search_emp_training.job_description
-													= link_to "View Details >", post_training_path(search_emp_training), :class=>"view-details", :target => "_blink"
-								-if @search_emp_trainings.present?
-									.row
-										=will_paginate @search_emp_trainings, :param_name => 'page_num'
-								- @search_seeker_trainings.each do |search_seeker_training|
-									.row
-										.span12.search-result-item
-											.row.title-row
-												.span8
-													= link_to search_seeker_training.title, jobseeker_training_path(search_seeker_training), :class=>"item-title", :target => "_blink"
-												.span4
-													%p.created-date
-														Date Posted:
-														=l search_seeker_training.created_at, :format =>"%Y-%m-%d %H:%M"
-											.row.compnay-row
-												.span8.company-name
-													%p.item-company-name 
-														- user = User.find_by_id(search_seeker_training.user_id)
-														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city}
-												.span2.offset1.button-box
-													%input.m-btn.blue{:type=>"button", :value => "Contact"}												
-											.row
-												.span12													
-													.view-details-box= search_seeker_training.description
-													= link_to "View Details >", jobseeker_training_path(search_seeker_training), :class=>"view-details", :target => "_blink"
-						#mentors.tab-pane
-							.span12.search-conditions-box
-								.row
-									= form_tag search_home_path, :method => :get do
-										= hidden_field_tag :search_type, '2'
-										.span4
-											.row
-												= text_field_tag :title, params[:title], :placeholder => "What?"
-											.row
-											%label (Job Title, Keywords or Company)
-										.span4
-											.row
-												= select_tag(:type, options_for_select([['All Mentor Assistance',0],[' Mentor Assistance Offered',1],['Mentor Assistance Wanted',2]], @job_type))
-											.row
-												%label (In: Jobs Offered or Jobs Wanted)
-										.span2
-											.row
-												= submit_tag "Search", :name => nil, :class=>"m-btn blue"
-											.row
-												%label &nbsp;
-							.span12.search-results-box
-								- @search_emp_mentors.each do |search_emp_mentor|
-									.row
-										.span12.search-result-item
-											.row.title-row
-												.span8
-													= link_to search_emp_mentor.job_title, post_mentor_path(search_emp_mentor), :class=>"item-title", :target => "_blink"
-												.span4
-													%p.created-date
-														Date Posted:
-														=l search_emp_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
-											.row.compnay-row
-												.span12.company-name
-													%p.item-company-name 
-														- user = User.find_by_id(search_emp_mentor.user_id)
-														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city} ,  #{user.address1}
-											.row
-												.span8.skill-tags
-													%p.skill-tags 
-														Skills Needed :
-														-search_emp_mentor.skill_lists.each do |skill_name|
-															%a.skill-tags{:href=>"#"}=skill_name.name
-												.span2.offset1.button-box
-													%input.m-btn.blue{:type=>"button", :value => "Contact"}															
-											.row
-												.span12													
-													.view-details-box= search_emp_mentor.job_description
-													= link_to "View Details >", post_mentor_path(search_emp_mentor), :class=>"view-details", :target => "_blink"
-								-if @search_emp_mentors.present?
-									.row
-										=will_paginate @search_emp_mentors, :param_name => 'page_num'
-								- @search_seeker_mentors.each do |search_seeker_mentor|
-									.row
-										.span12.search-result-item
-											.row.title-row
-												.span8
-													= link_to search_seeker_mentor.title, jobseeker_mentor_path(search_seeker_mentor), :class=>"item-title", :target => "_blink"
-												.span4
-													%p.created-date
-														Date Posted:
-														=l search_seeker_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
-											.row.compnay-row
-												.span8.company-name
-													%p.item-company-name 
-														- user = User.find_by_id(search_seeker_mentor.user_id)
-														#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city}
-												.span2.offset1.button-box
-													%input.m-btn.blue{:type=>"button", :value => "Contact"}
-											.row
-												.span12
-													.view-details-box= search_seeker_mentor.description
-													= link_to "View Details >", jobseeker_mentor_path(search_seeker_mentor), :class=>"view-details", :target => "_blink"
-								-if @search_seeker_mentors.present?
-									.row
-										=will_paginate @search_seeker_mentors, :param_name => 'page_num'
-	.row.second-row
-		.span4.jobseeker-jobs
-			.border
+										= form_tag search_home_path, :method => :get do
+											= hidden_field_tag :search_type, '2'
+											.span4
+												.row
+													= text_field_tag :title, params[:title], :placeholder => "What?"
+												.row
+												%label (Job Title, Keywords or Company)
+											.span4
+												.row
+													= select_tag(:type, options_for_select([['All Mentor Assistance',0],[' Mentor Assistance Offered',1],['Mentor Assistance Wanted',2]], @job_type))
+												.row
+													%label (In: Jobs Offered or Jobs Wanted)
+											.span2
+												.row
+													= submit_tag "Search", :name => nil, :class=>"m-btn blue"
+												.row
+													%label &nbsp;
+								.span12.search-results-box
+									- @search_emp_mentors.each do |search_emp_mentor|
+										.row
+											.span12.search-result-item
+												.row.title-row
+													.span9
+														= link_to search_emp_mentor.job_title, post_mentor_path(search_emp_mentor), :class=>"item-title", :target => "_blink"
+													.span3
+														%p.created-date
+															Date Posted:
+															=l search_emp_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
+												.row.compnay-row
+													.span9.company-name
+														%p.item-company-name 
+															- user = User.find_by_id(search_emp_mentor.user_id)
+															#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city} ,  #{user.address1}
+													.span3														
+														%p.post-type Mentor Assistance Offered
+												.row
+													.span8.skill-tags
+														%p.skill-tags 
+															Skills Needed :
+															-search_emp_mentor.skill_lists.each do |skill_name|
+																%a.skill-tags{:href=>"#"}=skill_name.name
+													.span2.offset1.button-box
+														%input.m-btn.blue{:type=>"button", :value => "Contact"}															
+												.row
+													.span12													
+														.view-details-box= search_emp_mentor.job_description
+														= link_to "View Details >", post_mentor_path(search_emp_mentor), :class=>"view-details", :target => "_blink"
+									-if @search_emp_mentors.present?
+										.row
+											=will_paginate @search_emp_mentors, :param_name => 'page_num'
+									- @search_seeker_mentors.each do |search_seeker_mentor|
+										.row
+											.span12.search-result-item
+												.row.title-row
+													.span9
+														= link_to search_seeker_mentor.title, jobseeker_mentor_path(search_seeker_mentor), :class=>"item-title", :target => "_blink"
+													.span3
+														%p.created-date
+															Date Posted:
+															=l search_seeker_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
+												.row.compnay-row
+													.row
+														.span9.company-name
+															%p.item-company-name 
+																- user = User.find_by_id(search_seeker_mentor.user_id)
+																#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city}
+														.span3
+															%p.post-type Mentor Assistance Wanted
+													.row
+														.span8
+														.span2.offset1.button-box
+															%input.m-btn.blue{:type=>"button", :value => "Contact"}
+												.row
+													.span12
+														.view-details-box= search_seeker_mentor.description
+														= link_to "View Details >", jobseeker_mentor_path(search_seeker_mentor), :class=>"view-details", :target => "_blink"
+									-if @search_seeker_mentors.present?
+										.row
+											=will_paginate @search_seeker_mentors, :param_name => 'page_num'
+		.row.second-row
+			.span4.jobseeker-jobs
+				.border
+					.row.first-row
+						%p.caption-title Jobs / H1B Sponsorship
+					.row
+						%label Jobs Offered
+					.row
+						%label Jobs Wanted	
+			.span4.jobseeker-trainings
+				.border
+					.row.first-row
+						%p.caption-title Trainings / Placement
+					.row
+						%label Trainings / Placement Offered
+					.row
+						%label Trainings /Placement Wanted
+			.span4.jobseeker-mentors
 				.row.first-row
-					%p.caption-title Jobs / H1B Sponsorship
+					%p.caption-title Mentor Assistance (Job Support)
 				.row
-					%label Jobs Offered
+					%label Mentor Assistance Offered
 				.row
-					%label Jobs Wanted	
-		.span4.jobseeker-trainings
-			.border
-				.row.first-row
-					%p.caption-title Trainings / Placement
-				.row
-					%label Trainings / Placement Offered
-				.row
-					%label Trainings /Placement Wanted
-		.span4.jobseeker-mentors
-			.row.first-row
-				%p.caption-title Mentor Assistance (Job Support)
-			.row
-				%label Mentor Assistance Offred
-			.row
-				%label Mentor Assistance Wanted
+					%label Mentor Assistance Wanted
 :javascript 
 	var cur_tab = #{@search_type}
 	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

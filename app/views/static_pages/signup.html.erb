@@ -1,38 +1,40 @@
 <style>
 h4 {
     font-size: 18px;
-    margin: 40px 0 20px !important;
+    margin: 40px 0 20px !important;    
 }
 a.control-label:hover{
 	background-color: transparent !important;
 }
 </style>
-<div style = "min-height: 700px; padding-top: 100px;">
-	<h1>START USING H1BWIKI JOBS</h1>
-	<div class="hero-unit form-horizontal" style="min-width:480px;">
-		<div class='row'>		
-				<p style="font-size:20px; font-weight:bolder">Already a H1BWIKI member? <%= link_to "Log in", new_user_session_path, :class => "btn btn-link" %> now.</p>		
-		</div>
-		<div class='row'>
-			<div class='row'>
-				<p style="font-size:16px;">Let's get Started!</p>    
-			</div>    	
+<div class="container-fluid">
+	<div style = "min-height: 700px; padding-top: 100px;">
+		<h1>Start Using H1B Wiki Jobs</h1>
+		<div class="hero-unit form-horizontal" style="min-width:480px;">
 			<div class='row'>		
-				<div class='span5 control-group' style="margin-left:0px;">
-					<%= link_to image_tag("jobseeker.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label" %>
-					<div class="controls" style="margin-left: 120px;">
-						<h4>Are you a Job Seeker?</h4>
-						<%= link_to "Sign Up", new_jobseeker_path, :class => "m-btn blue" %>
-					</div>				
-				</div>
-				<div class='span6 control-group' style="margin-left:10px;">
-					<%= link_to image_tag("employer.jpg", :class => "img-rounded" ), new_employer_path, :class=>"control-label" %>
-					<div class="controls" style="margin-left: 120px;">
-						<h4>Are you a H1bWIKI Employer / Sponsor?</h4>
-						<%= link_to "Sign Up", new_employer_path, :class => "m-btn blue" %>
-					</div>				
-				</div>
+					<p style="font-size:20px; font-weight:bolder">Already a H1BWIKI member? <%= link_to "Log in", new_user_session_path, :class => "btn btn-link" %> now.</p>		
 			</div>
-		</div>	
+			<div class='row'>
+				<div class='row'>
+					<p style="font-size:16px;">Let's get Started!</p>    
+				</div>    	
+				<div class='row'>		
+					<div class='span6 control-group' style="margin-left:0px;">
+						<%= link_to image_tag("jobseeker.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label" %>
+						<div class="controls" style="margin-left: 120px;">
+							<h4>Are you an OPT Student / H1B visa Job Seeker?</h4>
+							<%= link_to "Sign Up", new_jobseeker_path, :class => "m-btn blue" %>
+						</div>				
+					</div>
+					<div class='span6 control-group' style="margin-left:10px;">
+						<%= link_to image_tag("employer.jpg", :class => "img-rounded" ), new_employer_path, :class=>"control-label" %>
+						<div class="controls" style="margin-left: 120px;">
+							<h4>Are you a H-1B Employer / Trainer / Mentor?</h4>
+							<%= link_to "Sign Up", new_employer_path, :class => "m-btn blue" %>
+						</div>				
+					</div>
+				</div>
+			</div>	
+		</div>
 	</div>
 </div>

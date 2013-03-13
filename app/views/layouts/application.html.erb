@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>H1bwiki</title>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-  <![endif]-->
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+	<title>H1bwiki</title>
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+	<![endif]-->
+	<%= stylesheet_link_tag		"application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 </head>
 
 <%= render "layouts/navbar" %>
 
 <body>
 	<div id="flash-banner">
-	  <% flash.each do |key, msg| %>
-	    <%= content_tag :div, msg, :class => "flash " + key.to_s, :id => key.to_s + "-message" %>
-	    <%= content_tag :script, :type => "text/javascript" do %>
-	      $('#<%= key.to_s + "-message" %>').css('display', 'none');
-	      $('#<%= key.to_s + "-message" %>').slideDown().delay(3000).slideUp();
-	    <% end %>
-	  <% end %>
+		<% flash.each do |key, msg| %>
+			<%= content_tag :div, msg, :class => "flash " + key.to_s, :id => key.to_s + "-message" %>
+			<%= content_tag :script, :type => "text/javascript" do %>
+				$('#<%= key.to_s + "-message" %>').css('display', 'none');
+				$('#<%= key.to_s + "-message" %>').slideDown().delay(3000).slideUp();
+			<% end %>
+		<% end %>
 	</div>
 
 	<div class="wrap">
-		<div class="container-fluid">
-		  <div class="row-fluid">
-		    <div class="span12"><%= yield %></div>    
-		  </div>
+		<div class="row-fluid">
+			<div class="span12"><%= yield %></div>		
 		</div>
 	</div>
 </body>

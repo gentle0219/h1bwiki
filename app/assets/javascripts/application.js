@@ -37,7 +37,7 @@ $(function(){
 	$("div.wrap").css("height", height*0.78);
 	$(window).resize(function() {
   	var height = $(window).height();
-		$("div.wrap").css("height", height*0.78);	
+		$("div.wrap").css("min-height", height*0.78);	
 	});
 
 	var pre_action = $("#job_post_form").attr("action");	

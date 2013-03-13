@@ -1,54 +1,55 @@
-.row.post-main-page
-  .row
-    .span10.post-jobs-show-box
-      .row
-        .span10
-          %h1= @jobseeker_training.title
-      .row
-        - user = User.find_by_id(@jobseeker_training.user_id)
-        %p.company-name 
-          #{user.company_name.nil? ? user.user_name : user.company_name }
-      .row
-        .span3
-          %strong 
-            Immigration Status: 
-        .span8
-          %label=@jobseeker_training.get_immigration_status
-      .row
-        .span3
-          %strong 
-            Need H-1B / Transfer: 
-        .span8
-          %label=@jobseeker_training.transfer == 1 ? 'Yes' : 'No'
-      .row
-        .span3
-          %strong 
-            Technology: 
-        .span8
-          %label=@jobseeker_training.technology
-      .row
-        .span3
-          %strong 
-            Instruction Mode: 
-        .span8
-          %label=@jobseeker_training.get_instruction_mode
-      .row
-        .span3
-          %strong 
-            Need Accomodation: 
-        .span8
-          %label=@jobseeker_training.accomodation == 1 ? 'Yes' : 'No'
-          .row
-      .row
-        .span3
-          %strong 
-            Description: 
-        .span8
-          %label= @jobseeker_training.description           
-      .row.last-row
-        .span2.offset3
-          %input.m-btn.blue{:type=>"button", :value=>"Contact"}
-        .span2
-          %input.m-btn.blue{:type=>"button", :value=>"Forward"}         
-        .span2
-          %input.m-btn.blue{:type=>"button", :value=>"Close"}
+.container-fluid
+	.row.post-main-page
+		.row
+			.span10.post-jobs-show-box
+				.row
+					.span10
+						%h1= @jobseeker_training.title
+				.row
+					- user = User.find_by_id(@jobseeker_training.user_id)
+					%p.company-name 
+						#{user.company_name.nil? ? user.user_name : user.company_name }
+				.row
+					.span3
+						%strong 
+							Immigration Status: 
+					.span8
+						%label=@jobseeker_training.get_immigration_status
+				.row
+					.span3
+						%strong 
+							Need H-1B / Transfer: 
+					.span8
+						%label=@jobseeker_training.transfer == 1 ? 'Yes' : 'No'
+				.row
+					.span3
+						%strong 
+							Technology: 
+					.span8
+						%label=@jobseeker_training.technology
+				.row
+					.span3
+						%strong 
+							Instruction Mode: 
+					.span8
+						%label=@jobseeker_training.get_instruction_mode
+				.row
+					.span3
+						%strong 
+							Need Accomodation: 
+					.span8
+						%label=@jobseeker_training.accomodation == 1 ? 'Yes' : 'No'
+						.row
+				.row
+					.span3
+						%strong 
+							Description: 
+					.span8
+						%label= @jobseeker_training.description					 
+				.row.last-row
+					.span2.offset3
+						%input.m-btn.blue{:type=>"button", :value=>"Contact"}
+					.span2
+						%input.m-btn.blue{:type=>"button", :value=>"Forward"}				 
+					.span2
+						%input.m-btn.blue{:type=>"button", :value=>"Close"}

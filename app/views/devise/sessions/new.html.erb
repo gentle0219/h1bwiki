@@ -1,46 +1,46 @@
+<div class="container-fluid">
+  <div class="devise-pages">
+    <div class="sign-in-page span10 ">
+      <div class="span6 offset1">
+        <p style="font-size: 24px;  font-weight: bolder; color: #4d90fe" class="span8 offset1">Log in and get to work</p><br />
 
-<div class="devise-pages">
-  <div class="sign-in-page span10 ">
-    <div class="span6 offset1">
-      <p style="font-size: 24px;  font-weight: bolder; color: #4d90fe" class="span8 offset1">Log in and get to work</p><br />
-
-      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
-        
-        <div class="control-group">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
           
-          <div class="controls">
-            <%= f.email_field :email, :autofocus => true, :placeholder => "Your Email", :style => "height:27px; width:300px;" %>
+          <div class="control-group">
+            
+            <div class="controls">
+              <%= f.email_field :email, :autofocus => true, :placeholder => "Your Email", :style => "height:27px; width:300px;" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            
+            <div class="controls">
+              <%= f.password_field :password, :placeholder => "Password", :style => "height:27px; width:300px;" %>
+            </div>
+          </div>
+
+          <div class="span8 offset6 form-inline">
+            <%= f.submit "Sign in", :class => "m-btn blue", :style =>"width:120px; height:33px;" %>
+            <% if devise_mapping.rememberable? -%>
+            <label class="checkbox" style="margin-top: 10px;">
+              <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+            </label>    
+          <% end -%>
+          </div>
+        <% end %>
+        <p>&nbsp;</p>
+        <div class="row form-inline">
+          <div class="span9 offset6">
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+              <%= link_to "Forgot your password?", new_password_path(resource_name), :class => "btn btn-link" %>
+            <% end -%>
+            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+              <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), :class => "btn btn-link" %>
+            <% end -%>
           </div>
         </div>
-
-        <div class="control-group">
-          
-          <div class="controls">
-            <%= f.password_field :password, :placeholder => "Password", :style => "height:27px; width:300px;" %>
-          </div>
-        </div>
-
-        <div class="span8 offset6 form-inline">
-          <%= f.submit "Sign in", :class => "m-btn blue", :style =>"width:120px; height:33px;" %>
-          <% if devise_mapping.rememberable? -%>
-          <label class="checkbox" style="margin-top: 10px;">
-            <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-          </label>    
-        <% end -%>
-        </div>
-      <% end %>
-      <p>&nbsp;</p>
-      <div class="row form-inline">
-        <div class="span9 offset6">
-          <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-            <%= link_to "Forgot your password?", new_password_path(resource_name), :class => "btn btn-link" %>
-          <% end -%>
-          <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-            <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), :class => "btn btn-link" %>
-          <% end -%>
-        </div>
-      </div>
-    </div>  
+      </div>  
+    </div>
   </div>
-
 </div>
