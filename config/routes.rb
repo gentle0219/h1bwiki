@@ -1,6 +1,12 @@
 H1bwiki::Application.routes.draw do
 
-  metropoli_for :cities, :states, :countries
+  get "messagebox/inbox"
+  get "messagebox/sent"
+  get "messagebox/deleted"
+
+  mount Messaging::Engine => "/messaging"
+
+  #devise_for :messaging_users
 
   resources :jobseeker_jobs
   post 'jobseeker_jobs/preview'
@@ -25,6 +31,13 @@ H1bwiki::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations" } do
     get "registrations/new_jobseeker", :to => "registrations#new_jobseeker", :as => "new_jobseeker"
     get "registrations/new_employer", :to => "registrations#new_employer", :as => "new_employer"
+    resources :messagebox, only: [:index, :show, :new, :create] do
+      member do
+        post :reply
+        post :trash
+        post :untrash
+      end
+    end
   end
 
   get "static_pages/home"

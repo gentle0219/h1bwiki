@@ -7,6 +7,7 @@ gem 'rmagick'
 gem 'recaptcha'
 gem 'rails_tokeninput'
 gem 'twitter-bootstrap-form-builder'
+gem 'simple_form'
 gem 'parsley-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -34,9 +35,12 @@ gem 'binding_of_caller', '~> 0.7.1'
 gem 'debug_inspector', '>= 0.0.1'
 gem 'bacon'
 
-gem 'json_builder'
-gem 'json', '>= 1.4.6'
-gem 'metropoli', :git => 'git://github.com/innku/metropoli.git'
+#gem 'json_builder'
+#gem 'json', '>= 1.4.6'
+#gem 'metropoli', :git => 'git://github.com/innku/metropoli.git'
+gem 'messaging', git: 'git://github.com/frodefi/rails-messaging.git'
+gem 'mailboxer', git: 'git://github.com/ging/mailboxer.git'
+
 
 group :development do
   gem 'sqlite3'

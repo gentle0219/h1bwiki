@@ -11,9 +11,9 @@
           %li
             =link_to( "Search", search_home_path, :method => :get )
           %li
-            =link_to("Post", user_signed_in? ? (employer? ? posts_view_path : jobseeker_posts_path ) : posts_view_path )
+            =link_to( "Post", user_signed_in? ? (employer? ? posts_view_path : jobseeker_posts_path ) : posts_view_path )
           %li
-            %a{:href=>"#"} Contact
+            =link_to( "Messages", messagebox_inbox_path )
           %li
             %a{:href=>"#"} About
         %ul.nav.nav-right
