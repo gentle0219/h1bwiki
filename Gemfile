@@ -38,8 +38,8 @@ gem 'bacon'
 #gem 'json_builder'
 #gem 'json', '>= 1.4.6'
 #gem 'metropoli', :git => 'git://github.com/innku/metropoli.git'
-gem 'messaging', git: 'git://github.com/frodefi/rails-messaging.git'
-gem 'mailboxer', git: 'git://github.com/ging/mailboxer.git'
+#gem 'messaging', git: 'git://github.com/frodefi/rails-messaging.git'
+gem 'mailboxer'
 
 
 group :development do

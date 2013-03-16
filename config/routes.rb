@@ -23,9 +23,7 @@ H1bwiki::Application.routes.draw do
   post 'post_mentors/preview'
     
   
-  resources :skills
-  
-  resources :post_trainings  
+  resources :skills    
   resources :countries
 
   devise_for :users, :controllers => {:registrations => "registrations" } do

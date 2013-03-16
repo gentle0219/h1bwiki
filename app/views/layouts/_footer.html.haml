@@ -1,0 +1,52 @@
+%footer.footer
+	.row.footer-box{:style => "margin:0 auto;"}
+		.container
+			.span4
+				%ul.top-offset-small
+					%li
+						%a{:href => "/about", :style => "color:white; text-shadow: none;"} About
+					%li
+						%label |
+					%li
+						%a{:href => "/contact", :style => "color:white; text-shadow: none;"} Contact
+					%li
+						%label |
+					%li
+						%a{:href => "/press", :style => "color:white; text-shadow: none;"} Press
+					%li
+						%label |
+					%li
+						%a{:href => "/terms", :style => "color:white; text-shadow: none;"} Terms & Privacy
+			.span5
+				.row
+					.main_label
+						%span{:style => "color:white; text-shadow: none;"}
+							Sign Up for H1BWIKI'S Newsletter
+							%span
+								%br/
+				.row
+					.input_wrapper
+						%form{"accept-charset" => "UTF-8", :action => "/contact/new_subscriber", "data-remote" => "true", :method => "post"}
+							.input-append
+								%input#appendedInputButtons.span2{:placeholder => "Enter your email", :style => "width:320px", :type => "text"}/
+								%button.btn.btn-warning{:type => "button"} Sign up
+						.clear
+			.span3
+				.extra_info
+					%span{:style => "color:white; text-shadow: none;"}
+						%strong Contact us:
+					%span{:style => "color:white; text-shadow: none;"} admin@h1bwiki.com
+
+/ Modal
+#myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+	.modal-header
+		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+		%h3#myModalLabel New Message
+	.modal-body
+		.first-row
+			%input{:type=>"text", :placeholder => "Subject"}
+		.second-row
+			%textarea{:placeholder => "Message", :rows=>"8", :cols=>"10"}
+	.modal-footer	 
+		%button.m-btn.blue Send
+		%button.m-btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close

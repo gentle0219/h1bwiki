@@ -286,21 +286,6 @@
 				.row
 					%label Mentor Assistance Wanted
 
-/ Modal
-#myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-	.modal-header
-		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-		%h3#myModalLabel New Message
-	.modal-body
-		.span12			
-			.row
-				%input{:type=>"text", :placeholder => "Subject"}
-			.row
-				%textarea{:placeholder => "Message", :rows=>"8", :cols=>"10"}
-	.modal-footer		
-		%button.btn.btn-primary Send
-		%button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-
 :javascript 
 	var cur_tab = #{@search_type}
 	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
