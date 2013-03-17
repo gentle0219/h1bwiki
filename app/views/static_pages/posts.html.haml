@@ -86,3 +86,13 @@
 	$('ul.nav-tabs li').eq(1).addClass('isCurrent');
 	$('div.nav-link ul li').eq(1).removeClass('current-tab');
 	$('div.nav-link ul li').eq(0).addClass('current-tab');	
+
+	var cur_tab = #{session[:cur_tab]}
+	$("#tabs li").each(function(){
+		$(this).removeClass("active");
+	});
+	$("#my-tab-content div").each(function(){
+		$(this).removeClass("active");
+	});	
+	$("#tabs li").eq(cur_tab).addClass("active");
+	$("#my-tab-content div.tab-pane").eq(cur_tab).addClass("active");

@@ -27,6 +27,7 @@ class JobseekerTrainingsController < ApplicationController
   # GET /jobseeker_trainings/new.json
   def new
     @jobseeker_training = JobseekerTraining.new
+    session[:cur_tab] = 1
 
     respond_to do |format|
       format.html # new.html.erb

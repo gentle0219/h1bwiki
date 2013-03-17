@@ -29,7 +29,7 @@ class PostJobsController < ApplicationController
     @post_job = PostJob.new
     @post_job.skills.build
     @post_job.work_authorizations.build
-
+    session[:cur_tab] = 0
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post_job }
@@ -46,6 +46,7 @@ class PostJobsController < ApplicationController
   # POST /post_jobs
   # POST /post_jobs.json
   def create
+    flash[:cur_tab] = 0
     @post_job = PostJob.new(params[:post_job])
 
     respond_to do |format|

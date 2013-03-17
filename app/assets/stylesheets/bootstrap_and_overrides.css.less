@@ -286,6 +286,13 @@ a, p, span{
         border:none;
         margin-left:30px;
         float: left;
+        span.unread-count{
+          background-color: pink;
+          border: medium none red;
+          border-radius: 3px 3px 3px 3px;
+          color: red;
+          padding: 2px;
+        }
         li{
           width:120px;
           a{
@@ -1095,6 +1102,11 @@ div.login-bar{
 
 
 div.mailbox-page{
+  div.pagination{
+    margin: 0px;
+    margin-right: 8px;
+    float:right;
+  }
   .nav-link{
     background: none repeat scroll 0 0 #FFFFFF;
     border: medium none;
@@ -1154,6 +1166,16 @@ div.mailbox-page{
 }
 
 div.mailbox-page{
+  .page-title{
+    margin: 20px 10px;
+    p.subject{
+      font-size: 28px;
+      font-family: sans-serif;
+      color: #4d90fe;
+      font-weight: bold;
+    }
+  }
+  
   .first-row{
     .span12{
       margin-left: 24px;
@@ -1164,14 +1186,39 @@ div.mailbox-page{
     border-radius: 5px;
     padding: 0 1px 1px 1px;
     table.table{
-      
+      a.message-title{
+        font-size: 18px;
+        font-weight: bold;
+        color: #4d90fe;        
+      }
+      a:hover{
+        background-color: transparent;
+        text-decoration: none;
+      }
     }
   }
-  
+  .show-mail-box{     
+    .receipt{
+      border: 1px solid #DDDDDD;     
+      margin-top: -1px;
+      padding: 20px 10px;
+    }    
+    form.message{
+      label.reply{
+        font-size: 16px;
+        font-weight: bold;        
+      }
+      textarea{
+        width: 700px;
+        min-width: 450px;
+        max-width: 700px;
+      }
+    }
+  }  
 }
 
 #myModal{
-  input{
+  input[type="text"]{
     width: 515px;
     min-width: 250px;
   }
@@ -1180,5 +1227,13 @@ div.mailbox-page{
     min-width: 250px;
     max-width: 515px;
   }
+  .m-btn{
+    width:95px;
+    height: 35px;
+  }
+  .blue{
+    width: 120px;
+  }
+
 }
 

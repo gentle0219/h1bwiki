@@ -1,19 +1,6 @@
-class MessageboxController < ApplicationController
-
-  before_filter :require_login!
-  helper_method :mailbox, :conversation
-  
-  def inbox    
-    @mail_box = current_user.mailbox.inbox.paginate(:page => params[:page_num], :per_page => 9)
-  end
-
-  def sent
-    @mail_box = current_user.mailbox.sentbox.paginate(:page => params[:page_num], :per_page => 9)
-  end
-
-  def deleted
-    @mail_box = current_user.mailbox.trash.paginate(:page => params[:page_num], :per_page => 9)
-  end
+class ConversationsController < ApplicationController
+	before_filter :require_login!	
+	helper_method :mailbox, :conversation
 
   def create
     recipient_emails = conversation_params(:recipients).split(',')
@@ -23,7 +10,7 @@ class MessageboxController < ApplicationController
 
     redirect_to conversation
   end
-  
+
   def reply
     current_user.reply_to_conversation(conversation, *message_params(:body, :subject))
     redirect_to conversation
@@ -39,9 +26,14 @@ class MessageboxController < ApplicationController
     redirect_to :conversations
   end
 
+  def show    
+    current_user.mailbox.conversations.find(params[:id]).receipts.each do |receipt|
+    #  receipt.mark_as_read
+    end
+  end
   private
 
-  def mailbox
+  def mailbox  	  	
     @mailbox ||= current_user.mailbox
   end
 
@@ -66,5 +58,4 @@ class MessageboxController < ApplicationController
       end
     end
   end
-
 end

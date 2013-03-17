@@ -28,7 +28,7 @@ class PostTrainingsController < ApplicationController
   # GET /post_trainings/new.json
   def new
     @post_training = PostTraining.new
-
+    session[:cur_tab] = 1
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post_training }

@@ -38,15 +38,18 @@
 					%span{:style => "color:white; text-shadow: none;"} admin@h1bwiki.com
 
 / Modal
+
 #myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
 	.modal-header
 		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
 		%h3#myModalLabel New Message
-	.modal-body
-		.first-row
-			%input{:type=>"text", :placeholder => "Subject"}
-		.second-row
-			%textarea{:placeholder => "Message", :rows=>"8", :cols=>"10"}
-	.modal-footer	 
-		%button.m-btn.blue Send
-		%button.m-btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+	.modal-body	
+		= simple_form_for :conversation, url: "/conversations", :html => { "data-validate" => "parsley" } do |f|
+			= f.hidden_field :recipients, id: "recipients_hiddenfield"
+			.first-row
+				= f.input_field :subject, :placeholder => "Subject", "data-required"=>"true"
+			.second-row
+				= f.text_area :body, :rows=>"8", :cols => "10", :placeholder => "Message", "data-required"=>"true"
+			.modal-footer	 
+				= f.button :submit, "Send", class: 'm-btn blue'				
+				%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close

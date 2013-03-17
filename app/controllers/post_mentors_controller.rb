@@ -28,7 +28,7 @@ class PostMentorsController < ApplicationController
   def new
     @post_mentor = PostMentor.new
     @post_mentor.skills.build
-
+    session[:cur_tab] = 2
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post_mentor }

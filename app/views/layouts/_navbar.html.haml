@@ -1,38 +1,41 @@
 .navbar.navbar-fixed-top
-  .navbar-inner
-    .container{:style => "margin-top: 0px;"}
-      %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar      
-      = link_to image_tag("logo.png"), "/", :class=>"brand"
-      .nav-collapse        
-        %ul.nav.nav-tabs                  
-          %li
-            =link_to( "Search", search_home_path, :method => :get )
-          %li
-            =link_to( "Post", user_signed_in? ? (employer? ? posts_view_path : jobseeker_posts_path ) : posts_view_path )
-          %li
-            =link_to( "Messages", messagebox_inbox_path )
-          %li
-            %a{:href=>"#"} About
-        %ul.nav.nav-right
-          .row
-            %p.user-name                           
-              - if user_signed_in?            
-                Hi &nbsp; 
-                =current_user.user_name
-              -else
-                &nbsp;
-          - if user_signed_in?
-            %li= link_to "My Account", edit_user_registration_path(current_user)
-            %li 
-              %label{:style=>"color:white; padding-top:10px; text-align: center;"}|
-            %li= link_to "Sign Out", destroy_user_session_path, :method => :delete
-          - else
-            %li= link_to "Register", signup_path
-            %li
-              %label{:style=>"color:white; padding-top:10px; text-align: center;"}|
-            %li= link_to "Log in", new_user_session_path
-//            %li= link_to "Register", new_user_registration_path
-          
+	.navbar-inner
+		.container{:style => "margin-top: 0px;"}
+			%a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+				%span.icon-bar
+				%span.icon-bar
+				%span.icon-bar			
+			= link_to image_tag("logo.png"), "/", :class=>"brand"
+			.nav-collapse				
+				%ul.nav.nav-tabs									
+					%li
+						=link_to( "Search", search_home_path, :method => :get )
+					%li
+						=link_to( "Post", user_signed_in? ? (employer? ? posts_view_path : jobseeker_posts_path ) : posts_view_path )
+					%li{:style => "width:150px"}
+						= link_to( messagebox_inbox_path ) do
+							Messages
+							- if session["unread_message_count"].present?
+								%span.unread-count= session["unread_message_count"]
+					%li
+						%a{:href=>"#"} About
+				%ul.nav.nav-right
+					.row
+						%p.user-name													 
+							- if user_signed_in?						
+								Hi &nbsp; 
+								=current_user.user_name
+							-else
+								&nbsp;
+					- if user_signed_in?
+						%li= link_to "My Account", edit_user_registration_path(current_user)
+						%li 
+							%label{:style=>"color:white; padding-top:10px; text-align: center;"}|
+						%li= link_to "Sign Out", destroy_user_session_path, :method => :delete
+					- else
+						%li= link_to "Register", signup_path
+						%li
+							%label{:style=>"color:white; padding-top:10px; text-align: center;"}|
+						%li= link_to "Log in", new_user_session_path
+//						%li= link_to "Register", new_user_registration_path
+					

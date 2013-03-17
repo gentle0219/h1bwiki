@@ -4,9 +4,7 @@ H1bwiki::Application.routes.draw do
   get "messagebox/sent"
   get "messagebox/deleted"
 
-  mount Messaging::Engine => "/messaging"
-
-  #devise_for :messaging_users
+  #match 'conversations/:id' => 'messagebox#sent'
 
   resources :jobseeker_jobs
   post 'jobseeker_jobs/preview'
@@ -21,23 +19,22 @@ H1bwiki::Application.routes.draw do
   post 'post_trainings/preview'
   resources :post_mentors
   post 'post_mentors/preview'
-    
   
   resources :skills    
   resources :countries
 
   devise_for :users, :controllers => {:registrations => "registrations" } do
     get "registrations/new_jobseeker", :to => "registrations#new_jobseeker", :as => "new_jobseeker"
-    get "registrations/new_employer", :to => "registrations#new_employer", :as => "new_employer"
-    resources :messagebox, only: [:index, :show, :new, :create] do
-      member do
-        post :reply
-        post :trash
-        post :untrash
-      end
-    end
+    get "registrations/new_employer", :to => "registrations#new_employer", :as => "new_employer"    
   end
 
+  resources :conversations, only: [:index, :show, :new, :create] do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+    end
+  end
   get "static_pages/home"
   get "static_pages/about"
   get "static_pages/help"
