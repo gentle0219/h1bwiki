@@ -15,7 +15,7 @@
 					%li{:style => "width:150px"}
 						= link_to( messagebox_inbox_path ) do
 							Messages
-							- if session["unread_message_count"].present?
+							- if session["unread_message_count"].present? and session["unread_message_count"] > 0
 								%span.unread-count= session["unread_message_count"]
 					%li
 						%a{:href=>"#"} About
