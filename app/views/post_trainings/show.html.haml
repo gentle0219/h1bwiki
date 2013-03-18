@@ -51,8 +51,11 @@
 						%label= @post_training.job_description
 				.row.last-row
 					.span2.offset3
-						-if user.id != current_user.id										
-							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_mentor.job_title}", :type=>"#{user.email}" } Contact
+						-if current_user.present?
+							-if user.id != current_user.id										
+								%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_training.job_title}", :type=>"#{user.email}" } Contact
+						-else
+							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_training.job_title}", :type=>"#{user.email}" } Contact
 					.span2
 						%input.m-btn.blue{:type=>"button", :value=>"Forward"}					
 					.span2
