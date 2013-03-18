@@ -3,12 +3,13 @@ class ConversationsController < ApplicationController
 	helper_method :mailbox, :conversation
 
   def create
+    session[:return_to] ||= request.referer
     recipient_emails = conversation_params(:recipients).split(',')
     recipients = User.where(email: recipient_emails).all
 
     conversation = current_user.send_message(recipients, *conversation_params(:body, :subject)).conversation
-
-    redirect_to conversation
+    flash[:notice] = "Message Sent"
+    redirect_to session[:return_to]
   end
 
   def reply

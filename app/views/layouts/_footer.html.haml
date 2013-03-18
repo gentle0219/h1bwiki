@@ -44,7 +44,7 @@
 		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
 		%h3#myModalLabel New Message
 	.modal-body	
-		= simple_form_for :conversation, url: "/conversations", :html => { "data-validate" => "parsley" } do |f|
+		= simple_form_for :conversation, url: "/conversations", :html => { "data-validate" => "parsley", :id => "contact_form" } do |f|
 			= f.hidden_field :recipients, id: "recipients_hiddenfield"
 			.first-row
 				= f.input_field :subject, :placeholder => "Subject", "data-required"=>"true"

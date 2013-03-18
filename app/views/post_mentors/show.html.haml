@@ -30,7 +30,8 @@
 						%label= @post_mentor.job_description			
 				.row.last-row
 					.span2.offset3
-						%input.m-btn.blue{:type=>"button", :value=>"Contact"}
+						-if user.id != current_user.id										
+							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_mentor.job_title}", :type=>"#{user.email}" } Contact
 					.span2
 						%input.m-btn.blue{:type=>"button", :value=>"Forward"}					
 					.span2

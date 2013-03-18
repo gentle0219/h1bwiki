@@ -59,7 +59,8 @@
 							%a.h1bwiki-skill{:href=>"#"}=skill_name.name
 				.row.last-row
 					.span2.offset3
-						%a.m-btn.blue{"data-toggle" => "modal", :href => "#myModal", :role => "button"} Contact
+						-if user.id != current_user.id										
+							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_job.job_title}", :type=>"#{user.email}" } Contact
 					.span2
 						%input.m-btn.blue{:type=>"button", :value=>"Apply"}
 					.span2
