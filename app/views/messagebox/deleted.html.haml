@@ -7,7 +7,8 @@
 					%p.page-title Deleted
 				.row
 					.span4					
-						%input#mcCtrlSearchField.oFormMed.ac_input{:autocomplete => "off", :maxlength => "100", :placeholder => "Search Messages", :type => "search", :value => ""}/
+						= form_tag :messagebox_deleted, :method => :get do
+							= text_field_tag :subject, params[:title], :placeholder => "What?"
 					.span8
 						=will_paginate @mail_box, :param_name => 'page_num'
 			.span12.mail-inbox

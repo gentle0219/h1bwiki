@@ -1,11 +1,13 @@
-%tr
-	%td
+- style = "background-color: #eaeaea" if Receipt.find(messages).is_unread?
+%tr	
+	%td{:style => "#{style}"}
 		.oMCName
 			%label.user-name
-				= messages.messages[0].sender.user_name		
+				= messages.messages[0].sender.first_name + " " + messages.messages[0].sender.last_name
 				%span.message-count (#{messages.messages.count})
 		%time{:datetime => "#{messages.messages[0].created_at}", :title => "#{messages.messages[0].created_at}"}=l messages.messages[0].created_at, :format => "%b %d %I:%M %p"
-	%td
+	%td{:style => "#{style}"}
 		%a.message-title{:href => "/conversations/#{messages.id}"}= messages.messages[0].subject
 		.message-body= messages.messages[0].body
-	%td.txtRight
+	%td.txtRight{:style => "#{style}"}
+		= "Unread" if Receipt.find(messages).is_unread?

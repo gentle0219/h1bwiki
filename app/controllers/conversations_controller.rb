@@ -27,10 +27,11 @@ class ConversationsController < ApplicationController
     redirect_to :conversations
   end
 
-  def show    
-    current_user.mailbox.conversations.find(params[:id]).receipts.each do |receipt|
-    #  receipt.mark_as_read
-    end
+  def show        
+    #cv = current_user.mailbox.conversations.find(params[:id]);
+    #current_user.mailbox.conversations.find(params[:id]).receipts.each do |receipt|
+    #  receipt.mark_as_read("true")
+    #end
   end
   private
 

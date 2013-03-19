@@ -4,15 +4,27 @@ class MessageboxController < ApplicationController
   helper_method :mailbox, :conversation
   
   def inbox    
-    @mail_box = current_user.mailbox.inbox.paginate(:page => params[:page_num], :per_page => 9)
+    if params[:subject].present?
+      @mail_box = current_user.mailbox.inbox.paginate(:page => params[:page_num], :per_page => 9, :conditions => ["conversations.subject LIKE ?", "%"+params[:subject]+"%"] )
+    else
+      @mail_box = current_user.mailbox.inbox.paginate(:page => params[:page_num], :per_page => 9 )
+    end
   end
 
   def sent
-    @mail_box = current_user.mailbox.sentbox.paginate(:page => params[:page_num], :per_page => 9)
+    if params[:subject].present?
+      @mail_box = current_user.mailbox.sentbox.paginate(:page => params[:page_num], :per_page => 9, :conditions => ["conversations.subject LIKE ?", "%"+params[:subject]+"%"] )
+    else
+      @mail_box = current_user.mailbox.sentbox.paginate(:page => params[:page_num], :per_page => 9 )
+    end
   end
 
   def deleted
-    @mail_box = current_user.mailbox.trash.paginate(:page => params[:page_num], :per_page => 9)
+    if params[:subject].present?
+      @mail_box = current_user.mailbox.trash.paginate(:page => params[:page_num], :per_page => 9, :conditions => ["conversations.subject LIKE ?", "%"+params[:subject]+"%"] )
+    else
+      @mail_box = current_user.mailbox.trash.paginate(:page => params[:page_num], :per_page => 9)
+    end    
   end
 
   def create
