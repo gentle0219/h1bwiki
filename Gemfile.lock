@@ -57,6 +57,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fastercsv (1.5.5)
     foreigner (1.4.0)
       activerecord (>= 3.0.0)
     haml (4.0.0)
@@ -171,6 +172,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debug_inspector (>= 0.0.1)
   devise
+  fastercsv
   haml-rails
   jquery-rails
   less-rails

@@ -28,7 +28,11 @@ class ConversationsController < ApplicationController
   end
 
   def show        
-    #cv = current_user.mailbox.conversations.find(params[:id]);
+    conversation.receipts.each do |rm|
+      rm.message.mark_as_read(current_user);    
+    end
+    session["unread_message_count"] = current_user.mailbox.inbox(:read => false).count(:id, :distinct => true) if current_user.present?
+#    render :text => m.inspect and return
     #current_user.mailbox.conversations.find(params[:id]).receipts.each do |receipt|
     #  receipt.mark_as_read("true")
     #end

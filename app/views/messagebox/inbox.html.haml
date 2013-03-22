@@ -6,9 +6,13 @@
 				.page-header
 					%p.page-title Inbox
 				.row
-					.span4
-						= form_tag :messagebox_inbox, :method => :get do
-							= text_field_tag :subject, params[:title], :placeholder => "What?"
+					.span6
+						= form_tag :messagebox_inbox, :method => :get, :name=>"search_form" do
+							.input-append
+								= text_field_tag :subject, params[:title], :placeholder => "What?"
+								%a{:class=>"m-btn blue", :style => "margin-top: 0px; padding: 8px 14px", :href =>"javascript:search_form.submit();"}
+									%i{:class=>"icon-search"}
+									Search
 					.span8
 						=will_paginate @mail_box, :param_name => 'page_num'
 			.span12.mail-inbox

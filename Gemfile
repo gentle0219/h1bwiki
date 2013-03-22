@@ -9,6 +9,7 @@ gem 'rails_tokeninput'
 gem 'twitter-bootstrap-form-builder'
 gem 'simple_form'
 gem 'parsley-rails'
+gem 'fastercsv'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
