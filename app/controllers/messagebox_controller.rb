@@ -1,7 +1,7 @@
 class MessageboxController < ApplicationController
 
   before_filter :require_login!
-  helper_method :mailbox, :conversation
+  helper_method :mailbox, :conversation, :unread?
   
   def inbox    
     if params[:subject].present?
@@ -27,56 +27,17 @@ class MessageboxController < ApplicationController
     end    
   end
 
-  def create
-    recipient_emails = conversation_params(:recipients).split(',')
-    recipients = User.where(email: recipient_emails).all
 
-    conversation = current_user.send_message(recipients, *conversation_params(:body, :subject)).conversation
-
-    redirect_to conversation
-  end
-  
-  def reply
-    current_user.reply_to_conversation(conversation, *message_params(:body, :subject))
-    redirect_to conversation
-  end
-
-  def trash
-    conversation.move_to_trash(current_user)
-    redirect_to :conversations
-  end
-
-  def untrash
-    conversation.untrash(current_user)
-    redirect_to :conversations
-  end
-
-  private
-
-  def mailbox
-    @mailbox ||= current_user.mailbox
-  end
-
-  def conversation
-    @conversation ||= mailbox.conversations.find(params[:id])
-  end
-
-  def conversation_params(*keys)
-    fetch_params(:conversation, *keys)
-  end
-
-  def message_params(*keys)
-    fetch_params(:message, *keys)
-  end
-
-  def fetch_params(key, *subkeys)
-    params[key].instance_eval do
-      case subkeys.size
-      when 0 then self
-      when 1 then self[subkeys.first]
-      else subkeys.map{|k| self[k] }
-      end
+  def unread? inbox_mail
+    inbox_mail.receipts.inbox.each do |rm|
+      return true if rm.is_unread? and rm.message.sender != current_user
     end
-  end
-
+    return false
+  end 
 end
+
+
+#<Receipt id: 75, receiver_id: 2, receiver_type: "User", notification_id: 45, is_read: true, trashed: false, deleted: false, mailbox_type: "inbox", created_at: "2013-03-24 13:45:04", updated_at: "2013-03-24 13:45:04">, 
+#<Receipt id: 76, receiver_id: 1, receiver_type: "User", notification_id: 45, is_read: true, trashed: false, deleted: false, mailbox_type: "sentbox", created_at: "2013-03-24 13:45:04", updated_at: "2013-03-24 13:45:04">, 
+#<Receipt id: 79, receiver_id: 1, receiver_type: "User", notification_id: 47, is_read: false, trashed: false, deleted: false, mailbox_type: "inbox", created_at: "2013-03-24 14:38:08", updated_at: "2013-03-24 14:38:08">, 
+#<Receipt id: 80, receiver_id: 2, receiver_type: "User", notification_id: 47, is_read: true, trashed: false, deleted: false, mailbox_type: "sentbox", created_at: "2013-03-24 14:38:08", updated_at: "2013-03-24 14:38:08">

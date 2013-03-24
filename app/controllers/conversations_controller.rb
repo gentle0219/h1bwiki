@@ -19,24 +19,24 @@ class ConversationsController < ApplicationController
 
   def trash
     conversation.move_to_trash(current_user)
-    redirect_to :conversations
+    redirect_to :messagebox_inbox
   end
 
   def untrash
     conversation.untrash(current_user)
-    redirect_to :conversations
+    redirect_to :messagebox_inbox
   end
 
-  def show        
+  def show
     conversation.receipts.each do |rm|
-      rm.message.mark_as_read(current_user);    
+      rm.message.mark_as_read(current_user);
     end
-    session["unread_message_count"] = current_user.mailbox.inbox(:read => false).count(:id, :distinct => true) if current_user.present?
+    session["unread_message_count"] = current_user.mailbox.inbox(:read => false, :trash => false).count(:id, :distinct => true) if current_user.present?
 #    render :text => m.inspect and return
     #current_user.mailbox.conversations.find(params[:id]).receipts.each do |receipt|
     #  receipt.mark_as_read("true")
     #end
-  end
+  end  
   private
 
   def mailbox  	  	
