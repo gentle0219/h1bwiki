@@ -1,7 +1,6 @@
 class StaticPagesController < ApplicationController  
 
-  def home
-    session["unread_message_count"] = current_user.mailbox.inbox(:read => false).count(:id, :distinct => true) if current_user.present?
+  def home    
   end
 
   def about
