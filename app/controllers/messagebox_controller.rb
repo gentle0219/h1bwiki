@@ -5,7 +5,15 @@ class MessageboxController < ApplicationController
   
   def inbox    
     if params[:subject].present?
-      @mail_box = current_user.mailbox.inbox.paginate(:page => params[:page_num], :per_page => 9, :conditions => ["conversations.subject LIKE ?", "%"+params[:subject]+"%"] )
+      #@mail_box = current_user.mailbox.inbox.paginate(:page => params[:page_num], :per_page => 9, :conditions => ["conversations.subject LIKE ?", "%"+params[:subject]+"%"] )
+      mailbox = Array.new
+      mails = current_user.mailbox.inbox
+      mails.each do |mail|
+        mailbox << mail if mail.messages.find(:all, :conditions=>['body like ?', "%#{params[:subject]}%"]).present?        
+      end
+
+      @mail_box = mailbox
+
     else
       @mail_box = current_user.mailbox.inbox.paginate(:page => params[:page_num], :per_page => 9 )
     end
@@ -13,7 +21,15 @@ class MessageboxController < ApplicationController
 
   def sent
     if params[:subject].present?
-      @mail_box = current_user.mailbox.sentbox.paginate(:page => params[:page_num], :per_page => 9, :conditions => ["conversations.subject LIKE ?", "%"+params[:subject]+"%"] )
+      #@mail_box = current_user.mailbox.sentbox.paginate(:page => params[:page_num], :per_page => 9, :conditions => ["conversations.subject LIKE ?", "%"+params[:subject]+"%"] )
+      mailbox = Array.new
+      mails = current_user.mailbox.sentbox
+      mails.each do |mail|
+        mailbox << mail if mail.messages.find(:all, :conditions=>['body like ?', "%#{params[:subject]}%"]).present?        
+      end
+
+      @mail_box = mailbox
+
     else
       @mail_box = current_user.mailbox.sentbox.paginate(:page => params[:page_num], :per_page => 9 )
     end
@@ -21,7 +37,14 @@ class MessageboxController < ApplicationController
 
   def deleted
     if params[:subject].present?
-      @mail_box = current_user.mailbox.trash.paginate(:page => params[:page_num], :per_page => 9, :conditions => ["conversations.subject LIKE ?", "%"+params[:subject]+"%"] )
+#      @mail_box = current_user.mailbox.trash.paginate(:page => params[:page_num], :per_page => 9, :conditions => ["conversations.subject LIKE ?", "%"+params[:subject]+"%"] )
+      mailbox = Array.new
+      mails = current_user.mailbox.trash
+      mails.each do |mail|
+        mailbox << mail if mail.messages.find(:all, :conditions=>['body like ?', "%#{params[:subject]}%"]).present?        
+      end
+      @mail_box = mailbox
+
     else
       @mail_box = current_user.mailbox.trash.paginate(:page => params[:page_num], :per_page => 9)
     end    
@@ -34,6 +57,23 @@ class MessageboxController < ApplicationController
     end
     return false
   end 
+  private
+
+  def search_mail message_type, search_body, page_num
+    mailbox = Array.new
+    mails = nil
+    if message_type = "inbox"
+      mails = current_user.mailbox.inbox
+    elsif message_type = "sentbox"
+      mails = current_user.mailbox.sentbox      
+    else
+      mails = current_user.mailbox.trash
+    end
+    mails.each do |mail|
+      mailbox << mail if mail.messages.find(:all, :conditions=>['body like ?', "%#{search_body}%"]).present?        
+    end
+    return mailbox
+  end
 end
 
 

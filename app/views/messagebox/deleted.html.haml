@@ -9,12 +9,13 @@
 					.span6
 						= form_tag :messagebox_deleted, :method => :get, :name=>"search_form" do
 							.input-append
-								= text_field_tag :subject, params[:title], :placeholder => "What?"
+								= text_field_tag :subject, params[:title], :placeholder => "What?", :value=> params[:subject].presence || ""
 								%a{:class=>"m-btn blue", :style => "margin-top: 0px; padding: 8px 14px", :href =>"javascript:search_form.submit();"}
 									%i{:class=>"icon-search"}
 									Search
 					.span6
-						=will_paginate @mail_box, :param_name => 'page_num'
+						-if !params[:subject].present?					
+							=will_paginate @mail_box, :param_name => 'page_num'
 			.span12.mail-inbox
 				%table.table.table-striped
 					%colgroup

@@ -12,7 +12,7 @@
 			.message-body= messages.messages.last.body
 		%td.txtRight{:style => "#{style}"}
 			= link_to trash_conversation_path(messages), :method => :post, :confirm => 'Are you sure?' , :class => 'm-btn mini red' do
-				%i.icon-trash{:style => "margin-left: -25px;"} Delete
+				%i.icon-trash Delete
 - elsif controller.action_name == "deleted"
 	%tr	
 		%td{:style => "#{style}"}
