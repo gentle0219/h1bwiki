@@ -41,7 +41,7 @@ class MessageboxController < ApplicationController
       mailbox = Array.new
       mails = current_user.mailbox.trash
       mails.each do |mail|
-        mailbox << mail if mail.messages.find(:all, :conditions=>['LOWER(body) like ?', "LOWER(%#{params[:subject]}%)"]).present?        
+        mailbox << mail if mail.messages.find(:all, :conditions=>['LOWER(body) like ?', "%#{params[:subject]}%"]).present?        
       end
       @mail_box = mailbox
 
