@@ -55,11 +55,11 @@ $(function(){
 		$("#job_post_form").attr("action", pre_action);
 	});
 
-	$("a.contact-button").each(function(){
+	$("a.contact-button").each(function(){		
 		$(this).click(function(){
 			$("#recipients_hiddenfield").val($(this).attr("type"));
 			$("#conversation_subject").val($(this).attr("rel"));			
-		})		
+		})
 	});
 });
 

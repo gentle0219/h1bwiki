@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery	
 	before_filter :unread_messages_count
 	helper_method :employer?
+	
 	private
 	def employer?			
 		if !user_signed_in?

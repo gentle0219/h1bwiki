@@ -25,9 +25,9 @@ H1bwiki::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations" } do
     get "registrations/new_jobseeker", :to => "registrations#new_jobseeker", :as => "new_jobseeker"
-    get "registrations/new_employer", :to => "registrations#new_employer", :as => "new_employer"    
+    get "registrations/new_employer", :to => "registrations#new_employer", :as => "new_employer"        
   end
-
+  
   resources :conversations, only: [:index, :show, :new, :create] do
     member do
       post :reply

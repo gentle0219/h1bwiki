@@ -5,7 +5,7 @@ class JobseekerJobsController < ApplicationController
   def index
     redirect_to jobseeker_posts_path and return
     @jobseeker_jobs = current_user.jobseeker_jobs.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @jobseeker_jobs }

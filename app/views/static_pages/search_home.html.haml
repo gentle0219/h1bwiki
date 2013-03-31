@@ -323,3 +323,15 @@
 	$("#tabs li").eq(cur_tab).addClass("active");
 	$("#my-tab-content div.tab-pane").eq(cur_tab).addClass("active");
 
+	var login_status = #{user_signed_in? ? 1 : 0 }
+	
+	$("a.contact-button").each(function(){			
+		$(this).click(function(){
+			if (login_status==0){
+				document.location = "/users/sign_in"
+			}
+			$("#recipients_hiddenfield").val($(this).attr("type"));
+			$("#conversation_subject").val($(this).attr("rel"));			
+		})		
+	});
+

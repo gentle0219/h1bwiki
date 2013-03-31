@@ -87,8 +87,8 @@
 	$('div.nav-link ul li').eq(1).removeClass('current-tab');
 	$('div.nav-link ul li').eq(0).addClass('current-tab');	
 
-	var cur_tab = #{session[:cur_tab]}
-	console.log(cur_tab);
+	var cur_tab = #{session[:cur_tab].presence || 0}
+
 	$("#tabs li").each(function(){
 		$(this).removeClass("active");
 	});

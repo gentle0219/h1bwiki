@@ -1,6 +1,14 @@
 class StaticPagesController < ApplicationController  
 
-  def home    
+   
+  def home        
+    if user_signed_in?
+      if current_user.account_type == "employer"
+        redirect_to :posts_view
+      else
+        redirect_to :search_home
+      end
+    end
   end
 
   def about
@@ -39,6 +47,7 @@ class StaticPagesController < ApplicationController
     end
   end
   def search_home    
+    
     @search_emp_jobs, @search_seeker_jobs, @search_emp_trainings, @search_seeker_trainings, @search_emp_mentors, @search_seeker_mentors = [],[],[],[],[],[]
 
     @search_type = params[:search_type].blank? ? 0 : params[:search_type]
