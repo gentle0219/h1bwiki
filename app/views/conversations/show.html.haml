@@ -12,6 +12,10 @@
 						= div_for(conversation.receipts_for(current_user), :class=>"row") do |receipt|
 							- message = receipt.message
 							.span3
+								-if message.sender.first_name == current_user.first_name
+									%p Me
+								-else
+									%p= message.sender.first_name + " " + message.sender.last_name
 								%p=l message.created_at, :format => "%b %d %I:%M %p"
 							.span7
 								%p= message.body
