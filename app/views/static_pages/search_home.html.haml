@@ -69,8 +69,8 @@
 														- else
 															%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_job.job_title}", :type=>"#{user.email}" } Contact
 												.row
-													.span12													
-														.view-details-box= search_emp_job.job_description
+													.span9													
+														.view-details-box.more= search_emp_job.job_description
 														= link_to "View Details >", post_job_path(search_emp_job), :class=>"view-details", :target => "_blink"
 									-if @search_emp_jobs.present?
 										.row
@@ -102,8 +102,8 @@
 															-else
 																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_job.title}", :type=>"#{user.email}" } Contact
 												.row
-													.span12													
-														.view-details-box= search_seeker_job.description
+													.span9													
+														.view-details-box.more= search_seeker_job.description
 														= link_to "View Details >", jobseeker_job_path(search_seeker_job), :class=>"view-details", :target => "_blink"								
 							#trainings.tab-pane
 								.span12.search-conditions-box
@@ -159,8 +159,8 @@
 														-else
 															%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_training.job_title}", :type=>"#{user.email}" } Contact
 												.row
-													.span12
-														.view-details-box= search_emp_training.job_description
+													.span9
+														.view-details-box.more= search_emp_training.job_description
 														= link_to "View Details >", post_training_path(search_emp_training), :class=>"view-details", :target => "_blink"
 									-if @search_emp_trainings.present?
 										.row
@@ -192,8 +192,8 @@
 															-else
 																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_training.title}", :type=>"#{user.email}" } Contact																	
 												.row
-													.span12													
-														.view-details-box= search_seeker_training.description
+													.span9													
+														.view-details-box.more= search_seeker_training.description
 														= link_to "View Details >", jobseeker_training_path(search_seeker_training), :class=>"view-details", :target => "_blink"
 							#mentors.tab-pane
 								.span12.search-conditions-box
@@ -246,8 +246,8 @@
 														-else
 															%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_mentor.job_title}", :type=>"#{user.email}" } Contact
 												.row
-													.span12													
-														.view-details-box= search_emp_mentor.job_description
+													.span9													
+														.view-details-box.more= search_emp_mentor.job_description
 														= link_to "View Details >", post_mentor_path(search_emp_mentor), :class=>"view-details", :target => "_blink"
 									-if @search_emp_mentors.present?
 										.row
@@ -279,8 +279,8 @@
 															-else
 																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_mentor.title}", :type=>"#{user.email}" } Contact
 												.row
-													.span12
-														.view-details-box= search_seeker_mentor.description
+													.span9
+														.view-details-box.more= search_seeker_mentor.description
 														= link_to "View Details >", jobseeker_mentor_path(search_seeker_mentor), :class=>"view-details", :target => "_blink"
 									-if @search_seeker_mentors.present?
 										.row
@@ -335,3 +335,41 @@
 		})		
 	});
 
+
+	var showChar = 200;
+	var ellipsestext = "...";
+	var moretext = "more";
+	var lesstext = "less";
+	$('.more').each(function() {
+		var content = $(this).html();
+
+		if(content.length > showChar) {
+			var c = content.substr(0, showChar);
+			var h = content.substr(showChar-1, content.length - showChar);
+			var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+			$(this).html(html);
+		}
+
+	});
+
+	$(".morelink").click(function(){
+		if($(this).hasClass("less")) {
+				$(this).removeClass("less");
+				$(this).html(moretext);
+		} else {
+				$(this).addClass("less");
+				$(this).html(lesstext);
+		}
+		$(this).parent().prev().toggle();
+		$(this).prev().toggle();
+		return false;
+	});
+
+:css
+	a.morelink{
+		color:#0254EB; 
+		margin-left:10px;
+	}
+	a.morelink:hover{
+		background-color: transparent;		
+	}
