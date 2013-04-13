@@ -16,6 +16,8 @@
 //= require jquery.tokeninput
 //= require parsley
 //= require parsley.extend
+//= require jquery-ui
+//= require autocomplete-rails
 //= require_tree .
 
 

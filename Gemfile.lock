@@ -123,6 +123,8 @@ GEM
       activesupport (= 3.2.11)
       bundler (~> 1.0)
       railties (= 3.2.11)
+    rails3-jquery-autocomplete (1.0.11)
+      rails (~> 3.0)
     rails_admin (0.4.5)
       bootstrap-sass (~> 2.2)
       builder (~> 3.0)
@@ -212,6 +214,7 @@ DEPENDENCIES
   parsley-rails
   pg
   rails (= 3.2.11)
+  rails3-jquery-autocomplete
   rails_admin
   rails_tokeninput
   rake (= 10.0.4)

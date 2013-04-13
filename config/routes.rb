@@ -1,6 +1,7 @@
 H1bwiki::Application.routes.draw do
 
   get "search_employer/h1bemployer"
+  get "search_employer/autocomplete_h1bemp_name"
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

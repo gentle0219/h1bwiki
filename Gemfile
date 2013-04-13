@@ -5,14 +5,18 @@ gem 'devise'
 
 gem 'rmagick'
 gem 'recaptcha'
+
 gem 'rails_tokeninput'
+gem 'rails3-jquery-autocomplete'
+gem 'parsley-rails'
+
 gem 'twitter-bootstrap-form-builder'
 gem 'simple_form'
-gem 'parsley-rails'
 
 gem 'fastercsv'
 gem 'rails_admin'
 gem 'rake', '10.0.4'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

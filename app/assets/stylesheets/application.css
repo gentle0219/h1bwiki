@@ -12,5 +12,6 @@
  *= require token-input-facebook
  *= requrie token-input-mac
  *= require token-input
+ *= require jquery.ui.all
  *= require_tree .
  */
