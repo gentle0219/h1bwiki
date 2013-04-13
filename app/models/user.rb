@@ -29,6 +29,6 @@ class User < ActiveRecord::Base
     email
   end
   def is_admin?
-    self.email == "admin@admin.com"
+    self.email == "gentle0219@gmail.com"
   end
 end
