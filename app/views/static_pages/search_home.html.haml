@@ -312,7 +312,10 @@
 
 :javascript 
 	var cur_tab = #{@search_type}
-	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
+
+	$('.secodary ul li').eq(0).addClass('current-tab');
+	$('.secodary ul li').eq(1).removeClass('current-tab');
+
 	$("#tabs li").each(function(){
 		$(this).removeClass("active");
 	});

@@ -38,7 +38,7 @@ RailsAdmin.config do |config|
   #config.excluded_models = [Comment, Post]
 
   # Add models here if you want to go 'whitelist mode':
-  config.included_models = [Country, JobseekerJob, JobseekerMentor, JobseekerTraining, PostJob, PostMentor, PostTraining, User]
+  config.included_models = [Country, JobseekerJob, JobseekerMentor, JobseekerTraining, PostJob, PostMentor, PostTraining, User, UploadDatabase]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -172,5 +172,35 @@ RailsAdmin.config do |config|
     end
     create do; end
     edit do; end
+  end
+
+  config.model UploadDatabase do
+    configure :data_content,:text 
+    configure :table_name
+    #configure :product_id, :integer         # Hidden 
+    list do
+      field :data_content
+      field :table_name
+    
+    end
+    export do
+      field :data_content
+      field :table_name
+
+    end
+    show do
+      field :data_content
+      field :table_name
+    end
+    create do
+      field :table_name,:enum do
+        label "Table Name"
+      enum do
+        ['h1b_employer','for_selling']
+      end
+      end
+      field :data_content
+      
+    end
   end
 end

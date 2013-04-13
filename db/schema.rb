@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130316051530) do
+ActiveRecord::Schema.define(:version => 20130413140843) do
+
+  create_table "admins", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
+  add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -28,6 +46,36 @@ ActiveRecord::Schema.define(:version => 20130316051530) do
     t.integer  "status"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "h1bemps", :force => true do |t|
+    t.string   "name"
+    t.string   "gc2013"
+    t.string   "gc2012"
+    t.string   "gc2011"
+    t.string   "gc2010"
+    t.string   "gcTotalCertified"
+    t.string   "gcTotalApplied"
+    t.string   "gcApprovalRate"
+    t.string   "LCA_CASE_EMPLOYER_NAME"
+    t.string   "h1b2012"
+    t.string   "h1b2011"
+    t.string   "h1b2010"
+    t.string   "h1bTotalCertified"
+    t.string   "h1bTotalApplied"
+    t.string   "h1bApprovalRate"
+    t.string   "prevH1BFlag"
+    t.string   "prevGCFlag"
+    t.string   "h1bARateFlag"
+    t.string   "gcARateFlag"
+    t.string   "everifiedFlag"
+    t.string   "gcEmp"
+    t.string   "h1Emp"
+    t.string   "evh1Emp"
+    t.string   "evgcEmp"
+    t.string   "WorkforceSize"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "jobseeker_jobs", :force => true do |t|
@@ -157,6 +205,13 @@ ActiveRecord::Schema.define(:version => 20130316051530) do
   end
 
   add_index "skills", ["skill_list_id"], :name => "index_skills_on_skill_list_id"
+
+  create_table "upload_databases", :force => true do |t|
+    t.string   "table_name"
+    t.text     "data_content"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

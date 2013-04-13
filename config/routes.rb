@@ -1,5 +1,7 @@
 H1bwiki::Application.routes.draw do
 
+  get "search_employer/h1bemployer"
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "messagebox/inbox"

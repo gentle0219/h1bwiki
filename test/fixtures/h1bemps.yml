@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  gc2013: MyString
+  gc2012: MyString
+  gc2011: MyString
+  gc2010: MyString
+  gcTotalCertified: MyString
+  gcTotalApplied: MyString
+  gcApprovalRate: MyString
+  LCA_CASE_EMPLOYER_NAME: MyString
+  h1b2012: MyString
+  h1b2011: MyString
+  h1b2010: MyString
+  h1bTotalCertified: MyString
+  h1bTotalApplied: MyString
+  h1bApprovalRate: MyString
+  prevH1BFlag: MyString
+  prevGCFlag: MyString
+  h1bARateFlag: MyString
+  gcARateFlag: MyString
+  everifiedFlag: MyString
+  gcEmp: MyString
+  h1Emp: MyString
+  evh1Emp: MyString
+  evgcEmp: MyString
+  WorkforceSize: MyString
+
+two:
+  name: MyString
+  gc2013: MyString
+  gc2012: MyString
+  gc2011: MyString
+  gc2010: MyString
+  gcTotalCertified: MyString
+  gcTotalApplied: MyString
+  gcApprovalRate: MyString
+  LCA_CASE_EMPLOYER_NAME: MyString
+  h1b2012: MyString
+  h1b2011: MyString
+  h1b2010: MyString
+  h1bTotalCertified: MyString
+  h1bTotalApplied: MyString
+  h1bApprovalRate: MyString
+  prevH1BFlag: MyString
+  prevGCFlag: MyString
+  h1bARateFlag: MyString
+  gcARateFlag: MyString
+  everifiedFlag: MyString
+  gcEmp: MyString
+  h1Emp: MyString
+  evh1Emp: MyString
+  evgcEmp: MyString
+  WorkforceSize: MyString
