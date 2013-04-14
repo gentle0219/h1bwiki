@@ -34,31 +34,31 @@
 											%label 
 												Previous H-1B Filings History 
 												.res-box.prevh1bflag
-													%p= @search_h1bemp.prevH1BFlag.upcase
+													%p= @search_h1bemp.prevH1BFlag.upcase if @search_h1bemp.present?
 									.row
 										.overview-item
 											%label 
 												H-1B Approval Rate
 												.res-box.h1barateflag
-													%p= @search_h1bemp.h1bARateFlag.upcase
+													%p= @search_h1bemp.h1bARateFlag.upcase if @search_h1bemp.present?
 									.row
 										.overview-item
 											%label 
 												E-Verified
 												.res-box.everifiedflag
-													%p= @search_h1bemp.everifiedFlag.upcase
+													%p= @search_h1bemp.everifiedFlag.upcase if @search_h1bemp.present?
 									.row
 										.overview-item
 											%label 
 												Previous Green Card Filings History
 												.res-box.prevgcflag
-													%p= @search_h1bemp.prevGCFlag.upcase
+													%p= @search_h1bemp.prevGCFlag.upcase if @search_h1bemp.present?
 									.row
 										.overview-item
 											%label 
 												GC Approval Rate
 												.res-box.gcarateflag
-													%p= @search_h1bemp.gcARateFlag.upcase
+													%p= @search_h1bemp.gcARateFlag.upcase if @search_h1bemp.present?
 							#h1b_gcstats.tab-pane
 								.span12.search-conditions-box									
 							#top_jobs.tab-pane
