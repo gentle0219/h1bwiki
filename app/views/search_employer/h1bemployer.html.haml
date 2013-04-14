@@ -12,59 +12,60 @@
 									%a{:class=>"m-btn blue", :style => "margin-top: 0px; padding: 8px 14px", :href =>"javascript:search_form.submit();"}
 										%i{:class=>"icon-search"}
 										Search
-				.row		
-					#content
-						%ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
-							%li.active
-								%a{"data-toggle" => "tab", :href => "#overview"} Overview
-							%li
-								%a{"data-toggle" => "tab", :href => "#h1b_gcstats"} H-1B / GC Stats
-							%li
-								%a{"data-toggle" => "tab", :href => "#top_jobs"} Top Jobs
-							%li
-								%a{"data-toggle" => "tab", :href => "#reviews"} Reviews
-						#my-tab-content.tab-content
-							#overview.tab-pane.active
-								.span12.search-conditions-box
-									.row
-										.overview-title
-											%p Employer Overview 											
-									.row
-										.overview-item{:style=>"margin-bottom: 20px;"}
-											%label 
-												Previous H-1B Filings History 
-												.res-box.prevh1bflag
-													%p= @search_h1bemp.prevH1BFlag.upcase if @search_h1bemp.present?
-									.row
-										.overview-item
-											%label 
-												H-1B Approval Rate
-												.res-box.h1barateflag
-													%p= @search_h1bemp.h1bARateFlag.upcase if @search_h1bemp.present?
-									.row
-										.overview-item
-											%label 
-												E-Verified
-												.res-box.everifiedflag
-													%p= @search_h1bemp.everifiedFlag.upcase if @search_h1bemp.present?
-									.row
-										.overview-item
-											%label 
-												Previous Green Card Filings History
-												.res-box.prevgcflag
-													%p= @search_h1bemp.prevGCFlag.upcase if @search_h1bemp.present?
-									.row
-										.overview-item
-											%label 
-												GC Approval Rate
-												.res-box.gcarateflag
-													%p= @search_h1bemp.gcARateFlag.upcase if @search_h1bemp.present?
-							#h1b_gcstats.tab-pane
-								.span12.search-conditions-box									
-							#top_jobs.tab-pane
-								.span12.search-conditions-box
-							#reviews.tab-pane
-								.span12.search-conditions-box
+				-if @search_h1bemp.present?
+					.row		
+						#content
+							%ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
+								%li.active
+									%a{"data-toggle" => "tab", :href => "#overview"} Overview
+								%li
+									%a{"data-toggle" => "tab", :href => "#h1b_gcstats"} H-1B / GC Stats
+								%li
+									%a{"data-toggle" => "tab", :href => "#top_jobs"} Top Jobs
+								%li
+									%a{"data-toggle" => "tab", :href => "#reviews"} Reviews
+							#my-tab-content.tab-content
+								#overview.tab-pane.active
+									.span12.search-conditions-box
+										.row
+											.overview-title
+												%p Employer Overview 											
+										.row
+											.overview-item{:style=>"margin-bottom: 20px;"}
+												%label 
+													Previous H-1B Filings History 
+													.res-box.prevh1bflag
+														%p= @search_h1bemp.prevH1BFlag.upcase
+										.row
+											.overview-item
+												%label 
+													H-1B Approval Rate
+													.res-box.h1barateflag
+														%p= @search_h1bemp.h1bARateFlag.upcase
+										.row
+											.overview-item
+												%label 
+													E-Verified
+													.res-box.everifiedflag
+														%p= @search_h1bemp.everifiedFlag.upcase
+										.row
+											.overview-item
+												%label 
+													Previous Green Card Filings History
+													.res-box.prevgcflag
+														%p= @search_h1bemp.prevGCFlag.upcase
+										.row
+											.overview-item
+												%label 
+													GC Approval Rate
+													.res-box.gcarateflag
+														%p= @search_h1bemp.gcARateFlag.upcase
+								#h1b_gcstats.tab-pane
+									.span12.search-conditions-box									
+								#top_jobs.tab-pane
+									.span12.search-conditions-box
+								#reviews.tab-pane
+									.span12.search-conditions-box
 
 :javascript 
 	var cur_tab = 0
