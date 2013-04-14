@@ -6,9 +6,9 @@
 				.row
 					= form_tag :search_employer_h1bemployer, :method => :get, :name=>"search_form" do
 						.row
-							.span6.offset2
+							.span6.offset2{:style=>"margin-top: 40px;"}
 								.input-append									
-									= text_field_tag :h1bemp_name, params[:h1bemp_name], :autocomplete => search_employer_autocomplete_h1bemp_name_path, :placeholder => "What?", :value=> params[:h1bemp_name].presence || ""
+									= text_field_tag :h1bemp_name, params[:h1bemp_name], :autocomplete => search_employer_autocomplete_h1bemp_name_path, :placeholder => "Employer Name", :value=> params[:h1bemp_name].presence || ""
 									%a{:class=>"m-btn blue", :style => "margin-top: 0px; padding: 8px 14px", :href =>"javascript:search_form.submit();"}
 										%i{:class=>"icon-search"}
 										Search
@@ -24,7 +24,7 @@
 									%a{"data-toggle" => "tab", :href => "#top_jobs"} Top Jobs
 								%li
 									%a{"data-toggle" => "tab", :href => "#reviews"} Reviews
-							#my-tab-content.tab-content
+							#my-tab-content.tab-content{:style=>"background-color: #f5f5f5;"}
 								#overview.tab-pane.active
 									.span12.search-conditions-box
 										.row
@@ -86,3 +86,9 @@
 	$( "#h1bemp_name" ).autocomplete({
 		source: availableTags
 	});
+:css
+	li.active{
+		a{
+			background-color: #F5F5F5 !import;
+		}
+	}
