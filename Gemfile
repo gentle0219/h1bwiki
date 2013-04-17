@@ -17,6 +17,8 @@ gem 'fastercsv'
 gem 'rails_admin'
 gem 'rake', '10.0.4'
 
+gem 'googlecharts', :require => "gchart"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

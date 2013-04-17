@@ -38,7 +38,7 @@ RailsAdmin.config do |config|
   #config.excluded_models = [Comment, Post]
 
   # Add models here if you want to go 'whitelist mode':
-  config.included_models = [Country, JobseekerJob, JobseekerMentor, JobseekerTraining, PostJob, PostMentor, PostTraining, User, UploadDatabase]
+  config.included_models = [Country, JobseekerJob, JobseekerMentor, JobseekerTraining, PostJob, PostMentor, PostTraining, UploadDatabase]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -97,7 +97,7 @@ RailsAdmin.config do |config|
 
   config.model SkillList do
     object_label_method :name
-    configure :name, :string 
+    configure :name, :string
     configure :created_at, :datetime 
     configure :updated_at, :datetime
     list do
@@ -122,56 +122,6 @@ RailsAdmin.config do |config|
     edit do
       field :name
     end
-  end
-
-  config.model User do
-    object_label_method :email
-    configure :first_name, :string 
-    configure :last_name, :string 
-    configure :company_name, :string
-    configure :address1, :string 
-    configure :address2, :string 
-    configure :city, :string 
-    configure :user_name, :string 
-    configure :account_type, :string 
-    configure :country_id, :integer 
-    configure :immigration_status, :string 
-    configure :email, :string 
-    configure :password, :password         # Hidden 
-    configure :password_confirmation, :password         # Hidden 
-    configure :created_at, :datetime 
-    configure :updated_at, :datetime     
-    list do
-      field :first_name
-      field :email
-      field :company_name
-      field :account_type
-    end
-    export do; end
-    show do
-      field :first_name
-      field :last_name
-      field :company_name
-      field :address1
-      field :address2
-      field :address
-      field :city
-      field :user_name
-      field :account_type
-      field :created_at
-      field :updated_at
-    end
-    update do
-      field :first_name
-      field :last_name
-      field :email
-      field :company_name
-      field :address1
-      field :address2
-      field :city
-    end
-    create do; end
-    edit do; end
   end
 
   config.model UploadDatabase do

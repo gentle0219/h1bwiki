@@ -1,3 +1,4 @@
+- require 'gchart'
 .container-fluid
 	.row.search-page-main
 		=render "layouts/nav-link-search-secondary"
@@ -56,11 +57,17 @@
 													GC Approval Rate
 													=overview_item @search_h1bemp.gcARateFlag
 								#h1b_gcstats.tab-pane
-									.span12.search-conditions-box									
+									.span12.h1b-gcstats
+										.chart-content
+											.row.stats-title
+												%p H-1B and Green cards Statistics											
+											.span10.offset1
+												= image_tag(@chart_img)
+										.chart-table-content
 								#top_jobs.tab-pane
-									.span12.search-conditions-box
+									.span12.top-jobs
 								#reviews.tab-pane
-									.span12.search-conditions-box
+									.span12.reviews
 
 :javascript 
 	var cur_tab = 0
@@ -77,7 +84,7 @@
 	$("#tabs li").eq(cur_tab).addClass("active");
 	$("#my-tab-content div.tab-pane").eq(cur_tab).addClass("active");
 	var availableTags = #{@h1bemp_names}
-	console.log (availableTags);
+	
 	$( "#h1bemp_name" ).autocomplete({
 		source: availableTags
 	});
