@@ -5,7 +5,8 @@ class SearchEmployerController < ApplicationController
   	search_name = params[:h1bemp_name]
   	@search_h1bemp = H1bemp.find_by_name(search_name) if search_name.present?
   	@h1bemp_names = H1bemp.all.map { |e| e.name }
-  	@chart_img = Gchart.line( :size => '600x250',
+    if @search_h1bemp.present?
+      @chart_img = Gchart.line( :size => '600x250',
 #                              :theme => :keynote,
   														:title => 'H-1B and Green cards Statistics',
                               :legend => ['gc label','h1b label'],
@@ -16,6 +17,7 @@ class SearchEmployerController < ApplicationController
   																		[@search_h1bemp.h1b2010.to_i,@search_h1bemp.h1b2011.to_i,@search_h1bemp.h1b2012.to_i, 0]
   												 					 ],
   														:line_colors => "FF0000,00FF00")    
+    end
   end
   def search_names
 
