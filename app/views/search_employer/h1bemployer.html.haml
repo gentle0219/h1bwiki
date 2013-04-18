@@ -35,7 +35,7 @@
 											.overview-item{:style=>"margin-bottom: 20px;"}
 												%label 
 													Previous H-1B Filings History 
-													=overview_item @search_h1bemp.prevH1BFlag
+													=overview_item @search_h1bemp.prevh1Flag
 										.row
 											.overview-item
 												%label 
@@ -61,8 +61,12 @@
 										.chart-content
 											.row.stats-title
 												%p H-1B and Green cards Statistics											
-											.span10.offset1
-												= image_tag(@chart_img)
+											.row
+												.span10.offset1
+													= image_tag(@h1b_chart_img)
+											.row{:style=>"margin-top:40px;"}
+												.span10.offset1
+													= image_tag(@gc_chart_img)													
 										.chart-table-content
 								#top_jobs.tab-pane
 									.span12.top-jobs

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413140843) do
+ActiveRecord::Schema.define(:version => 20130418013229) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -48,34 +48,40 @@ ActiveRecord::Schema.define(:version => 20130413140843) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "h1bemp_fillings", :force => true do |t|
+    t.integer  "h1bemp_id"
+    t.string   "filingType"
+    t.string   "filingYear"
+    t.string   "filingStatus"
+    t.string   "filingCount"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "h1bemp_fillings", ["h1bemp_id"], :name => "index_h1bemp_fillings_on_h1bemp_id"
+
   create_table "h1bemps", :force => true do |t|
-    t.string   "name"
-    t.string   "gc2013"
-    t.string   "gc2012"
-    t.string   "gc2011"
-    t.string   "gc2010"
-    t.string   "gcTotalCertified"
-    t.string   "gcTotalApplied"
-    t.string   "gcApprovalRate"
-    t.string   "LCA_CASE_EMPLOYER_NAME"
-    t.string   "h1b2012"
-    t.string   "h1b2011"
-    t.string   "h1b2010"
-    t.string   "h1bTotalCertified"
-    t.string   "h1bTotalApplied"
+    t.string   "employerName"
+    t.string   "empAddress"
+    t.string   "empCity"
+    t.string   "empState"
+    t.string   "empZip"
+    t.string   "h1BTotalApplied"
+    t.string   "h1TotalDenied"
     t.string   "h1bApprovalRate"
-    t.string   "prevH1BFlag"
+    t.string   "prevh1Count"
+    t.string   "gcTotalApplied"
+    t.string   "gcTotalDenied"
+    t.string   "gcApprovalRate"
+    t.string   "prevgcCount"
+    t.string   "prevh1Flag"
     t.string   "prevGCFlag"
     t.string   "h1bARateFlag"
     t.string   "gcARateFlag"
     t.string   "everifiedFlag"
-    t.string   "gcEmp"
-    t.string   "h1Emp"
-    t.string   "evh1Emp"
-    t.string   "evgcEmp"
-    t.string   "WorkforceSize"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.string   "Workforcesize"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "jobseeker_jobs", :force => true do |t|

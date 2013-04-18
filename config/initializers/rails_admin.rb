@@ -146,7 +146,7 @@ RailsAdmin.config do |config|
       field :table_name,:enum do
         label "Table Name"
       enum do
-        ['h1b_employer','for_selling']
+        ['h1bemp','h1bemp_filling']
       end
       end
       field :data_content

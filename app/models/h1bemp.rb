@@ -1,4 +1,23 @@
 class H1bemp < ActiveRecord::Base
-  attr_accessible :LCA_CASE_EMPLOYER_NAME, :WorkforceSize, :everifiedFlag, :evgcEmp, :evh1Emp, :gc2010, :gc2011, :gc2012, :gc2013, :gcARateFlag, :gcApprovalRate, :gcEmp, :gcTotalApplied, :gcTotalCertified, :h1Emp, :h1b2010, :h1b2011, :h1b2012, :h1bARateFlag, :h1bApprovalRate, :h1bTotalApplied, :h1bTotalCertified, :name, :prevGCFlag, :prevH1BFlag
-  
+	has_many :h1bemp_filling
+  attr_accessible :Workforcesize, :empAddress, :empCity, :empState, :empZip, :employerName, :everifiedFlag, :gcARateFlag, :gcApprovalRate, :gcTotalApplied, :gcTotalDenied, :h1BTotalApplied, :h1TotalDenied, :h1bARateFlag, :h1bApprovalRate, :prevGCFlag, :prevgcCount, :prevh1Count, :prevh1Flag
+
+  FILING_TYPE = ["H1B", "GC"]
+  FILING_STATUS = ["CERTIFIED", "CERTIFIED-WITHDRAWN", "DENIED", "WITHDRAWN" ]
+
+  def get_filing_data type, status
+    type = type.upcase
+    status = status.upcase
+    if FILING_TYPE.include?(type) && FILING_STATUS.include?(status)
+	    gc_c_data = []		
+	    (2010..2013).each do |y|
+	      gcdata = self.h1bemp_filling.where(:filingType=>type, :filingYear=>y, :filingStatus => status ).first
+	      count = gcdata.present? ? gcdata.filingCount.to_i : 0
+	      gc_c_data << count
+	    end
+    	return gc_c_data
+    else
+    	return
+    end
+  end
 end
