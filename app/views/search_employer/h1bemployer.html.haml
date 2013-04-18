@@ -65,10 +65,10 @@
 												%p H-1B and Green cards Statistics											
 											.row
 												.span10.offset1
-													#gc_chart
+													#h1b_chart
 											.row{:style=>"margin-top:40px;"}
 												.span10.offset1
-													#h1b_chart
+													#gc_chart
 										.chart-table-content
 								#top_jobs.tab-pane
 									.span12.top-jobs
@@ -103,7 +103,7 @@
 		var data = google.visualization.arrayToDataTable(gc_chart_data);
 		var options = {
 			title:"GC Filings Per Year",
-			width:600, height:300,
+			width:600, height:250,
 			vAxis: {title: "Year"},
 			hAxis: {title: "No. of GC Filings"},
 			isStacked: 1,
@@ -115,7 +115,7 @@
 		data = google.visualization.arrayToDataTable(h1b_chart_data);
 		options = {
 			title:"LCA Filings (H-1B) Per Year",
-			width:600, height:300,
+			width:600, height:250,
 			vAxis: {title: "Year"},
 			hAxis: {title: "No. of LCA Filings - H-1B"},
 			isStacked: 1,
