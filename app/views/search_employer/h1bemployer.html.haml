@@ -1,5 +1,7 @@
+%script{:src => "https://www.google.com/jsapi", :type => "text/javascript"}
+
 - require 'gchart'
-.container-fluid
+.container-fluid	
 	.row.search-page-main
 		=render "layouts/nav-link-search-secondary"
 		.row.first-row			
@@ -63,10 +65,10 @@
 												%p H-1B and Green cards Statistics											
 											.row
 												.span10.offset1
-													= image_tag(@h1b_chart_img)
+													#gc_chart
 											.row{:style=>"margin-top:40px;"}
 												.span10.offset1
-													= image_tag(@gc_chart_img)													
+													#h1b_chart
 										.chart-table-content
 								#top_jobs.tab-pane
 									.span12.top-jobs
@@ -93,3 +95,32 @@
 		source: availableTags
 	});
 
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+	var gc_chart_data = #{@gc_chart_data}
+	var h1b_chart_data = #{@h1b_chart_data}
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable(gc_chart_data);
+		var options = {
+			title:"GC Filings Per Year",
+			width:600, height:300,
+			vAxis: {title: "Year"},
+			hAxis: {title: "No. of GC Filings"},
+			isStacked: 1,
+			series: [{color: 'Green', visibleInLegend: true}, {color: '#dc3912', visibleInLegend: true},{color: '#3366cc', visibleInLegend: true},{color: 'orange', visibleInLegend: true}]
+		};
+		var gc_chart = new google.visualization.BarChart(document.getElementById('gc_chart'));
+		gc_chart.draw(data, options);
+
+		data = google.visualization.arrayToDataTable(h1b_chart_data);
+		options = {
+			title:"LCA Filings (H-1B) Per Year",
+			width:600, height:300,
+			vAxis: {title: "Year"},
+			hAxis: {title: "No. of LCA Filings - H-1B"},
+			isStacked: 1,
+			series: [{color: 'Green', visibleInLegend: true}, {color: '#dc3912', visibleInLegend: true},{color: '#3366cc', visibleInLegend: true},{color: 'orange', visibleInLegend: true}]
+		};
+		var h1b_chart = new google.visualization.BarChart(document.getElementById('h1b_chart'));
+		h1b_chart.draw(data, options);
+	}

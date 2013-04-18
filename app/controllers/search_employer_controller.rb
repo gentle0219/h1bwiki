@@ -4,9 +4,11 @@ class SearchEmployerController < ApplicationController
   def h1bemployer  	
   	search_name = params[:h1bemp_name]
   	@search_h1bemp = H1bemp.find_by_employerName(search_name) if search_name.present?
-  	@h1bemp_names = H1bemp.all.map { |e| e.employerName }
+  	@h1bemp_names = H1bemp.all.map { |e| e.employerName }    
     if @search_h1bemp.present?
-
+      @h1b_chart_data = @search_h1bemp.get_data("H1B")
+      @gc_chart_data = @search_h1bemp.get_data("GC")
+=begin
       h1b_c_data = @search_h1bemp.get_filing_data('H1B', 'CERTIFIED')
       h1b_cw_data = @search_h1bemp.get_filing_data('H1B', 'CERTIFIED-WITHDRAWN')
       h1b_d_data = @search_h1bemp.get_filing_data('H1B', 'DENIED')
@@ -36,6 +38,7 @@ class SearchEmployerController < ApplicationController
                               :data=>[gc_c_data, gc_cw_data, gc_d_data, gc_w_data],                              
                               :orientation => 'horizontal',
   														:line_colors => "FF0000,00FF00,FAA732,4D90FE")
+=end                              
     end
   end
   def search_names
