@@ -35,28 +35,38 @@
 												%p Employer Overview 											
 										.row
 											.overview-item{:style=>"margin-bottom: 20px;"}
-												%label 
-													Previous H-1B Filings History 
+												.span3
+													%label 
+														Previous H-1B History :
+												.span2
 													=overview_item @search_h1bemp.prevh1Flag
 										.row
 											.overview-item
-												%label 
-													H-1B Approval Rate
+												.span3
+													%label 
+														H-1B Approval Rate :
+												.span2
 													=overview_item @search_h1bemp.h1bARateFlag
 										.row
 											.overview-item
-												%label 
-													E-Verified
+												.span3
+													%label 
+														E-Verified :
+												.span2
 													=overview_item @search_h1bemp.everifiedFlag
 										.row
 											.overview-item
-												%label 
-													Previous Green Card Filings History
+												.span3
+													%label 
+														Previous GC History :
+												.span2
 													=overview_item @search_h1bemp.prevGCFlag
 										.row
 											.overview-item
-												%label 
-													GC Approval Rate
+												.span3
+													%label 
+														GC Approval Rate :
+												.span2
 													=overview_item @search_h1bemp.gcARateFlag
 								#h1b_gcstats.tab-pane{:style=>"height:720px;"}
 									.span12.h1b-gcstats
