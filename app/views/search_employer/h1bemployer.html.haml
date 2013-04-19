@@ -58,7 +58,7 @@
 												%label 
 													GC Approval Rate
 													=overview_item @search_h1bemp.gcARateFlag
-								#h1b_gcstats.tab-pane
+								#h1b_gcstats.tab-pane{:style=>"height:720px;"}
 									.span12.h1b-gcstats
 										.chart-content
 											.row.stats-title
@@ -103,7 +103,7 @@
 		var data = google.visualization.arrayToDataTable(gc_chart_data);
 		var options = {
 			title:"GC Filings Per Year",
-			width:600, height:250,
+			width:600, height:300,
 			vAxis: {title: "Year"},
 			hAxis: {title: "No. of GC Filings"},
 			isStacked: 1,
@@ -115,7 +115,7 @@
 		data = google.visualization.arrayToDataTable(h1b_chart_data);
 		options = {
 			title:"LCA Filings (H-1B) Per Year",
-			width:600, height:250,
+			width:600, height:300,
 			vAxis: {title: "Year"},
 			hAxis: {title: "No. of LCA Filings - H-1B"},
 			isStacked: 1,
