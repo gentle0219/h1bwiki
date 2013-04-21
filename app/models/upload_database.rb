@@ -4,6 +4,7 @@ class UploadDatabase < ActiveRecord::Base
   validates :table_name, :data_content, presence: true
   H1BEMP_COLSIZE = 19
   H1BEMP_FILLING_COLSIZE = 5
+  H1BEMP_TOPJOBS_COLSIZE = 6
   def import_data
   	#data_content
     logger = Logger.new("log/upload_#{table_name}.log") unless logger
@@ -105,6 +106,39 @@ class UploadDatabase < ActiveRecord::Base
 	  		to_upload_table.filingYear		= columns[2]
 	  		to_upload_table.filingStatus	= columns[3]
 	  		to_upload_table.filingCount 	= columns[4]
+	  	end
+	  	if to_upload_table.save
+				logger.info "Table #{table_name}------------#{columns[0]} insert successfully"				
+				return to_upload_table
+			end
+		elsif table_name == "h1bemp_topjob"
+			return if columns.size < H1BEMP_TOPJOBS_COLSIZE || columns.size > H1BEMP_TOPJOBS_COLSIZE
+
+	  	h1bemp = H1bemp.find_by_employerName(columns[0])
+	  	
+	  	if h1bemp.present?
+	  		h1bemp_id = h1bemp.id
+	  	else
+	  		logger.info "h1bemp_id: NULL ====== #{columns[0]}"	
+	  		return
+	  	end
+	  	
+  		to_upload_table = H1bempTopjob.where(:h1bemp_id => h1bemp_id, :employerTitle => columns[1], :flag => columns[4] ).first
+  		if to_upload_table
+  			logger.info "Step 3 Update Table: #{columns[0]}"
+	  		return to_upload_table unless action_type
+	  		to_upload_table.totalCount = columns[2]
+	  		to_upload_table.avgSalary = columns[3]
+	  		to_upload_table.rn = columns[5]
+	  	else
+	  		logger.info "Step 3 Insert Table: #{columns[0]}"
+#	  		h1bemp_id = H1bemp.find_by_employerName(columns[0]).id
+	  		to_upload_table = H1bempTopjob.new(:h1bemp_id=>h1bemp_id)
+	  		to_upload_table.employerTitle 		= columns[1]
+	  		to_upload_table.totalCount		= columns[2]
+	  		to_upload_table.avgSalary	= columns[3]
+	  		to_upload_table.flag 	= columns[4]
+	  		to_upload_table.rn 	= columns[5]
 	  	end
 	  	if to_upload_table.save
 				logger.info "Table #{table_name}------------#{columns[0]} insert successfully"				

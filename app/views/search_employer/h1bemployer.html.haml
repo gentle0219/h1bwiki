@@ -80,8 +80,12 @@
 												.span10
 													#gc_chart
 										.chart-table-content
-								#top_jobs.tab-pane
+								#top_jobs.tab-pane{:style=>"height:720px;"}
 									.span12.top-jobs
+										.row.top-hired
+											#top_hired
+										.row.top-avg
+											#top_avg
 								#reviews.tab-pane
 									.span12.reviews
 
@@ -109,6 +113,9 @@
 	google.setOnLoadCallback(drawChart);
 	var gc_chart_data = #{@gc_chart_data}
 	var h1b_chart_data = #{@h1b_chart_data}
+	var top_hire_data = #{@top_hired_data}
+	console.log(top_hire_data);
+	var top_avg_data = #{@top_avg_data}
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable(gc_chart_data);
 		var options = {
@@ -133,4 +140,24 @@
 		};
 		var h1b_chart = new google.visualization.BarChart(document.getElementById('h1b_chart'));
 		h1b_chart.draw(data, options);
+
+		data = google.visualization.arrayToDataTable(top_hire_data);
+		options = {
+			title:"Total Jobs Hired",
+			width:600, height:300,
+			vAxis: {title: "Title"},
+			hAxis: {title: "Total Hired"}
+		};
+		var top_job_chart = new google.visualization.BarChart(document.getElementById('top_hired'));
+		top_job_chart.draw(data, options);
+
+		data = google.visualization.arrayToDataTable(top_avg_data);
+		options = {
+			title:"Total Jobs - Avg Salary",
+			width:600, height:300,
+			vAxis: {title: "Job Title"},
+			hAxis: {title: "Salary(in $)"}
+		};
+		var top_avg_chart = new google.visualization.BarChart(document.getElementById('top_avg'));
+		top_avg_chart.draw(data, options);		
 	}

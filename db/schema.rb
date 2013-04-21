@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418013229) do
+ActiveRecord::Schema.define(:version => 20130420022344) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -59,6 +59,19 @@ ActiveRecord::Schema.define(:version => 20130418013229) do
   end
 
   add_index "h1bemp_fillings", ["h1bemp_id"], :name => "index_h1bemp_fillings_on_h1bemp_id"
+
+  create_table "h1bemp_topjobs", :force => true do |t|
+    t.integer  "h1bemp_id"
+    t.string   "employerTitle"
+    t.string   "totalCount"
+    t.string   "avgSalary"
+    t.string   "flag"
+    t.string   "rn"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "h1bemp_topjobs", ["h1bemp_id"], :name => "index_h1bemp_topjobs_on_h1bemp_id"
 
   create_table "h1bemps", :force => true do |t|
     t.string   "employerName"

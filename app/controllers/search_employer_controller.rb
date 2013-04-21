@@ -2,14 +2,16 @@ class SearchEmployerController < ApplicationController
 	autocomplete :h1bemp, :name, :full => true
 
   def h1bemployer  	
-    @h1b_chart_data = 0
-    @gc_chart_data = 0
+    @h1b_chart_data = @gc_chart_data = @top_hired_data = @top_avg_data = 0
   	search_name = params[:h1bemp_name]
   	@search_h1bemp = H1bemp.find_by_employerName(search_name) if search_name.present?
   	@h1bemp_names = H1bemp.all.map { |e| e.employerName }    
     if @search_h1bemp.present?
       @h1b_chart_data = @search_h1bemp.get_data("H1B")
       @gc_chart_data = @search_h1bemp.get_data("GC")
+
+      @top_hired_data = @search_h1bemp.get_top_job_data("TopHired")
+      @top_avg_data = @search_h1bemp.get_top_job_data("TopAvg")
 =begin
       h1b_c_data = @search_h1bemp.get_filing_data('H1B', 'CERTIFIED')
       h1b_cw_data = @search_h1bemp.get_filing_data('H1B', 'CERTIFIED-WITHDRAWN')

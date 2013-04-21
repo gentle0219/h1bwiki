@@ -1,10 +1,11 @@
 class H1bemp < ActiveRecord::Base
 	has_many :h1bemp_filling
+  has_many :h1bemp_topjob
   attr_accessible :Workforcesize, :empAddress, :empCity, :empState, :empZip, :employerName, :everifiedFlag, :gcARateFlag, :gcApprovalRate, :gcTotalApplied, :gcTotalDenied, :h1BTotalApplied, :h1TotalDenied, :h1bARateFlag, :h1bApprovalRate, :prevGCFlag, :prevgcCount, :prevh1Count, :prevh1Flag
 
   FILING_TYPE = ["H1B", "GC"]
   FILING_STATUS = ["CERTIFIED", "CERTIFIED-WITHDRAWN", "DENIED", "WITHDRAWN" ]
-
+  TOP_JOB_TYPES = ["TopAvg", "TopHired"]
   def get_filing_data type, status
     type = type.upcase
     status = status.upcase
@@ -40,5 +41,22 @@ class H1bemp < ActiveRecord::Base
     else
       return
     end
+  end
+  def get_top_job_data type
+    return if !TOP_JOB_TYPES.include?(type)
+    top_job_datas=[]
+    top_job_datas << ["Title", "#{type=='TopHired' ? 'Total Hired' : 'Avg Salary' }"]
+    self.h1bemp_topjob.where(:flag => type).each do |t_data|
+      top_job_data = []
+      top_job_data << t_data.employerTitle.to_s
+      if type == TOP_JOB_TYPES[0]
+        top_job_data << t_data.totalCount.to_f
+      else
+        top_job_data << t_data.avgSalary.to_f
+      end
+      
+      top_job_datas << top_job_data
+    end
+    return top_job_datas
   end
 end
