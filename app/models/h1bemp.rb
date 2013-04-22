@@ -59,4 +59,24 @@ class H1bemp < ActiveRecord::Base
     end
     return top_job_datas
   end
+  def get_top_job_table_data type
+    return if !TOP_JOB_TYPES.include?(type)
+    top_job_datas=[]
+    if type == TOP_JOB_TYPES[1]
+      data = self.h1bemp_topjob.where(:flag => type).order(:totalCount)
+    else
+      data = self.h1bemp_topjob.where(:flag => type).order(:avgSalary)
+    end
+    data.each_with_index do |t_data, index|
+      top_job_data = []
+      top_job_data << t_data.employerTitle.to_s
+      top_job_data << t_data.totalCount.to_f
+      top_job_data << t_data.avgSalary.to_f
+      top_job_data << type
+      top_job_data << index+1
+
+      top_job_datas << top_job_data
+    end
+    return top_job_datas
+  end
 end

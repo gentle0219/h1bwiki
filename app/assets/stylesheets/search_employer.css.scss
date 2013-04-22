@@ -65,3 +65,11 @@
 		}
 	}
 }
+
+.table-hover{
+	tbody{
+		tr:hover{
+			cursor: pointer;
+		}
+	}
+}

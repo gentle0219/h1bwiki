@@ -11,7 +11,11 @@ class SearchEmployerController < ApplicationController
 			@gc_chart_data = @search_h1bemp.get_data("GC")
 
 			@top_hired_data = @search_h1bemp.get_top_job_data("TopHired")
+      @top_hired_table_data = @search_h1bemp.get_top_job_table_data("TopHired")
+
 			@top_avg_data = @search_h1bemp.get_top_job_data("TopAvg")
+      @top_avg_table_data = @search_h1bemp.get_top_job_table_data("TopAvg") 
+      
 =begin
 			h1b_c_data = @search_h1bemp.get_filing_data('H1B', 'CERTIFIED')
 			h1b_cw_data = @search_h1bemp.get_filing_data('H1B', 'CERTIFIED-WITHDRAWN')
