@@ -92,7 +92,6 @@
 															%th Title
 															%th Total Hired
 															%th Avg Salary
-															%th Type
 															%th Rank
 													%tbody
 														-@top_hired_table_data.each do |t_hired_data|
@@ -101,7 +100,6 @@
 																%td=t_hired_data[1]
 																%td=t_hired_data[2]
 																%td=t_hired_data[3]
-																%td=t_hired_data[4]
 										.row.top-avg
 											.span12
 												#top_avg
@@ -112,7 +110,6 @@
 															%th Title
 															%th Total Hired
 															%th Avg Salary
-															%th Type
 															%th Rank
 													%tbody
 														-@top_avg_table_data.each do |t_avg_data|
@@ -121,7 +118,6 @@
 																%td=t_avg_data[1]
 																%td=t_avg_data[2]
 																%td=t_avg_data[3]
-																%td=t_avg_data[4]
 								#reviews.tab-pane
 									.span12.reviews
 

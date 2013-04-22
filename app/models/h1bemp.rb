@@ -72,7 +72,6 @@ class H1bemp < ActiveRecord::Base
       top_job_data << t_data.employerTitle.to_s
       top_job_data << t_data.totalCount.to_f
       top_job_data << t_data.avgSalary.to_f
-      top_job_data << type
       top_job_data << index+1
 
       top_job_datas << top_job_data
