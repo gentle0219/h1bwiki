@@ -177,10 +177,10 @@
 		data = google.visualization.arrayToDataTable(top_hire_data);
 		options = {
 			title:"Total Jobs Hired",
-			width:900, height:300,
+			width:960, height:300,
 			vAxis: {title: "Title"},
 			hAxis: {title: "Total Hired"},
-			chartArea: {width: '45%'}
+			chartArea: {left: 350, top: 30, width: '45%'}
 		};
 		var top_job_chart = new google.visualization.BarChart(document.getElementById('top_hired'));
 		top_job_chart.draw(data, options);
@@ -188,10 +188,10 @@
 		data = google.visualization.arrayToDataTable(top_avg_data);
 		options = {
 			title:"Total Jobs - Avg Salary",
-			width:900, height:300,
+			width:960, height:300,
 			vAxis: {title: "Job Title"},
 			hAxis: {title: "Salary(in $)"},
-			chartArea: {width: '35%'}
+			chartArea: {left: 400, top: 30, width: '45%'}
 		};
 		var top_avg_chart = new google.visualization.BarChart(document.getElementById('top_avg'));
 		top_avg_chart.draw(data, options);		
