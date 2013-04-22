@@ -63,9 +63,9 @@ class H1bemp < ActiveRecord::Base
     return if !TOP_JOB_TYPES.include?(type)
     top_job_datas=[]
     if type == TOP_JOB_TYPES[1]
-      data = self.h1bemp_topjob.where(:flag => type).order(:totalCount)
+      data = self.h1bemp_topjob.where(:flag => type)
     else
-      data = self.h1bemp_topjob.where(:flag => type).order(:avgSalary)
+      data = self.h1bemp_topjob.where(:flag => type)
     end
     data.each_with_index do |t_data, index|
       top_job_data = []
