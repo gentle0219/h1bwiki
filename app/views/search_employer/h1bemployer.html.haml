@@ -120,9 +120,10 @@
 		var data = google.visualization.arrayToDataTable(gc_chart_data);
 		var options = {
 			title:"GC Filings Per Year",
-			width:600, height:300,
+			width:900, height:300,
 			vAxis: {title: "Year"},
 			hAxis: {title: "No. of GC Filings"},
+			chartArea: {width: '60%'},
 			isStacked: 1,
 			series: [{color: 'Green', visibleInLegend: true}, {color: '#dc3912', visibleInLegend: true},{color: '#3366cc', visibleInLegend: true},{color: 'orange', visibleInLegend: true}]
 		};
@@ -132,9 +133,10 @@
 		data = google.visualization.arrayToDataTable(h1b_chart_data);
 		options = {
 			title:"LCA Filings (H-1B) Per Year",
-			width:600, height:300,
+			width:900, height:300,
 			vAxis: {title: "Year"},
 			hAxis: {title: "No. of LCA Filings - H-1B"},
+			chartArea: {width: '60%'},
 			isStacked: 1,
 			series: [{color: 'Green', visibleInLegend: true}, {color: '#dc3912', visibleInLegend: true},{color: '#3366cc', visibleInLegend: true},{color: 'orange', visibleInLegend: true}]
 		};
@@ -144,9 +146,10 @@
 		data = google.visualization.arrayToDataTable(top_hire_data);
 		options = {
 			title:"Total Jobs Hired",
-			width:600, height:300,
+			width:900, height:300,
 			vAxis: {title: "Title"},
-			hAxis: {title: "Total Hired"}
+			hAxis: {title: "Total Hired"},
+			chartArea: {width: '45%'}
 		};
 		var top_job_chart = new google.visualization.BarChart(document.getElementById('top_hired'));
 		top_job_chart.draw(data, options);
@@ -154,9 +157,10 @@
 		data = google.visualization.arrayToDataTable(top_avg_data);
 		options = {
 			title:"Total Jobs - Avg Salary",
-			width:600, height:300,
+			width:900, height:300,
 			vAxis: {title: "Job Title"},
-			hAxis: {title: "Salary(in $)"}
+			hAxis: {title: "Salary(in $)"},
+			chartArea: {width: '30%'}
 		};
 		var top_avg_chart = new google.visualization.BarChart(document.getElementById('top_avg'));
 		top_avg_chart.draw(data, options);		
