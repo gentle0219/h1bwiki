@@ -3,6 +3,15 @@ H1bwiki::Application.routes.draw do
   get "search_employer/h1bemployer"
   get "search_employer/autocomplete_h1bemp_name"
 
+  resources :search_employer do
+    member do
+      post :rate
+    end
+    member do
+      post :add_comment
+    end
+  end
+  
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "messagebox/inbox"

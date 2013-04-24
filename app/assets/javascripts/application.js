@@ -20,8 +20,9 @@
 //= require autocomplete-rails
 //= require_tree .
 
+var isLoged = false;
 
-$(function(){	
+$(function(){		
 	$('input[type="radio"]').customInput();
 //	$('#authors_names_0').addClass("parsley-validated");
 //	$('#authors_names_0').attr("data-mincheck", "1");

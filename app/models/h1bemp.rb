@@ -1,8 +1,14 @@
 class H1bemp < ActiveRecord::Base
-	has_many :h1bemp_filling
+	
+  has_many :h1bemp_filling
   has_many :h1bemp_topjob
+  
   attr_accessible :Workforcesize, :empAddress, :empCity, :empState, :empZip, :employerName, :everifiedFlag, :gcARateFlag, :gcApprovalRate, :gcTotalApplied, :gcTotalDenied, :h1BTotalApplied, :h1TotalDenied, :h1bARateFlag, :h1bApprovalRate, :prevGCFlag, :prevgcCount, :prevh1Count, :prevh1Flag
 
+  ajaxful_rateable :stars => 5, :dimensions =>[:company], :allow_update=>true
+  acts_as_commentable
+
+  
   FILING_TYPE = ["H1B", "GC"]
   FILING_STATUS = ["CERTIFIED", "CERTIFIED-WITHDRAWN", "DENIED", "WITHDRAWN" ]
   TOP_JOB_TYPES = ["TopAvg", "TopHired"]

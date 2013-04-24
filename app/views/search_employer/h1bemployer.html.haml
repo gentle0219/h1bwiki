@@ -27,6 +27,8 @@
 									%a{"data-toggle" => "tab", :href => "#top_jobs"} Top Jobs
 								%li
 									%a{"data-toggle" => "tab", :href => "#reviews"} Reviews
+								%li
+									%a{"data-toggle" => "tab", :href => "#write_reviews",:class => "write-review"} Write Reviews
 							#my-tab-content.tab-content
 								#overview.tab-pane.active
 									.span12.search-conditions-box
@@ -120,6 +122,51 @@
 																%td=t_avg_data[3]
 								#reviews.tab-pane
 									.span12.reviews
+										.row
+											.reviews-title
+												%p Employer Review
+								#write_reviews.tab-pane
+									.span10.offset1.reviews
+										.row
+											.review-title
+												%p Your overall rating of this company
+										.row
+											.span3.offset1
+												=ratings_for @search_h1bemp, :dimension=>:company, :show_user_rating=> true, :remote_options =>{:url => rate_search_employer_path(@search_h1bemp)}
+											.span2
+												%label Click to Rate
+										.row
+											.span3.offset1
+												%label Paid On Time
+											.span1
+											.span1
+										.row
+											.span3.offset1
+												%label Placements
+											.span1
+											.span1
+										.row
+											.span3.offset1
+												%label H-1B and Legal Support
+											.span1
+											.span1
+										.row							
+											.span10.offset1				
+												#comments_content
+													=render :partial => "comments"
+											.row
+												.span3.offset1
+													%label Comments
+											.row
+												.span10.offset1
+													= form_tag add_comment_search_employer_path(@search_h1bemp), :method => :post, :id=>"comment_form" do
+														.row
+															= text_area_tag :comment, params[:comment], :placeholder => "Please input comment", :value=> params[:comment].presence || "", :rows=> 5, :style=>"width: 100%"
+														.row
+															.span3.offset5
+																%a{:class=>"m-btn blue post-comment"} Post Comment
+
+
 
 :javascript 
 	var cur_tab = 0
@@ -196,3 +243,29 @@
 		var top_avg_chart = new google.visualization.BarChart(document.getElementById('top_avg'));
 		top_avg_chart.draw(data, options);		
 	}
+	isLoged = "#{user_signed_in?}"
+
+	$("a.write-review").click(function(){
+		if(isLoged == "false"){
+			document.location.href = "/users/sign_in";
+		}
+	});
+	$("a.post-comment").click(function(){
+		var url_ajax = $("#comment_form").attr("action");
+		var content = $("#comment").val();
+		if(content.length < 10){
+			$("#comment").focus();
+			return;
+		} 
+		
+		$.ajax({
+			url :url_ajax,
+			beforeSend : function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
+			type: "POST",
+			data: 'content=' + content,
+			dataType:'script',
+			success :function(){console.log("success");}
+		});
+		return false;
+	});
+

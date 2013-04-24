@@ -11,45 +11,39 @@ class SearchEmployerController < ApplicationController
 			@gc_chart_data = @search_h1bemp.get_data("GC")
 
 			@top_hired_data = @search_h1bemp.get_top_job_data("TopHired")
-      @top_hired_table_data = @search_h1bemp.get_top_job_table_data("TopHired")
+			@top_hired_table_data = @search_h1bemp.get_top_job_table_data("TopHired")
 
 			@top_avg_data = @search_h1bemp.get_top_job_data("TopAvg")
-      @top_avg_table_data = @search_h1bemp.get_top_job_table_data("TopAvg") 
-      
-=begin
-			h1b_c_data = @search_h1bemp.get_filing_data('H1B', 'CERTIFIED')
-			h1b_cw_data = @search_h1bemp.get_filing_data('H1B', 'CERTIFIED-WITHDRAWN')
-			h1b_d_data = @search_h1bemp.get_filing_data('H1B', 'DENIED')
-			h1b_w_data = @search_h1bemp.get_filing_data('H1B', 'WITHDRAWN')
-			@h1b_chart_img = Gchart.bar( :size => '600x150',
-#															:theme => :keynote,
-															:title => 'H-1B Statistics',
-															:legend => ["CERTIFIED", "CERTIFIED-WITHDRAWN", "DENIED", "WITHDRAWN" ],
-															:axis_with_labels => ['y'], 
-															:axis_labels => [['2010', '2011', '2012', '2013']], 
-#															:axis_range => [nil, [0,100,10]],
-															:data=>[h1b_c_data, h1b_cw_data, h1b_d_data, h1b_w_data],
-															:orientation => 'horizontal',
-															:line_colors => "FF0000,00FF00,FAA732,4D90FE")
+			@top_avg_table_data = @search_h1bemp.get_top_job_table_data("TopAvg")
 
-			gc_c_data = @search_h1bemp.get_filing_data('GC', 'CERTIFIED')
-			gc_cw_data = @search_h1bemp.get_filing_data('GC', 'CERTIFIED-WITHDRAWN')
-			gc_d_data = @search_h1bemp.get_filing_data('GC', 'DENIED')
-			gc_w_data = @search_h1bemp.get_filing_data('GC', 'WITHDRAWN')
-			@gc_chart_img = Gchart.bar( :size => '600x150',
-#															:theme => :keynote,
-															:title => 'Green cards Statistics',
-															:legend => ["CERTIFIED", "CERTIFIED-WITHDRAWN", "DENIED", "WITHDRAWN" ],
-															:axis_with_labels => ['y'], 
-															:axis_labels => [['2010', '2011', '2012', '2013']], 
-#															:axis_range => [nil, [0,100,10]],
-															:data=>[gc_c_data, gc_cw_data, gc_d_data, gc_w_data],															
-															:orientation => 'horizontal',
-															:line_colors => "FF0000,00FF00,FAA732,4D90FE")
-=end															
+			@comments = @search_h1bemp.root_comments
 		end
 	end
-	def search_names
+	def rate
+		@search_h1bemp = H1bemp.find(params[:id])
+		@search_h1bemp.rate(params[:stars], current_user, params[:dimension])		
+		average = @search_h1bemp.rate_average(true, params[:dimension])
+		width = (average/@search_h1bemp.class.max_stars.to_f)*100
+		render :json => {:id => @search_h1bemp.wrapper_dom_id(params), :width => width}	
+		#render :update do |page|
+		#	page.replace_html @search_h1bemp.wrapper_dom_id(params), ratings_for(@search_h1bemp, params.merge(:wrap => false))
+		#	page.visual_effect :highlight, @search_h1bemp.wrapper_dom_id(params)
+		#end
+	end
+	def add_comment
+		search_h1bemp = H1bemp.find(params[:id])
+		user_who_commented_id = current_user.id
+		comment = Comment.build_from( search_h1bemp, user_who_commented_id, params[:content])
+		comment.subject = current_user.user_name+ " to " + search_h1bemp.employerName
+		comment.save
+		@comments = search_h1bemp.root_comments
+		
+		respond_to do |format|
+      format.js {
+        @return_content = render_to_string(:partial => "comments")
+        @return_content
+      }
+    end
 
 	end
 end
