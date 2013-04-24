@@ -21,10 +21,8 @@ gem 'fastercsv'
 gem 'rails_admin'
 gem 'rake', '10.0.4'
 
-
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
