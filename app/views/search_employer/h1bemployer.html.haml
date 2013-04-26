@@ -131,7 +131,10 @@
 											.span2
 												=ratings_for @search_h1bemp, :static, :dimension=>:company, :remote_options =>{:url => rate_search_employer_path(@search_h1bemp)}
 											.span2
-												%label (613 reviews)
+												%label
+													(
+													=@search_h1bemp.rates("company").count
+													reviews)
 
 								#write_reviews.tab-pane
 									.span10.offset1.reviews
