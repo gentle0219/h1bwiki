@@ -20,7 +20,7 @@ class SearchEmployerController < ApplicationController
 		end
 	end
 	def rate
-		@search_h1bemp = H1bemp.find(params[:id])
+		@search_h1bemp = H1bemp.find(params[:id].presence || 0)
 		@search_h1bemp.rate(params[:stars], current_user, params[:dimension])		
 		average = @search_h1bemp.rate_average(true, params[:dimension])
 		width = (average/@search_h1bemp.class.max_stars.to_f)*100
@@ -38,6 +38,9 @@ class SearchEmployerController < ApplicationController
 		comment.save
 		@comments = search_h1bemp.root_comments
 		
+		average = search_h1bemp.rate_average(true, "company")
+		@width = (average/search_h1bemp.class.max_stars.to_f)*100
+		@child_width = search_h1bemp.rate_by(current_user, "company").stars.to_i*20
 		respond_to do |format|
       format.js {
         @return_content = render_to_string(:partial => "comments")

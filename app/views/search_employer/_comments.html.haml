@@ -1,3 +1,9 @@
 - @comments.each do |comment|
 	.row
 		%p=comment.body
+
+:javascript
+	$("#reviews li.show-value").width("#{@width}%");
+	$("#write_reviews li.show-value").width("#{@child_width}%");
+	$('#write_reviews').modal('hide');
+
