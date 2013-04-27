@@ -22,9 +22,8 @@ class SearchEmployerController < ApplicationController
 	def rate
 		@search_h1bemp = H1bemp.find(params[:id].presence || 0)
 		@search_h1bemp.rate(params[:stars], current_user, params[:dimension])		
-		average = @search_h1bemp.rate_average(true, params[:dimension])
-		width = (average/@search_h1bemp.class.max_stars.to_f)*100
-		render :json => {:id => @search_h1bemp.wrapper_dom_id(params), :width => width}	
+		width = @search_h1bemp.rate_by(current_user, "company").stars.to_i*20
+		render :json => {:id => @search_h1bemp.wrapper_dom_id(params), :width => width}
 		#render :update do |page|
 		#	page.replace_html @search_h1bemp.wrapper_dom_id(params), ratings_for(@search_h1bemp, params.merge(:wrap => false))
 		#	page.visual_effect :highlight, @search_h1bemp.wrapper_dom_id(params)
@@ -33,9 +32,17 @@ class SearchEmployerController < ApplicationController
 	def add_comment
 		search_h1bemp = H1bemp.find(params[:id])
 		user_who_commented_id = current_user.id
-		comment = Comment.build_from( search_h1bemp, user_who_commented_id, params[:content])
+		comment = search_h1bemp.root_comments.first.presence || Comment.build_from( search_h1bemp, user_who_commented_id, params[:content])
+		comment.body = params[:content]
 		comment.subject = current_user.user_name+ " to " + search_h1bemp.employerName
 		comment.save
+		review = search_h1bemp.review.presence || search_h1bemp.build_review
+		review.user_id = current_user.id
+		review.paidontime=params[:paid_time]
+		review.placement=params[:placement]
+		review.legal = params[:legal]
+		review.save
+
 		@comments = search_h1bemp.root_comments
 		
 		average = search_h1bemp.rate_average(true, "company")

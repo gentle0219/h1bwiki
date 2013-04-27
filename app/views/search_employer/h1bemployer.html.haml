@@ -146,22 +146,30 @@
 				.span4.offset1
 					=ratings_for @search_h1bemp, :dimension=>:company, :show_user_rating=> true, :remote_options =>{:url => rate_search_employer_path(@search_h1bemp)}
 				.span3
-					%label Click to Rate
+					.prompt
+						%span.promptText Click to Rate
+
 			.row
-				.span3.offset1
+				.span4.offset1
 					%label Paid On Time
-				.span1
-				.span1
+				.span2
+					.review-option.review-option-y.paid-on-time-yes
+				.span2
+					.review-option.review-option-n.paid-on-time-no
 			.row
-				.span3.offset1
+				.span4.offset1
 					%label Placements
-				.span1
-				.span1
+				.span2
+					.review-option.review-option-y.placement-yes
+				.span2
+					.review-option.review-option-n.placement-no
 			.row
-				.span3.offset1
+				.span4.offset1
 					%label H-1B and Legal Support
-				.span1
-				.span1
+				.span2
+					.review-option.review-option-y.legal-yes
+				.span2
+					.review-option.review-option-n.legal-no
 			.row							
 				.span10.offset1				
 					#comments_content
@@ -259,6 +267,10 @@
 			document.location.href = "/users/sign_in";
 		}
 	});
+	var paid_time="#{@search_h1bemp.review.paidontime.presence || 'none'}"
+	var placement="#{@search_h1bemp.review.placement.presence || 'none'}"
+	var legal="#{@search_h1bemp.review.legal.presence || 'none'}"
+	
 	$("a.post-comment").click(function(){
 		var url_ajax = $("#comment_form").attr("action");
 		var content = $("#comment").val();
@@ -266,14 +278,92 @@
 			$("#comment").focus();
 			return;
 		} 
+
 		$.ajax({
 			url :url_ajax,
 			beforeSend : function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
 			type: "POST",
-			data: 'content=' + content,
+			data: 'content=' + content + '&paid_time='+paid_time+'&placement='+placement+'&legal='+legal,			
 			dataType:'script',
-			success :function(){console.log("success");}
+			success :function(){}
 		});
 		return false;
 	});
+	if(paid_time=='yes'){
+		$("div.paid-on-time-yes").addClass("review-option-y-h");
+	}else if(paid_time=='no'){
+		$("div.paid-on-time-no").addClass("review-option-n-h");
+	}else{
+		$("div.paid-on-time-yes").removeClass("review-option-y-h");
+		$("div.paid-on-time-no").removeClass("review-option-n-h");
+	}
+
+	if(placement=='yes'){
+		$("div.placement-yes").addClass("review-option-y-h");
+	}else if(placement=='no'){
+		$("div.placement-no").addClass("review-option-n-h");
+	}else{
+		$("div.placement-yes").removeClass("review-option-y-h");
+		$("div.placement-no").removeClass("review-option-n-h");
+	}
+
+	if(legal=='yes'){
+		$("div.legal-yes").addClass("review-option-y-h");
+	}else if(legal=='no'){
+		$("div.legal-no").addClass("review-option-n-h");
+	}else{
+		$("div.legal-yes").removeClass("review-option-y-h");
+		$("div.legal-no").removeClass("review-option-n-h");
+	}
+
+	$("ul.ajaxful-rating").hover(
+		function(){
+			$("div.prompt").hide()
+		},
+		function(){
+			$("div.prompt").show()
+		}
+	);
+	
+	$("ul.ajaxful-rating li a").each(function(index){
+		$(this).click(function(obj){
+			var width = 20*($("ul.ajaxful-rating li a").index($(this))+1)+"%";
+			$("li.show-value").width(width);
+		});
+	});
+
+	$("div.paid-on-time-yes").click(function(){
+		paid_time = "yes"
+		$(this).addClass("review-option-y-h");
+		$("div.paid-on-time-no").removeClass("review-option-n-h");
+	});
+	$("div.paid-on-time-no").click(function(){
+		paid_time = "no"
+		$("div.paid-on-time-yes").removeClass("review-option-y-h");
+		$(this).addClass("review-option-n-h");
+	});
+
+	$("div.placement-yes").click(function(){
+		placement = "yes";		
+		$(this).addClass("review-option-y-h");
+		$("div.placement-no").removeClass("review-option-n-h");
+	});
+	$("div.placement-no").click(function(){
+		placement = "no";
+		$(this).addClass("review-option-n-h");
+		$("div.placement-yes").removeClass("review-option-y-h");		
+	});
+
+	$("div.legal-yes").click(function(){
+		legal = "yes"
+		$(this).addClass("review-option-y-h");
+		$("div.legal-no").removeClass("review-option-n-h");
+	});
+	$("div.legal-no").click(function(){
+		legal = "no"
+		$(this).addClass("review-option-n-h");
+		$("div.legal-yes").removeClass("review-option-y-h");
+		
+	});
+	
 

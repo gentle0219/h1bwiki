@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424162302) do
+ActiveRecord::Schema.define(:version => 20130427021535) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -238,6 +238,19 @@ ActiveRecord::Schema.define(:version => 20130424162302) do
   end
 
   add_index "receipts", ["notification_id"], :name => "index_receipts_on_notification_id"
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "h1bemp_id"
+    t.integer  "user_id"
+    t.string   "paidontime"
+    t.string   "placement"
+    t.string   "legal"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "reviews", ["h1bemp_id"], :name => "index_reviews_on_h1bemp_id"
+  add_index "reviews", ["user_id"], :name => "index_reviews_on_user_id"
 
   create_table "skill_lists", :force => true do |t|
     t.string   "name"
