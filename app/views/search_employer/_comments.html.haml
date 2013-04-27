@@ -6,6 +6,6 @@
 	$(".average-rate li.show-value").width("#{@width}%");
 	$("#write_reviews li.show-value").width("#{@child_width}%");
 	$("#reviews li.current-#{current_user.id if user_signed_in?}").width("#{@child_width}%");
-	$("div.comment-user#{current_user.id}").html($("#comment").val());
+	$("div.comment-user#{current_user.id if user_signed_in?}").html($("#comment").val());
 	$('#write_reviews').modal('hide');
 
