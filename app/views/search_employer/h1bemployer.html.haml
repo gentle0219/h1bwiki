@@ -304,9 +304,9 @@
 		}
 	});
 
-	var paid_time="#{@review.paidontime.presence || 'No' if user_signed_in? and @search_h1bemp.present? }"
-	var placement="#{@review.placement.presence || 'Bad' if user_signed_in? and @search_h1bemp.present?}"
-	var legal="#{@review.legal.presence || 'Bad' if user_signed_in? and @search_h1bemp.present?}"
+	var paid_time="#{@review.paidontime.presence || 'No' if user_signed_in? and @search_h1bemp.present? and @review.present? }"
+	var placement="#{@review.placement.presence || 'Bad' if user_signed_in? and @search_h1bemp.present? and @review.present? }"
+	var legal="#{@review.legal.presence || 'Bad' if user_signed_in? and @search_h1bemp.present? and @review.present? }"
 	console.log(legal);
 	$("a.post-comment").click(function(){
 		var url_ajax = $("#comment_form").attr("action");
