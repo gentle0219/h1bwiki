@@ -16,7 +16,10 @@ class SearchEmployerController < ApplicationController
 			@top_avg_data = @search_h1bemp.get_top_job_data("TopAvg")
 			@top_avg_table_data = @search_h1bemp.get_top_job_table_data("TopAvg")
 
+			@reviews = @search_h1bemp.reviews
+			@review = @search_h1bemp.reviews.where(:user_id=>current_user.id).first if user_signed_in?
 			@comments = @search_h1bemp.root_comments
+			@comment = @search_h1bemp.root_comments.where(:user_id=>current_user.id).first if user_signed_in?
 		end
 	end
 	def rate
@@ -30,20 +33,21 @@ class SearchEmployerController < ApplicationController
 		#end
 	end
 	def add_comment
-		search_h1bemp = H1bemp.find(params[:id])
-		user_who_commented_id = current_user.id
-		comment = search_h1bemp.root_comments.first.presence || Comment.build_from( search_h1bemp, user_who_commented_id, params[:content])
+		search_h1bemp = H1bemp.find(params[:id])		
+		comment = search_h1bemp.root_comments.where(:user_id=>current_user.id).first.presence || Comment.build_from( search_h1bemp, current_user.id, params[:content])
 		comment.body = params[:content]
 		comment.subject = current_user.user_name+ " to " + search_h1bemp.employerName
 		comment.save
-		review = search_h1bemp.review.presence || search_h1bemp.build_review
+		review = search_h1bemp.reviews.where(:user_id=>current_user.id).first.presence || search_h1bemp.reviews.build
 		review.user_id = current_user.id
 		review.paidontime=params[:paid_time]
 		review.placement=params[:placement]
 		review.legal = params[:legal]
 		review.save
 
-		@comments = search_h1bemp.root_comments
+		@reviews = search_h1bemp.reviews
+
+		@comment = search_h1bemp.root_comments.where(:user_id=>current_user.id).first
 		
 		average = search_h1bemp.rate_average(true, "company")
 		@width = (average/search_h1bemp.class.max_stars.to_f)*100

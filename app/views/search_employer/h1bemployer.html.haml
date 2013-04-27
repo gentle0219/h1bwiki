@@ -126,7 +126,7 @@
 										.row
 											.span3
 												=@search_h1bemp.employerName
-											.span2
+											.span2.average-rate
 												=ratings_for @search_h1bemp, :static, :dimension=>:company, :remote_options =>{:url => rate_search_employer_path(@search_h1bemp)}
 											.span2
 												%label
@@ -135,7 +135,43 @@
 													reviews)
 											.span2
 												%a.m-btn.blue.write-review{"data-toggle" => "modal", :href => "#write_reviews", :role => "button", :style=>"margin-top: 0px;"} Write a Review
-
+										.row
+											#emp_reviews
+												-@reviews.each do |review|
+													.row.review
+														.row
+															.title
+																%p Title
+														.row
+															.span3
+																-width = @search_h1bemp.rate_by(User.find(review.user_id), "company").stars.to_i*20
+																-if user_signed_in? and review.user_id == current_user.id
+																	%ul.ajaxful-rating
+																		%li.show-value{:class=>"current-#{current_user.id}", :style=>"width: #{width.to_s}%"}
+																-else	
+																	%ul.ajaxful-rating
+																		%li.show-value{:style=>"width: #{width.to_s}%"}
+														.row
+															.span10
+																.span3.paid{:style=>"border: 1px solid; border-right: none; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
+																	%p.item-name
+																		Paid On Time - 
+																		=review.paidontime
+																.span3.placement{:style=>"border: 1px solid; border-right: none; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
+																	%p.item-name
+																		Placements - 
+																		=review.placement
+																.span4.legal{:style=>"border: 1px solid; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
+																	%p.item-name
+																		H-1B/Legal Support -
+																		=review.legal
+														.row
+															-if user_signed_in? and review.user_id == current_user.id
+																.comments{:class=>"comment-user#{current_user.id}"}
+																	=@search_h1bemp.root_comments.where(:user_id=>review.user_id).first.body.presence if @search_h1bemp.root_comments.where(:user_id=>review.user_id).first.present?
+															-else
+																.comments
+																	=@search_h1bemp.root_comments.where(:user_id=>review.user_id).first.body.presence if @search_h1bemp.root_comments.where(:user_id=>review.user_id).first.present?
 -if @search_h1bemp.present?
 	#write_reviews.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "write_review", :role => "dialog", :tabindex => "-1"}
 		.span10.offset1.reviews
@@ -150,21 +186,21 @@
 						%span.promptText Click to Rate
 
 			.row
-				.span4.offset1
+				.span5.offset1
 					%label Paid On Time
 				.span2
 					.review-option.review-option-y.paid-on-time-yes
 				.span2
 					.review-option.review-option-n.paid-on-time-no
 			.row
-				.span4.offset1
+				.span5.offset1
 					%label Placements
 				.span2
 					.review-option.review-option-y.placement-yes
 				.span2
 					.review-option.review-option-n.placement-no
 			.row
-				.span4.offset1
+				.span5.offset1
 					%label H-1B and Legal Support
 				.span2
 					.review-option.review-option-y.legal-yes
@@ -267,10 +303,11 @@
 			document.location.href = "/users/sign_in";
 		}
 	});
-	var paid_time="#{@search_h1bemp.review.paidontime.presence || 'none'}"
-	var placement="#{@search_h1bemp.review.placement.presence || 'none'}"
-	var legal="#{@search_h1bemp.review.legal.presence || 'none'}"
-	
+
+	var paid_time="#{@review.paidontime.presence || 'No' if user_signed_in? and @search_h1bemp.present? }"
+	var placement="#{@review.placement.presence || 'Bad' if user_signed_in? and @search_h1bemp.present?}"
+	var legal="#{@review.legal.presence || 'Bad' if user_signed_in? and @search_h1bemp.present?}"
+	console.log(legal);
 	$("a.post-comment").click(function(){
 		var url_ajax = $("#comment_form").attr("action");
 		var content = $("#comment").val();
@@ -289,27 +326,27 @@
 		});
 		return false;
 	});
-	if(paid_time=='yes'){
+	if(paid_time=='Yes'){
 		$("div.paid-on-time-yes").addClass("review-option-y-h");
-	}else if(paid_time=='no'){
+	}else if(paid_time=='No'){
 		$("div.paid-on-time-no").addClass("review-option-n-h");
 	}else{
 		$("div.paid-on-time-yes").removeClass("review-option-y-h");
 		$("div.paid-on-time-no").removeClass("review-option-n-h");
 	}
 
-	if(placement=='yes'){
+	if(placement=='Good'){
 		$("div.placement-yes").addClass("review-option-y-h");
-	}else if(placement=='no'){
+	}else if(placement=='Bad'){
 		$("div.placement-no").addClass("review-option-n-h");
 	}else{
 		$("div.placement-yes").removeClass("review-option-y-h");
 		$("div.placement-no").removeClass("review-option-n-h");
 	}
 
-	if(legal=='yes'){
+	if(legal=='Good'){
 		$("div.legal-yes").addClass("review-option-y-h");
-	}else if(legal=='no'){
+	}else if(legal=='Bad'){
 		$("div.legal-no").addClass("review-option-n-h");
 	}else{
 		$("div.legal-yes").removeClass("review-option-y-h");
@@ -328,42 +365,41 @@
 	$("ul.ajaxful-rating li a").each(function(index){
 		$(this).click(function(obj){
 			var width = 20*($("ul.ajaxful-rating li a").index($(this))+1)+"%";
-			$("li.show-value").width(width);
+			$("#write_reviews li.show-value").width(width);
 		});
 	});
 
 	$("div.paid-on-time-yes").click(function(){
-		paid_time = "yes"
+		paid_time = "Yes"
 		$(this).addClass("review-option-y-h");
 		$("div.paid-on-time-no").removeClass("review-option-n-h");
 	});
 	$("div.paid-on-time-no").click(function(){
-		paid_time = "no"
+		paid_time = "No"
 		$("div.paid-on-time-yes").removeClass("review-option-y-h");
 		$(this).addClass("review-option-n-h");
 	});
 
 	$("div.placement-yes").click(function(){
-		placement = "yes";		
+		placement = "Good";		
 		$(this).addClass("review-option-y-h");
 		$("div.placement-no").removeClass("review-option-n-h");
 	});
 	$("div.placement-no").click(function(){
-		placement = "no";
+		placement = "Bad";
 		$(this).addClass("review-option-n-h");
 		$("div.placement-yes").removeClass("review-option-y-h");		
 	});
 
 	$("div.legal-yes").click(function(){
-		legal = "yes"
+		legal = "Good"
 		$(this).addClass("review-option-y-h");
 		$("div.legal-no").removeClass("review-option-n-h");
 	});
 	$("div.legal-no").click(function(){
-		legal = "no"
+		legal = "Bad"
 		$(this).addClass("review-option-n-h");
-		$("div.legal-yes").removeClass("review-option-y-h");
-		
+		$("div.legal-yes").removeClass("review-option-y-h");		
 	});
 	
 
