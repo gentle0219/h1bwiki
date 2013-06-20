@@ -1,10 +1,10 @@
 / START SLIDER
-#layerslider-container
-	= image_tag("background.jpg")
-	= render "static_pages/search_form"
-	%p.img-caption Bridging the gap between H-1B Employers and Job Seekers
-
-.row-fluid{:style=>"margin-top:150px; margin-left: 100px;"}
+.row
+	#layerslider-container
+		= image_tag("background.jpg")
+		= render "static_pages/search_form"
+		%p.img-caption Bridging the gap between H-1B Employers and Job Seekers
+.row-fluid{:style=>"margin-top:200px; margin-left: 100px;"}
 	.span6
 		= link_to image_tag("jobseeker.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left"
 		%h2 JOB SEEKER
