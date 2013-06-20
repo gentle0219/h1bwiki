@@ -1,0 +1,73 @@
+/ START SLIDER
+#layerslider-container
+	= image_tag("background.jpg")
+	= render "static_pages/search_form"
+	%p.img-caption Bridging the gap between H-1B Employers and Job Seekers
+
+.row-fluid{:style=>"margin-top:150px; margin-left: 100px;"}
+	.span6
+		= link_to image_tag("jobseeker.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left"
+		%h2 JOB SEEKER
+		%h4{:style=>"float:left"} Are You looking for H-1B Jobs/Employers?
+		= link_to "Sign Up Here", new_jobseeker_path, :class => "m-btn blue", :style=>"margin-left: 20px; margin-top: -5px;"
+	.span6
+		= link_to image_tag("employer.jpg", :class => "img-rounded" ), new_employer_path, :class=>"control-label", :style=>"float:left"
+		%h2 EMPLOYER
+		%h4{:style=>"float:left"} Are you looking for OPT/H-1B Candidates?
+		= link_to "Sign Up Here", new_employer_path, :class => "m-btn blue", :style=>"margin-left: 20px; margin-top: -5px;"
+.row-fluid{:style=>"margin-top:50px; margin-left: 100px;"}
+	.span5{:style => "margin-left: 30px;"}				
+		%h3 Interact with Employers, improve your opportunities!
+		%ul.thumbnails
+			%li.span12{:style => "margin-left: 30px;margin-bottom: 10px;"}
+				= link_to image_tag("Search.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
+				%h4 Search H-1B Jobs and Employers
+				%p Connect with H-1B Employers and Apply
+			%li{:style => "margin-bottom: 10px;"}
+				= link_to image_tag("Job Wanted.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
+				%h4 H-1B Job/Sponsorship Wanted Ads
+				%p Looking for H-1B Job or Sponsorship? Post classifields in the portal.
+			%li{:style => "margin-bottom: 10px;"}
+				= link_to image_tag("review.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
+				%h4 Employer Reviews/Background Check
+				%p Check the reviews and background of employers using our tool suite.
+			%li{:style => "margin-bottom: 10px;"}
+				= link_to image_tag("data-apply-icon.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
+				%h4 Extensive H-1B Employer Database
+				%p free access to 500,000 H-1B Employer Database, with detailed employer information.
+			%li{:style => "margin-bottom: 10px;"}
+				= link_to image_tag("Explore.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
+				%h4 Explore Ratings, Top Salaries & Job Titles
+				%p Obtain employer ratings, top salary positions and top job titles to better know the employer.
+
+	.span5
+		%center
+			=image_tag("employeepic.jpg", :class => "img-rounded", :style => "margin-top: 10px;" )
+
+.row-fluid{:style=>"margin-top:20px; margin-left: 150px;"}
+	.span5
+		%center
+			=image_tag("employerpic1.jpg", :class => "img-rounded", :style => "margin-top: 10px;" )
+
+	.span5
+		%h3 Hire OPT and H-1B Candidates Easily!
+		%ul.thumbnails
+			%li.span12{:style => "margin-left: 30px;margin-bottom: 10px;"}
+				= link_to image_tag("Job Wanted.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
+				%h4 Post your H-1B Jobs for Candidates
+				%p Find suitable employees hrough job posting in our portal.
+			%li{:style => "margin-bottom: 10px;"}
+				= link_to image_tag("Profile.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
+				%h4 Create customized Employer Profile
+				%p Employer can create their own profile, providing moredetails useful for the job seekers.
+			%li{:style => "margin-bottom: 10px;"}
+				= link_to image_tag("access.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
+				%h4 Interact & Access Job Seeker Profiles
+				%p You can get access to job seeker's profiles and interact with the candidates.
+			%li{:style => "margin-bottom: 10px;"}
+				= link_to image_tag("employer_network_3.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
+				%h4 Get Access to H-1B & OPT Network
+				%p Obtain easy access to H-1B and OPT student network through our portal.
+
+
+/ END SLIDER

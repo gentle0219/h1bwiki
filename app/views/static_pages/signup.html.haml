@@ -1,0 +1,29 @@
+:css
+  h4 {
+      font-size: 18px;
+      margin: 40px 0 20px !important;    
+  }
+  a.control-label:hover{
+  	background-color: transparent !important;
+  }
+.container-fluid
+  %div{:style => "min-height: 700px; padding-top: 100px;"}
+    %h1 Start Using H1B Wiki Jobs
+    .hero-unit.form-horizontal{:style => "min-width:480px;"}
+      .row
+        %p{:style => "font-size:20px; font-weight:bolder"}
+          Already a H1BWIKI member? #{link_to "Log in", new_user_session_path, :class => "btn btn-link"} now.
+      .row
+        .row
+          %p{:style => "font-size:16px;"} Let's get Started!
+        .row
+          .span6.control-group{:style => "margin-left:0px;"}
+            = link_to image_tag("jobseeker.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label"
+            .controls{:style => "margin-left: 120px;"}
+              %h4 Are you an OPT Student / H1B visa Job Seeker?
+              = link_to "Sign Up", new_jobseeker_path, :class => "m-btn blue"
+          .span6.control-group{:style => "margin-left:10px;"}
+            = link_to image_tag("employer.jpg", :class => "img-rounded" ), new_employer_path, :class=>"control-label"
+            .controls{:style => "margin-left: 120px;"}
+              %h4 Are you a H-1B Employer / Trainer / Mentor?
+              = link_to "Sign Up", new_employer_path, :class => "m-btn blue"
