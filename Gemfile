@@ -55,7 +55,8 @@ gem 'mailboxer'
 
 
 group :development do
-  gem 'sqlite3'
+  gem 'webrick'
+  gem 'pg'
   gem 'hirb'
 end
 

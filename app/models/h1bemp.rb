@@ -3,7 +3,7 @@ class H1bemp < ActiveRecord::Base
   has_many :h1bemp_filling,   :dependent=>:destroy
   has_many :h1bemp_topjob,    :dependent=>:destroy
   has_many :reviews,          :dependent=>:destroy
-  attr_accessible :Workforcesize, :empAddress, :empCity, :empState, :empZip, :employerName, :everifiedFlag, :gcARateFlag, :gcApprovalRate, :gcTotalApplied, :gcTotalDenied, :h1BTotalApplied, :h1TotalDenied, :h1bARateFlag, :h1bApprovalRate, :prevGCFlag, :prevgcCount, :prevh1Count, :prevh1Flag
+  attr_accessible :workforcesize, :empaddress, :empcity, :empstate, :empzip, :employername, :everifiedflag, :gcarateflag, :gcapprovalrate, :gctotalapplied, :gctotaldenied, :h1btotalapplied, :h1totaldenied, :h1barateflag, :h1bapprovalrate, :prevgcflag, :prevgccount, :prevh1count, :prevh1flag
 
   ajaxful_rateable :stars => 5, :dimensions =>[:company], :allow_update=>true
   acts_as_commentable
@@ -18,8 +18,8 @@ class H1bemp < ActiveRecord::Base
     if FILING_TYPE.include?(type) && FILING_STATUS.include?(status)
 	    gc_c_data = []
 	    (2010..2013).each do |y|
-	      gcdata = self.h1bemp_filling.where(:filingType=>type, :filingYear=>y.to_s, :filingStatus => status ).first
-	      count = gcdata.present? ? gcdata.filingCount.to_i : 0
+	      gcdata = self.h1bemp_filling.where(:filingtype=>type, :filingyear=>y.to_s, :filingstatus => status ).first
+	      count = gcdata.present? ? gcdata.filingcount.to_i : 0
 	      gc_c_data << count
 	    end
     	return gc_c_data
@@ -37,8 +37,8 @@ class H1bemp < ActiveRecord::Base
         chart_data = []          
         chart_data << y.to_s
         FILING_STATUS.each do |st|          
-          gcdata = self.h1bemp_filling.where(:filingType=>type, :filingYear=>y.to_s, :filingStatus => st ).first
-          count = gcdata.present? ? gcdata.filingCount.to_i : 0
+          gcdata = self.h1bemp_filling.where(:filingtype=>type, :filingyear=>y.to_s, :filingstatus => st ).first
+          count = gcdata.present? ? gcdata.filingcount.to_i : 0
           chart_data << count
         end
         gc_c_data << chart_data  

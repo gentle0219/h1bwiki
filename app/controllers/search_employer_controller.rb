@@ -7,7 +7,7 @@ class SearchEmployerController < ApplicationController
 
 		if search_name.present?
 
-			@search_h1bemp = H1bemp.find_by_employerName(search_name) if search_name.present?
+			@search_h1bemp = H1bemp.find_by_employername(search_name) if search_name.present?
 			
 			redirect_to search_employer_h1bemployer_path and return if @search_h1bemp.blank? 
 
@@ -40,7 +40,7 @@ class SearchEmployerController < ApplicationController
 		search_h1bemp = H1bemp.find(params[:id])		
 		comment = search_h1bemp.root_comments.where(:user_id=>current_user.id).first.presence || Comment.build_from( search_h1bemp, current_user.id, params[:content])
 		comment.body = params[:content]
-		comment.subject = current_user.user_name+ " to " + search_h1bemp.employerName
+		comment.subject = current_user.user_name+ " to " + search_h1bemp.employername
 		comment.save
 		review = search_h1bemp.reviews.where(:user_id=>current_user.id).first.presence || search_h1bemp.reviews.build
 		review.user_id = current_user.id
@@ -65,9 +65,9 @@ class SearchEmployerController < ApplicationController
 	end
 
 	def h1bemp_name
-		h1bemp = H1bemp.find(:all, :conditions =>['employerName LIKE?', "%#{params[:term]}%"])
-		#h1bemp = H1bemp.select('employerName').where(['employerName LIKE ? ' "%#{params[:term]}"])
-		names = h1bemp.map{|e| e.employerName}
-		render :json=> names.to_json		
+		h1bemp = H1bemp.find(:all, :conditions =>['employername LIKE?', "%#{params[:term].upcase}%"])
+		#h1bemp = H1bemp.select('employername').where(['employername LIKE ? ' "%#{params[:term]}"])
+		names = h1bemp.map{|e| e.employername}
+		render :json=> names.to_json				
 	end
 end

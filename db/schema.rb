@@ -67,10 +67,10 @@ ActiveRecord::Schema.define(:version => 20130529204634) do
 
   create_table "h1bemp_fillings", :force => true do |t|
     t.integer  "h1bemp_id"
-    t.string   "filingType"
-    t.string   "filingYear"
-    t.string   "filingStatus"
-    t.string   "filingCount"
+    t.string   "filingtype"
+    t.string   "filingyear"
+    t.string   "filingstatus"
+    t.string   "filingcount"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -79,9 +79,9 @@ ActiveRecord::Schema.define(:version => 20130529204634) do
 
   create_table "h1bemp_topjobs", :force => true do |t|
     t.integer  "h1bemp_id"
-    t.string   "employerTitle"
-    t.string   "totalCount"
-    t.string   "avgSalary"
+    t.string   "employertitle"
+    t.string   "totalcount"
+    t.string   "avgsalary"
     t.string   "flag"
     t.string   "rn"
     t.datetime "created_at",    :null => false
@@ -91,24 +91,24 @@ ActiveRecord::Schema.define(:version => 20130529204634) do
   add_index "h1bemp_topjobs", ["h1bemp_id"], :name => "index_h1bemp_topjobs_on_h1bemp_id"
 
   create_table "h1bemps", :force => true do |t|
-    t.string   "employerName"
-    t.string   "empAddress"
-    t.string   "empCity"
-    t.string   "empState"
-    t.string   "empZip"
-    t.string   "h1BTotalApplied"
-    t.string   "h1TotalDenied"
-    t.string   "h1bApprovalRate"
-    t.string   "prevh1Count"
-    t.string   "gcTotalApplied"
-    t.string   "gcTotalDenied"
-    t.string   "gcApprovalRate"
-    t.string   "prevgcCount"
-    t.string   "prevh1Flag"
-    t.string   "prevGCFlag"
-    t.string   "h1bARateFlag"
-    t.string   "gcARateFlag"
-    t.string   "everifiedFlag"
+    t.string   "employername"
+    t.string   "empaddress"
+    t.string   "empcity"
+    t.string   "empstate"
+    t.string   "empzip"
+    t.string   "h1btotalapplied"
+    t.string   "h1totaldenied"
+    t.string   "h1bapprovalrate"
+    t.string   "prevh1count"
+    t.string   "gctotalapplied"
+    t.string   "gctotaldenied"
+    t.string   "gcapprovalrate"
+    t.string   "prevgccount"
+    t.string   "prevh1flag"
+    t.string   "prevgcflag"
+    t.string   "h1barateflag"
+    t.string   "gcarateflag"
+    t.string   "everifiedflag"
     t.string   "Workforcesize"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
@@ -317,5 +317,9 @@ ActiveRecord::Schema.define(:version => 20130529204634) do
   end
 
   add_index "work_authorizations", ["post_job_id"], :name => "index_work_authorizations_on_post_job_id"
+
+  add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
+
+  add_foreign_key "receipts", "notifications", :name => "receipts_on_notification_id"
 
 end

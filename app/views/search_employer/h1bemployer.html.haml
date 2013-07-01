@@ -39,35 +39,35 @@
 													%label 
 														Previous H-1B History :
 												.span2
-													=overview_item @search_h1bemp.prevh1Flag
+													=overview_item @search_h1bemp.prevh1flag
 										.row
 											.overview-item
 												.span3
 													%label 
 														H-1B Approval Rate :
 												.span2
-													=overview_item @search_h1bemp.h1bARateFlag
+													=overview_item @search_h1bemp.h1barateflag
 										.row
 											.overview-item
 												.span3
 													%label 
 														E-Verified :
 												.span2
-													=overview_item @search_h1bemp.everifiedFlag
+													=overview_item @search_h1bemp.everifiedflag
 										.row
 											.overview-item
 												.span3
 													%label 
 														Previous GC History :
 												.span2
-													=overview_item @search_h1bemp.prevGCFlag
+													=overview_item @search_h1bemp.prevgcflag
 										.row
 											.overview-item
 												.span3
 													%label 
 														GC Approval Rate :
 												.span2
-													=overview_item @search_h1bemp.gcARateFlag
+													=overview_item @search_h1bemp.gcarateflag
 								#h1b_gcstats.tab-pane{:style=>"height:720px;"}
 									.span12.h1b-gcstats
 										.chart-content
@@ -125,7 +125,7 @@
 												%p Employer Review
 										.row
 											.span3
-												=@search_h1bemp.employerName
+												=@search_h1bemp.employername
 											.span2.average-rate
 												=ratings_for @search_h1bemp, :static, :dimension=>:company, :remote_options =>{:url => rate_search_employer_path(@search_h1bemp)}
 											.span2

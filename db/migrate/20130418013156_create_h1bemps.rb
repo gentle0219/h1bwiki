@@ -1,25 +1,25 @@
 class CreateH1bemps < ActiveRecord::Migration
   def change
     create_table :h1bemps do |t|
-      t.string :employerName
-      t.string :empAddress
-      t.string :empCity
-      t.string :empState
-      t.string :empZip
-      t.string :h1BTotalApplied
-      t.string :h1TotalDenied
-      t.string :h1bApprovalRate
-      t.string :prevh1Count
-      t.string :gcTotalApplied
-      t.string :gcTotalDenied
-      t.string :gcApprovalRate
-      t.string :prevgcCount
-      t.string :prevh1Flag
-      t.string :prevGCFlag
-      t.string :h1bARateFlag
-      t.string :gcARateFlag
-      t.string :everifiedFlag
-      t.string :Workforcesize
+      t.string :employername
+      t.string :empaddress
+      t.string :empcity
+      t.string :empstate
+      t.string :empzip
+      t.string :h1btotalapplied
+      t.string :h1totaldenied
+      t.string :h1bapprovalrate
+      t.string :prevh1count
+      t.string :gctotalapplied
+      t.string :gctotaldenied
+      t.string :gcapprovalrate
+      t.string :prevgccount
+      t.string :prevh1flag
+      t.string :prevgcflag
+      t.string :h1barateflag
+      t.string :gcarateflag
+      t.string :everifiedflag
+      t.string :workforcesize
 
       t.timestamps
     end

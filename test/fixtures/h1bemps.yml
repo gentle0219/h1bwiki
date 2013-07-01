@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  employerName: MyString
+  employername: MyString
   empAddress: MyString
   empCity: MyString
   empState: MyString
