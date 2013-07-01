@@ -3,10 +3,13 @@ class SearchEmployerController < ApplicationController
 
 	def h1bemployer		
 		@h1b_chart_data = @gc_chart_data = @top_hired_data = @top_avg_data = 0
-		search_name = params[:h1bemp_name]		
-		
-		if @search_h1bemp.present?
+		search_name = params[:h1bemp_name]
+
+		if search_name.present?
+
 			@search_h1bemp = H1bemp.find_by_employerName(search_name) if search_name.present?
+			
+			redirect_to search_employer_h1bemployer_path and return if @search_h1bemp.blank? 
 
 			@h1b_chart_data = @search_h1bemp.get_data("H1B")
 			@gc_chart_data = @search_h1bemp.get_data("GC")
