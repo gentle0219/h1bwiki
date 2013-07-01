@@ -54,7 +54,7 @@ class UploadDatabase < ActiveRecord::Base
 				to_upload_table.h1barateflag 		= columns[15]
 				to_upload_table.gcarateflag 		= columns[16]
 				to_upload_table.everifiedflag 	= columns[17]
-				to_upload_table.Workforcesize 	= columns[18]
+				to_upload_table.workforcesize 	= columns[18]
 	  	else
         logger.info "Step 3 Insert Table: #{columns[0]}"
 				to_upload_table = H1bemp.new(:employername=>columns[0])				
@@ -75,7 +75,7 @@ class UploadDatabase < ActiveRecord::Base
 				to_upload_table.h1barateflag 		= columns[15]
 				to_upload_table.gcarateflag 		= columns[16]
 				to_upload_table.everifiedflag 	= columns[17]
-				to_upload_table.Workforcesize 	= columns[18]
+				to_upload_table.workforcesize 	= columns[18]
 				
 				if to_upload_table.save
 					logger.info "Insert data >>>>>>>>>>> #{columns[0]}"

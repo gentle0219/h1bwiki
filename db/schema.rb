@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(:version => 20130529204634) do
     t.string   "h1barateflag"
     t.string   "gcarateflag"
     t.string   "everifiedflag"
-    t.string   "Workforcesize"
+    t.string   "workforcesize"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
