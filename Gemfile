@@ -56,6 +56,7 @@ gem 'mailboxer'
 
 group :development do
   gem 'sqlite3'
+  gem 'hirb'
 end
 
 group :production do

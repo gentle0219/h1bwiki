@@ -11,7 +11,7 @@
 						.row
 							.span6.offset2{:style=>"margin-top: 40px;"}
 								.input-append									
-									= text_field_tag :h1bemp_name, params[:h1bemp_name], :autocomplete => search_employer_autocomplete_h1bemp_name_path, :placeholder => "Employer Name", :value=> params[:h1bemp_name].presence || ""
+									= autocomplete_field_tag 'h1bemp_name', '', search_employer_h1bemp_name_path(:js), :size=>25
 									%a{:class=>"m-btn blue", :style => "margin-top: 0px; padding: 8px 14px", :href =>"javascript:search_form.submit();"}
 										%i{:class=>"icon-search"}
 										Search
@@ -234,13 +234,23 @@
 	});	
 	
 	$("#tabs li").eq(cur_tab).addClass("active");
-	$("#my-tab-content div.tab-pane").eq(cur_tab).addClass("active");
-	var availableTags = #{@h1bemp_names}
+	$("#my-tab-content div.tab-pane").eq(cur_tab).addClass("active");	
 	
-	$( "#h1bemp_name" ).autocomplete({
-		source: availableTags
+	
+	$( "#h1bemp_name" ).autocomplete({	
+		delay: 600,		
+		source: function(request, response){
+			$ajax({
+				url:"#{search_employer_h1bemp_name_path}",
+				dataType: "json",
+				data: {term: request.term},
+				success: function(data){
+					response(data)
+				}
+			});
+		}
 	});
-
+	
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawChart);
 	var gc_chart_data = #{@gc_chart_data}

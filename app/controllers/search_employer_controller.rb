@@ -3,10 +3,11 @@ class SearchEmployerController < ApplicationController
 
 	def h1bemployer		
 		@h1b_chart_data = @gc_chart_data = @top_hired_data = @top_avg_data = 0
-		search_name = params[:h1bemp_name]
-		@search_h1bemp = H1bemp.find_by_employerName(search_name) if search_name.present?
-		@h1bemp_names = H1bemp.all.map { |e| e.employerName }		
+		search_name = params[:h1bemp_name]		
+		
 		if @search_h1bemp.present?
+			@search_h1bemp = H1bemp.find_by_employerName(search_name) if search_name.present?
+
 			@h1b_chart_data = @search_h1bemp.get_data("H1B")
 			@gc_chart_data = @search_h1bemp.get_data("GC")
 
@@ -58,6 +59,11 @@ class SearchEmployerController < ApplicationController
         @return_content
       }
     end
+	end
 
+	def h1bemp_name
+		h1bemp = H1bemp.find(:all, :conditions =>['employerName LIKE?', "%#{params[:term]}%"])
+		names = h1bemp.map{|e| e.employerName}
+		render :json=> names.to_json		
 	end
 end
