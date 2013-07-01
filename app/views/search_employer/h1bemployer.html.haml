@@ -11,7 +11,7 @@
 						.row
 							.span6.offset2{:style=>"margin-top: 40px;"}
 								.input-append									
-									= autocomplete_field_tag 'h1bemp_name', '', search_employer_h1bemp_name_path(:js), :size=>25
+									= autocomplete_field_tag 'h1bemp_name', '', search_employer_h1bemp_name_path(:js), :size=>25, :value=>params[:h1bemp_name]
 									%a{:class=>"m-btn blue", :style => "margin-top: 0px; padding: 8px 14px", :href =>"javascript:search_form.submit();"}
 										%i{:class=>"icon-search"}
 										Search

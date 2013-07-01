@@ -66,6 +66,7 @@ class SearchEmployerController < ApplicationController
 
 	def h1bemp_name
 		h1bemp = H1bemp.find(:all, :conditions =>['employerName LIKE?', "%#{params[:term]}%"])
+		#h1bemp = H1bemp.select('employerName').where(['employerName LIKE ? ' "%#{params[:term]}"])
 		names = h1bemp.map{|e| e.employerName}
 		render :json=> names.to_json		
 	end
