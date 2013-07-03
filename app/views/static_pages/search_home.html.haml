@@ -70,7 +70,7 @@
 															%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_job.job_title}", :type=>"#{user.email}" } Contact
 												.row
 													.span9													
-														.view-details-box.more= search_emp_job.job_description
+														.view-details-box.more= raw search_emp_job.job_description
 														= link_to "View Details >", post_job_path(search_emp_job), :class=>"view-details", :target => "_blink"
 									-if @search_emp_jobs.present?
 										.row
@@ -103,7 +103,7 @@
 																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_job.title}", :type=>"#{user.email}" } Contact
 												.row
 													.span9													
-														.view-details-box.more= search_seeker_job.description
+														.view-details-box.more= raw search_seeker_job.description
 														= link_to "View Details >", jobseeker_job_path(search_seeker_job), :class=>"view-details", :target => "_blink"								
 							#trainings.tab-pane
 								.span12.search-conditions-box
@@ -160,7 +160,7 @@
 															%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_training.job_title}", :type=>"#{user.email}" } Contact
 												.row
 													.span9
-														.view-details-box.more= search_emp_training.job_description
+														.view-details-box.more= raw search_emp_training.job_description
 														= link_to "View Details >", post_training_path(search_emp_training), :class=>"view-details", :target => "_blink"
 									-if @search_emp_trainings.present?
 										.row
@@ -193,7 +193,7 @@
 																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_training.title}", :type=>"#{user.email}" } Contact																	
 												.row
 													.span9													
-														.view-details-box.more= search_seeker_training.description
+														.view-details-box.more= raw search_seeker_training.description
 														= link_to "View Details >", jobseeker_training_path(search_seeker_training), :class=>"view-details", :target => "_blink"
 							#mentors.tab-pane
 								.span12.search-conditions-box
@@ -247,7 +247,7 @@
 															%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_mentor.job_title}", :type=>"#{user.email}" } Contact
 												.row
 													.span9													
-														.view-details-box.more= search_emp_mentor.job_description
+														.view-details-box.more= raw search_emp_mentor.job_description
 														= link_to "View Details >", post_mentor_path(search_emp_mentor), :class=>"view-details", :target => "_blink"
 									-if @search_emp_mentors.present?
 										.row
@@ -280,7 +280,7 @@
 																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_mentor.title}", :type=>"#{user.email}" } Contact
 												.row
 													.span9
-														.view-details-box.more= search_seeker_mentor.description
+														.view-details-box.more= raw search_seeker_mentor.description
 														= link_to "View Details >", jobseeker_mentor_path(search_seeker_mentor), :class=>"view-details", :target => "_blink"
 									-if @search_seeker_mentors.present?
 										.row

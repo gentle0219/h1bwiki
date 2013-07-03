@@ -36,13 +36,14 @@ $(function(){
     propertyToSearch: "name",
     theme: "facebook"
   });
+  /*
   var height = $(window).height();
 	$("div.wrap").css("height", height*0.815);
 	$(window).resize(function() {
   	var height = $(window).height();
 		$("div.wrap").css("min-height", height*0.815);	
 	});
-
+	*/
 	var pre_action = $("#job_post_form").attr("action");	
 	$('#btn_post_preview').click(function(){		
 		var preview = "/preview";

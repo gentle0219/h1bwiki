@@ -49,8 +49,8 @@
 					.span3
 						%strong 
 							Description: 
-					.span8
-						%label= @post_job.job_description
+					.span8						
+						%label= markdown(@post_job.job_description)
 				.row
 					.span3
 						%strong 

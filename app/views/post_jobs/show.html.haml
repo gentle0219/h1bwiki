@@ -49,7 +49,7 @@
 						%strong 
 							Description: 
 					.span8
-						%label= @post_job.job_description
+						%label= markdown @post_job.job_description
 				.row
 					.span3
 						%strong 
@@ -70,6 +70,9 @@
 						%input.m-btn.blue{:type=>"button", :value=>"Forward"}					
 					.span2
 						%input.m-btn.blue{:type=>"button", :value=>"Close"}
-				
+				%br/
+				%br/
+				%br/
+				%br/
 	:javascript 
 		$('ul.nav-tabs li').eq(0).addClass('isCurrent');

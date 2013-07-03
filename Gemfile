@@ -21,6 +21,10 @@ gem 'fastercsv'
 gem 'rails_admin'
 gem 'rake', '10.0.4'
 
+
+gem 'redcarpet'
+gem 'albino'
+gem 'nokogiri'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

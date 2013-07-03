@@ -49,7 +49,7 @@
 					.span3
 						%strong Job Description:
 					.span8
-						%label= @post_training.job_description
+						%label= markdown @post_training.job_description
 			
 :javascript 
 	$('ul.nav-tabs li').eq(1).addClass('isCurrent');

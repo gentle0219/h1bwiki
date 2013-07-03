@@ -27,7 +27,7 @@
 						%strong 
 							Description: 
 					.span8
-						%label= @post_mentor.job_description			
+						%label= markdown @post_mentor.job_description			
 				.row.last-row
 					.span2.offset3
 						-if current_user.present?

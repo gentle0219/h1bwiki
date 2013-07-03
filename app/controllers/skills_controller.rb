@@ -1,6 +1,6 @@
 class SkillsController < ApplicationController
 	def index
-		arg = params[:q].downcase.to_s;
+		arg = params[:q];
 		@skills = SkillList.where("name like ?", "%#{arg}%")
 		respond_to do |format|
 			format.html
