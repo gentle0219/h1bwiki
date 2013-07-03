@@ -54,11 +54,11 @@ class H1bemp < ActiveRecord::Base
     top_job_datas << ["Title", "#{type=='TopHired' ? 'Total Hired' : 'Avg Salary' }"]
     self.h1bemp_topjob.where(:flag => type).each do |t_data|
       top_job_data = []
-      top_job_data << t_data.employerTitle.to_s
+      top_job_data << t_data.employertitle.to_s
       if type == TOP_JOB_TYPES[1]
-        top_job_data << t_data.totalCount.to_f
+        top_job_data << t_data.totalcount.to_f
       else
-        top_job_data << t_data.avgSalary.to_f
+        top_job_data << t_data.avgsalary.to_f
       end
       
       top_job_datas << top_job_data
@@ -75,9 +75,9 @@ class H1bemp < ActiveRecord::Base
     end
     data.each_with_index do |t_data, index|
       top_job_data = []
-      top_job_data << t_data.employerTitle.to_s
-      top_job_data << t_data.totalCount.to_f
-      top_job_data << t_data.avgSalary.to_f
+      top_job_data << t_data.employertitle.to_s
+      top_job_data << t_data.totalcount.to_f
+      top_job_data << t_data.avgsalary.to_f
       top_job_data << index+1
 
       top_job_datas << top_job_data
