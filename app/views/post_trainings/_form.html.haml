@@ -46,4 +46,32 @@
 
 :javascript 
 	$('ul.nav-tabs li').eq(1).addClass('isCurrent');
-	
+	$( "#post_training_job_city" ).autocomplete({
+		source: function (request, response) {
+			$.ajax({
+				url: "http://ws.geonames.org/searchJSON?country=US",
+				dataType: "jsonp",
+				data: {
+					featureClass: "P",
+					style: "full",
+					maxRows: 12,
+					name_startsWith: request.term
+				},
+				success: function (data) {
+					response($.map(data.geonames, function (item) {
+						return {
+							label: item.name + (item.adminName1 ? ", " + item.adminName1 : ""),
+							value: item.name,
+							code: item.adminCode1
+						}
+					}));
+				}
+			});
+		},
+		minLength: 2,
+		select: function (event, ui) {
+			$("#post_training_job_state").val(ui.item.code);
+			$("#post_training_job_duration").focus();
+		}
+		
+	});	
