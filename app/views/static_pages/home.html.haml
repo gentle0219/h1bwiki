@@ -1,73 +1,123 @@
-/ START SLIDER
-.row
-	#layerslider-container
-		= image_tag("background.jpg")
-		= render "static_pages/search_form"
-		%p.img-caption Bridging the gap between H-1B Employers and Job Seekers
-.row-fluid{:style=>"margin-top:75px; margin-left: 80px;"}
-	.span6
-		= link_to image_tag("jobseeker.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left"
-		%h2 JOB SEEKER
-		%h4{:style=>"float:left"} Are You looking for H-1B Jobs/Employers?
-		= link_to "Sign Up Here", new_jobseeker_path, :class => "m-btn blue", :style=>"margin-left: 20px; margin-top: -5px;"
-	.span6
-		= link_to image_tag("employer.jpg", :class => "img-rounded" ), new_employer_path, :class=>"control-label", :style=>"float:left"
-		%h2 EMPLOYER
-		%h4{:style=>"float:left"} Are you looking for OPT/H-1B Candidates?
-		= link_to "Sign Up Here", new_employer_path, :class => "m-btn blue", :style=>"margin-left: 20px; margin-top: -5px;"
-.row-fluid{:style=>"margin-top:50px; margin-left: 80px;"}
-	.span5{:style => "margin-left: 30px;"}				
-		%h3 Interact with Employers, improve your opportunities!
-		%ul.thumbnails
-			%li.span12{:style => "margin-left: 30px;margin-bottom: 10px;"}
-				= link_to image_tag("Search.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
-				%h4 Search H-1B Jobs and Employers
-				%p Connect with H-1B Employers and Apply
-			%li{:style => "margin-bottom: 10px;"}
-				= link_to image_tag("Job Wanted.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
-				%h4 H-1B Job/Sponsorship Wanted Ads
-				%p Looking for H-1B Job or Sponsorship? Post classifields in the portal.
-			%li{:style => "margin-bottom: 10px;"}
-				= link_to image_tag("review.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
-				%h4 Employer Reviews/Background Check
-				%p Check the reviews and background of employers using our tool suite.
-			%li{:style => "margin-bottom: 10px;"}
-				= link_to image_tag("data-apply-icon.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
-				%h4 Extensive H-1B Employer Database
-				%p free access to 500,000 H-1B Employer Database, with detailed employer information.
-			%li{:style => "margin-bottom: 10px;"}
-				= link_to image_tag("Explore.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
-				%h4 Explore Ratings, Top Salaries & Job Titles
-				%p Obtain employer ratings, top salary positions and top job titles to better know the employer.
+.home-page
+	.row.first-row
+		.content
+			.row
+				%a.btn.btn-primary{:href=>new_jobseeker_path, :style=>"margin-right: 80px;"} Job Seekers Sign Up			
+				%a.btn{:href=>new_employer_path} Employers Sign Up
+	.row.second-row
+		.content
+			= render "static_pages/search_form"
+	.row.third-row
+		.content
+			.title
+			.row.content-row
+				.span6.offset2
+					.row.f-row
+						.mac-img
+					.row.s-row
+						.span1.search-h1b-jobs
+						.span6{:style=>"margin-left:0px;"}
+							%label.strong Search H-1B Jobs and Employers
+							%label Connect with H-1B Emp loyers and Apply
 
-	.span5
-		%center
-			=image_tag("employeepic.jpg", :class => "img-rounded", :style => "margin-left: 50px; margin-top: 70px;" )
+				.span4
+					.row.fs-row
+						%a{:href=>"#"}
+							.span1.fs-img
+							.span9
+								%label.strong H-1B Job/Sponsorship Wanted Ads
+								%label Looking for H-1B Job or Spnsorship? Post classifields in the prtal.
+					.row.sc-row
+						%a{:href=>"#"}
+							.span1.sc-img
+							.span9
+								%label.strong Extensive H-1B Employer Database
+								%label free access to 500,000 H-1B Employer
+								%label Database, with detailed employer information.
+					.row.th-row
+						%a{:href=>"#"}
+							.span1.th-img
+							.span9
+								%label.strong Employer Reviews/Background Check
+								%label Check the reviews and background of employers using our tool suite.
+					.row.fr-row
+						%a{:href=>"#"}
+							.span1.fr-img
+							.span9
+								%label.strong Explore Ratings, Top Salaries & Job Titles
+								%label Obtain employer ratings, top salary positions and top job titles to better know the employer.
 
-.row-fluid{:style=>"margin-top:20px; margin-left: 130px;"}
-	.span5
-		%center
-			=image_tag("employerpic1.jpg", :class => "img-rounded", :style => "margin-top: 10px;" )
+	.row.fourth-row
+		.content
+			.title
+			.row.content-row
+				.row.fs-row
+					.span5.offset2
+						%a{:href=>"#"}
+							.span1.fs-img
+							.span8
+								%label.strong Post your H-1B Jobs for Candidates
+								%label Find suitable employees through job posting in our portal.
+					.span5
+						%a{:href=>"#"}
+							.span1.sc-img
+							.span8
+								%label.strong Create customized Employer Profile
+								%label Employer can create theire own profile, providing moredetails useful for the job seekers.
+				.row.sc-row
+					.span5.offset2
+						%a{:href=>"#"}
+							.span1.th-img
+							.span8
+								%label.strong Interact & Access Job Seeker Profiles
+								%label You can get access to job seeker's profiles and interact with the candidates.
+					.span5
+						%a{:href=>"#"}
+							.span1.fr-img
+							.span8
+								%label.strong Get Access to H-1b & OPT Network
+								%label Obtain easy access to H-1B and OPT student network through our portal.
+						
 
-	.span5
-		%h3 Hire OPT and H-1B Candidates Easily!
-		%ul.thumbnails
-			%li.span12{:style => "margin-left: 30px;margin-bottom: 10px;"}
-				= link_to image_tag("Job Wanted.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
-				%h4 Post your H-1B Jobs for Candidates
-				%p Find suitable employees hrough job posting in our portal.
-			%li{:style => "margin-bottom: 10px;"}
-				= link_to image_tag("Profile.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
-				%h4 Create customized Employer Profile
-				%p Employer can create their own profile, providing moredetails useful for the job seekers.
-			%li{:style => "margin-bottom: 10px;"}
-				= link_to image_tag("access.jpg", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
-				%h4 Interact & Access Job Seeker Profiles
-				%p You can get access to job seeker's profiles and interact with the candidates.
-			%li{:style => "margin-bottom: 10px;"}
-				= link_to image_tag("employer_network_3.png", :class => "img-rounded" ), new_jobseeker_path, :class=>"control-label", :style=>"float:left; margin-right: 20px;"
-				%h4 Get Access to H-1B & OPT Network
-				%p Obtain easy access to H-1B and OPT student network through our portal.
+	.row.fifth-row
+		.content
+			.content-box
+				.span4{:style=>"width: 280px;"}
+					%h3 NEWSLETTER SIGN UP
+				.span5{:style=>"width: 460px;"}
+					%input{:type=>"email", :placeholder=>"Enter your Email", :style=>"border-radius:20px;font-size: 30px;height: 40px;width: 450px;"}
+				.span3{:style=>"width: 200px;"}
+					%a.btn.btn-primary{:href=>"#",:style=>"border-radius: 20px;font-size: 26px;height: 30px;padding-top: 12px;width: 170px;"} YES
+	.row.footer-row
+		.content
+			.row
+				.span3.offset1
+					%h3 CONTACT US
+					%p 
+						Email:
+						%span abc@xyz.com
+					%p 
+						Phone:
+						%span +00 098 098 9088
+					%p 
+						Address:
+						%span 90210, Broadway Strt., New York
+				.span3.offset1
+					%h3 ABOUT THE COMPANY
+					%p 
+						job search tool that allows job seekers to use their social networks to quickly find job opportunities from companies within their personal networks.
+				.span3.offset1
+					%h3 GET IN TOUCH
+					.span1{:style=>"width: 40px;"}
+						%a{:href=>"#"}
+							.fs-icon
+					.span1{:style=>"width: 40px;"}
+						%a{:href=>"#"}
+							.sc-icon
+					.span1{:style=>"width: 40px;"}
+						%a{:href=>"#"}
+							.th-icon
 
-
-/ END SLIDER
+	.row.last-row
+		.content
+			%label{:style=>"text-align:center"} @ 2013 H-1B WIKI. ALL COPYRIGHTS RESERVED

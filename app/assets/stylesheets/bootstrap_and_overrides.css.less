@@ -69,8 +69,8 @@ div.nav-collapse{
 }
 div.navbar-inner{
   filter: none;
-	background-color: #576372 !important;
-	min-height: 80px;  
+	background-color: #272d32 !important;
+	min-height: 110px;  
 	background-image: none;  
   padding-bottom:0px;
   a:hover{
@@ -319,15 +319,40 @@ input.btn{
           }
           a:focus{
             color:white;
-            background-color:#7B8796;
+            background-color:#f48f30;
             cursor: pointer;
+            border:none;
           }
           a:hover{
-            background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);              
-            color: #eaeaea;
+            //background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);              
+            color: #f48f30;
             text-decoration: none;
-          }        
-        }              
+            border:none;
+          }   
+          .btn-group{
+            margin-top: -2px;
+            a{
+              color: #898989;
+              font-size: 20px;
+              height: 22px;
+              padding-top: 12px;
+              &:hover{
+                background-color: white;
+                color: black;
+              }
+            }   
+            a.btn-first{
+              border-radius: 20px 0 0 20px;
+            }
+            a.btn-second{
+              margin-left: 0px;
+              border-radius: 0 20px 20px 0;
+            }
+          }
+        }     
+
+        
+
         li.isCurrent{
           a{
             color:#576372;
@@ -342,7 +367,6 @@ input.btn{
       }      
       ul.nav-right{        
         float:right; 
-        background-color: rgba(255, 255, 255, 0.2);
         margin-top: -8px;
         padding-top: 9px;
         p.user-name{
@@ -356,14 +380,21 @@ input.btn{
         }
         li{
           a{
-            color:white;
-            border-radius: 0 0 0 0;
-            text-shadow: none;
-            font-weight: bold;
+            color: #898989;
+            font-size: 20px;
+            height: 28px;
+            padding-top: 10px;
+            &:hover{
+              background-color: transparent;
+              color: black;
+            }
+          }   
+          a.btn-first{
+            border-radius: 15px 0 0 15px;
           }
-          a:hover{          
-            background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
-          }          
+          a.btn-second{
+            border-radius: 0 15px 15px 0;
+          }
         }
       }  
     }       
