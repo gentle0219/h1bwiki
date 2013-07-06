@@ -15,6 +15,13 @@
 	a, h3,span,p{
 		font-family:bitter-regular;
 	}
+	.btn-primary{
+		background-image: linear-gradient(to bottom, rgb(64, 170, 250), rgb(23, 134, 218));
+		&:hover, &:focus{
+			background-color: rgb(23, 134, 218);    
+    	color: rgb(255, 255, 255);
+		}
+	}
 	.content{
 		width: 1366px;
 		margin: 0 auto;
@@ -31,7 +38,7 @@
 				text-align: center;
 				.btn{
 					color: black;	
-					border-radius: 25px 25px 25px 25px;
+					border-radius: 10px;
 			    font-size: 26px;
 			    height: 30px;
 			    width: 270px;
@@ -253,7 +260,7 @@
 	}
 	.last-row{
 		height: 64;
-		background-color: #ff9635;
+		background-color: #5088b2;
 		.content{
 			height: 44px;
 			padding-top: 30px;
