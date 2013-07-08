@@ -16,7 +16,7 @@
 		margin: 0 auto;
 	}
 	.footer-first-row{
-		height: 240px;
+		height: 480px;
 		background-color: #232728;
 		.content{
 			height: 264px;
@@ -27,8 +27,25 @@
 				}
 				p{
 					color: #898989;
+					margin-bottom: 0px;
 					span{
 						color: white;
+					}
+				}
+				label.orange{
+					color: #ef831e;
+				}
+				.face-boook-content{
+					height: 250px;
+					border: solid 1px #eeeff4; 
+					margin-top: 13px;
+					.head{
+						background-color: #eeeff4;
+						padding:5px;
+						label{
+							color: black;
+							margin-bottom: 0px;
+						}
 					}
 				}
 			}
