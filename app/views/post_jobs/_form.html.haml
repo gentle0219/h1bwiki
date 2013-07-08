@@ -1,4 +1,4 @@
-= form_for @post_job, :html => { :class => 'form-horizontal', "data-validate" => "parsley", :id => "job_post_form" } do |f|
+= form_for @post_job, :html => { :class => 'form-horizontal', "data-validate" => "parsley", :id => "job_post_form", :style=>"margin-bottom: 0px;" } do |f|
 	-if @post_job.errors.any?
 		#error_explanation
 			%h2= "#{pluralize(@post_job.errors.count, "error")} prohibited this post_job from being saved:"
@@ -41,11 +41,15 @@
 		= f.label :skill_tokens, "Require Skills",:class => 'control-label'
 		.controls
 			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_job.skill_lists.map(&:attributes).to_json, "data-required"=>"true"
-	.form-actions
-		= link_to( '< Back ', post_main_path, :class => "m-btn" ) 
-		= f.submit 'Post a Job', :class => 'm-btn blue', :id => "btn_post_create"
-		= f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"
-		= link_to t('.cancel', :default => t("helpers.links.cancel")), posts_view_path, :class => 'm-btn'
+	.control-group
+		= f.label :referral_amount,"Referral Amounts($)", :class => 'control-label'
+		.controls
+			= f.text_field :referral_amount, :class => 'text_field', :"data-required" =>"true"
+	= f.submit 'Continue', :class => 'm-btn blue', :id => "btn_post_create", :style=>"font-size: 30px;height: 58px;width: 100%;"
+	.form-actions{:style=>"padding:20px 0"}
+		= link_to( 'Back ', post_main_path, :class => "btn", :style=>"color: rgb(170, 170, 170);font-size: 30px;height: 40px;padding-top: 20px;width: 245px;")
+		= f.submit 'Preview', :class => 'm-btn blue', :id=>"btn_post_preview", :style=>"font-size: 30px;height: 60px;margin-left: 70px;margin-right: 70px;width: 245px;"
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), posts_view_path, :class => 'btn', :style=>"color: rgb(170, 170, 170);font-size: 30px;height: 40px;padding-top: 20px;width: 245px;"
 
 :javascript 
 	$('ul.nav-tabs li').eq(1).addClass('isCurrent');

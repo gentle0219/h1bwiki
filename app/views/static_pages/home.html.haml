@@ -5,19 +5,19 @@
 				%a.btn.btn-primary{:href=>new_jobseeker_path, :style=>"margin-right: 80px;"} Job Seekers Sign Up			
 				%a.btn{:href=>new_employer_path} Employers Sign Up
 	.row.second-row
-		.content
+		.content{:style=>"width:1100px;"}
 			= render "static_pages/search_form"
 	.row.third-row
 		.content
 			.title
 			.row.content-row
-				.span6.offset2
+				.span6
 					.row.f-row
 						.mac-img
 					.row.s-row
 						%a{:href=>"/search_employer/h1bemployer"}
 							.span1.search-h1b-jobs
-							.span6{:style=>"margin-left:0px;"}
+							.span8{:style=>"margin-left:0px;"}
 								%label.strong Search H-1B Jobs and Employers
 								%label Connect with H-1B Emp loyers and Apply
 
@@ -51,9 +51,9 @@
 	.row.fourth-row
 		.content
 			.title
-			.row.content-row
+			.row.content-row{:style=>"margin-top:0px;"}
 				.row.fs-row
-					.span5.offset2
+					.span5.offset1
 						%a{:href=>"/static_pages/post_main"}
 							.span1.fs-img
 							.span8
@@ -66,7 +66,7 @@
 								%label.strong Create customized Employer Profile
 								%label Employer can create theire own profile, providing moredetails useful for the job seekers.
 				.row.sc-row
-					.span5.offset2
+					.span5.offset1
 						%a{:href=>"#"}
 							.span1.th-img
 							.span8
@@ -89,36 +89,4 @@
 					%input{:type=>"email", :placeholder=>"Enter your Email", :style=>"border-radius:10px;font-size: 30px;height: 40px;width: 450px;padding-left:15px;"}
 				.span3{:style=>"width: 200px;"}
 					%a.btn.btn-primary{:href=>"#",:style=>"border-radius: 10px;font-size: 26px;height: 30px;padding-top: 12px;width: 170px;"} YES
-	.row.footer-row
-		.content
-			.row
-				.span3.offset1
-					%h3 CONTACT US
-					%p 
-						Email:
-						%span abc@xyz.com
-					%p 
-						Phone:
-						%span +00 098 098 9088
-					%p 
-						Address:
-						%span 90210, Broadway Strt., New York
-				.span3.offset1
-					%h3 ABOUT THE COMPANY
-					%p 
-						job search tool that allows job seekers to use their social networks to quickly find job opportunities from companies within their personal networks.
-				.span3.offset1
-					%h3 GET IN TOUCH
-					.span1{:style=>"width: 40px;"}
-						%a{:href=>"#"}
-							.fs-icon
-					.span1{:style=>"width: 40px;"}
-						%a{:href=>"#"}
-							.sc-icon
-					.span1{:style=>"width: 40px;"}
-						%a{:href=>"#"}
-							.th-icon
-
-	.row.last-row
-		.content
-			%label{:style=>"text-align:center"} © Copyright 2013 H-1B Wiki
+	

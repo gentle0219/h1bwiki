@@ -1,42 +1,5 @@
-p = PostJob.new({"user_id"=>"1", "job_title"=>"asdfasdfasdfasdf", "job_type"=>"0", "job_city"=>"asdfasdfas", "job_state"=>"asdfas", "job_duration"=>"1month", "job_description"=>"asdfasdf", "skill_tokens"=>"1,7"})
-
-p = PostJob.new({"user_id"=>"1", "job_title"=>"asdfasdfasdfasdf", "job_type"=>"0", "job_city"=>"asdfasdfas", "job_state"=>"asdfas", "job_duration"=>"1month", "work_authorizations_attributes"=>{"0"=>{"name"=>"US Citizen"}}, "job_description"=>"asdfasdf", "skill_tokens"=>"1,7"})
-
-.control-group
-		%label.control-label Work Authorization
-		=f.fields_for :work_authorizations, WorkAuthorization.available_consts, :builder => CustomFormBuilder do |autho|									
-			.controls.span2
-				%label.checkbox
-					= autho.check_box :workauthorization_index, {:saved_values => [f.object.work_authorizations, [:workauthorization_index, :desc]]}, autho.object.workauthorization_index, '-1'
-					= autho.object.desc
-
-
-
-
-		if params[:searcy_type] == '0'
-      if params[:type] == '1'
-        @search_data = PostJob.search(params[:title], params[:city])
-      else
-        @search_data = JobseekerJob.search(params[:title], params[:city])
-      end
-    else if params[:searcy_type] == '1'
-      if params[:type] == '1'
-        @search_data = PostJob.search(params[:title], params[:city])
-      else
-        @search_data = JobseekerJob.search(params[:title], params[:city])
-      end
-    else if params[:searcy_type] == '2'
-      if params[:type] == '1'
-        @search_data = PostJob.search(params[:title], params[:city])
-      else
-        @search_data = JobseekerJob.search(params[:title], params[:city])
-      end
-    end
-
-
-
-  $('label.checkbox input[type="checkbox"]').each(function(){
-    $(this).removeAttr("checked");
-  });
-  $('label.checkbox').each(function(){
-  });
+        .row.form-inline
+          - if devise_mapping.recoverable? && controller_name != 'passwords'
+            = link_to "Forgot your password?", new_password_path(resource_name), :class => "btn btn-link"
+          - if devise_mapping.confirmable? && controller_name != 'confirmations'
+            = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), :class => "btn btn-link"

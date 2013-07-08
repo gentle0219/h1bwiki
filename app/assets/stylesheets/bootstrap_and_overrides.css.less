@@ -1,5 +1,18 @@
 @import "twitter/bootstrap/bootstrap";
 
+@font-face{
+  font-family:bitter-regular;
+  src: url(fonts/Bitter-Regular.otf);
+}
+@font-face{
+  font-family:bitter-bold;
+  src: url(fonts/Bitter-Bold.otf);
+}
+@font-face{
+  font-family:bitter-italic;
+  src: url(fonts/Bitter-Italic.otf);
+}
+
 body { 
 	padding-top: 0px !important;  
 	background-color: #fff;
@@ -22,6 +35,9 @@ body {
 
   p, ol, ul, td{
     font-size: 14px;
+  }
+  .container{
+    width: 1000px !important;
   }
 }
 
@@ -85,10 +101,10 @@ div.navbar .brand {
     display: block;
     float: left;
     font-size: 40px;
-    font-weight: 200;
-    margin-left: 75px;
+    font-weight: 200;    
     padding: 15px 0px 0px 0px;
     text-shadow: 0 1px 0 #FFFFFF;
+    margin-left:0px;
 }
 
 
@@ -257,20 +273,7 @@ div.field_with_errors label{
     text-shadow: none;
   }
 }
-div.sign-in-page{
-  background-color: white;
-  border: 3px solid #EAEAEA;
-  border-radius: 10px 10px 10px 10px;
-  left: 25%;
-  margin-bottom: 30px;
-  min-width: 492px;
-  padding-bottom: 80px;
-  padding-top: 60px;
-  position: absolute;
-  top: 70px;
-  width: 790px !important;
-  z-index: 10000;
-}
+
 a.btn-link{
     color: #0093F0 !important;
 }
@@ -291,11 +294,9 @@ input.btn{
       margin-left: 0px;
       margin-top: 8px;
       ul.nav-tabs{
-        margin-left: 0px;
         margin-top: 30px;
         border:none;
-        margin-left:30px;
-        float: left;
+        float: right;
         span.unread-count{
           background-color: red;
           border: medium none red;
@@ -403,6 +404,12 @@ input.btn{
 // POST PAGE STYLE
 
 div.post-main-page{
+  .content-row{
+    margin-top: 140px;
+    background-color: #f2f2f2;
+    border: solid 1px;
+    margin-bottom: 50px;
+  }
   .last-row{
     margin-top: 30px;
     input.m-btn{
@@ -458,11 +465,12 @@ div.post-main-page{
     }  
   }
   p.page-title{
-    color: #4d90fe;
-    font-size:28px;
-    font-family: serif, arial, sans-serif, times;
+    color: #000;
+    font-size:30px;
+    font-family: bitter-bold, serif, arial, sans-serif, times;
     margin-top: 20px;
     text-shadow: none;
+    font-weight: bold;
   }
   .show-box{
     padding:20px 0 0 50px;
@@ -593,10 +601,10 @@ div.post-main-page{
 
   background-color: white;
   .nav-link{
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: url(/assets/pattern.png);
     border: medium none;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    height: 40px;
+    height: 100px;
     left: 0;
     position: absolute;
     top: 110px;
@@ -605,12 +613,13 @@ div.post-main-page{
     ul{
       margin-left: 40%;
       list-style: none;
+      margin-top: 30px;
       li{
         float: left;
         font-size: 16px;
         margin-left: 20px;
         padding-top: 10px;
-        width: 90px;
+        width: 120px;
         a{
           color: #888;
         }
@@ -623,15 +632,16 @@ div.post-main-page{
       }
       li.current-tab{
         a{
-          color: black;
+          color: white;
+          font-size:20px;
         }
       }
       li.current-tab:before {
-        background: none repeat scroll 0 0 #fff;
+        background: url(/assets/pattern.png);
         box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.28);
         content: "";
         display: inline-block;
-        height: 10px;
+        height: 20px;
         margin-left: 30px;
         position: absolute;
         transform: rotate(56deg) skew(0deg, -20deg);
@@ -642,14 +652,14 @@ div.post-main-page{
         -ms-transform: rotate(56deg) skew(0deg,-20deg);
         -o-transform: rotate(56deg) skew(0deg,-20deg);
         transform: rotate(56deg) skew(0deg,-20deg);
-        width: 9px;
-        margin-top:25px;
+        width: 20px;
+        margin-top:50px;
       }      
     }
   }
   .first-row{
-    height:200px;
-    margin-top: 50px;
+    min-height:240px;
+    margin-top: 20px;
     .row{
       margin-top: 20px;
     }

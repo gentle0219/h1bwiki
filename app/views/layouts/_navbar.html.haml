@@ -19,7 +19,7 @@
 								%span.unread-count= session["unread_message_count"]
 					%li
 						%a{:href=>"#"} About
-					%li
+					%li{:style=>"width:230px;"}
 						.btn-group
 							- if user_signed_in?
 								= link_to "My Account", edit_user_registration_path(current_user), :class=>"btn btn-first"
