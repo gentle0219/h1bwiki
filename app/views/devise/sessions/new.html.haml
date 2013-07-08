@@ -2,7 +2,7 @@
 	.container{:style=>"width: 980px;"}
 		.row.content-row
 			.span6{:style=>"width: 550px;"}
-				%h2{:style=>"color:white;text-align:center;"} Login
+				%h2{:style=>"color:white;text-align:center;margin-top: 50px;"} Login
 				.sign-in-page					
 					= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal", :style=>"margin-bottom:0px;" }) do |f|
 						.row{:style=>"margin-bottom: 10px;"}
