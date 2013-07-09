@@ -1,10 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="span8 offset3">
+    <div class="span12 jobseeker-signup-page">
 
-      <h2 style="text-decoration: underline">Create a Job Seeker Account</h2>
+      <h2>Create a Job Seeker Account</h2>
       
-      <span style="font-size:18px;">Already have an Account? <%= link_to "Login Here", new_user_session_path, :class => "btn btn-link" %> </span>
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal", "data-validate" => "parsley" }) do |f| %>
         <%= devise_error_messages! %>
         <div class="control-group">
@@ -32,6 +31,7 @@
             <%= f.select(:immigration_status,[['H-1B',1],['OPT',2],['L1/L2',3],['H4',4],['None',5]] )%>
           </div>
         </div>
+<!--        
         <div class="control-group">
           <%= f.label "City", :class => "control-label" %>
           <div class="controls">
@@ -45,6 +45,7 @@
             <%= f.select(:country_id, options_from_collection_for_select(Country.all, :id, :name)) %>
           </div>
         </div>
+-->    
         <div class="control-group">
           <%= f.label "User Name", :class => "control-label" %>
           <div class="controls">
@@ -73,13 +74,15 @@
         </div>
 
         <input type="hidden" name="user[account_type]" id="user_account_type" value="jobseeker">
-
-        <label class="checkbox offset1">
-          <input type="checkbox" name="rangecheck" data-required="true" value="foo" class="parsley-validated" id="agree-privacy"> I agree to terms and privacy
-        </label>
+        <div class="control-group">  
+          <label class="checkbox">
+            <input type="checkbox" name="rangecheck" data-required="true" value="foo" class="parsley-validated" id="agree-privacy"> I agree to terms and privacy
+          </label>
+        </div>
         <br />
-        <div class="span2 offset2"><%= f.submit "Sign up", :class => "m-btn blue btn-block", :id => "btn-sign-up", :disabled => "disabled" %></div> 
-        
+        <div class="row">
+          <%= f.submit "Sign up", :class => "m-btn blue btn-block", :id => "btn-sign-up", :disabled => "disabled", :style=>" font-size: 28px;font-weight: 600;height: 54px;" %>
+        </div>         
       <% end %>
     </div>
   </div>

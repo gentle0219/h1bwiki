@@ -305,7 +305,7 @@ input.btn{
           padding: 2px;
         }
         li{
-          width:120px;
+          width:80px;
           a{
             text-align:center;
             border-radius: 0px 0px 0 0;
@@ -661,7 +661,7 @@ div.post-main-page{
   }
   .first-row{
     min-height:240px;
-    margin-top: 20px;
+    margin-top: 130px;
     .row{
       margin-top: 20px;
     }
@@ -678,17 +678,31 @@ div.post-main-page{
 }
 div.show-postings-tab-box{
   padding-left:30px;
-  
+  .post-jobs-box{
+    padding: 0px;
+  }
   table.table-striped{
-    th{
-      text-align: left;
-    }    
-    td.pagenate{
-      text-align: center;
-      div.pagination ul{
-        float: right;
+    thead{
+      height: 64px;
+      th{
+        text-align: center;
       }
     }
+    tbody{
+      tr{
+        height: 50px;
+        td{
+          padding-top: 16px;
+        }
+        td.pagenate{
+          text-align: center;          
+          div.pagination ul{
+            float: right;
+          }
+        }
+      }      
+    }
+    
     a.link-job-title{
       background-color: transparent;
       color: #4d90fe;
@@ -738,8 +752,9 @@ div.show-postings-tab-box{
   }
   
   #tabs{
+    margin-bottom: 0px;
     li{
-      width: 175px;
+      width: 190px;
       a{
         color: black;
         font-weight: bold;
@@ -805,29 +820,29 @@ div.search-page-main{
     font-family: serif, arial, sans-serif, times;
   }
   .first-row{
-    margin-top: 30px;
+    margin-top: 150px;
     .show-search-tab-box{      
       margin-top: 30px;
       #content{        
         ul.nav-tabs{
-          border-bottom: 5px solid #DDDDDD;
-          margin-bottom: 0px;
+          border-bottom: 1px solid #DDDDDD;
+          margin-bottom: -1px;
           li{
-            width: 180px;
-            margin-bottom: -5px;
+            width: 190px;
+            margin-bottom: 0px;
             a{
               font-weight: bold;
             }
             a:hover{
               color: black;
-              border: solid 5px #ddd;
+              border: solid 1px #ddd;
               border-bottom: none;
               border-color: #DDDDDD #DDDDDD transparent;
             }
           }
           li.active{
             a{
-              border: solid 5px #ddd;
+              border: solid 1px #ddd;
               border-bottom: none;
               border-color: #DDDDDD #DDDDDD transparent; 
               background-color: #f5f5f5;
@@ -836,8 +851,9 @@ div.search-page-main{
         }
         div.tab-content{
           background-color: white;
+          border: none;
           .search-conditions-box{
-            border: solid 5px #ddd;
+            border: solid 1px #ddd;
             border-top: none;
             padding: 30px 0px 20px 20px;
             input.m-btn{
@@ -849,22 +865,25 @@ div.search-page-main{
       }
     }
     .search-results-box{
-      margin-left:0px;      
+      margin-left:0px;
+      margin-top: 8px;
       .search-result-item{
         border: solid 1px #ddd;
-        border-bottom: none;
-        padding: 10px;
+        margin-bottom: 8px;
         div.title-row{
-          margin: 10px 0px 0px 10px;
+          background-color: rgb(218, 218, 218);
+          margin-top: 0;
+          padding-left: 10px;
+          padding-top: 10px;
           a.item-title{
             font-size: 20px;
             font-weight: bold;
-            color: #4d90fe;          
+            color: black;          
             font-family: serif, arial, sans-serif, times;
           }
           a.item-title:hover{
             background-color: transparent;
-            text-decoration: underline;
+            text-decoration: none;
             cursor: pointer;
           }
           p.created-date{
@@ -877,19 +896,43 @@ div.search-page-main{
             font-size: 16px;
             font-weight: normal;
           }
+          
+        }
+        div.description{
+          padding-left: 20px;
+          padding-right: 20px;
+          padding-top: 20px;
+        }
+        div.last-row{
+          padding-left: 20px;
+          padding-right: 20px;
+          a{
+            font-size: 20px;
+            font-weight: 600;
+            height: 24px;
+            padding-top: 16px;
+            width: 190px;
+            border-radius:5px;
+            color: white;
+          }
+
           p.post-type{
             font-size: 16px;
             margin-left: 7px;
             background-color: #f2f2ed;
             border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 20px;
+            font-weight: 600;
             display: inline-block;
             line-height: 1;
             padding: 7px 9px;
-            color: #222;
+            color: white;
             margin: 2px 0;
             text-shadow: none;
+            height: 30px;
+            margin-top: 8px;
+            padding-top: 12px;
+            width: 190px;
           }
           p.post-type:hover{
             cursor: pointer;
@@ -897,6 +940,7 @@ div.search-page-main{
             color: #fff;
             text-decoration: none;      
           }
+
         }
         p.skill-tags{
           font-size: 14px;
@@ -925,6 +969,7 @@ div.search-page-main{
           color: #222;
           margin: 2px 0;
           text-shadow: none;
+          border: solid 1px #ccc;
         }
         a.skill-tags:hover{
           cursor: pointer;
@@ -991,10 +1036,10 @@ div.search-page-main{
     }
   }
   .nav-link{
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: url(/assets/pattern.png);
     border: medium none;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    height: 40px;
+    height: 100px;    
     left: 0;
     position: absolute;
     top: 110px;
@@ -1002,6 +1047,7 @@ div.search-page-main{
     z-index: 50;
 
     ul{
+      margin-top: 30px;
       margin-left: 35%;
       list-style: none;
       li{
@@ -1009,12 +1055,12 @@ div.search-page-main{
         font-size: 16px;
         margin-left: 20px;
         padding-top: 10px;
-        width: 130px;
+        width: 170px;
         a{
-          color: #888;
+          color: white;
         }
         a:hover{
-          color:black;
+          color:#f38e2f;
           background: transparent;
           text-decoration: none;
           cursor: pointer;
@@ -1022,15 +1068,18 @@ div.search-page-main{
       }
       li.current-tab{
         a{
-          color: black;
+          color: #f38e2f;
+          font-size:20px;
+          font-weight: 600;
+          font-style: italic;
         }
       }
       li.current-tab:before {
-        background: none repeat scroll 0 0 #fff;
+        background: url(/assets/pattern.png);
         box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.28);
         content: "";
         display: inline-block;
-        height: 10px;
+        height: 15px;
         margin-left: 30px;
         position: absolute;
         transform: rotate(56deg) skew(0deg, -20deg);
@@ -1041,8 +1090,8 @@ div.search-page-main{
         -ms-transform: rotate(56deg) skew(0deg,-20deg);
         -o-transform: rotate(56deg) skew(0deg,-20deg);
         transform: rotate(56deg) skew(0deg,-20deg);
-        width: 9px;
-        margin-top:25px;
+        width: 15px;
+        margin-top:51px;
       }      
     }
   }

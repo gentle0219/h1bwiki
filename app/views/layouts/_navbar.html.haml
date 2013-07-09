@@ -7,25 +7,29 @@
 				%span.icon-bar			
 			= link_to image_tag("logo.png"), "/", :class=>"brand"
 			.nav-collapse				
-				%ul.nav.nav-tabs									
+				%ul.nav.nav-tabs
 					%li
-						=link_to( "Search", search_home_path, :method => :get )
+						= link_to "Home", root_url
 					%li
-						=link_to( "Post", user_signed_in? ? (employer? ? posts_view_path : jobseeker_posts_path ) : posts_view_path )
-					%li{:style => "width:150px"}
-						= link_to( messagebox_inbox_path ) do
-							Messages
-							- if session["unread_message_count"].present? and session["unread_message_count"] > 0
-								%span.unread-count= session["unread_message_count"]
+						= link_to( "Search", search_home_path, :method => :get )
 					%li
-						%a{:href=>"#"} About
-					%li{:style=>"width:230px;"}
+						= link_to( "Post", user_signed_in? ? (employer? ? posts_view_path : jobseeker_posts_path ) : posts_view_path )
+					%li
+						= link_to "Blog", "/blog"
+					%li{:style=>"width:145px;"}
+						%a{:href=>"#"} How it Works?
+					%li{:style=>"width:185px;"}
 						.btn-group
 							- if user_signed_in?
-								= link_to "My Account", edit_user_registration_path(current_user), :class=>"btn btn-first"
-								= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class=>"btn btn-second"
+								= link_to "My Account", edit_user_registration_path(current_user), :class=>"btn btn-first", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 85px;"
+								= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class=>"btn btn-second", :style=>"padding-left: 10px;font-size:16px;padding-right: 10px;padding-top: 10px;width: 65px;"
 							- else
-								= link_to "LOGIN", new_user_session_path, :class=>"btn btn-first"
-								= link_to "REGISTER", signup_path, :class=>"btn btn-second"
+								= link_to "LOGIN", new_user_session_path, :class=>"btn btn-first", :style=>"padding-left: 10px;font-size:16px;padding-right: 10px;padding-top: 10px;width: 55px;"
+								= link_to "REGISTER", signup_path, :class=>"btn btn-second", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 78px;"
 					
 								
+/					%li{:style => "width:150px"}
+/						= link_to( messagebox_inbox_path ) do
+/							Messages
+/							- if session["unread_message_count"].present? and session["unread_message_count"] > 0
+/								%span.unread-count= session["unread_message_count"]

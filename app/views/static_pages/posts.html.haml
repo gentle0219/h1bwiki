@@ -3,27 +3,25 @@
 		=render "layouts/nav-link-secondary"
 		.row.first-row			
 			.span12.show-postings-tab-box
-				.row
-					%p.page-title My Postings
 				.row		
 					#content
 						%ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
 							%li.active
-								%a{"data-toggle" => "tab", :href => "#jobs"} Jobs
+								%a{"data-toggle" => "tab", :href => "#jobs"} JOBS
 							%li
-								%a{"data-toggle" => "tab", :href => "#trainings"} Trainings/Placement
+								%a{"data-toggle" => "tab", :href => "#trainings"} TRAINING/PLACEMENTS
 							%li
-								%a{"data-toggle" => "tab", :href => "#mentors"} Mentor Assitance
+								%a{"data-toggle" => "tab", :href => "#mentors"} MENTOR ASSISTANCE
 						#my-tab-content.tab-content
 							#jobs.tab-pane.active
-								.span12.post-jobs-box
+								.span12.post-jobs-box{:style=>"padding:0px;"}
 									%table.table.table-striped
 										%thead
 											%tr
-												%th{:width=>"50%"} Title
-												%th{:width=>"20%"} Type
-												%th{:width=>"15%"} Create At
-												%th{:width=>"15%"}=t '.actions', :default => t("helpers.actions")
+												%th{:width=>"50%"} TITLE
+												%th{:width=>"20%"} TYPE
+												%th{:width=>"15%"} CREATED AT
+												%th{:width=>"15%"} ACTIONS
 										%tbody
 											- @post_jobs.each do |post_job|
 												%tr
@@ -31,7 +29,7 @@
 													%td Jobs Offered
 													%td=l post_job.created_at, :format =>"%Y-%m-%d %H:%M"
 													%td
-														= link_to edit_post_job_path(post_job), :class => 'btn btn-mini' do
+														= link_to edit_post_job_path(post_job), :class => 'btn btn-mini btn-primary' do
 															%i.icon-edit &nbsp;Edit
 														= link_to post_job, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
 															%i.icon-trash &nbsp;Delete
@@ -43,10 +41,10 @@
 									%table.table.table-striped
 										%thead
 											%tr
-												%th{:width=>"50%"} Title
-												%th{:width=>"20%"} Type
-												%th{:width=>"15%"} Created At
-												%th{:width=>"15%"}=t '.actions', :default => t("helpers.actions")
+												%th{:width=>"50%"} TITLE
+												%th{:width=>"20%"} TYPE
+												%th{:width=>"15%"} CREATED AT
+												%th{:width=>"15%"} ACTIONS
 										%tbody
 											- @post_trainings.each do |post_training|
 												%tr
@@ -54,7 +52,7 @@
 													%td Trainings Offered
 													%td=l post_training.created_at, :format =>"%Y-%m-%d %H:%M"
 													%td
-														= link_to edit_post_training_path(post_training), :class => 'btn btn-mini' do
+														= link_to edit_post_training_path(post_training), :class => 'btn btn-mini btn-primary' do
 															%i.icon-edit &nbsp;Edit
 														= link_to post_training, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
 															%i.icon-trash &nbsp;Delete
@@ -65,10 +63,10 @@
 									%table.table.table-striped
 										%thead
 											%tr
-												%th{:width => "50%"} Title
-												%th{:width => "20%"} Type
-												%th{:width => "15%"} Created At
-												%th{:width => "15%"}=t '.actions', :default => t("helpers.actions")
+												%th{:width=>"50%"} TITLE
+												%th{:width=>"20%"} TYPE
+												%th{:width=>"15%"} CREATED AT
+												%th{:width=>"15%"} ACTIONS
 										%tbody
 											- @post_mentors.each do |post_mentor|
 												%tr
@@ -76,14 +74,14 @@
 													%td Mentor Assistance Offered
 													%td=l post_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
 													%td
-														= link_to edit_post_mentor_path(post_mentor), :class => 'btn btn-mini' do
+														= link_to edit_post_mentor_path(post_mentor), :class => 'btn btn-mini btn-primary' do
 															%i.icon-edit &nbsp;Edit
 														= link_to post_mentor, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
 															%i.icon-trash &nbsp;Delete
 											%tr
 												%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @post_mentors, :param_name => 'mentor_page'
 :javascript 
-	$('ul.nav-tabs li').eq(1).addClass('isCurrent');
+	$('ul.nav-tabs li').eq(2).addClass('isCurrent');
 	$('div.nav-link ul li').eq(1).removeClass('current-tab');
 	$('div.nav-link ul li').eq(0).addClass('current-tab');	
 
