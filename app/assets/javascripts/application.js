@@ -22,6 +22,18 @@
 
 var isLoged = false;
 
+function setHeight(){
+	var height = $(window).height();
+	var top_height = $("div.navbar-fixed-top").outerHeight();
+	var footer_height = $("div.footer").outerHeight();
+	$("div.main-row").css("min-height", height-top_height-footer_height);		
+}
+
+$(window).resize(function() {
+	setHeight();
+});
+
+
 $(function(){		
 	$('input[type="radio"]').customInput();
 //	$('#authors_names_0').addClass("parsley-validated");
@@ -36,15 +48,8 @@ $(function(){
     propertyToSearch: "name",
     theme: "facebook"
   });
-  /*
-  var height = $(window).height();
-	$("div.wrap").css("height", height*0.815);
-	$(window).resize(function() {
-  	var height = $(window).height();
-		$("div.wrap").css("min-height", height*0.815);	
-	});
-	*/
-	var pre_action = $("#job_post_form").attr("action");	
+  setHeight();
+  var pre_action = $("#job_post_form").attr("action");	
 	$('#btn_post_preview').click(function(){		
 		var preview = "/preview";
 		var re = new RegExp("\/[a-z]*_[a-z]*[^\/]", "i");		
