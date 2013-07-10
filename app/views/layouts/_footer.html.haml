@@ -64,3 +64,12 @@
 	.row.footer-last-row
 		.content
 			%label{:style=>"text-align:center"} © Copyright 2013 H-1B Wiki
+
+
+:javascript	
+	if ("#{params[:action]}"== "home" || ("#{params[:controller]}"=="devise/sessions" && "#{params[:action]}"=="new")){
+		console.log(".navbar-fixed-bottom");
+	}else{
+		$(".footer").addClass("navbar-fixed-bottom");
+		$(".footer").css("bottom", "-5px");
+	}

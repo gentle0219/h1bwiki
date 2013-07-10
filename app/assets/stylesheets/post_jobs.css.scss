@@ -5,9 +5,10 @@ div.post-main-page{
 	div.edit-box{
 		margin-top:50px;
     background-color: #f2f2f2;
-    border: solid 1px;
+    border: solid 1px #ccc;
     width:1000px;
     margin-bottom: 50px;
+    border-radius: 10px;
     .page-title{
       text-align: center;
     }
@@ -15,6 +16,10 @@ div.post-main-page{
       margin-bottom: 0px;
       .control-group{
         margin-left: 100px;
+        input[type="text"]{
+          padding-top: 8px;
+          padding-bottom: 8px;
+        }
       }
       .form-actions{
         margin-bottom: 0px;
