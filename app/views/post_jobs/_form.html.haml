@@ -26,7 +26,7 @@
 		= f.label :job_duration, "Duration",:class => 'control-label'
 		.controls
 			= f.text_field :job_duration, :class => 'text_field', "data-required"=>"true"
-	.control-group
+	.control-group.authorization-check-box
 		%label.control-label Work Authorization
 		=f.fields_for :work_authorizations, WorkAuthorization.available_consts, :builder => CustomFormBuilder do |autho|
 			.controls.span2
@@ -83,7 +83,11 @@
 		}
 		
 	});	
+	$("div.authorization-check-box .controls").eq(1).width("80");
+	$("div.authorization-check-box .controls").eq(2).width("80");
+	$("div.authorization-check-box .controls").eq(3).width("150");
 //				= skill.text_field :skill_name, :class => 'text_field large-field'
 //		= f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"
 // %input#btn_post_preview{:type => "button", :vale=>"PRE" }
 //		$(this).children("input[type='checkbox']").insertBefore($(this).children("input[type='hidden']"));
+	
