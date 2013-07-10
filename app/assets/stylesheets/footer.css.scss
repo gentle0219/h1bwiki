@@ -21,9 +21,13 @@
 		.content{
 			height: 264px;
 			.row{
+				.span3{
+					width: 300px;
+				}
 				h3{
 					color: white;
 	  			margin-top: 40px;
+	  			font-size:22px;
 				}
 				p{
 					color: #898989;

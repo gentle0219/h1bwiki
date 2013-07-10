@@ -25,14 +25,14 @@
 						%label.orange contact@h1bwiki.com
 						%h4 00 098 098 9088
 
-					.span3{:style=>"margin-left: 100px;"}
+					.span3{:style=>"margin-left: 50px;"}
 						%h3 ABOUT THE COMPANY
 						%p 
 							job search tool that allows job seekers to use their social networks to quickly find job opportunities from companies within their personal networks.
 						%br/						
 						.face-boook-content
 							#fb-root
-								.fb-like-box{"data-header" => "true", "data-height" => "250", "data-href" => "https://www.facebook.com/h1bwiki", "data-show-border" => "true", "data-show-faces" => "true", "data-stream" => "false", "data-width" => "268"}
+								.fb-like-box{"data-header" => "true", "data-height" => "250", "data-href" => "https://www.facebook.com/h1bwiki", "data-show-border" => "true", "data-show-faces" => "true", "data-stream" => "false", "data-width" => "298"}
 							:javascript
 								(function(d, s, id) {
 									var js, fjs = d.getElementsByTagName(s)[0];
@@ -68,8 +68,9 @@
 
 :javascript	
 	if ("#{params[:action]}"== "home" || ("#{params[:controller]}"=="devise/sessions" && "#{params[:action]}"=="new")){
-		console.log(".navbar-fixed-bottom");
+		//console.log(".navbar-fixed-bottom");
 	}else{
-		$(".footer").addClass("navbar-fixed-bottom");
-		$(".footer").css("bottom", "-5px");
+		//$(".footer").addClass("navbar-fixed-bottom");
+		//$(".footer").css("bottom", "-5px");
 	}
+
