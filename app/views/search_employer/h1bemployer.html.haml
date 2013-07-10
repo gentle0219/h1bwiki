@@ -223,6 +223,9 @@
 									%a.m-btn.blue.post-comment Post Comment
 :javascript 
 	var cur_tab = 0
+	
+	$('ul.nav-tabs li').eq(1).addClass('isCurrent');
+
 	$('.secodary ul li').eq(1).addClass('current-tab');
 	$('.secodary ul li').eq(0).removeClass('current-tab');
 
