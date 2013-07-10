@@ -90,7 +90,7 @@
 														%p.created-date
 															Date Posted:
 															=l search_seeker_job.created_at, :format =>"%Y-%m-%d %H:%M"
-												.row.description-row
+												.row.description
 													.span8
 														.view-details-box.more= raw search_seeker_job.description
 													.span4
@@ -102,9 +102,9 @@
 																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_job.title}", :type=>"#{user.email}" } Contact
 												.row.last-row
 													.span8																											
-														= link_to "View", jobseeker_job_path(search_seeker_job), :class=>"view-details", :target => "_blink"		
+														= link_to "View", jobseeker_job_path(search_seeker_job), :class=>"view-details m-btn blue", :target => "_blink"		
 													.span4
-														%p.post-type Jobs Wanted						
+														%p.post-type.m-btn.blue Jobs Wanted						
 							#trainings.tab-pane
 								.span12.search-conditions-box
 									.row

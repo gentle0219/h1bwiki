@@ -57,20 +57,20 @@ class StaticPagesController < ApplicationController
     city = params[:city]
     if @job_type == '1'
       if title.present?
-        cond_text << "job_title LIKE ?"
-        cond_values << "%#{title}%"
+        cond_text << "job_title = ?"
+        cond_values << "#{title}"
       end
       if city.present?
-        cond_text << "job_city LIKE ?"
-        cond_values << "%#{city}%"
+        cond_text << "job_city = ?" 
+        cond_values << "#{city}"
       end
     elsif @job_type =='2'
       if title.present?
         cond_text << "title LIKE ?"
-        cond_values << "%#{title}%"
+        cond_values << "#{title}"
       end      
     end
-    
+
 =begin
     if params[:search_type].blank?
       @search_emp_jobs = PostJob.find(:all, :order=>"created_at DESC")
@@ -83,10 +83,13 @@ class StaticPagesController < ApplicationController
       @search_seeker_mentors = JobseekerMentor.find(:all, :order=>"created_at DESC")
     end
 =end
+
     if @search_type == '0'
       if @job_type == '1'
         @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        #@search_emp_jobs = PostJob.find(:all, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_seeker_jobs = []
+#render :text => @search_emp_jobs.inspect and return
       elsif @job_type == '2'
         if city.present?
           city = "%" + city + "%"

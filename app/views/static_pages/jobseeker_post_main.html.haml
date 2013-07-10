@@ -1,10 +1,10 @@
-.container-fluid
+.container-fluid{:style=>"width: 1000px;"}
 	.row.post-main-page{:style => "min-height:200px;"}
 		=render "layouts/nav-link-secondary"
 		.row.first-row
 			.span11.offset1
 				.row
-					%p.page-title What type of Posting is this:
+					%h2{:style=>"text-align:center"} What type of Posting is this
 				.span8.offset3
 					.row
 						%label.radio
@@ -20,10 +20,8 @@
 							%input#radio-3.post-type{:name => "opinions", :type => "radio", :value => "/jobseeker_mentors/new"}/
 							%label{:for => "radio-3"}  Mentor Assistance / Job Support Wanted
 		.row.second-row
-			.span10.offset1.form-actions
-				.span3.offset5
-					%form#post-type-form{:action => new_jobseeker_job_path}
-						%input{:type => "submit", :value => "Continue >", :class => "m-btn blue"}/
+			.span12{:style=>"padding: 10px 30px;"}
+				%form#post-type-form{:action => new_jobseeker_job_path}
+					%input{:type => "submit", :value => "Continue >", :class => "m-btn blue", :style=>"font-size: 26px;font-weight: bold;height: 50px;margin-top: 0;width: 100%;"}/
 :javascript 
 	$('ul.nav-tabs li').eq(1).addClass('isCurrent');
-
