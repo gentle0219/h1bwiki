@@ -18,14 +18,14 @@
 						= link_to "Blog", "/blog"
 					%li{:style=>"width:165px;"}
 						%a{:href=>"#"} How it Works?
-					%li{:style=>"width:185px;"}
+					%li{:style=>"width:188px;"}
 						.btn-group
 							- if user_signed_in?
 								= link_to "My Account", edit_user_registration_path(current_user), :class=>"btn btn-first", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 85px;"
 								= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class=>"btn btn-second", :style=>"padding-left: 10px;font-size:16px;padding-right: 10px;padding-top: 10px;width: 65px;"
 							- else
-								= link_to "LOGIN", new_user_session_path, :class=>"btn btn-first", :style=>"padding-left: 10px;font-size:16px;padding-right: 10px;padding-top: 10px;width: 55px;"
-								= link_to "REGISTER", signup_path, :class=>"btn btn-second", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 78px;"
+								= link_to "LOGIN", new_user_session_path, :class=>"btn btn-first", :style=>"padding-left: 10px;font-size:16px;padding-right: 10px;padding-top: 10px;width: 53px;"
+								= link_to "REGISTER", signup_path, :class=>"btn btn-second", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 85px;"
 					
 								
 /					%li{:style => "width:150px"}
