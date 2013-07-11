@@ -886,6 +886,27 @@ div.search-page-main{
       .search-result-item{
         border: solid 1px #ddd;
         margin-bottom: 8px;
+        background-color: #ededed;
+        padding-bottom: 10px;
+        .referral{
+          background-color: rgb(41, 41, 41);
+          color: white;
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 0;
+          padding: 3px;
+          text-align: center;
+        }
+        .refferral_amount{
+          background-color: rgb(97, 189, 90);
+          border-radius: 3px 3px 0 0;
+          color: white;
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 0;
+          padding: 5px;
+          text-align: center;
+        }
         div.title-row{
           background-color: rgb(218, 218, 218);
           margin-top: 0;
@@ -960,7 +981,27 @@ div.search-page-main{
         }
         p.skill-tags{
           font-size: 14px;
-          font-weight: bold;
+          font-weight: bold;   
+          a.skill-tags{
+            font-style: italic;
+            background-color: #f2f2ed;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            line-height: 1;
+            padding: 7px 9px;
+            color: #222;
+            margin: 2px 0;
+            text-shadow: none;
+            border: solid 1px #ccc;
+          }
+          a.skill-tags:hover{
+            cursor: pointer;
+            background: #00aeec;
+            color: #fff;
+            text-decoration: none;      
+          }       
         }
         p.option-tags{
           font-size: 14px;
@@ -974,25 +1015,7 @@ div.search-page-main{
             cursor: pointer;
           }
         }
-        a.skill-tags{
-          background-color: #f2f2ed;
-          border-radius: 4px;
-          font-size: 14px;
-          font-weight: bold;
-          display: inline-block;
-          line-height: 1;
-          padding: 7px 9px;
-          color: #222;
-          margin: 2px 0;
-          text-shadow: none;
-          border: solid 1px #ccc;
-        }
-        a.skill-tags:hover{
-          cursor: pointer;
-          background: #00aeec;
-          color: #fff;
-          text-decoration: none;      
-        }
+
         a.view-details{
           font-size: 14px;
           color: #4d90fe;

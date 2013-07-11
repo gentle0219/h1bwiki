@@ -9,7 +9,8 @@ schema info
   t.text          :job_description
 =end  
 class PostJob < ActiveRecord::Base
-	attr_accessible :user_id, :job_description, :job_title, :job_type, :job_city, :job_state, :job_duration, :skills_attributes, :skill_tokens, :work_authorizations_attributes, :authors_names, :referral_amount
+	attr_accessible :user_id, :job_description, :job_title, :job_type, :job_city, :job_state, :job_duration, 
+                  :skills_attributes, :skill_tokens, :work_authorizations_attributes, :authors_names, :referral_amount
   belongs_to :user
   has_many :skills, :as => :skillable, :dependent => :destroy
   has_many :skill_lists, :through => :skills
@@ -77,4 +78,7 @@ class PostJob < ActiveRecord::Base
     all :conditions =>  [cond_text.join(" AND "), *cond_values]
   end
 =end  
+  def refe_amount
+    ActionController::Base.helpers.number_to_currency(self.referral_amount)
+  end
 end
