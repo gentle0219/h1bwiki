@@ -27,10 +27,11 @@ function setHeight(){
 	var top_height = $("div.navbar-fixed-top").outerHeight();
 	var footer_height = $("div.footer").outerHeight();
 	$("div.main-row").css("min-height", height-top_height-footer_height);		
+	return true;
 }
 
 $(window).resize(function() {
-	setHeight();
+	setHeight();	
 });
 
 
