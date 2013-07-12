@@ -13,7 +13,17 @@
 	.control-group
 		= f.label :job_type, "Type", :class => 'control-label custom-select'
 		.controls.custom-select
-			= f.select(:job_type,[['Full Time',0],['Contract',1],['Contract to Hire',2]] )
+			= f.select(:job_type,[['Full Time',0],['Contract',1],['Contract to Hire',2]])
+
+	.control-group.duration-box{:style=>"display:none;"}
+		= f.label :job_duration, "Duration",:class => 'control-label'
+		.controls
+			= f.text_field :job_duration, :class => 'text_field', "data-required"=>"true", :placeholder=>"please input duration"
+	.control-group.referral-amount-box
+		= f.label :referral_amount,"Referral Amounts($)", :class => 'control-label'
+		.controls
+			= f.text_field :referral_amount, :class => 'text_field', :"data-required" =>"true", :placeholder=>"Input the Referral amount"
+	
 	.control-group
 		= f.label :job_city, "City",:class => 'control-label'
 		.controls
@@ -22,10 +32,7 @@
 		= f.label :job_state, "State",:class => 'control-label'
 		.controls
 			= f.text_field :job_state, :class => 'text_field', "data-required"=>"true"
-	.control-group
-		= f.label :job_duration, "Duration",:class => 'control-label'
-		.controls
-			= f.text_field :job_duration, :class => 'text_field', "data-required"=>"true"
+	
 	.control-group.authorization-check-box
 		%label.control-label Work Authorization
 		=f.fields_for :work_authorizations, WorkAuthorization.available_consts, :builder => CustomFormBuilder do |autho|
@@ -41,10 +48,7 @@
 		= f.label :skill_tokens, "Require Skills",:class => 'control-label'
 		.controls
 			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_job.skill_lists.map(&:attributes).to_json, "data-required"=>"true"
-	.control-group
-		= f.label :referral_amount,"Referral Amounts($)", :class => 'control-label'
-		.controls
-			= f.text_field :referral_amount, :class => 'text_field', :"data-required" =>"true"
+	
 	= f.submit 'Continue', :class => 'm-btn blue', :id => "btn_post_create", :style=>"font-size: 30px;height: 58px;width: 100%;"
 	.form-actions{:style=>"padding:20px 0"}
 		= link_to( 'Back ', post_main_path, :class => "btn", :style=>"color: rgb(170, 170, 170);font-size: 30px;height: 40px;padding-top: 20px;width: 245px;")
@@ -86,8 +90,20 @@
 	$("div.authorization-check-box .controls").eq(1).width("80");
 	$("div.authorization-check-box .controls").eq(2).width("80");
 	$("div.authorization-check-box .controls").eq(3).width("150");
-//				= skill.text_field :skill_name, :class => 'text_field large-field'
-//		= f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"
-// %input#btn_post_preview{:type => "button", :vale=>"PRE" }
-//		$(this).children("input[type='checkbox']").insertBefore($(this).children("input[type='hidden']"));
+
+
+	$("#post_job_job_type").change(function(){
+		if($(this).val()==0){
+			$('div.duration-box').hide();
+			$('div.referral-amount-box').show();
+		}else if($(this).val()==1){			
+			$('div.duration-box').show();
+			$('div.referral-amount-box').hide();
+		}
+		
+	});
+//	= skill.text_field :skill_name, :class => 'text_field large-field'
+//	f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"
+//	%input#btn_post_preview{:type => "button", :vale=>"PRE" }
+//	$(this).children("input[type='checkbox']").insertBefore($(this).children("input[type='hidden']"));
 	

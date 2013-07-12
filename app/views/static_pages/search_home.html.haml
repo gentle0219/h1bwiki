@@ -82,7 +82,7 @@
 													.span8
 														= link_to "View", post_job_path(search_emp_job), :class=>"m-btn blue", :target => "_blink"
 													.span4
-														%p.post-type.m-btn.blue Jobs Offered
+														%p.post-type Jobs Offered
 									-if @search_emp_jobs.present?
 										.row
 											=will_paginate @search_emp_jobs, :param_name => 'page_num'
@@ -114,7 +114,7 @@
 													.span8																											
 														= link_to "View", jobseeker_job_path(search_seeker_job), :class=>"view-details m-btn blue", :target => "_blink"		
 													.span4
-														%p.post-type.m-btn.blue Jobs Wanted						
+														%p.post-type Jobs Wanted						
 							#trainings.tab-pane
 								.span12.search-conditions-box
 									.row
@@ -171,7 +171,7 @@
 													.span8														
 														= link_to "View", post_training_path(search_emp_training), :class=>"m-btn blue view-details", :target => "_blink"
 													.span4
-														%p.post-type.m-btn.blue Trainings Offered
+														%p.post-type Trainings Offered
 									-if @search_emp_trainings.present?
 										.row
 											=will_paginate @search_emp_trainings, :param_name => 'page_num'
@@ -203,7 +203,7 @@
 													.span8
 														= link_to "View Details >", jobseeker_training_path(search_seeker_training), :class=>"view-details m-btn blue", :target => "_blink"
 													.span4
-														%p.post-type.m-btn.blue Trainings Wanted
+														%p.post-type Trainings Wanted
 							#mentors.tab-pane
 								.span12.search-conditions-box
 									.row
@@ -258,7 +258,7 @@
 													.span8																											
 														= link_to "View", post_mentor_path(search_emp_mentor), :class=>"view-details m-btn blue", :target => "_blink"
 													.span4
-														%p.post-type.m-btn.blue{:style=>"font-size: 16px;padding-top: 3px;"} Mentor Assistance Offered
+														%p.post-type{:style=>"font-size: 16px;padding-top: 3px;"} Mentor Assistance Offered
 									-if @search_emp_mentors.present?
 										.row
 											=will_paginate @search_emp_mentors, :param_name => 'page_num'
@@ -289,7 +289,7 @@
 													.span8
 														= link_to "View Details >", jobseeker_mentor_path(search_seeker_mentor), :class=>"view-details m-btn blue", :target => "_blink"
 													.span4
-														%p.post-type.m-btn.blue{:style=>"font-size: 16px;padding-top: 3px;"} Mentor Assistance Offered
+														%p.post-type{:style=>"font-size: 16px;padding-top: 3px;"} Mentor Assistance Offered
 									-if @search_seeker_mentors.present?
 										.row
 											=will_paginate @search_seeker_mentors, :param_name => 'page_num'
