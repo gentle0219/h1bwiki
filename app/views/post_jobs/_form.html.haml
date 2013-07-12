@@ -10,11 +10,19 @@
 		= f.label :job_title, "Title",:class => 'control-label'
 		.controls
 			= f.text_field :job_title, :class => 'text_field large-field', "data-required"=>"true", "data-rangelength"=>"[5,50]"
+
 	.control-group
 		= f.label :job_type, "Type", :class => 'control-label custom-select'
-		.controls.custom-select
-			= f.select(:job_type,[['Full Time',0],['Contract',1],['Contract to Hire',2]])
-
+		.controls
+			.span3{:style=>"margin-left: 0px;"}
+				%label.radio{:style=>"padding-left: 0px;"}
+					= f.radio_button :job_type, 0, :name=>"options", :class=>"post-type", :id=>"radio-1"
+					%label{:for => "radio-1", :class => "first-label checked type-full-time"} Full Time
+			.span2{:style=>"margin-left: 0px;"}
+				%label.radio{:style=>"padding-left: 0px;"}
+					= f.radio_button :job_type, 0, :name=>"options", :class=>"post-type", :id=>"radio-2"
+					%label{:for => "radio-2", :class=>"type-contract"} Contract
+	
 	.control-group.duration-box{:style=>"display:none;"}
 		= f.label :job_duration, "Duration",:class => 'control-label'
 		.controls
@@ -92,16 +100,15 @@
 	$("div.authorization-check-box .controls").eq(3).width("150");
 
 
-	$("#post_job_job_type").change(function(){
-		if($(this).val()==0){
-			$('div.duration-box').hide();
-			$('div.referral-amount-box').show();
-		}else if($(this).val()==1){			
-			$('div.duration-box').show();
-			$('div.referral-amount-box').hide();
-		}
-		
+	$("label.type-contract").click(function(){
+		$('div.duration-box').show();
+		$('div.referral-amount-box').hide();
 	});
+	$("label.type-full-time").click(function(){
+		$('div.duration-box').hide();
+		$('div.referral-amount-box').show();
+	});
+
 //	= skill.text_field :skill_name, :class => 'text_field large-field'
 //	f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"
 //	%input#btn_post_preview{:type => "button", :vale=>"PRE" }
