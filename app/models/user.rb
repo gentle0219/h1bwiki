@@ -34,4 +34,13 @@ class User < ActiveRecord::Base
   def is_admin?
     self.email == "gentle0219@gmail.com"
   end
+
+  def is_employer?
+    return true if self.account_type == "employer"
+    return false
+  end
+  def is_seeker?
+    return true if self.account_type == "jobseeker"
+    return false
+  end
 end
