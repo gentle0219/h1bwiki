@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713062210) do
+ActiveRecord::Schema.define(:version => 20130713094639) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(:version => 20130713062210) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
+
+  create_table "applicants", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_job_id"
+    t.string   "bid_sentence"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "applicants", ["post_job_id"], :name => "index_applicants_on_post_job_id"
+  add_index "applicants", ["user_id"], :name => "index_applicants_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",   :default => 0
@@ -171,6 +182,18 @@ ActiveRecord::Schema.define(:version => 20130713062210) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+
+  create_table "pictures", :force => true do |t|
+    t.string   "name"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "post_jobs", :force => true do |t|
     t.integer  "user_id"

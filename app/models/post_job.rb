@@ -15,7 +15,8 @@ class PostJob < ActiveRecord::Base
   has_many :skills, :as => :skillable, :dependent => :destroy
   has_many :skill_lists, :through => :skills
   has_many :work_authorizations, :dependent => :destroy
-
+  has_many :applicants
+  
   accepts_nested_attributes_for :skills
   accepts_nested_attributes_for :work_authorizations, :reject_if => proc{ |a| a['workauthorization_index'] == '-1' }
 

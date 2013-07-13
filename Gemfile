@@ -21,7 +21,7 @@ gem 'fastercsv'
 gem 'rails_admin'
 gem 'rake', '10.0.4'
 
-
+gem 'paperclip'
 gem 'redcarpet'
 gem 'albino'
 gem 'nokogiri'
@@ -46,9 +46,6 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem "will_paginate", ">=3.0.pre2"
 gem 'will_paginate_twitter_bootstrap'
-gem 'binding_of_caller', '~> 0.7.1'
-gem 'debug_inspector', '>= 0.0.1'
-gem 'bacon'
 
 gem 'kaminari'
 #gem 'json_builder'
@@ -62,6 +59,10 @@ group :development do
   gem 'webrick'
   gem 'pg'
   gem 'hirb'
+  gem "quiet_assets"
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'webrick'  
 end
 
 group :production do

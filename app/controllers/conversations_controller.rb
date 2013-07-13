@@ -6,7 +6,7 @@ class ConversationsController < ApplicationController
     session[:return_to] ||= request.referer
     recipient_emails = conversation_params(:recipients).split(',')
     recipients = User.where(email: recipient_emails).all
-
+    asdf
     conversation = current_user.send_message(recipients, *conversation_params(:body, :subject)).conversation
     flash[:notice] = "Message Sent"
     redirect_to session[:return_to]

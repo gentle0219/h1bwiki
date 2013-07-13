@@ -1,5 +1,8 @@
 H1bwiki::Application.routes.draw do
 
+  post "applicants/create"
+  post "applicants/destroy"
+
   get "search_employer/h1bemployer"
   get "search_employer/h1bemp_name"
 

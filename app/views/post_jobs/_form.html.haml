@@ -43,12 +43,12 @@
 							%a.duration_type{"data-hours" => "160", "data-type" => "Months", :href => "#"} Months
 			= f.hidden_field :duration_type, :value=>0
 	.control-group.hourly-rate-box{:style=>"display:none;"}
-		= f.label :hourly_rate, "Hourly Rate:($)", :class => 'control-label', :id=>"referral_amount_label"
+		= f.label :hourly_rate, "Hourly Rate:($)", :class => 'control-label'
 		.controls
 			= f.text_field :hourly_rate, :class => 'text_field', :placeholder=>""
 
 	.control-group.salary-box
-		= f.label :salary,"Salary:($)", :class => 'control-label', :id=>"referral_amount_label"
+		= f.label :salary,"Salary:($)", :class => 'control-label'
 		.controls
 			= f.text_field :salary, :class => 'text_field', :placeholder=>""
 			

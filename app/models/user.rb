@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_one :country
   has_many :post_jobs
+  has_many :applicants
+  
   has_many :post_trainings
   has_many :post_mentors
 

@@ -16,6 +16,8 @@ class PostJobsController < ApplicationController
   # GET /post_jobs/1.json
   def show
     @post_job = PostJob.find(params[:id])
+    @applicants = Applicant.new
+    @applicants.pictures.build
     flash[notice] = nil
     respond_to do |format|
       format.html # show.html.erb
