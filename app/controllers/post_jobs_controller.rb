@@ -1,5 +1,5 @@
 class PostJobsController < ApplicationController
-  before_filter :require_login_employer, :except => [ :index ]
+  before_filter :authenticate_user!, :except => [ :index ]
   # GET /post_jobs
   # GET /post_jobs.json
   def index
@@ -18,6 +18,7 @@ class PostJobsController < ApplicationController
     @post_job = PostJob.find(params[:id])
     @applicants = Applicant.new
     @applicants.pictures.build
+    
     flash[notice] = nil
     respond_to do |format|
       format.html # show.html.erb
