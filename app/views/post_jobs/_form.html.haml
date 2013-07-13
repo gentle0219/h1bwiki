@@ -50,7 +50,8 @@
 	.control-group.salary-box
 		= f.label :salary,"Salary:($)", :class => 'control-label', :id=>"referral_amount_label"
 		.controls
-			= f.text_field :salary, :class => 'text_field', :"data-required"=>"true", :placeholder=>""
+			= f.text_field :salary, :class => 'text_field', :placeholder=>""
+			
 	.control-group
 		= f.label :job_city, "City",:class => 'control-label'
 		.controls
