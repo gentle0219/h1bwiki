@@ -1,4 +1,5 @@
 class ApplicantsController < ApplicationController
+	before_filter :require_user
   def create  	
   	@applicant = Applicant.new params[:applicant]  	
   	if @applicant.save
