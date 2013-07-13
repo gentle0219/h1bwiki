@@ -16,21 +16,37 @@
 		.controls
 			.span3{:style=>"margin-left: 0px;"}
 				%label.radio{:style=>"padding-left: 0px;"}
-					= f.radio_button :job_type, 0, :name=>"options", :class=>"post-type", :id=>"radio-1"
+					= f.radio_button :job_type, 0, :name=>"option1", :class=>"post-type", :id=>"radio-1"
 					%label{:for => "radio-1", :class => "first-label checked type-full-time"} Full Time
 			.span2{:style=>"margin-left: 0px;"}
 				%label.radio{:style=>"padding-left: 0px;"}
-					= f.radio_button :job_type, 0, :name=>"options", :class=>"post-type", :id=>"radio-2"
+					= f.radio_button :job_type, 0, :name=>"option1", :class=>"post-type", :id=>"radio-2"
 					%label{:for => "radio-2", :class=>"type-contract"} Contract
-	
+			=f.hidden_field :job_type, :value=>0
+
 	.control-group.duration-box{:style=>"display:none;"}
-		= f.label :job_duration, "Duration",:class => 'control-label'
+		%label.integer.required.control-label{:for => "job_duration"}
+			%abbr{:title => "required"} *
+			Duration
 		.controls
-			= f.text_field :job_duration, :class => 'text_field', "data-required"=>"true", :placeholder=>"please input duration"
+			.input-append				
+				= f.text_field :job_duration, :class => 'text_field', :placeholder=>"Please input duration", :style=>"width: 130px;"
+				.btn-group
+					%button.btn.dropdown-toggle{"data-toggle" => "dropdown", :style=>"padding: 8px 8px"}
+						%span#display_duration_type Hours
+						%span.caret
+					%ul.dropdown-menu
+						%li
+							%a.duration_type{"data-hours" => "1", "data-type" => "Hours", :href => "#"} Hours
+						%li
+							%a.duration_type{"data-hours" => "40", "data-type" => "Weeks", :href => "#"} Weeks
+						%li
+							%a.duration_type{"data-hours" => "160", "data-type" => "Months", :href => "#"} Months
+			= hidden_field_tag "duration_type", "0"
 	.control-group.referral-amount-box
-		= f.label :referral_amount,"Referral Amounts($)", :class => 'control-label'
+		= f.label :referral_amount,"Salary ($)", :class => 'control-label', :id=>"referral_amount_label"
 		.controls
-			= f.text_field :referral_amount, :class => 'text_field', :"data-required" =>"true", :placeholder=>"Input the Referral amount"
+			= f.text_field :referral_amount, :class => 'text_field', :"data-required"=>"true", :placeholder=>""
 	
 	.control-group
 		= f.label :job_city, "City",:class => 'control-label'
@@ -100,17 +116,23 @@
 	$("div.authorization-check-box .controls").eq(3).width("150");
 
 
-	$("label.type-contract").click(function(){
-		$('div.duration-box').show();
-		$('div.referral-amount-box').hide();
-	});
 	$("label.type-full-time").click(function(){
 		$('div.duration-box').hide();
 		$('div.referral-amount-box').show();
+		$('#post_job_job_type').val("0");
+		$('#referral_amount_label').text("Salary: ($)");
 	});
 
-//	= skill.text_field :skill_name, :class => 'text_field large-field'
-//	f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"
-//	%input#btn_post_preview{:type => "button", :vale=>"PRE" }
-//	$(this).children("input[type='checkbox']").insertBefore($(this).children("input[type='hidden']"));
-	
+	$("label.type-contract").click(function(){
+		$('div.duration-box').show();
+		$('div.referral-amount-box').show();
+		$('#referral_amount_label').text("Hourly Rate: ($)");
+		$('#post_job_job_type').val("1");
+	});
+
+	$('ul.dropdown-menu a.duration_type').each(function(index){
+		$(this).click(function(){
+			$("#hidden_search_type").val(index);
+			$("#display_duration_type").text($(this).text());
+		});
+	});
