@@ -25,8 +25,7 @@
 			=f.hidden_field :job_type, :value=>0
 
 	.control-group.duration-box{:style=>"display:none;"}
-		%label.integer.required.control-label{:for => "job_duration"}
-			%abbr{:title => "required"} *
+		%label.integer.control-label{:for => "job_duration"}
 			Duration
 		.controls
 			.input-append				
@@ -43,11 +42,15 @@
 						%li
 							%a.duration_type{"data-hours" => "160", "data-type" => "Months", :href => "#"} Months
 			= f.hidden_field :duration_type, :value=>0
-	.control-group.referral-amount-box
-		= f.label :referral_amount,"Salary ($)", :class => 'control-label', :id=>"referral_amount_label"
+	.control-group.hourly-rate-box{:style=>"display:none;"}
+		= f.label :hourly_rate, "Hourly Rate:($)", :class => 'control-label', :id=>"referral_amount_label"
 		.controls
-			= f.text_field :referral_amount, :class => 'text_field', :"data-required"=>"true", :placeholder=>""
-	
+			= f.text_field :hourly_rate, :class => 'text_field', :placeholder=>""
+
+	.control-group.salary-box
+		= f.label :salary,"Salary:($)", :class => 'control-label', :id=>"referral_amount_label"
+		.controls
+			= f.text_field :salary, :class => 'text_field', :"data-required"=>"true", :placeholder=>""
 	.control-group
 		= f.label :job_city, "City",:class => 'control-label'
 		.controls
@@ -72,6 +75,11 @@
 		= f.label :skill_tokens, "Require Skills",:class => 'control-label'
 		.controls
 			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_job.skill_lists.map(&:attributes).to_json, "data-required"=>"true"
+
+	.control-group.referral-amount-box
+		= f.label :referral_amount,"Referral Amount:($)", :class => 'control-label', :id=>"referral_amount_label"
+		.controls
+			= f.text_field :referral_amount, :class => 'text_field', :"data-required"=>"true", :placeholder=>""
 	
 	= f.submit 'Continue', :class => 'm-btn blue', :id => "btn_post_create", :style=>"font-size: 30px;height: 58px;width: 100%;"
 	.form-actions{:style=>"padding:20px 0"}
@@ -118,15 +126,15 @@
 
 	$("label.type-full-time").click(function(){
 		$('div.duration-box').hide();
-		$('div.referral-amount-box').show();
-		$('#post_job_job_type').val("0");
-		$('#referral_amount_label').text("Salary: ($)");
+		$('div.hourly-rate-box').hide();
+		$('div.salary-box').show();
+		$('#post_job_job_type').val("0");		
 	});
 
 	$("label.type-contract").click(function(){
 		$('div.duration-box').show();
-		$('div.referral-amount-box').show();
-		$('#referral_amount_label').text("Hourly Rate: ($)");
+		$('div.hourly-rate-box').show();
+		$('div.salary-box').hide();
 		$('#post_job_job_type').val("1");
 	});
 

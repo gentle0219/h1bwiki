@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713023926) do
+ActiveRecord::Schema.define(:version => 20130713062210) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -184,6 +184,8 @@ ActiveRecord::Schema.define(:version => 20130713023926) do
     t.datetime "updated_at",      :null => false
     t.integer  "referral_amount"
     t.string   "duration_type"
+    t.string   "salary"
+    t.string   "hourly_rate"
   end
 
   add_index "post_jobs", ["user_id"], :name => "index_post_jobs_on_user_id"
