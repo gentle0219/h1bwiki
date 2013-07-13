@@ -42,7 +42,7 @@
 							%a.duration_type{"data-hours" => "40", "data-type" => "Weeks", :href => "#"} Weeks
 						%li
 							%a.duration_type{"data-hours" => "160", "data-type" => "Months", :href => "#"} Months
-			= hidden_field_tag "duration_type", "0"
+			= f.hidden_field :duration_type, :value=>0
 	.control-group.referral-amount-box
 		= f.label :referral_amount,"Salary ($)", :class => 'control-label', :id=>"referral_amount_label"
 		.controls
@@ -132,7 +132,7 @@
 
 	$('ul.dropdown-menu a.duration_type').each(function(index){
 		$(this).click(function(){
-			$("#hidden_search_type").val(index);
+			$("#post_job_duration_type").val(index);
 			$("#display_duration_type").text($(this).text());
 		});
 	});

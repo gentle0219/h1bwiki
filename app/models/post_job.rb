@@ -10,7 +10,7 @@ schema info
 =end  
 class PostJob < ActiveRecord::Base
 	attr_accessible :user_id, :job_description, :job_title, :job_type, :job_city, :job_state, :job_duration, 
-                  :skills_attributes, :skill_tokens, :work_authorizations_attributes, :authors_names, :referral_amount
+                  :skills_attributes, :skill_tokens, :work_authorizations_attributes, :authors_names, :referral_amount, :duration_type
   belongs_to :user
   has_many :skills, :as => :skillable, :dependent => :destroy
   has_many :skill_lists, :through => :skills
