@@ -18,7 +18,8 @@
 									%table.table.table-striped
 										%thead
 											%tr
-												%th{:width=>"50%"} TITLE
+												%th{:width=>"40%"} TITLE
+												%th{:width=>"10%"} APPLICANTS
 												%th{:width=>"20%"} TYPE
 												%th{:width=>"15%"} CREATED AT
 												%th{:width=>"15%"} ACTIONS
@@ -26,7 +27,8 @@
 											- @post_jobs.each do |post_job|
 												%tr
 													%td= link_to post_job.job_title, edit_post_job_path(post_job), :class=>"link-job-title"
-													%td Jobs Offered
+													%td{:style=>"text-align:center"}= post_job.applicants.count
+													%td{:style=>"text-align:center"} Jobs Offered
 													%td=l post_job.created_at, :format =>"%Y-%m-%d %H:%M"
 													%td
 														= link_to edit_post_job_path(post_job), :class => 'btn btn-mini btn-primary' do
