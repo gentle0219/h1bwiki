@@ -113,9 +113,11 @@
 	$("#applicant_pictures_attributes_0_image").change(function(){
 		console.log("ok?");
 		var file = $(this).val();
-		var i = file.search("txt");
+		var i = file.search(".doc");
 		
-		if( file.search(".doc") == 0 || file.search(".docx") == 0 || file.search(".pdf") == 0 ){
+		console.log(i);
+
+		if( file.search(".doc") != -1 || file.search(".docx") != -1 || file.search(".pdf") != -1 ){
 			return true;
 		}else{
 			alert("Please select *.doc, *.docx, *.pdf.");
@@ -126,7 +128,7 @@
 		
 		var file = $("#applicant_pictures_attributes_0_image").val();
 
-		if( file.search(".doc") == 0 || file.search(".docx") == 0 || file.search(".pdf") == 0 ){
+		if( file.search(".doc") != -1 || file.search(".docx") != -1 || file.search(".pdf") != -1 ){
 			return true;
 		}else{
 			alert("Please select *.doc, *.docx, *.pdf.");
