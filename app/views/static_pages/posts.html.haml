@@ -27,7 +27,8 @@
 											- @post_jobs.each do |post_job|
 												%tr
 													%td= link_to post_job.job_title, edit_post_job_path(post_job), :class=>"link-job-title"
-													%td{:style=>"text-align:center"}= post_job.applicants.count
+													%td{:style=>"text-align:center"}
+														%a{:href=>"/applicants?id="+post_job.id.to_s}= post_job.applicants.count
 													%td{:style=>"text-align:center"} Jobs Offered
 													%td=l post_job.created_at, :format =>"%Y-%m-%d %H:%M"
 													%td
@@ -85,7 +86,7 @@
 :javascript 
 	$('ul.nav-tabs li').eq(2).addClass('isCurrent');
 	$('div.nav-link ul li').eq(1).removeClass('current-tab');
-	$('div.nav-link ul li').eq(0).addClass('current-tab');	
+	$('div.nav-link ul li').eq(0).addClass('current-tab');
 
 	var cur_tab = #{session[:cur_tab].presence || 0}
 	$("#tabs li").each(function(){

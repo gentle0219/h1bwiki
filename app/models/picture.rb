@@ -9,7 +9,7 @@ class Picture < ActiveRecord::Base
 
   validates_attachment_presence :image
   validates_attachment_size :image, :less_than => 5.megabytes
-  validates_format_of :image, :with => %r{\.(docx|doc|pdf|txt)$}i
-  validates_attachment_content_type :image, :content_type => ['text/plain']
+  #validates_format_of :image, :with => %r{\.(docx|doc|pdf|txt)$}i
+  #validates_attachment_content_type :image, :content_type => ['text/plain']
   #validates_attachment_content_type :image, :content_type => ['application/pdf', 'application/msword', 'text/plain']
 end

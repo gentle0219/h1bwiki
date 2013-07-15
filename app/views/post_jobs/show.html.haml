@@ -65,7 +65,6 @@
 				.row.last-row										
 					- if current_user.is_seeker?
 						.span3
-							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_job.job_title}", :type=>"#{user.email}" } Contact
 						.span3
 							%a.btn.apply-button{"data-toggle" => "modal", :href => "#apply_model", :role => "button", :"data-title" => "#{@post_job.job_title}", :type=>"#{user.email}", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
 					- else
@@ -136,3 +135,6 @@
 		}
 		return false;
 	});
+
+/							.span3
+/							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_job.job_title}", :type=>"#{user.email}" } Contact

@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   
   include Mailboxer::Models::Messageable
   acts_as_messageable
+  def full_name
+    [self.first_name, self.last_name].reject(&:blank?).join(" ")
+  end
   def name
     self.to_s
   end
