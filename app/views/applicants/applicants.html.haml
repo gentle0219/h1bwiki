@@ -21,12 +21,13 @@
 			- @applicants.each do |applicant|
 				.row.applicants-item
 					.span8
-						%label= applicant.user.full_name
+						%a{:href=>"#"}= applicant.user.full_name
 						%label= applicant.bid_sentence
-						= link_to applicant.pictures.first.image_file_name, image_path(applicant.pictures.first.image)
+						= link_to applicant.pictures.first.image_file_name, image_path(applicant.pictures.first.image), :class=>"attache_file"
 					.span4
 						%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@job.job_title}", :type=>"#{current_user.email}" } Contact
-
+			.row.last-row{:style=>"text-align:right;"}
+				=will_paginate @applicants, :param_name => 'page_num'
 
 :javascript
 	$('div.nav-link ul li').eq(1).removeClass('current-tab');

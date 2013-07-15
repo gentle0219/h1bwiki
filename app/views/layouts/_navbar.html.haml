@@ -15,7 +15,8 @@
 					%li
 						= link_to( "Post", user_signed_in? ? (employer? ? posts_view_path : jobseeker_posts_path ) : posts_view_path )
 					%li
-						= link_to "Blog", "/blog"
+						= link_to "Blog", "#", :class=>"blog_btn"
+						
 					%li{:style=>"width:165px;"}
 						%a{:href=>"#"} How it Works?
 					%li{:style=>"width:188px;"}
@@ -33,3 +34,7 @@
 /							Messages
 /							- if session["unread_message_count"].present? and session["unread_message_count"] > 0
 /								%span.unread-count= session["unread_message_count"]
+:javascript
+	$("a.blog_btn").click(function(){
+		document.location.href="http://h1bwiki.com/"
+	});

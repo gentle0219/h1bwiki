@@ -55,7 +55,7 @@ class StaticPagesController < ApplicationController
     cond_text, cond_values = [], []
     title = params[:title]
     city = params[:city]
-    if @job_type == '1'
+    if @job_type == '1' or @job_type == '0'
       if title.present?
         cond_text << "job_title = ?"
         cond_values << "#{title}"
