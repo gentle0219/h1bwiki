@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :jobseeker_trainings
   has_many :jobseeker_mentors
   
+  has_one :company
+  has_one :contact
   include Mailboxer::Models::Messageable
   acts_as_messageable
   def full_name

@@ -14,16 +14,11 @@ class JobseekerJob < ActiveRecord::Base
 		IMMIGRATION_STATUS[self.status.to_i]
   end
   
-  def self.search( title, city )
-    cond_text, cond_values = [], []
+  def self.search( title, city )    
     if title.present?
-      cond_text << "title LIKE ?"
-      cond_values << "%#{title}%"
-    end
-    unless cond_text.empty?      
-      all :conditions => [cond_text.join(" AND "), *cond_values], :order => :created_at
+      all :conditions => ["title LIKE ? OR description LIKE ?", title, title], :order => :created_at
     else
-      all
+      []
     end
   end
 end

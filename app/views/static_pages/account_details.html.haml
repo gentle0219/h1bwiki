@@ -1,0 +1,111 @@
+.container-fluid
+	.row.account-details-page
+		.row.first-row
+			.span6
+				%p.page-title PPDM Solutions Inc
+			.span4{:style=>"padding-top: 15px;"}
+				%a.btn.btn-primary{:href=>"/account_setup"} Update Profile
+				%a.btn.btn-success{:href=>edit_user_registration_path} Change Pssword
+		.row.company-info-row
+			.row.head-row
+				%p.item-title Company Info
+			.row
+				.span3
+					%img#uploadPreview{:style=>"width: 150px; height: 150px;margin-left:25px;", :src=>@company.picture.image.url, :alt=>"Image preview"}
+					%br/
+					%br/
+				.span7
+					.control-group
+						%label.control-label Address Line1:
+						.controls
+							%label.res-val= @company.address1
+					.control-group
+						%label.control-label Address Line2:
+						.controls
+							%label.res-val= @company.address2
+					.control-group
+						%label.control-label City:
+						.controls
+							%label.res-val= @company.city
+					.control-group
+						%label.control-label State:
+						.controls
+							%label.res-val= @company.state
+					.control-group
+						%label.control-label Zip:
+						.controls
+							%label.res-val= @company.zip
+					.control-group
+						%label.control-label Country:
+						.controls
+							%label.res-val= @company.country
+					.control-group
+						%label.control-label Website:
+						.controls
+							%label.res-val= @company.website
+		.row.contact-info-row
+			.row.head-row
+				%p.item-title Contact Info
+			.row
+				.span8
+					.control-group
+						%label.control-label Name:
+						.controls
+							%label.res-val= @contact.name
+					.control-group
+						%label.control-label Email:
+						.controls
+							%label.res-val= @contact.email
+					.control-group
+						%label.control-label Phone Number:
+						.controls							
+							%label.res-val= @contact.phone_number
+		.row.company-details-row
+			.row.head-row
+				%p.item-title Company Details
+			.row
+				.span8
+					.control-group
+						%label.control-label Sponsor/Transfer H-1B
+						.controls
+							- if @company.sp_transfer == 'yes'
+								.span3
+									%label.res-val Yes
+							-else
+								.span3
+								.span3								
+									%label.res-val No
+					.control-group
+						%label.control-label Everified:
+						.controls
+							- if @company.everified == 'yes'
+								.span3
+									%label.res-val Yes
+							- else
+								.span3
+								.span3
+									%label.res-val No
+					.control-group
+						%label.control-label Training Provided:
+						.controls
+							- if @company.training_provided == 'yes'
+								.span3
+									%label.res-val Yes
+							- else
+								.span3
+								.span3
+									%label.res-val No
+					.control-group
+						%label.control-label Accommodation:
+						.controls
+							- if @company.accommodation == 'yes'
+								.span3
+									%label.res-val Yes
+							- else
+								.span3
+									%label.res-val No
+					.control-group
+						%label.control-label About:
+						.controls							
+							%label.res-val @company.description
+		

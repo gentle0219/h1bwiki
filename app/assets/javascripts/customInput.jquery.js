@@ -23,7 +23,7 @@ jQuery.fn.customInput = function(){
 			$('<div class="custom-'+ inputType +'"></div>').insertBefore(input).append(input, label);
 			
 			// find all inputs in this set using the shared name attribute
-			var allInputs = $('input[name='+input.attr('name')+']');
+			var allInputs = $('input.'+input.attr('class'));
 			
 			// necessary for browsers that don't support the :hover pseudo class on labels
 			label.hover(

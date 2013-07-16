@@ -19,6 +19,8 @@ class PostJobsController < ApplicationController
     @applicants = Applicant.new
     @applicants.pictures.build
     
+    @applicant = Applicant.where(:user_id=>current_user.id, :post_job_id=>params[:id]).first
+    
     flash[notice] = nil
     respond_to do |format|
       format.html # show.html.erb
@@ -67,6 +69,14 @@ class PostJobsController < ApplicationController
   # PUT /post_jobs/1.json
   def update
     @post_job = PostJob.find(params[:id])
+    
+    if params[:post_job][:job_type] == '0'
+      params[:post_job][:job_duration] = ''
+      params[:post_job][:hourly_rate] = ''
+    else
+      params[:post_job][:salary] = nil
+    end
+    #render :text=>params[:post_job].inspect and return
 
     respond_to do |format|
       if @post_job.update_attributes(params[:post_job])

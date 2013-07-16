@@ -1,6 +1,4 @@
-class StaticPagesController < ApplicationController  
-
-   
+class StaticPagesController < ApplicationController
   def home        
     if user_signed_in?
       if current_user.account_type == "employer"
@@ -57,8 +55,9 @@ class StaticPagesController < ApplicationController
     city = params[:city]
     if @job_type == '1' or @job_type == '0'
       if title.present?
-        cond_text << "job_title = ?"
-        cond_values << "#{title}"
+        cond_text << "(job_title LIKE ? OR job_description LIKE ?)"
+        cond_values << "%#{title}%"
+        cond_values << "%#{title}%"
       end
       if city.present?
         cond_text << "job_city = ?" 
@@ -83,7 +82,7 @@ class StaticPagesController < ApplicationController
       @search_seeker_mentors = JobseekerMentor.find(:all, :order=>"created_at DESC")
     end
 =end
-
+  
     if @search_type == '0'
       if @job_type == '1'
         @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
@@ -102,6 +101,7 @@ class StaticPagesController < ApplicationController
         end        
         @search_emp_jobs = []
       else
+        #render :text=>[cond_text.join(" AND "), *cond_values].inspect and return
         @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_seeker_jobs = JobseekerJob.search(params[:title], params[:city])
       end
@@ -129,4 +129,55 @@ class StaticPagesController < ApplicationController
       end
     end
   end  
+
+  
+  def account_setup
+    redirect_to root_url and return unless current_user.present?
+    @company = current_user.company.present? ? current_user.company : current_user.build_company
+    @contact = current_user.contact.present? ? current_user.contact : current_user.build_contact
+  end
+
+  def update_profile
+    redirect_to root_url and return unless current_user.present?
+    
+    if current_user.company.present?
+      @company = current_user.company
+      @company.update_attributes(params[:company])
+    else
+      @company = current_user.build_company params[:company]
+    end
+    @company.save
+    if current_user.contact.present?
+      @contact = current_user.contact
+      @contact.update_attributes(params[:contact])
+    else
+      @contact = current_user.build_contact params[:contact]
+    end
+    @contact.save
+    #render :text=>@company.inspect and return
+    redirect_to '/account_details' and return
+  end
+
+  def account_details
+    redirect_to root_url and return unless current_user.present?
+    @company = current_user.company
+    @contact = current_user.contact
+  end
+
+  def change_password
+    redirect_to root_url and return unless current_user.present?
+    
+    if request.post? || request.put?
+      render :text=>params.inspect and return
+      if current_user.password == params[:cur_password]
+        current_user.password=params[:new_password]
+        current_user.password_confirmation=params[:confirm_password]
+        current_user.save
+        redirect_to root_url and return
+      else
+        redirect_to :back and return
+      end
+    end    
+  end
+  
 end

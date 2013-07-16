@@ -35,8 +35,7 @@ $(window).resize(function() {
 });
 
 
-$(function(){		
-	$('input[type="radio"]').customInput();
+$(function(){	
 //	$('#authors_names_0').addClass("parsley-validated");
 //	$('#authors_names_0').attr("data-mincheck", "1");
 
