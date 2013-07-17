@@ -57,11 +57,11 @@
 						.control-group
 							%label.control-label "Name:"
 							.controls
-								%input#contact_name.text_field.parsley-validated{:type=>"text", :value=>current_user.full_name, :name=>"contact[name]"}/
+								%input#contact_name.text_field.parsley-validated{:type=>"text", :name=>"contact[name]"}/
 						.control-group
 							%label.control-label "Email:"
 							.controls
-								%input#contact_email.text_field.parsley-validated{:name => "contact[email]", :type => "text", :value => current_user.email}/
+								%input#contact_email.text_field.parsley-validated{:name => "contact[email]", :type => "text"}/
 						.control-group
 							%label.control-label "Phone Number:"
 							.controls
