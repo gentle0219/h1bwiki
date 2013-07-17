@@ -17,12 +17,12 @@
 						%br/
 						%a.file-input-wrapper.btn.undefined.offset2{:style => "cursor: pointer;height: 20px;margin-left: 0;margin-top: 0;"}
 							Upload Logo/Picture
-							%input#company_picture_attributes_image{:name => "company[picture_attributes][image]", :onchange => "loadImageFile();", :size => "5", :style => "margin-top:-45px;opacity: 0;", :type => "file", :"data-required"=>"true"}/
+							%input#company_picture_attributes_image{:name => "company[picture_attributes][image]", :onchange => "loadImageFile();", :size => "5", :style => "margin-top:-45px;opacity: 0;", :type => "file"}/
 					.span7
 						.control-group
 							= f.label "Address Line1:",:class => 'control-label'
 							.controls
-								= f.text_field :address1, :class => 'text_field long-text', :"data-required"=>"true"
+								= f.text_field :address1, :class => 'text_field long-text'
 								%small Street address, P.O. box, company name, c/o
 						.control-group
 							= f.label "Address Line2:",:class => 'control-label'
@@ -32,19 +32,19 @@
 						.control-group
 							= f.label "City:",:class => 'control-label'
 							.controls
-								= f.text_field :city, :class => 'text_field', :"data-required"=>"true"
+								= f.text_field :city, :class => 'text_field'
 						.control-group
 							= f.label "State:",:class => 'control-label'
 							.controls
-								= f.text_field :state, :class => 'text_field', :"data-required"=>"true"
+								= f.text_field :state, :class => 'text_field'
 						.control-group
 							= f.label "Zip:",:class => 'control-label'
 							.controls
-								= f.text_field :zip, :class => 'text_field', :"data-required"=>"true"
+								= f.text_field :zip, :class => 'text_field'
 						.control-group
 							= f.label "Country:",:class => 'control-label'
 							.controls
-								= f.text_field :country, :class => 'text_field', :"data-required"=>"true"
+								= f.text_field :country, :class => 'text_field'
 						.control-group
 							= f.label "Website:",:class => 'control-label'
 							.controls
@@ -57,15 +57,15 @@
 						.control-group
 							%label.control-label "Name:"
 							.controls
-								%input#contact_name.text_field.parsley-validated{:type=>"text", :value=>current_user.full_name, :name=>"contact[name]", :"data-required"=>"true"}/
+								%input#contact_name.text_field.parsley-validated{:type=>"text", :value=>current_user.full_name, :name=>"contact[name]"}/
 						.control-group
 							%label.control-label "Email:"
 							.controls
-								%input#contact_email.text_field.parsley-validated{:"data-required" => "true", :name => "contact[email]", :type => "text", :value => current_user.email}/
+								%input#contact_email.text_field.parsley-validated{:name => "contact[email]", :type => "text", :value => current_user.email}/
 						.control-group
 							%label.control-label "Phone Number:"
 							.controls
-								%input#contact_phone_number.text_field.parsley-validated{:"data-required" => "true", :name => "contact[phone_number]", :type => "text"}/
+								%input#contact_phone_number.text_field.parsley-validated{:name => "contact[phone_number]", :type => "text"}/
 			.row.company-details-row
 				.row.head-row
 					%p.item-title Company Details
@@ -166,6 +166,7 @@
 		oFReader.readAsDataURL(oFile);
 	}
 	
+	/*
 	$("#company_info_form").submit(function(){
 		console.log("SUBMIT");
 		var selected_option = false
@@ -184,3 +185,4 @@
 		}
 		return selected_option;
 	});
+	*/

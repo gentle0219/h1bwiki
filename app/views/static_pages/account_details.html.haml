@@ -72,7 +72,7 @@
 							- if @company and @company.sp_transfer == 'yes' 
 								.span3
 									%label.res-val Yes
-							-else
+							-elsif @company and @company.sp_transfer == 'no'
 								.span3
 								.span3								
 									%label.res-val No
@@ -82,7 +82,7 @@
 							- if @company and @company.everified == 'yes'
 								.span3
 									%label.res-val Yes
-							- else
+							- elsif @company and @company.everified == 'no'
 								.span3
 								.span3
 									%label.res-val No
@@ -92,7 +92,7 @@
 							- if @company and @company.training_provided == 'yes'
 								.span3
 									%label.res-val Yes
-							- else
+							- elsif @company and @company.training_provided == 'no'
 								.span3
 								.span3
 									%label.res-val No
@@ -102,7 +102,7 @@
 							- if @company and @company.accommodation == 'yes'
 								.span3
 									%label.res-val Yes
-							- else
+							- elsif @company and @company.accommodation == 'no'
 								.span3
 								.span3
 									%label.res-val No
