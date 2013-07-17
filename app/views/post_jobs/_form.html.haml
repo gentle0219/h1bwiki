@@ -90,7 +90,8 @@
 
 :javascript 
 	$('ul.nav-tabs li').eq(2).addClass('isCurrent');
-	
+	$('input.post-type').customInput();
+
 	$( "#post_job_job_city" ).autocomplete({
 		source: function (request, response) {
 			$.ajax({
@@ -145,3 +146,22 @@
 			$("#display_duration_type").text($(this).text());
 		});
 	});
+
+	$(function(){
+
+		var job_type = "#{@post_job.job_type}";
+		if(job_type=="1"){
+			$('div.duration-box').show();
+			$('div.hourly-rate-box').show();
+			$('div.salary-box').hide();
+			$('#post_job_job_type').val("1");
+
+			$("#radio-1").prop('checked',false);
+			$("#radio-2").prop('checked',true);
+
+			$("#radio-1").next().removeClass('checked');
+			$("#radio-2").next().addClass('checked');
+
+		}
+	})
+	
