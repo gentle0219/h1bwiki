@@ -52,11 +52,11 @@
 					.control-group
 						%label.control-label Name:
 						.controls
-							%label.res-val= @contact.name if @contact
+							%label.res-val= @contact.present? ? @contact.name : current_user.user_name
 					.control-group
 						%label.control-label Email:
 						.controls
-							%label.res-val= @contact.email if @contact
+							%label.res-val= @contact.present? ? @contact.email : current_user.email
 					.control-group
 						%label.control-label Phone Number:
 						.controls							
