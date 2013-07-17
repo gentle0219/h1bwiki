@@ -12,8 +12,8 @@
       
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal", "data-validate" => "parsley" }) do |f| %>
         <%= devise_error_messages! %>
-        
-        <div class="control-group">
+        <% if session[:account_type] == "jobseeker" %>
+          <div class="control-group">
               <%= f.label "First Name", :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :first_name, :autofocus => true, :placeholder => "first name" %>
@@ -26,6 +26,7 @@
                 <%= f.text_field :last_name, :placeholder => "last name" %>
               </div>
             </div>
+        <% end %>
             <% if session[:account_type] != "jobseeker" %>
              <div class="control-group">
                 <%= f.label "Company Name", :class => "control-label" %>
@@ -47,32 +48,7 @@
                   <%= f.select(:immigration_status,[['H-1B',1],['OPT',2],['L1/L2',3],['H4',4],['None',5]] )%>
                 </div>
               </div>
-            <% else %>
-              <div class="control-group">
-                <%= f.label "Address1", :class => "control-label" %>
-                <div class="controls">
-                  <%= f.text_field :address1, :placeholder => "address1" %>
-                </div>
-              </div>
-              <div class="control-group">
-                <%= f.label "Address2", :class => "control-label" %>
-                <div class="controls">
-                  <%= f.text_field :address2, :placeholder => "address1" %>
-                </div>
-              </div>
             <% end %>      
-            <div class="control-group">
-              <%= f.label "City", :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :city, :placeholder => "City Name" %>
-              </div>
-            </div>
-            <div class="control-group">
-              <%= f.label "Country Name", :class => "control-label" %>
-              <div class="controls">
-                <%= f.select(:country_id, options_from_collection_for_select(Country.all, :id, :name, 0 )) %>
-              </div>
-            </div>
             <div class="control-group">
               <%= f.label "User Name", :class => "control-label" %>
               <div class="controls">
@@ -91,14 +67,15 @@
               <div class="controls">
                 <%= f.password_field :password_confirmation, "data-required"=>"true", "data-rangelength"=>"[8,25]" %>
               </div>
-            </div>          
+            </div>
+          <% if session[:account_type] == "jobseeker" %>  
             <div class="control-group">
               <label class="control-label">Enter the Code Shown</label>
               <div class="controls">
                <%= recaptcha_tags %>   
               </div>
             </div>
-
+          <% end %>  
          		<% if session[:account_type] == "jobseeker" %>
               <input type="hidden" name="user[account_type]" id="user_account_type" value="jobseeker">
             <% else %>

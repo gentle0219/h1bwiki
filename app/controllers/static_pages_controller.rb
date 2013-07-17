@@ -164,20 +164,24 @@ class StaticPagesController < ApplicationController
     @contact = current_user.contact
   end
 
-  def change_password
+  def change_passwd
     redirect_to root_url and return unless current_user.present?
-    
-    if request.post? || request.put?
-      render :text=>params.inspect and return
-      if current_user.password == params[:cur_password]
-        current_user.password=params[:new_password]
-        current_user.password_confirmation=params[:confirm_password]
-        current_user.save
-        redirect_to root_url and return
-      else
-        redirect_to :back and return
-      end
-    end    
   end
   
+  def reset_passwd
+    redirect_to root_url and return unless current_user.present?
+    user = User.find(current_user.id)
+=begin    
+    if user.password == params[:cur_pass]
+      current_user.password=params[:new_pass]
+      current_user.password_confirmation=params[:conf_pass]
+      current_user.save
+      flash[:notice] = "Your password was changed successfuly"
+      redirect_to root_url and return
+    else
+      flash[:notice] = "Please check current password"
+      redirect_to :back and return
+    end
+=end      
+  end
 end

@@ -71,8 +71,8 @@ H1bwiki::Application.routes.draw do
   get "account_setup" => "static_pages#account_setup"
   get "account_details" => "static_pages#account_details"
   match "update_profile" => "static_pages#update_profile"
-  match "change_password" => "static_pages#change_password"
-  
+  match "change_passwd" => "static_pages#change_passwd"
+  match "reset_passwd" => "static_pages#reset_passwd"
   
   match 'signup' => 'static_pages#signup'
   root :to => "static_pages#home"

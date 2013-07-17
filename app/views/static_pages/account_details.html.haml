@@ -5,7 +5,7 @@
 				%p.page-title PPDM Solutions Inc
 			.span4{:style=>"padding-top: 15px;"}
 				%a.btn.btn-primary{:href=>"/account_setup"} Update Profile
-				%a.btn.btn-success{:href=>edit_user_registration_path} Change Pssword
+				%a.btn.btn-success{:href=>"/change_passwd"} Change Pssword
 		.row.company-info-row
 			.row.head-row
 				%p.item-title Company Info
@@ -106,6 +106,6 @@
 									%label.res-val No
 					.control-group
 						%label.control-label About:
-						.controls							
-							%label.res-val @company.description
+						.controls
+							%label.res-val= @company.description
 		
