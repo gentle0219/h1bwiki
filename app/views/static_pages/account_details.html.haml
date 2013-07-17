@@ -11,38 +11,39 @@
 				%p.item-title Company Info
 			.row
 				.span3
-					%img#uploadPreview{:style=>"width: 150px; height: 150px;margin-left:25px;", :src=>@company.picture.image.url, :alt=>"Image preview"}
+					- if @company.present? and @company.picture.present?
+						%img#uploadPreview{:style=>"width: 150px; height: 150px;margin-left:25px;", :src=>@company.picture.image.url, :alt=>"Image preview"}
 					%br/
 					%br/
 				.span7
 					.control-group
 						%label.control-label Address Line1:
 						.controls
-							%label.res-val= @company.address1
+							%label.res-val= @company.address1 if @company
 					.control-group
 						%label.control-label Address Line2:
 						.controls
-							%label.res-val= @company.address2
+							%label.res-val= @company.address2 if @company
 					.control-group
 						%label.control-label City:
 						.controls
-							%label.res-val= @company.city
+							%label.res-val= @company.city if @company
 					.control-group
 						%label.control-label State:
 						.controls
-							%label.res-val= @company.state
+							%label.res-val= @company.state if @company
 					.control-group
 						%label.control-label Zip:
 						.controls
-							%label.res-val= @company.zip
+							%label.res-val= @company.zip if @company
 					.control-group
 						%label.control-label Country:
 						.controls
-							%label.res-val= @company.country
+							%label.res-val= @company.country if @company
 					.control-group
 						%label.control-label Website:
 						.controls
-							%label.res-val= @company.website
+							%label.res-val= @company.website if @company
 		.row.contact-info-row
 			.row.head-row
 				%p.item-title Contact Info
@@ -51,15 +52,15 @@
 					.control-group
 						%label.control-label Name:
 						.controls
-							%label.res-val= @contact.name
+							%label.res-val= @contact.name if @contact
 					.control-group
 						%label.control-label Email:
 						.controls
-							%label.res-val= @contact.email
+							%label.res-val= @contact.email if @contact
 					.control-group
 						%label.control-label Phone Number:
 						.controls							
-							%label.res-val= @contact.phone_number
+							%label.res-val= @contact.phone_number if @contact
 		.row.company-details-row
 			.row.head-row
 				%p.item-title Company Details
@@ -68,7 +69,7 @@
 					.control-group
 						%label.control-label Sponsor/Transfer H-1B
 						.controls
-							- if @company.sp_transfer == 'yes'
+							- if @company and @company.sp_transfer == 'yes' 
 								.span3
 									%label.res-val Yes
 							-else
@@ -78,7 +79,7 @@
 					.control-group
 						%label.control-label Everified:
 						.controls
-							- if @company.everified == 'yes'
+							- if @company and @company.everified == 'yes'
 								.span3
 									%label.res-val Yes
 							- else
@@ -88,7 +89,7 @@
 					.control-group
 						%label.control-label Training Provided:
 						.controls
-							- if @company.training_provided == 'yes'
+							- if @company and @company.training_provided == 'yes'
 								.span3
 									%label.res-val Yes
 							- else
@@ -98,14 +99,15 @@
 					.control-group
 						%label.control-label Accommodation:
 						.controls
-							- if @company.accommodation == 'yes'
+							- if @company and @company.accommodation == 'yes'
 								.span3
 									%label.res-val Yes
 							- else
+								.span3
 								.span3
 									%label.res-val No
 					.control-group
 						%label.control-label About:
 						.controls
-							%label.res-val= @company.description
+							%label.res-val= @company.description if @company
 		
