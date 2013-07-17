@@ -22,7 +22,11 @@
 					%li{:style=>"width:188px;"}
 						.btn-group
 							- if user_signed_in?
-								= link_to "My Account", "/account_details", :class=>"btn btn-first", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 85px;"
+								- if current_user.account_type == "jobseeker"
+									= link_to "My Account", "#", :class=>"btn btn-first", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 85px;"
+								- else
+									= link_to "My Account", "/account_details", :class=>"btn btn-first", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 85px;"
+
 								= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class=>"btn btn-second", :style=>"padding-left: 10px;font-size:16px;padding-right: 10px;padding-top: 10px;width: 65px;"
 							- else
 								= link_to "LOGIN", new_user_session_path, :class=>"btn btn-first", :style=>"padding-left: 10px;font-size:16px;padding-right: 10px;padding-top: 10px;width: 53px;"

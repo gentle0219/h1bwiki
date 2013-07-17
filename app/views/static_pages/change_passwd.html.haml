@@ -1,6 +1,6 @@
 .container-fluid
 	.row.change-password-page
-		%form{:action=>"/reset_passwd", :method=>"put", :"data-validate" => "parsley"}
+		%form{:action=>"#", :method=>"put", :"data-validate" => "parsley", :id=>"change_password_form"}
 			.row.first-row
 				.span6
 					%p.page-title PPDM Solutions Inc
@@ -25,4 +25,13 @@
 							.controls
 								%input{:type=>"password", :name=>"conf_pass", :"data-required"=>"true"}
 					.row{:style=>"border-top:solid 1px #aaa; padding: 15px 0;text-align: center;"}
-						%input.btn{:type=>"submit", :value=>"Save changes"}
+						%input#submit_btn.btn{:type=>"button", :value=>"Save changes"}
+:javascript
+	$("#submit_btn").click(function(){
+		console.log("OK?");
+		
+	});
+	$("#change_password_form").submit(function(){
+		console.log("OK?");
+		return false;
+	})
