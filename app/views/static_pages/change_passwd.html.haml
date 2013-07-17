@@ -33,7 +33,7 @@
 		var cur_pass = $("#cur_pass").val();
 		var new_pass = $("#new_pass").val();
 		var con_pass = $("#con_pass").val();
-
+		var state = "false";
 		$.ajax({
 			url :url,
 			beforeSend : function(xhr) {
@@ -42,11 +42,21 @@
 			type: "POST",
 			data: 'cur_pass='+cur_pass+'&new_pass='+new_pass+'&con_pass='+con_pass,
 			dataType:'script',
-			success :function(){
-				console.log("success");
+			success :function(data){
+				state = "true";
+				console.log("done");
+				document.location.href="/"
+			},
+			error :function(data){
+				console.log("fail");
+				document.location.href="/change_passwd"
 			}
 		});
-		return false
+		
+		
+		//document.location.href="/";
+
+		return false;
 	});
 
 

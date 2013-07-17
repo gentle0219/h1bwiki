@@ -168,21 +168,20 @@ class StaticPagesController < ApplicationController
     redirect_to root_url and return unless current_user.present?
   end
   
-  def reset_passwd    
+  def reset_passwd
     redirect_to root_url and return unless current_user.present?
     user = User.find(current_user.id)
-
     if user && user.valid_password?(params[:cur_pass])
-
       user.password=params[:new_pass]
       user.password_confirmation=params[:conf_pass]
       user.save
+      sign_in(:user, user)
       flash[:notice] = "Your password was changed successfuly"
-      redirect_to root_url and return
+      render :nothing => true, :status=>200 and return
     else
       flash[:notice] = "Please check current password"
-      redirect_to :back and return
+      render :nothing => true, :status=>409 and return
     end
-
+    render :nothing => true, :status=>409 and return
   end
 end
