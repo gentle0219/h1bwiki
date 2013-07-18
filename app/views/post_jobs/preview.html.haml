@@ -73,6 +73,11 @@
 					.span8
 						-@post_job.skill_lists.each do |skill_name|
 							%a.h1bwiki-skill{:href=>"#"}=skill_name.name
-				
+				.row
+					.span3
+						%strong 
+							Referral Amount: 
+					.span8
+						%label= @post_job.refe_amount
 	:javascript 
 		$('ul.nav-tabs li').eq(1).addClass('isCurrent');
