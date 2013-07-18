@@ -47,7 +47,7 @@ class StaticPagesController < ApplicationController
   def search_home    
     
     @search_emp_jobs, @search_seeker_jobs, @search_emp_trainings, @search_seeker_trainings, @search_emp_mentors, @search_seeker_mentors = [],[],[],[],[],[]
-
+    @search_skill_res = []
     @search_type = params[:search_type].blank? ? 0 : params[:search_type]
     @job_type = params[:type]
     cond_text, cond_values = [], []
