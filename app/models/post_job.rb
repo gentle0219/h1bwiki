@@ -82,4 +82,8 @@ class PostJob < ActiveRecord::Base
   def refe_amount
     ActionController::Base.helpers.number_to_currency(self.referral_amount)
   end
+  def salary_amount
+    ActionController::Base.helpers.number_to_currency(self.salary)
+  end
+  
 end

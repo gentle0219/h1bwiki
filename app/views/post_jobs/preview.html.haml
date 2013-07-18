@@ -16,6 +16,27 @@
 							Job Type: 
 					.span8
 						%span=@post_job.get_jobtype
+				- if @post_job.job_type == 0
+					.row
+						.span3
+							%strong 
+								Salary ($): 
+						.span8
+							%label= @post_job.salary_amount
+				- else
+					.row
+						.span3
+							%strong 
+								Duration(hours): 
+						.span8
+							%label= @post_job.job_duration
+					.row
+						.span3
+							%strong 
+								Referral Amount: 
+						.span8
+							%label= @post_job.refe_amount					
+
 				.row
 					.span3
 						%strong 
@@ -27,13 +48,7 @@
 						%strong 
 							State: 
 					.span8
-						%label= @post_job.job_state
-				.row
-					.span3
-						%strong 
-							Duration: 
-					.span8
-						%label= @post_job.job_duration
+						%label= @post_job.job_state				
 				.row
 					.span3
 						%strong 

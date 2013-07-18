@@ -6,9 +6,9 @@
     %tr
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:user_id)
-      %th= model_class.human_attribute_name(:title)
+      %th= model_class.human_attribute_name(:job_title)
       %th= model_class.human_attribute_name(:support)
-      %th= model_class.human_attribute_name(:description)
+      %th= model_class.human_attribute_name(:job_description)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
@@ -16,9 +16,9 @@
       %tr
         %td= link_to jobseeker_mentor.id, jobseeker_mentor_path(jobseeker_mentor)
         %td= jobseeker_mentor.user_id
-        %td= jobseeker_mentor.title
+        %td= jobseeker_mentor.job_title
         %td= jobseeker_mentor.support
-        %td= jobseeker_mentor.description
+        %td= jobseeker_mentor.job_description
         %td=l jobseeker_mentor.created_at
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_jobseeker_mentor_path(jobseeker_mentor), :class => 'btn btn-mini'

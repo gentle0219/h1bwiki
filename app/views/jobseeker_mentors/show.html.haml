@@ -4,7 +4,7 @@
 			.span10.post-jobs-show-box
 				.row
 					.span10
-						%h1= @jobseeker_mentor.title
+						%h1= @jobseeker_mentor.job_title
 				.row
 					- user = User.find_by_id(@jobseeker_mentor.user_id)
 					%p.company-name 
@@ -20,7 +20,7 @@
 						%strong 
 							Description: 
 					.span8
-						%label= @jobseeker_mentor.description		 
+						%label= @jobseeker_mentor.job_description		 
 				.row.last-row
 					.span2.offset3
 						-if current_user.present?

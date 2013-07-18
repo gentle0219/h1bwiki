@@ -9,7 +9,7 @@
 			.span10.post-jobs-show-box
 				.row
 					.span10
-						%h1= @jobseeker_training.title
+						%h1= @jobseeker_training.job_title
 				.row
 					.span3
 						%strong 
@@ -46,7 +46,7 @@
 						%strong 
 							Description: 
 					.span8
-						%label= @jobseeker_training.description			
+						%label= @jobseeker_training.job_description			
 			
 :javascript 
 	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

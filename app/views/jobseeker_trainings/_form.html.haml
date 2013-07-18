@@ -1,9 +1,9 @@
 = form_for @jobseeker_training, :html => { :class => 'form-horizontal', 'data-validate' => 'parsley', :id => 'job_post_form' } do |f|
 	= f.hidden_field :user_id, :value=>current_user.id
 	.control-group
-		= f.label :title, 'Title:', :class => 'control-label'
+		= f.label :job_title, 'Title:', :class => 'control-label'
 		.controls
-			= f.text_field :title, :class => 'text_field large-field', 'data-required'=>'true', 'data-rangelength'=>'[5,50]'
+			= f.text_field :job_title, :class => 'text_field large-field', 'data-required'=>'true', 'data-rangelength'=>'[5,50]'
 	.control-group
 		= f.label :status, 'Immigration Status:', :class => 'control-label'
 		.controls.custom-select		 
@@ -25,9 +25,9 @@
 		.controls.custom-select
 			= f.select(:accomodation,[['Yes',1],['No',0]] )
 	.control-group
-		= f.label :description, 'Description:', :class => 'control-label'
+		= f.label :job_description, 'Description:', :class => 'control-label'
 		.controls
-			= f.text_area :description, :class => 'text_area', :rows => '5', 'data-required'=>'true', 'data-rangelength'=>'[5,250]'
+			= f.text_area :job_description, :class => 'text_area', :rows => '5', 'data-required'=>'true', 'data-rangelength'=>'[5,250]'
 	.form-actions
 		= link_to( '< Back ', jobseeker_post_main_path, :class => "m-btn" ) 
 		= f.submit 'Submit', :class => 'm-btn blue', :id => "btn_post_create"

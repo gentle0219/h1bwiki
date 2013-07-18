@@ -55,40 +55,28 @@ class StaticPagesController < ApplicationController
     city = params[:city]
     if @job_type == '1' or @job_type == '0'
       if title.present?
-        cond_text << "(job_title LIKE ? OR job_description LIKE ?)"
+        cond_text << "(lower(job_title) LIKE lower(?) OR lower(job_description) LIKE lower(?))"
         cond_values << "%#{title}%"
         cond_values << "%#{title}%"
       end
       if city.present?
-        cond_text << "job_city = ?" 
+        cond_text << "lower(job_city) = lower(?)" 
         cond_values << "#{city}"
       end
     elsif @job_type =='2'
       if title.present?
-        cond_text << "title LIKE ?"
-        cond_values << "#{title}"
+        cond_text << "(lower(job_title) LIKE lower(?) OR lower(job_description) LIKE lower(?))"
+        cond_values << "%#{title}%"
+        cond_values << "%#{title}%"
       end      
     end
 
-=begin
-    if params[:search_type].blank?
-      @search_emp_jobs = PostJob.find(:all, :order=>"created_at DESC")
-      @search_seeker_jobs = JobseekerJob.find(:all, :order=>"created_at DESC")
-      
-      @search_emp_trainings = PostTraining.find(:all, :order=>"created_at DESC")
-      @search_seeker_trainings = JobseekerTraining.find(:all, :order=>"created_at DESC")
-      
-      @search_emp_mentors = PostMentor.find(:all, :order=>"created_at DESC")
-      @search_seeker_mentors = JobseekerMentor.find(:all, :order=>"created_at DESC")
-    end
-=end
-  
+
     if @search_type == '0'
       if @job_type == '1'
         @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-        #@search_emp_jobs = PostJob.find(:all, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_skill_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_jobs.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
         @search_seeker_jobs = []
-#render :text => @search_emp_jobs.inspect and return
       elsif @job_type == '2'
         if city.present?
           city = "%" + city + "%"
@@ -100,12 +88,14 @@ class StaticPagesController < ApplicationController
           @search_seeker_jobs = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         end        
         @search_emp_jobs = []
-      else
-        #render :text=>[cond_text.join(" AND "), *cond_values].inspect and return
+        @search_skill_res =[]
+      else        
         @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_skill_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_jobs.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
         @search_seeker_jobs = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '1'
+      @search_skill_res =[]
       if @job_type == '1'
         @search_emp_trainings = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_seeker_trainings = []
@@ -117,6 +107,7 @@ class StaticPagesController < ApplicationController
         @search_seeker_trainings = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '2'
+      @search_skill_res =[]
       if @job_type == '1'
         @search_emp_mentors = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_seeker_mentors = []
@@ -128,6 +119,7 @@ class StaticPagesController < ApplicationController
         @search_seeker_mentors = JobseekerMentor.paginate(:page => params[:page_num], :per_page => 5, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
       end
     end
+
   end  
 
   
