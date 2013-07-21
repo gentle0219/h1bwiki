@@ -20,7 +20,7 @@
 					.row
 						.span3
 							%strong 
-								Salary ($): 
+								Salary: ($)
 						.span8
 							%label= @post_job.salary_amount
 				- else
@@ -33,7 +33,7 @@
 					.row
 						.span3
 							%strong 
-								Referral Amount: 
+								Hourly Rate: ($) 
 						.span8
 							%label= @post_job.refe_amount					
 
@@ -53,7 +53,7 @@
 					.span3
 						%strong 
 							Work Authorization: 
-					.span8					
+					.span8
 						-@post_job.work_authorizations.each do |autho|
 							.row
 								.span1
@@ -64,7 +64,7 @@
 					.span3
 						%strong 
 							Description: 
-					.span8						
+					.span8
 						%label= markdown(@post_job.job_description)
 				.row
 					.span3
