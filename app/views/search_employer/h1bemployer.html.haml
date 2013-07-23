@@ -25,8 +25,9 @@
 									%a{"data-toggle" => "tab", :href => "#h1b_gcstats"} H-1B / GC Stats
 								%li
 									%a{"data-toggle" => "tab", :href => "#top_jobs"} Top Jobs
-								%li
-									%a{"data-toggle" => "tab", :href => "#reviews"} Reviews
+								- if current_user.present? and current_user.is_seeker?
+									%li
+										%a{"data-toggle" => "tab", :href => "#reviews"} Reviews
 							#my-tab-content.tab-content
 								#overview.tab-pane.active
 									.span12.search-conditions-box
@@ -118,60 +119,62 @@
 																%td=t_avg_data[1]
 																%td=t_avg_data[2]
 																%td=t_avg_data[3]
-								#reviews.tab-pane
-									.span12.reviews
-										.row
-											.review-title
-												%p Employer Review
-										.row
-											.span3
-												=@search_h1bemp.employername
-											.span2.average-rate
-												=ratings_for @search_h1bemp, :static, :dimension=>:company, :remote_options =>{:url => rate_search_employer_path(@search_h1bemp)}
-											.span2
-												%label
-													(
-													=@search_h1bemp.rates("company").count
-													reviews)
-											.span2
-												%a.m-btn.blue.write-review{"data-toggle" => "modal", :href => "#write_reviews", :role => "button", :style=>"margin-top: 0px;"} Write a Review
-										.row
-											#emp_reviews
-												-@reviews.each do |review|
-													.row.review
-														.row
-															.title
-																%p Title
-														.row
-															.span3
-																-width = @search_h1bemp.rate_by(User.find(review.user_id), "company").stars.to_i*20
+								- if current_user.present? and current_user.is_seeker?
+									#reviews.tab-pane
+										.span12.reviews
+											.row
+												.review-title
+													%p Employer Review
+											.row
+												.span3
+													=@search_h1bemp.employername
+												.span2.average-rate
+													=ratings_for @search_h1bemp, :static, :dimension=>:company, :remote_options =>{:url => rate_search_employer_path(@search_h1bemp)}
+												.span2
+													%label
+														(
+														=@search_h1bemp.rates("company").count
+														reviews)
+												.span2
+													%a.m-btn.blue.write-review{"data-toggle" => "modal", :href => "#write_reviews", :role => "button", :style=>"margin-top: 0px;"} Write a Review
+											.row
+												#emp_reviews
+													-@reviews.each do |review|
+														.row.review
+															.row
+																.title
+																	%p Title
+															.row
+																.span3
+																	-width = @search_h1bemp.rate_by(User.find(review.user_id), "company").stars.to_i*20
+																	-if user_signed_in? and review.user_id == current_user.id
+																		%ul.ajaxful-rating
+																			%li.show-value{:class=>"current-#{current_user.id}", :style=>"width: #{width.to_s}%"}
+																	-else	
+																		%ul.ajaxful-rating
+																			%li.show-value{:style=>"width: #{width.to_s}%"}
+															.row
+																.span10
+																	.span3.paid{:style=>"border: 1px solid; border-right: none; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
+																		%p.item-name
+																			Paid On Time - 
+																			=review.paidontime
+																	.span3.placement{:style=>"border: 1px solid; border-right: none; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
+																		%p.item-name
+																			Placements - 
+																			=review.placement
+																	.span4.legal{:style=>"border: 1px solid; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
+																		%p.item-name
+																			H-1B/Legal Support -
+																			=review.legal
+															.row
 																-if user_signed_in? and review.user_id == current_user.id
-																	%ul.ajaxful-rating
-																		%li.show-value{:class=>"current-#{current_user.id}", :style=>"width: #{width.to_s}%"}
-																-else	
-																	%ul.ajaxful-rating
-																		%li.show-value{:style=>"width: #{width.to_s}%"}
-														.row
-															.span10
-																.span3.paid{:style=>"border: 1px solid; border-right: none; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
-																	%p.item-name
-																		Paid On Time - 
-																		=review.paidontime
-																.span3.placement{:style=>"border: 1px solid; border-right: none; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
-																	%p.item-name
-																		Placements - 
-																		=review.placement
-																.span4.legal{:style=>"border: 1px solid; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
-																	%p.item-name
-																		H-1B/Legal Support -
-																		=review.legal
-														.row
-															-if user_signed_in? and review.user_id == current_user.id
-																.comments{:class=>"comment-user#{current_user.id}"}
-																	=@search_h1bemp.root_comments.where(:user_id=>review.user_id).first.body.presence if @search_h1bemp.root_comments.where(:user_id=>review.user_id).first.present?
-															-else
-																.comments
-																	=@search_h1bemp.root_comments.where(:user_id=>review.user_id).first.body.presence if @search_h1bemp.root_comments.where(:user_id=>review.user_id).first.present?
+																	.comments{:class=>"comment-user#{current_user.id}"}
+																		=@search_h1bemp.root_comments.where(:user_id=>review.user_id).first.body.presence if @search_h1bemp.root_comments.where(:user_id=>review.user_id).first.present?
+																-else
+																	.comments
+																		=@search_h1bemp.root_comments.where(:user_id=>review.user_id).first.body.presence if @search_h1bemp.root_comments.where(:user_id=>review.user_id).first.present?
+
 -if @search_h1bemp.present?
 	#write_reviews.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "write_review", :role => "dialog", :tabindex => "-1"}
 		.span10.offset1.reviews
@@ -320,7 +323,7 @@
 	var paid_time="#{@review.paidontime.presence || 'No' if user_signed_in? and @search_h1bemp.present? and @review.present? }"
 	var placement="#{@review.placement.presence || 'Bad' if user_signed_in? and @search_h1bemp.present? and @review.present? }"
 	var legal="#{@review.legal.presence || 'Bad' if user_signed_in? and @search_h1bemp.present? and @review.present? }"
-	console.log(legal);
+	// console.log(legal);
 	$("a.post-comment").click(function(){
 		var url_ajax = $("#comment_form").attr("action");
 		var content = $("#comment").val();
