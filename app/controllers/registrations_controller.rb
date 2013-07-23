@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
 		session[:account_type] = 'employer'
 	end
 	def create
-		if session[:account_type] == "jobseeker"
+		if session[:account_type] == "false"
 			if verify_recaptcha
 				super
 			else

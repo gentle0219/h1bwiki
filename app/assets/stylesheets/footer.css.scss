@@ -39,10 +39,18 @@
 				label.orange{
 					color: #ef831e;
 				}
+				.pluginSkinLight{
+					a.uiLinkSubtle{
+						color: whtie;
+					}				
+				}
 				.face-boook-content{
 					height: 250px;
 					border: solid 1px #eeeff4; 
 					margin-top: 13px;
+					a, p, label, span{
+						color: white;
+					}
 					.head{
 						background-color: #eeeff4;
 						padding:5px;

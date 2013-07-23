@@ -1,5 +1,5 @@
 class PostJobsController < ApplicationController
-  before_filter :authenticate_user!, :except => [ :index ]
+  before_filter :authenticate_user!, :except => [ :index, :show ]
   # GET /post_jobs
   # GET /post_jobs.json
   def index
@@ -19,7 +19,7 @@ class PostJobsController < ApplicationController
     @applicants = Applicant.new
     @applicants.pictures.build
     
-    @applicant = Applicant.where(:user_id=>current_user.id, :post_job_id=>params[:id]).first
+    @applicant = Applicant.where(:user_id=>current_user.id, :post_job_id=>params[:id]).first if current_user
     
     flash[notice] = nil
     respond_to do |format|
@@ -45,7 +45,7 @@ class PostJobsController < ApplicationController
   def edit
     @post_job = PostJob.find(params[:id])
     @post_job.skills.build if @post_job.skills.nil?
-    @post_job.work_authorizations.build if @post_job.work_authorizations.nil? 
+    @post_job.work_authorizations.build @post_job.work_authorizations.blank?
   end
 
   # POST /post_jobs
@@ -76,8 +76,12 @@ class PostJobsController < ApplicationController
     else
       params[:post_job][:salary] = nil
     end
-    #render :text=>params[:post_job].inspect and return
-
+    
+    #render :text=>params[:post_job][:work_authorizations_attributes].inspect and return
+    @post_job.work_authorizations.each do |wa|
+      wa.destroy
+    end
+    
     respond_to do |format|
       if @post_job.update_attributes(params[:post_job])
         format.html { redirect_to posts_view_path, notice: 'Success! Your Job Posting is Updated.' }

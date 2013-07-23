@@ -67,7 +67,7 @@
 						-@post_job.skill_lists.each do |skill_name|
 							%a.h1bwiki-skill{:href=>"#"}=skill_name.name
 				.row.last-row										
-					- if current_user.is_seeker?
+					- if current_user.present? and current_user.is_seeker?
 						.span3
 						.span3
 							-if @applicant.present?
@@ -80,7 +80,7 @@
 					.span3
 						%input.m-btn.blue{:type=>"button", :value=>"Forward"}					
 					.span3
-						%input.btn{:type=>"button", :value=>"Close"}
+						%a.btn{:href=>"#", :onclick=>"window.close(); window.history.back();", :style=>"padding-bottom: 6px;    padding-top: 6px;width: 200px;"} Close
 				%br/
 				%br/
 				%br/
@@ -94,7 +94,7 @@
 	.modal-body	
 		= simple_form_for @applicants, url: "/applicants/create", :html => { "data-validate" => "parsley", :id => "apply_form", :multipart=>true } do |f|
 			= f.hidden_field :post_job_id, :value => @post_job.id
-			= f.hidden_field :user_id, :value => current_user.id
+			= f.hidden_field :user_id, :value => current_user.id if current_user.present?
 			.first-row					
 				%h4#jobtitle= @post_job.job_title
 			.second-row
