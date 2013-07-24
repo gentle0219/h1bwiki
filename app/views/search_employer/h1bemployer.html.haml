@@ -4,17 +4,30 @@
 .container-fluid	
 	.row.search-page-main
 		=render "layouts/nav-link-search-secondary"
-		.row.first-row			
+		.row.first-row
 			.span12.show-search-tab-box
 				.row
 					= form_tag :search_employer_h1bemployer, :method => :get, :name=>"search_form" do
 						.row
-							.span6.offset2{:style=>"margin-top: 40px;"}
-								.input-append									
-									= autocomplete_field_tag 'h1bemp_name', '', search_employer_h1bemp_name_path(:js), :size=>25, :value=>params[:h1bemp_name]
-									%a{:class=>"m-btn blue", :style => "margin-top: 0px; padding: 8px 14px", :href =>"javascript:search_form.submit();"}
-										%i{:class=>"icon-search"}
+							.span2{:style=>"margin-top: 40px;"}
+								%label Search Employer
+							.span6.offset0{:style=>"margin-top: 40px;"}
+								.input-append
+									= autocomplete_field_tag 'h1bemp_name', '', search_employer_h1bemp_name_path(:js), :size=>25, :value=>params[:h1bemp_name], :style=>"height: 26px;"
+									%a{:class=>"btn", :style => "margin-top: 0px; padding: 7px 14px; width: 60px;", :href =>"javascript:search_form.submit();"}
+										// %i{:class=>"icon-search"}
 										Search
+							.span4{:style=>"border:2px solid #eee;border-radius:4px;"}
+								.row{:style=>"background-color:#eee; padding:5px 10px;"}
+									%label Employer Search Wizard									
+								.row{:style=>"padding: 10px;"}
+									%label You may search for an employer here to get details about:
+								.row{:style=>"padding: 10px;"}
+									%label.check-icon Employer Background
+									%label.check-icon H-1B and Green Card
+									%label.check-icon Reviews from our Users
+									%label{:style=>"padding-left:20px;"} And more...
+									
 				-if @search_h1bemp.present?
 					.row		
 						#content

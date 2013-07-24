@@ -133,7 +133,7 @@
 }
 
 #h1bemp_name{
-	width: 450px;
+	width: 380px;
 }
 
 .h1b-gcstats{
@@ -158,4 +158,11 @@
 
 #comments_content{
 	height: 150px;	
+}
+
+.show-search-tab-box{
+	.check-icon{
+		background: url("view_tickl.png") no-repeat scroll 0 4px transparent;		
+		padding-left: 20px;
+	}
 }

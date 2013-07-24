@@ -10,8 +10,8 @@
 								%a{"data-toggle" => "tab", :href => "#jobs"} Jobs
 							%li
 								%a{"data-toggle" => "tab", :href => "#trainings"} Trainings/Placement
-							%li
-								%a{"data-toggle" => "tab", :href => "#mentors"} Mentor Assitance
+							// %li
+							//	%a{"data-toggle" => "tab", :href => "#mentors"} Mentor Assitance
 						#my-tab-content.tab-content
 							#jobs.tab-pane.active
 								.span12.search-conditions-box
@@ -398,8 +398,8 @@
 
 	var showChar = 200;
 	var ellipsestext = "...";
-	var moretext = "more";
-	var lesstext = "less";
+	var moretext = " ";
+	var lesstext = " ";
 	$('.more').each(function() {
 		var content = $(this).html();
 
