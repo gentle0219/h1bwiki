@@ -86,4 +86,7 @@ class PostJob < ActiveRecord::Base
     ActionController::Base.helpers.number_to_currency(self.salary)
   end
   
+  def hourly_amount
+    ActionController::Base.helpers.number_to_currency(self.hourly_rate)
+  end
 end

@@ -47,7 +47,7 @@ class StaticPagesController < ApplicationController
   def search_home    
     
     @search_emp_jobs, @search_seeker_jobs, @search_emp_trainings, @search_seeker_trainings, @search_emp_mentors, @search_seeker_mentors = [],[],[],[],[],[]
-    @search_skill_res = []
+    @search_skill_res = @search_company_res = []
     @search_type = params[:search_type].blank? ? 0 : params[:search_type]
     @job_type = params[:type]
     cond_text, cond_values = [], []
@@ -76,6 +76,7 @@ class StaticPagesController < ApplicationController
       if @job_type == '1'
         @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_skill_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_jobs.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
+        @search_company_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
         @search_seeker_jobs = []
       elsif @job_type == '2'
         if city.present?
@@ -89,33 +90,45 @@ class StaticPagesController < ApplicationController
         end        
         @search_emp_jobs = []
         @search_skill_res =[]
+        @search_company_res = []
       else        
         @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_skill_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_jobs.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
+        @search_company_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
         @search_seeker_jobs = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '1'
       @search_skill_res =[]
       if @job_type == '1'
         @search_emp_trainings = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_company_res = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_trainings.user_id=users.id")
         @search_seeker_trainings = []
       elsif @job_type == '2'
         @search_seeker_trainings = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_emp_trainings = []
+        @search_company_res = []
       else
         @search_emp_trainings = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_company_res = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_trainings.user_id=users.id")
         @search_seeker_trainings = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '2'
       @search_skill_res =[]
       if @job_type == '1'
         @search_emp_mentors = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_skill_res = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_mentors.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
+        @search_company_res = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_mentors.user_id=users.id")
+        
         @search_seeker_mentors = []
       elsif @job_type == '2'
         @search_seeker_mentors = JobseekerMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_skill_res =[]
+        @search_company_res = []
         @search_emp_mentors = []
       else
         @search_emp_mentors = PostMentor.paginate(:page => params[:page_num], :per_page => 5, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_skill_res = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_mentors.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
+        @search_company_res = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_mentors.user_id=users.id")
         @search_seeker_mentors = JobseekerMentor.paginate(:page => params[:page_num], :per_page => 5, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
       end
     end
