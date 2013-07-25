@@ -1,3 +1,8 @@
+:css
+	#token-input-skill_input_box{
+		height:20px;
+		padding:4px;
+	}
 = form_for @post_job, :html => { :class => 'form-horizontal', "data-validate" => "parsley", :id => "job_post_form", :style=>"margin-bottom: 0px;" } do |f|
 	-if @post_job.errors.any?
 		#error_explanation
@@ -76,7 +81,7 @@
 		= f.label :skill_tokens, "Require Skills",:class => 'control-label'
 		.controls
 			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_job.skill_lists.map(&:attributes).to_json, "data-required"=>"true"
-
+			%input#input_new_skill{:type=>"text", :placeholder=>"new skill", :style=>"margin-top: -26px;padding-bottom: 6px;padding-top: 6px;width: 118px;"}
 	.control-group.referral-amount-box
 		= f.label :referral_amount,"Referral Amount:($)", :class => 'control-label', :id=>"referral_amount_label"
 		.controls
@@ -147,9 +152,9 @@
 		});
 	});
 
-	$(function(){
-
+	$(function(){		
 		var job_type = "#{@post_job.job_type}";
+		var last_skill_id = #{SkillList.last.id.to_i}
 		if(job_type=="1"){
 			$('div.duration-box').show();
 			$('div.hourly-rate-box').show();
@@ -163,5 +168,21 @@
 			$("#radio-2").next().addClass('checked');
 
 		}
+
+		$("#input_new_skill").keydown(function(event){
+			if(event.keyCode == 13){
+				var add_flag = confirm("Are you ok?");
+				var skill = $(this).val();
+				if( add_flag == true ){
+					$.ajax({
+						url: "/add_skill?skill="+skill
+					}).done(function(data) {
+						last_skill_id = data
+						console.log(last_skill_id);	
+						$("#skill_input_box").tokenInput("add", {id:last_skill_id, name:skill});
+					});					
+				}				
+			}
+		});
 	})
 	

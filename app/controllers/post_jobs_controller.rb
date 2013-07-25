@@ -52,6 +52,7 @@ class PostJobsController < ApplicationController
   # POST /post_jobs.json
   def create
     flash[:cur_tab] = 0
+
     @post_job = PostJob.new(params[:post_job])
 
     respond_to do |format|

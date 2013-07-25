@@ -43,6 +43,8 @@ H1bwiki::Application.routes.draw do
   
   resources :skills    
   resources :countries
+  
+  match 'add_skill' => 'skills#add_skill', :as => 'add_skill'
 
   devise_for :users, :controllers => {:registrations => "registrations" } do
     get "registrations/new_jobseeker", :to => "registrations#new_jobseeker", :as => "new_jobseeker"
