@@ -19,10 +19,10 @@
 										Search
 							.span4{:style=>"border:2px solid #eee;border-radius:4px;margin-top: -45px;"}
 								.row{:style=>"background-color:#eee; padding:5px 10px;"}
-									%label Employer Search Wizard									
-								.row{:style=>"padding: 10px;"}
+									%label{:style=>"font-size:20px;font-weight:600"} Employer Search Wizard									
+								.row{:style=>"padding: 10px; padding-bottom:0px;"}
 									%label You may search for an employer here to get details about:
-								.row{:style=>"padding: 10px;"}
+								.row{:style=>"padding: 10px; padding-top: 0px;"}
 									%label.check-icon Employer Background
 									%label.check-icon H-1B and Green Card
 									%label.check-icon Reviews from our Users
@@ -43,45 +43,40 @@
 										%a{"data-toggle" => "tab", :href => "#reviews"} Reviews
 							#my-tab-content.tab-content
 								#overview.tab-pane.active
-									.span12.search-conditions-box
+									.span12.search-conditions-box{:style=>"background-color: white;padding-left:0px;"}
 										.row
 											.overview-title
 												%p #{params[:h1bemp_name]} - COMPANY OVERVIEW
-										.row
-											.overview-item{:style=>"margin-bottom: 20px;"}
-												.span3
-													%label 
-														Previous H-1B History :
-												.span2
-													=overview_item :h1b_prev, @search_h1bemp.prevh1count.to_i
-										.row
-											.overview-item
-												.span3
-													%label 
-														H-1B Approval Rate :
-												.span2
-													=overview_item :h1b_rate, @search_h1bemp.h1bapprovalrate.to_i
-										.row
-											.overview-item
-												.span3
-													%label 
-														E-Verified :
-												.span2
-													=overview_item :everified, @search_h1bemp.everifiedflag
-										.row
-											.overview-item
-												.span3
-													%label 
-														Previous GC History :
-												.span2
-													=overview_item :prevgccount, @search_h1bemp.prevgccount.to_i
-										.row
-											.overview-item
-												.span3
-													%label 
-														GC Approval Rate :
-												.span2
-													=overview_item :gc_approval_rate, @search_h1bemp.gcapprovalrate.to_i
+										.row.overview-item
+											.span3
+												%label 
+													Previous H-1B History :
+											.span5
+												=overview_item :h1b_prev, @search_h1bemp.prevh1count.to_i
+										.row.overview-item
+											.span3
+												%label 
+													H-1B Approval Rate :
+											.span5
+												=overview_item :h1b_rate, @search_h1bemp.h1bapprovalrate.to_i
+										.row.overview-item
+											.span3
+												%label 
+													E-Verified :
+											.span5
+												=overview_item :everified, @search_h1bemp.everifiedflag
+										.row.overview-item
+											.span3
+												%label 
+													Previous GC History :
+											.span5
+												=overview_item :prevgccount, @search_h1bemp.prevgccount.to_i
+										.row.overview-item{:style=>"border-bottom: solid 1px #dadada;"}
+											.span3
+												%label 
+													GC Approval Rate :
+											.span5
+												=overview_item :gc_approval_rate, @search_h1bemp.gcapprovalrate.to_i
 								#h1b_gcstats.tab-pane{:style=>"height:720px;"}
 									.span12.h1b-gcstats
 										.chart-content

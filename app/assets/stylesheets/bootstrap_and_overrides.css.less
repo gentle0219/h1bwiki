@@ -842,26 +842,29 @@ div.search-page-main{
       #content{        
         ul.nav-tabs{
           border-bottom: 1px solid #DDDDDD;
-          margin-bottom: -1px;
+          margin-bottom: 0px;
           li{
             width: 190px;
             margin-bottom: 0px;
             a{
               font-weight: bold;
-            }
-            a:hover{
-              color: black;
+              background-color: #e4e4e4;
               border: solid 1px #ddd;
-              border-bottom: none;
               border-color: #DDDDDD #DDDDDD transparent;
+              border-bottom:none;
+              &:hover{
+                color: black;
+                background-color: #e4e4e4;
+              }
             }
           }
           li.active{
+            margin-bottom: 0px;
             a{
-              border: solid 1px #ddd;
-              border-bottom: none;
-              border-color: #DDDDDD #DDDDDD transparent; 
-              background-color: #f5f5f5;
+              background-color: #dadada;
+              &:hover{
+                background-color: #e4e4e4;
+              }
             }
           }
         }
@@ -872,6 +875,8 @@ div.search-page-main{
             border: solid 1px #ddd;
             border-top: none;
             padding: 30px 0px 20px 20px;
+            background-color: #dadada;
+            margin-bottom:20px;
             input.m-btn{
               width: 100px;
               margin-top: 0px;

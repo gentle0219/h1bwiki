@@ -23,7 +23,8 @@
 	    padding: 5px 10px;
 	    width: 330px;
 	    display: inline-block;
-	    color: white;
+	    color: black;
+	    font-weight: 600;
 	    p{
 	    	text-align: center;
 	    	font-size:16px;
@@ -31,10 +32,13 @@
 	    }
 		}
 		div.val-green{
-			background-color: #4f9130;			
+			background-color: #22b14c;
+		}
+		div.val-yellow{
+			background-color: #fff200;
 		}
 		div.val-red{
-			background-color: #d14836;
+			background-color: #ed1c24;
 		}
 		div.val-blue{
 			background-color: #9fa093;
@@ -164,5 +168,24 @@
 	.check-icon{
 		background: url("view_tickl.png") no-repeat scroll 0 4px transparent;		
 		padding-left: 20px;
+	}
+}
+
+
+
+#my-tab-content{
+	#overview{
+		.search-conditions-box{
+			.overview-item{
+				border-top: solid 1px #dadada;
+				padding-top:5px;
+				padding-bottom: 5px;
+				padding-left: 20px;
+				margin-top: 0px;	
+				label{
+					padding-top: 5px;
+				}		
+			}		
+		}
 	}
 }
