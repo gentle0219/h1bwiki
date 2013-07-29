@@ -19,7 +19,7 @@ H1bwiki::Application.routes.draw do
     end
   end
   
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  #mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "messagebox/inbox"
   get "messagebox/sent"

@@ -9,14 +9,15 @@
 				.row
 					= form_tag :search_employer_h1bemployer, :method => :get, :name=>"search_form" do
 						.row
-							.span2{:style=>"margin-top: 40px;"}
-								%label Search Employer
-							.span6.offset0{:style=>"margin-top: 40px;"}
-								.input-append
-									= autocomplete_field_tag 'h1bemp_name', '', search_employer_h1bemp_name_path(:js), :size=>25, :value=>params[:h1bemp_name], :style=>"height: 26px;"
-									%a{:class=>"btn", :style => "margin-top: 0px; padding: 7px 14px; width: 60px;", :href =>"javascript:search_form.submit();"}
-										// %i{:class=>"icon-search"}
-										Search
+							.span8{:style=>"background-color:#EEE"}
+								.span3{:style=>"margin-top: 10px;margin-left:10px;"}
+									%label{:style=>"font-size: 20px; width: 160px; font-weight: 600; padding-top: 5px;"} Search Employer
+								.span8.offset0{:style=>"margin-top: 10px;"}
+									.input-append
+										= autocomplete_field_tag 'h1bemp_name', '', search_employer_h1bemp_name_path(:js), :size=>25, :value=>params[:h1bemp_name], :style=>"height: 26px;"
+										%a{:class=>"btn", :style => "margin-top: 0px; padding: 7px 14px; width: 60px;", :href =>"javascript:search_form.submit();"}
+											// %i{:class=>"icon-search"}
+											Search
 							.span4{:style=>"border:2px solid #eee;border-radius:4px;margin-top: -45px;"}
 								.row{:style=>"background-color:#eee; padding:5px 10px;"}
 									%label{:style=>"font-size:20px;font-weight:600"} Employer Search Wizard									

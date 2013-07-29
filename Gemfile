@@ -1,30 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-gem 'devise'
 
-gem 'rmagick'
-gem 'recaptcha'
-
-gem 'rails_tokeninput'
-gem 'rails3-jquery-autocomplete'
-gem 'parsley-rails'
-
-gem 'googlecharts', :require => "gchart"
-gem 'ajaxful_rating', :git => "git://github.com/edgarjs/ajaxful-rating.git", :branch => 'rails3'
-gem 'acts_as_commentable_with_threading'
-
-gem 'twitter-bootstrap-form-builder'
-gem 'simple_form'
-
-gem 'fastercsv'
-gem 'rails_admin'
-gem 'rake', '10.0.4'
-
-gem 'paperclip'
-gem 'redcarpet'
-gem 'albino'
-gem 'nokogiri'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -43,6 +20,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'haml-rails'
 gem "will_paginate", ">=3.0.pre2"
 gem 'will_paginate_twitter_bootstrap'
@@ -54,6 +32,31 @@ gem 'kaminari'
 #gem 'messaging', git: 'git://github.com/frodefi/rails-messaging.git'
 gem 'mailboxer'
 
+gem 'devise'
+
+gem 'rmagick'
+gem 'recaptcha'
+
+gem 'rails_tokeninput'
+gem 'rails3-jquery-autocomplete'
+gem 'parsley-rails'
+
+gem 'googlecharts', :require => "gchart"
+gem 'ajaxful_rating', :git => "git://github.com/edgarjs/ajaxful-rating.git", :branch => 'rails3'
+gem 'acts_as_commentable_with_threading'
+
+gem 'twitter-bootstrap-form-builder'
+gem 'simple_form'
+
+gem 'fastercsv'
+#gem 'rails_admin'
+gem 'activeadmin'
+
+
+gem 'paperclip'
+gem 'redcarpet'
+gem 'albino'
+gem 'nokogiri'
 
 group :development do
   gem 'webrick'
