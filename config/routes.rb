@@ -1,5 +1,11 @@
 H1bwiki::Application.routes.draw do
 
+  
+  root :to => "static_pages#home"
+  
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   post "applicants/create"
   post "applicants/destroy"
 
@@ -47,6 +53,7 @@ H1bwiki::Application.routes.draw do
   match 'add_skill' => 'skills#add_skill', :as => 'add_skill'
 
   devise_for :users, :controllers => {:registrations => "registrations" } do
+  ActiveAdmin.routes(self)
     get "registrations/new_jobseeker", :to => "registrations#new_jobseeker", :as => "new_jobseeker"
     get "registrations/new_employer", :to => "registrations#new_employer", :as => "new_employer"        
   end
@@ -77,5 +84,5 @@ H1bwiki::Application.routes.draw do
   match "reset_passwd" => "static_pages#reset_passwd"
   
   match 'signup' => 'static_pages#signup'
-  root :to => "static_pages#home"
+
 end
