@@ -28,6 +28,10 @@ class H1bemp < ActiveRecord::Base
     end
   end
 
+  def get_year(type)
+    self.h1bemp_filling.select(:filingyear).where(:filingtype=>type).group(:filingyear).count.count
+  end
+
   def get_data type
     type = type.upcase
     if FILING_TYPE.include?(type)
