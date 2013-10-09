@@ -32,6 +32,6 @@
 								%td{:colspan=>"6"}= will_paginate @post_jobs
 					.row.last-row
 						.span10.control-box
-							= link_to t('.new', :default => t("helpers.links.new")), new_post_job_path, :class => 'm-btn blue'
+							= link_to 'New Registry', new_post_job_path, :class => 'm-btn blue'
 	:javascript 
 		$('ul.nav-tabs li').eq(1).addClass('isCurrent');

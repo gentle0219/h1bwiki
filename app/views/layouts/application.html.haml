@@ -10,7 +10,7 @@
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
   = render "layouts/navbar"
-  %body
+  %body{:class=>"#{params[:controller]}-#{params[:action]}"}
     #flash-banner
       - flash.each do |key, msg|
         = content_tag :div, msg, :class => "flash " + key.to_s, :id => key.to_s + "-message"
