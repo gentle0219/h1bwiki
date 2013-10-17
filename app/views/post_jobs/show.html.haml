@@ -73,10 +73,10 @@
 							-if @applicant.present?
 								%a.btn.apply-button.disabled{:href => "javascript://", :role => "button", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
 							- else
-							
 								%a.btn.apply-button{"data-toggle" => "modal", :href => "#apply_model", :role => "button", :"data-title" => "#{@post_job.job_title}", :type=>"#{user.email}", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
 					- else
 						.span3
+							%a.btn.apply-button{:href => "/users/sign_in", :role => "button", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
 					.span3
 						%input.m-btn.blue{:type=>"button", :value=>"Forward"}					
 					.span3
@@ -95,7 +95,7 @@
 		= simple_form_for @applicants, url: "/applicants/create", :html => { "data-validate" => "parsley", :id => "apply_form", :multipart=>true } do |f|
 			= f.hidden_field :post_job_id, :value => @post_job.id
 			= f.hidden_field :user_id, :value => current_user.id if current_user.present?
-			.first-row					
+			.first-row
 				%h4#jobtitle= @post_job.job_title
 			.second-row
 				= f.text_area :bid_sentence, :rows=>"8", :cols => "10", :placeholder => "Message", "data-required"=>"true", :style=>"width:500px;"

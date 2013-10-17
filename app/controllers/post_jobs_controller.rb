@@ -1,5 +1,5 @@
 class PostJobsController < ApplicationController
-  before_filter :authenticate_user!, :except => [ :index ]
+  before_filter :authenticate_user!, :except => [ :index, :show ]
   # GET /post_jobs
   # GET /post_jobs.json
   def index

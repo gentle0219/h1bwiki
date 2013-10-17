@@ -1,5 +1,5 @@
 class JobseekerMentorsController < ApplicationController
-  before_filter :require_login_job_seeker, :except => [ :index ]
+  before_filter :require_login_job_seeker, :except => [ :index, :show ]
   # GET /jobseeker_mentors
   # GET /jobseeker_mentors.json
   def index
