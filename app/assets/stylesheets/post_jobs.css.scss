@@ -123,4 +123,51 @@ div.post-job-page{
   }
 }
 
-	
+#forward_modal{
+  #forward_form{
+    .first-row{
+      .control-group{
+        .control-label{
+          width: 80px;          
+        }
+        .controls{
+          margin-left: 80px;
+          input{
+            width: 90%;
+          }
+          #msg_content{
+            background-color: rgb(255, 255, 255);
+            border-bottom-color: rgb(207, 207, 207);
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-image-outset: 0px;
+            border-image-repeat: stretch;
+            border-image-slice: 100%;
+            border-image-source: none;
+            border-image-width: 1;
+            border-left-color: rgb(207, 207, 207);
+            border-left-style: solid;
+            border-left-width: 1px;
+            border-right-color: rgb(207, 207, 207);
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-top-color: rgb(207, 207, 207);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            border-top-style: solid;
+            border-top-width: 1px;
+            color: rgb(64, 78, 78);
+            display: block;
+            font-size: 15px;
+            height: 230px;
+            line-height: normal;
+            overflow-x: hidden;
+            overflow-y: auto;
+          }
+        }
+      }
+    }
+  }
+}	

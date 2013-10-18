@@ -189,4 +189,10 @@ class StaticPagesController < ApplicationController
     end
     render :nothing => true, :status=>409 and return
   end
+
+  def forward
+    UserMailer.forward(params[:from_email], params[:to_email], params[:name], params[:subject], params[:forward][:post_job_id]).deliver
+    redirect_to request.referrer
+  end
+  
 end
