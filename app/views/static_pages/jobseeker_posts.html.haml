@@ -27,7 +27,7 @@
 										%tbody
 											- @jobseeker_jobs.each do |jobseeker_job|
 												%tr
-													%td= link_to jobseeker_job.title, edit_jobseeker_job_path(jobseeker_job), :class=>"link-job-title"
+													%td= link_to jobseeker_job.job_title, edit_jobseeker_job_path(jobseeker_job), :class=>"link-job-title"
 													%td Jobs Wanted
 													%td=l jobseeker_job.created_at, :format =>"%Y-%m-%d %H:%M"
 													%td
@@ -50,7 +50,7 @@
 										%tbody
 											- @jobseeker_trainings.each do |jobseeker_training|
 												%tr
-													%td= link_to jobseeker_training.title, edit_jobseeker_training_path(jobseeker_training), :class=>"link-job-title"
+													%td= link_to jobseeker_training.job_title, edit_jobseeker_training_path(jobseeker_training), :class=>"link-job-title"
 													%td Trainings Wanted
 													%td=l jobseeker_training.created_at, :format =>"%Y-%m-%d %H:%M"
 													%td
@@ -72,7 +72,7 @@
 										%tbody
 											- @jobseeker_mentors.each do |jobseeker_mentor|
 												%tr
-													%td= link_to jobseeker_mentor.title, edit_jobseeker_mentor_path(jobseeker_mentor), :class=>"link-job-title"
+													%td= link_to jobseeker_mentor.job_title, edit_jobseeker_mentor_path(jobseeker_mentor), :class=>"link-job-title"
 													%td Mentor Assistance Wanted
 													%td=l jobseeker_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
 													%td
