@@ -21,6 +21,9 @@ class PostJobsController < ApplicationController
     
     @applicant = Applicant.where(:user_id=>current_user.id, :post_job_id=>params[:id]).first if current_user
     
+    o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+    @captcha = (0...6).map{ o[rand(o.length)] }.join
+
     flash[notice] = nil
     respond_to do |format|
       format.html # show.html.erb

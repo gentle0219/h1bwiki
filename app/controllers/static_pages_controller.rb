@@ -191,8 +191,9 @@ class StaticPagesController < ApplicationController
   end
 
   def forward
-    UserMailer.forward(params[:from_email], params[:to_email], params[:name], params[:subject], params[:forward][:post_job_id]).deliver
-    redirect_to request.referrer
+    render :text => params.inspect and return
+    UserMailer.forward(params[:from_email], params[:to_email], params[:name], params[:post_job_id]).deliver
+    render :nothing=> true, :status => 200
   end
   
 end

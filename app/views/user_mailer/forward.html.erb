@@ -12,7 +12,7 @@
                   Job Title
               </td>
               <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
-                <%= @post_job.get_jobtype %>
+                <%= @post_job.job_title %>
               </td>
           </tr>
           <tr>
@@ -69,7 +69,7 @@
                   JobDescription
               </td>
               <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
-                  ActiionView::Base.full_sanitizer.sanitize(@post_job.job_description[0..70])
+                <%= ActionView::Base.full_sanitizer.sanitize(@post_job.job_description[0..70]) %>
               </td>
           </tr>
           <tr>
