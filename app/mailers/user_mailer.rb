@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-	default :from => "admin@luxesocialevents.com"
+	default :from => "admin@h1bwiki.com"
   
   def welcome_email(user)
     mail(:to => user.email, :subject => "Invitation Request Received")
@@ -16,6 +16,7 @@ class UserMailer < ActionMailer::Base
   def forward(from_email, to_email, name, subject, post_job_id)
     email_with_name = "#{name} < #{to_email}"
     @post_job = PostJob.find_by_id(post_job_id)
+    @name = name
   	mail(:to => email_with_name, :subject => subject)  	
   end
   

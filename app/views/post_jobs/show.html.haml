@@ -69,13 +69,13 @@
 				.row.last-row										
 					- if current_user.present? and current_user.is_seeker?
 						.span3
-						.span3
+						.span3.offset1
 							-if @applicant.present?
 								%a.btn.apply-button.disabled{:href => "javascript://", :role => "button", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
 							- else
 								%a.btn.apply-button{"data-toggle" => "modal", :href => "#apply_model", :role => "button", :"data-title" => "#{@post_job.job_title}", :type=>"#{user.email}", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
 					- else
-						.span3
+						.span3.offset1
 							%a.btn.apply-button{:href => "/users/sign_in", :role => "button", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
 					.span3
 						%a.btn.m-btn.blue{"data-toggle"=>"modal", :href=>"#forward_modal", :role=>"button", style: 'width: 200px;'} Forward
@@ -111,7 +111,7 @@
 
 
 
-#forward_modal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#forward_modal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", style: ''}
 	.modal-header
 		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
 		%h3#myModalLabel Forward Job
@@ -158,7 +158,7 @@
 					.controls
 						= text_field_tag :name, nil, "data-required"=>"true"
 			.modal-footer	 
-				= f.button :submit, "Forward Job", class: 'm-btn blue'
+				= f.button :submit, "Forward Job", class: 'm-btn blue', style: 'margin-top: 0px;'
 				%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close
 
 

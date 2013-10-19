@@ -5,45 +5,93 @@
   </head>
   <body>
     <h1><%= @post_job.job_title %></h1>
-    <table class="table table-hover">
-	    <tbody>
-	      <tr>
-	        <td>Job Type</td>
-	        <td>: <%= @post_job.get_jobtype %></td>
-	      </tr>
-	      <tr>
-	        <td>Amount</td>
-	        <td>:<%= @post_job.refe_amount %></td>
-	      </tr>
-	      <tr>
-	        <td>City</td>
-	        <td>: <%= @post_job.job_city%></td>
-	      </tr>
-	      <tr>
-	        <td>State</td>
-	        <td>: <%= @post_job.job_state%></td>
-	      </tr>
-	      <tr>
-	        <td>Duration</td>
-	        <td>: <%= @post_job.job_duration %></td>
-	      </tr>
-	      <tr>
-	        <td>Description</td>
-	        <td>: <%=raw @post_job.job_description%></td>
-	      </tr>
-	      <tr>
-	        <td>Skills</td>
-	        <td>: <%= @post_job.get_skill.split(' ').join(',')%></td>
-	      </tr>
-	      
-	    </tbody>
-	  </table>
-    <p>
-    	View Complete Job details and Apply click here...
-			Posted by
-			American IT Resource Group Inc. Schaumburg,IL
-			Thanks  
-    </p>
+    <table align="center" border="1" style="margin-top:10px;margin-bottom:10px;border:1px solid #d0d2d3;border-radius:6px;width:80%" cellpadding="0" cellspacing="0">
+      <tbody>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Job Title
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                <%= @post_job.get_jobtype %>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Job Posted On
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                <%= @post_job.created_at.strftime("%b %d %y") %>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Job Type
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  <%= @post_job.get_jobtype %>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Required Skills
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                <%= @post_job.get_skill.split(' ').join(',')%>
+              </td>
+          </tr>
+          
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Location
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  <%= @post_job.job_city %> <br>United States of America
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Job duration
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  <%= @post_job.job_duration %>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  PayRate
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  <%= @post_job.refe_amount %>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  JobDescription
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  ActiionView::Base.full_sanitizer.sanitize(@post_job.job_description[0..70])
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Posted by
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                <%= @post_job.user.full_name %>
+              </td>
+          </tr>
+      </tbody>
+  </table>
     
+    <p>
+    	Please use the below link, to view job description.
+    </p>
+			<a style="color:#4e8abe;text-decoration:underline" href="http://h1bwiki.herokuapp.com/post_jobs/#{@post_job.id}" target="_blank">
+        Click here to view complete Job details and Apply...
+      </a>
+		<p>	
+			Thanks,
+			<%= @name %>
+    </p>    
   </body>
 </html>

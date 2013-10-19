@@ -40,7 +40,7 @@ class SearchEmployerController < ApplicationController
 		search_h1bemp = H1bemp.find(params[:id])		
 		comment = search_h1bemp.root_comments.where(:user_id=>current_user.id).first.presence || Comment.build_from( search_h1bemp, current_user.id, params[:content])
 		comment.body = params[:content]
-		comment.subject = current_user.user_name+ " to " + search_h1bemp.employername
+		comment.subject = "#{current_user.user_name} to #{search_h1bemp.employername}"
 		comment.save
 		review = search_h1bemp.reviews.where(:user_id=>current_user.id).first.presence || search_h1bemp.reviews.build
 		review.user_id = current_user.id
