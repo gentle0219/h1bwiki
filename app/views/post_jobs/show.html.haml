@@ -68,7 +68,6 @@
 							%a.h1bwiki-skill{:href=>"#"}=skill_name.name
 				.row.last-row										
 					- if current_user.present? and current_user.is_seeker?
-						.span3
 						.span3.offset1
 							-if @applicant.present?
 								%a.btn.apply-button.disabled{:href => "javascript://", :role => "button", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
