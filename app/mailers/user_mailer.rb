@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
     email_with_name = "#{name} < #{to_email}"
     @post_job = PostJob.find_by_id(post_job_id)
     @name = name
-  	mail(:to => email_with_name, :subject => @post_job.title)  	
+  	mail(:to => email_with_name, :subject => @post_job.job_title)  	
   end
   
 end
