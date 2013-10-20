@@ -340,6 +340,7 @@
 			$("#comment").focus();
 			return;
 		} 
+		
 
 		$.ajax({
 			url :url_ajax,
@@ -347,10 +348,14 @@
 			type: "POST",
 			data: 'content=' + content + '&paid_time='+paid_time+'&placement='+placement+'&legal='+legal,			
 			dataType:'script',
-			success :function(){}
+			success :function(data){
+				return false;		
+			}
 		});
 		return false;
 	});
+
+
 	if(paid_time=='Yes'){
 		$("div.paid-on-time-yes").addClass("review-option-y-h");
 	}else if(paid_time=='No'){
