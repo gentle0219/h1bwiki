@@ -8,4 +8,4 @@
 	$("#reviews li.current-#{current_user.id if user_signed_in?}").width("#{@child_width}%");
 	$("div.comment-user#{current_user.id if user_signed_in?}").html($("#comment").val());
 	$('#write_reviews').modal('hide');
-
+	$("#confirm_comment").modal('show');

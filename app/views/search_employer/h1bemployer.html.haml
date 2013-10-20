@@ -233,6 +233,22 @@
 							.row
 								.span3.offset5
 									%a.m-btn.blue.post-comment Post Comment
+
+#confirm_comment.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+	.modal-header
+		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+		%h3#myModalLabel 
+	.modal-body	
+		%label{style: 'color: blue;font-size: 16px;height: 250px;text-align: center;'} Your review has been submitted
+		.modal-footer	 	
+			%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close
+
+
+
+
+
+
+
 :javascript 
 	var cur_tab = 0
 	
