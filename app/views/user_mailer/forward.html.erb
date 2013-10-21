@@ -86,9 +86,10 @@
     <p>
     	Please use the below link, to view job description.
     </p>
-      <%= link_to "Click here to view complete Job details and Apply...", "http://h1bwiki.herokuapp.com/post_jobs/#{@post_job.id}", :style => "color:#4e8abe;text-decoration:underline", :target => "_blank"%>
-		<p>	
-			Thanks,
+      <%= link_to "Click here to view complete Job details and Apply...", @url, :style => "color:#4e8abe;text-decoration:underline", :target => "_blank"%>
+      <label><%= @url %></label> 
+		<p>
+    	Thanks,
 			<%= @name %>
     </p>    
   </body>
