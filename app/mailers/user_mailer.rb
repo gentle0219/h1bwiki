@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
     email_with_name = "#{name} < #{to_email}"
     @post_job = PostJob.find_by_id(post_job_id)
     @name = name
-    @url = "http://h1bwiki.herokuapp.com/#{post_job_path(@post_job)}"
+    @url = "http://h1bwiki.herokuapp.com#{post_job_path(@post_job)}"
   	mail(:to => email_with_name, :subject => @post_job.job_title)  	
   end
   

@@ -87,7 +87,11 @@
     	Please use the below link, to view job description.
     </p>
       <%= link_to "Click here to view complete Job details and Apply...", @url, :style => "color:#4e8abe;text-decoration:underline", :target => "_blank"%>
-      <label><%= @url %></label> 
+      <label>
+        Click here to view complete Job details and Apply...
+        <br/>
+        <%= @url %>
+      </label> 
 		<p>
     	Thanks,
 			<%= @name %>
