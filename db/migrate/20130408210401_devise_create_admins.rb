@@ -1,3 +1,4 @@
+=begin
 class DeviseCreateAdmins < ActiveRecord::Migration
   def change
     create_table(:admins) do |t|
@@ -44,3 +45,4 @@ class DeviseCreateAdmins < ActiveRecord::Migration
     # add_index :admins, :authentication_token, :unique => true
   end
 end
+=end
