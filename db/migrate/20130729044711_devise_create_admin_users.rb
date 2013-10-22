@@ -1,5 +1,5 @@
-=begin
 class DeviseCreateAdminUsers < ActiveRecord::Migration
+=begin
   def migrate(direction)
     super
     # Create a default user
@@ -50,5 +50,5 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration
     # add_index :admin_users, :unlock_token,         :unique => true
     # add_index :admin_users, :authentication_token, :unique => true
   end
-end
 =end
+end
