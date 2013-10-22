@@ -57,8 +57,8 @@ class User < ActiveRecord::Base
     end
   end 
 
-  def inactive_message 
-    if !approved? 
+  def inactive_message
+    if self.is_employer? and !approved?
       :not_approved 
     else 
       super # Use whatever other message 

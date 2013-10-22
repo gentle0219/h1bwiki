@@ -12,8 +12,8 @@
 								%a{"data-toggle" => "tab", :href => "#jobs"} Jobs
 							%li
 								%a{"data-toggle" => "tab", :href => "#trainings"} Trainings/Placement
-							%li
-								%a{"data-toggle" => "tab", :href => "#mentors"} Mentor Assitance
+							/%li
+							/	%a{"data-toggle" => "tab", :href => "#mentors"} Mentor Assitance
 						#my-tab-content.tab-content
 							#jobs.tab-pane.active
 								.span12.post-jobs-box
@@ -60,28 +60,28 @@
 															%i.icon-trash &nbsp;Delete
 											%tr
 												%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @jobseeker_trainings, :param_name => 'trining_page'
-							#mentors.tab-pane
-								.span12.show-box
-									%table.table.table-striped
-										%thead
-											%tr
-												%th{:width => "50%"} Title
-												%th{:width => "20%"} Type
-												%th{:width => "15%"} Created At
-												%th{:width => "15%"}=t '.actions', :default => t("helpers.actions")
-										%tbody
-											- @jobseeker_mentors.each do |jobseeker_mentor|
-												%tr
-													%td= link_to jobseeker_mentor.job_title, edit_jobseeker_mentor_path(jobseeker_mentor), :class=>"link-job-title"
-													%td Mentor Assistance Wanted
-													%td=l jobseeker_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
-													%td
-														= link_to edit_jobseeker_mentor_path(jobseeker_mentor), :class => 'btn btn-mini' do
-															%i.icon-edit &nbsp;Edit
-														= link_to jobseeker_mentor, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
-															%i.icon-trash &nbsp;Delete
-											%tr
-												%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @jobseeker_mentors, :param_name => 'mentor_page'
+							/#mentors.tab-pane
+							/	.span12.show-box
+							/		%table.table.table-striped
+							/			%thead
+							/				%tr
+							/					%th{:width => "50%"} Title
+							/					%th{:width => "20%"} Type
+							/					%th{:width => "15%"} Created At
+							/					%th{:width => "15%"}=t '.actions', :default => t("helpers.actions")
+							/			%tbody
+							/				- @jobseeker_mentors.each do |jobseeker_mentor|
+							/					%tr
+							/						%td= link_to jobseeker_mentor.job_title, edit_jobseeker_mentor_path(jobseeker_mentor), :class=>"link-job-title"
+							/						%td Mentor Assistance Wanted
+							/						%td=l jobseeker_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
+							/						%td
+							/							= link_to edit_jobseeker_mentor_path(jobseeker_mentor), :class => 'btn btn-mini' do
+							/								%i.icon-edit &nbsp;Edit
+							/							= link_to jobseeker_mentor, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
+							/								%i.icon-trash &nbsp;Delete
+							/				%tr
+							/					%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @jobseeker_mentors, :param_name => 'mentor_page'
 :javascript 
 	$('ul.nav-tabs li').eq(2).addClass('isCurrent');
 	$('div.nav-link ul li').eq(1).removeClass('current-tab');
