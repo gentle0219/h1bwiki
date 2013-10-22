@@ -27,6 +27,13 @@
         </div>
 
         <div class="control-group">
+          <%= f.label :contact_number, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :contact_number, :autofocus => true, :required => "" %>
+          </div>
+        </div>
+
+        <div class="control-group">
           <%= f.label :password, :class => "control-label" %>
           <div class="controls">
             <%= f.password_field :password, "data-required"=>"true", "data-rangelength"=>"[8,25]" %>
