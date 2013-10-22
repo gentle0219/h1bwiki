@@ -1,3 +1,4 @@
+=begin
 class DeviseCreateAdminUsers < ActiveRecord::Migration
   def migrate(direction)
     super
@@ -50,3 +51,4 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration
     # add_index :admin_users, :authentication_token, :unique => true
   end
 end
+=end
