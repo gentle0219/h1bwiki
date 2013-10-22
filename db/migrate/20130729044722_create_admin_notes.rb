@@ -1,4 +1,5 @@
 class CreateAdminNotes < ActiveRecord::Migration
+=begin
   def self.up
     create_table :admin_notes do |t|
       t.string :resource_id, :null => false
@@ -14,4 +15,5 @@ class CreateAdminNotes < ActiveRecord::Migration
   def self.down
     drop_table :admin_notes
   end
+=end
 end
