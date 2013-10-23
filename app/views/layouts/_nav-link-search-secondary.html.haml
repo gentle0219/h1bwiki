@@ -1,6 +1,6 @@
 .row.nav-link.secodary
 	%ul
-		%li{:style=>"widht: 130px;"}
-			=link_to("Search Postings", search_home_path )
-		%li{:style=>"width: 200px;"}
-			=link_to("Search Employers", :search_employer_h1bemployer )
+		%li.current-tab.offset2{:style=>"widht: 130px;"}
+			=link_to("Employer Search", search_home_path )
+		/%li{:style=>"width: 200px;"}
+		/	=link_to("Search Employers", :search_employer_h1bemployer )
