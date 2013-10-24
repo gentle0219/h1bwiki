@@ -195,4 +195,18 @@ class StaticPagesController < ApplicationController
     render :nothing=> true, :status => 200
   end
   
+  def postings
+    if !user_signed_in?
+      redirect_to new_user_session_path
+    else
+      redirect_to employer? ? posts_view_path : jobseeker_posts_path
+    end
+  end
+  def post_main
+    if !user_signed_in?
+      redirect_to new_user_session_path
+    else
+      redirect_to employer? ? post_main_path : jobseeker_post_main_path
+    end
+  end
 end

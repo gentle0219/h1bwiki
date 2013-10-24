@@ -1,6 +1,6 @@
 .row.nav-link.secodary
 	%ul
 		%li 
-			=link_to("My Postings", employer? ? posts_view_path : jobseeker_posts_path )
+			=link_to("My Postings", postings_path )
 		%li.current-tab{style:'width: 225px;'}
-			=link_to("Post a Job/Training", employer? ? post_main_path : jobseeker_post_main_path )		
+			=link_to("Post a Job/Training", post_main_path )		

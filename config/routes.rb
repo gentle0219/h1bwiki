@@ -83,6 +83,8 @@ H1bwiki::Application.routes.draw do
   match "change_passwd" => "static_pages#change_passwd"
   match "reset_passwd" => "static_pages#reset_passwd"
   
-  match 'signup' => 'static_pages#signup'
+  match 'signup'  => 'static_pages#signup'
 
+  get "/postings"  => 'static_pages#postings'
+  get "/post_main" => 'static_pages#post_main'
 end
