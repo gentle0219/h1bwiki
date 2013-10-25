@@ -1,0 +1,26 @@
+- @results.each do |res|
+	.row
+		.span12.search-result-item
+			.row.title-row
+				.span8
+					.row
+						= link_to res["jobtitle"], res["url"], :class=>"item-title", :target => "_blink", style: 'text-decoration:underline;color:blue;'
+					.row
+						%small= res["company"]
+						%small
+							Location:
+							= res["formattedLocationFull"]
+				.span4
+					%p.created-date
+						Date Posted:
+						=res["date"]				
+			.row.description
+				.span8
+					.row
+						.view-details-box.more= res["snippet"]
+					.row{:style=>"margin-top: 10px;"}
+				.span4.skill-tags
+					
+			.row.last-row
+				.span8
+				.span4

@@ -76,6 +76,8 @@ H1bwiki::Application.routes.draw do
   get "static_pages/jobseeker_posts", :as => "jobseeker_posts"
   
   get "static_pages/search_home", :as => "search_home"
+  get "static_pages/search_indeed", :as=> "search_indeed"
+
   post "/static_pages/forward"
   get "account_setup" => "static_pages#account_setup"
   get "account_details" => "static_pages#account_details"

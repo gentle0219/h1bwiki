@@ -53,6 +53,7 @@ class StaticPagesController < ApplicationController
     cond_text, cond_values = [], []
     title = params[:title]
     city = params[:city]
+    @results = []
     if @job_type == '1' or @job_type == '0'
       if title.present?
         cond_text << "(lower(job_title) LIKE lower(?) OR lower(job_description) LIKE lower(?))"
@@ -97,7 +98,7 @@ class StaticPagesController < ApplicationController
         @search_company_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
         @search_seeker_jobs = JobseekerJob.search(params[:title], params[:city])
       end
-    elsif @search_type == '1'
+    elsif @search_type == '2'
       @search_skill_res =[]
       if @job_type == '1'
         @search_emp_trainings = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
@@ -112,30 +113,29 @@ class StaticPagesController < ApplicationController
         @search_company_res = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_trainings.user_id=users.id")
         @search_seeker_trainings = JobseekerJob.search(params[:title], params[:city])
       end
-    elsif @search_type == '2'
-      @search_skill_res =[]
-      if @job_type == '1'
-        @search_emp_mentors = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-        @search_skill_res = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_mentors.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
-        @search_company_res = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_mentors.user_id=users.id")
-        
-        @search_seeker_mentors = []
-      elsif @job_type == '2'
-        @search_seeker_mentors = JobseekerMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-        @search_skill_res =[]
-        @search_company_res = []
-        @search_emp_mentors = []
-      else
-        @search_emp_mentors = PostMentor.paginate(:page => params[:page_num], :per_page => 5, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-        @search_skill_res = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_mentors.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
-        @search_company_res = PostMentor.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_mentors.user_id=users.id")
-        @search_seeker_mentors = JobseekerMentor.paginate(:page => params[:page_num], :per_page => 5, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-      end
+    elsif @search_type == '1'
+      uri = URI.parse("http://api.indeed.com/ads/apisearch?publisher=6100857881070797&q=#{params[:job_title]}&l=#{params[:location]}&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2")
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      #data = JSON.parse(response.body)
+      data = Hash.from_xml(response.body)
+      @results = data["response"]["results"]["result"]
     end
 
   end  
 
-  
+  def search_indeed    
+    uri = URI.parse("http://api.indeed.com/ads/apisearch?publisher=6100857881070797&q=#{params[:title]}&l=#{params[:location]}&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2")
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+    #data = JSON.parse(response.body)
+    data = Hash.from_xml(response.body)
+    @results = data["response"]["results"]["result"]
+    render :text=>@results.inspect and return
+  end
+
   def account_setup
     redirect_to root_url and return unless current_user.present?
     @company = current_user.company.present? ? current_user.company : current_user.build_company
