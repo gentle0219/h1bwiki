@@ -88,5 +88,5 @@ H1bwiki::Application.routes.draw do
   match 'signup'  => 'static_pages#signup'
 
   get "/postings"  => 'static_pages#postings'
-  get "/post_main" => 'static_pages#post_main'
+  get "/post_main" => 'static_pages#post_mains'
 end

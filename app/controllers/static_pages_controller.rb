@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
   def signup
   end
 # For employer  
-  def post_main    
+  def post_main
   end
   def posts
     if !user_signed_in?
@@ -203,7 +203,7 @@ class StaticPagesController < ApplicationController
       redirect_to employer? ? posts_view_path : jobseeker_posts_path
     end
   end
-  def post_main
+  def post_mains
     if !user_signed_in?
       redirect_to new_user_session_path
     else
