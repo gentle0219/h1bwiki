@@ -37,7 +37,7 @@
 													// %label (In: Jobs Offered or Jobs Wanted)
 											.span2
 												.row
-													= submit_tag "Search", :name => nil, :class=>"btn btn-primary", :style => "width: 120px; padding-top: 10px; padding-bottom: 10px; height: 40px ! important;"
+													= submit_tag "Search", :name => nil, :class=>"m-btn blue", :style => "width: 120px; padding-top: 10px; padding-bottom: 10px; height: 40px ! important;"
 												.row
 													%label &nbsp;
 								.span12.search-results-box
@@ -48,7 +48,7 @@
 							#mentors.tab-pane
 								.span12.search-conditions-box
 									.row
-										= form_tag search_home_path, :method => :get do
+										= form_tag search_home_path, :method => :get, :id=>'indeed_search_form' do
 											= hidden_field_tag :search_type, '1'
 											.span4
 												.row
@@ -56,6 +56,7 @@
 											.span4
 												.row
 													= text_field_tag :location, params[:location], :placeholder => "Where?"
+													= hidden_field_tag :indeed_page_num, params[:indeed_page_num]
 											.span2
 												.row
 													= submit_tag "Search", :name => nil, :class=>"m-btn blue"

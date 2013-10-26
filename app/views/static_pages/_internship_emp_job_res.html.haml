@@ -13,7 +13,7 @@
 				.span4
 					%p.created-date
 						Date Posted:
-						=res["date"]				
+						=res["date"]
 			.row.description
 				.span8
 					.row
@@ -24,3 +24,20 @@
 			.row.last-row
 				.span8
 				.span4
+.row
+	-if @results.present?
+		%a#next_view.offset10.btn.btn-primary{:href=>"#"} Next >
+
+
+:javascript
+	$("#next_view").click(function(){
+		console.log("OK?")
+		v = $("#indeed_page_num").val();
+		if(v==""){
+			v=1
+		}else{
+			v = parseInt(v) + 1;
+		}		
+		$("#indeed_page_num").val(v);
+		$("#indeed_search_form").submit();
+	});

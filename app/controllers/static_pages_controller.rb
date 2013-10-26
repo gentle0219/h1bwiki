@@ -114,13 +114,14 @@ class StaticPagesController < ApplicationController
         @search_seeker_trainings = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '1'
-      uri = URI.parse("http://api.indeed.com/ads/apisearch?publisher=6100857881070797&q=#{params[:job_title]}&l=#{params[:location]}&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2")
+      @start = params[:indeed_page_num].nil? ? 0 : params[:indeed_page_num]      
+      uri = URI.parse("http://api.indeed.com/ads/apisearch?publisher=6100857881070797&q=#{params[:job_title].delete(" ").gsub(",","%2C")}&l=#{params[:location]}&sort=&radius=&st=&jt=internship&format=json&start=#{@start.to_i*10}&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2")
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
-      #data = JSON.parse(response.body)
-      data = Hash.from_xml(response.body)
-      @results = data["response"]["results"]["result"]
+      data = JSON.parse(response.body)
+      #data = Hash.from_xml(response.body)
+      @results = data["results"]
     end
 
   end  
