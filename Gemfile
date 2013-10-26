@@ -58,8 +58,8 @@ gem 'redcarpet'
 gem 'albino'
 gem 'nokogiri'
 
+gem 'thin'
 group :development do
-  gem 'webrick'
   gem 'pg'
   gem 'hirb'
   gem "quiet_assets"
