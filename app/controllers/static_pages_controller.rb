@@ -137,10 +137,17 @@ class StaticPagesController < ApplicationController
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
       data = JSON.parse(response.body)
-      #data = Hash.from_xml(response.body)
       @results = data["results"]
     else
       @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page=>10)
+      @search_emp_trainings = PostTraining.paginate(:page => params[:page_num], :per_page => 10)
+      uri = URI.parse("http://api.indeed.com/ads/apisearch?publisher=6100857881070797&q=Java&l=&sort=&radius=&st=&jt=internship&format=json&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2")
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      data = JSON.parse(response.body)
+      @results = data["results"]
+
     end
 
   end  
