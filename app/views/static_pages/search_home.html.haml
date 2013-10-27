@@ -2,7 +2,7 @@
 .container-fluid
 	.row.search-page-main
 		=render "layouts/nav-link-search-secondary"
-		.row.first-row			
+		.row.first-row{style: 'margin-top: 75px;'}
 			.span12.show-search-tab-box
 				.row		
 					#content
@@ -42,9 +42,9 @@
 													%label &nbsp;
 								.span12.search-results-box
 									= render :partial => "emp_job_res" 
-									= render :partial => "skill_res"
-									= render :partial => "company_res"
-									= render :partial => "seeker_jobs"
+									/= render :partial => "skill_res"
+									/= render :partial => "company_res"
+									/= render :partial => "seeker_jobs"
 							#mentors.tab-pane
 								.span12.search-conditions-box
 									.row

@@ -75,9 +75,14 @@ class StaticPagesController < ApplicationController
 
     if @search_type == '0'
       if @job_type == '1'
-        @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-        @search_skill_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_jobs.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
-        @search_company_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
+        res0 = PostJob.find(:all, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        res1 = PostJob.find(:all, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_jobs.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
+        rse2 = PostJob.find(:all, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
+        @search_emp_jobs = res0 | res1 | res2
+        ids = @search_emp_jobs.map { |job| job.id }
+        
+        @search_emp_jobs = PostJob.where(:id=>ids).paginate(:page => params[:page_num], :per_page=>10)
+
         @search_seeker_jobs = []
       elsif @job_type == '2'
         if city.present?
@@ -93,24 +98,36 @@ class StaticPagesController < ApplicationController
         @search_skill_res =[]
         @search_company_res = []
       else        
-        @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-        @search_skill_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_jobs.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
-        @search_company_res = PostJob.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
+        res0 = PostJob.find(:all, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        res1 = PostJob.find(:all, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_jobs.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
+        res2 = PostJob.find(:all, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
+        @search_emp_jobs = res0 | res1 | res2
+        ids = @search_emp_jobs.map { |job| job.id }
+        
+        @search_emp_jobs = PostJob.where(:id=>ids).paginate(:page => params[:page_num], :per_page=>10)
+        
         @search_seeker_jobs = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '2'
       @search_skill_res =[]
       if @job_type == '1'
-        @search_emp_trainings = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-        @search_company_res = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_trainings.user_id=users.id")
+        res0 = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        res1 = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_trainings.user_id=users.id")
+        res0 = res0 | res1
+        ids = res0.map { |training| training.id }
+        @search_emp_trainings = PostTraining.where(:id=>ids).paginate(:page => params[:page_num], :per_page => 10)
         @search_seeker_trainings = []
       elsif @job_type == '2'
         @search_seeker_trainings = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_emp_trainings = []
         @search_company_res = []
       else
-        @search_emp_trainings = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-        @search_company_res = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_trainings.user_id=users.id")
+        res0 = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        res1 = PostTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_trainings.user_id=users.id")
+        res0 = res0 | res1
+        ids = res0.map { |training| training.id }
+        @search_emp_trainings = PostTraining.where(:id=>ids).paginate(:page => params[:page_num], :per_page => 10)
+
         @search_seeker_trainings = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '1'
@@ -122,6 +139,8 @@ class StaticPagesController < ApplicationController
       data = JSON.parse(response.body)
       #data = Hash.from_xml(response.body)
       @results = data["results"]
+    else
+      @search_emp_jobs = PostJob.paginate(:page => params[:page_num], :per_page=>10)
     end
 
   end  
