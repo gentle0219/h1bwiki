@@ -12,6 +12,8 @@
 								%a{"data-toggle" => "tab", :href => "#jobs"} Jobs
 							%li
 								%a{"data-toggle" => "tab", :href => "#trainings"} Trainings/Placement
+							%li{style: 'float: right'}
+								= link_to "Post a Job / Training", '/post_main', class: 'btn btn-primary', style: 'border-radius: 4px 4px 4px 4px;margin-bottom: 20px;margin-top: -5px;position: absolute;width: 160px;'
 							/%li
 							/	%a{"data-toggle" => "tab", :href => "#mentors"} Mentor Assitance
 						#my-tab-content.tab-content

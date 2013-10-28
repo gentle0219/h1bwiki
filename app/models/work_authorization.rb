@@ -8,7 +8,7 @@ class WorkAuthorization < ActiveRecord::Base
   belongs_to :post_job
   attr_accessible :post_job_id, :workauthorization_index
 
-  WORKAUTHORIZATION = ['US Citizen', 'GC', 'H-1B', 'TN/EAD(GC,L2)', 'Others']
+  WORKAUTHORIZATION = ['US Citizen', 'GC', 'H-1B', 'OPT', 'TN/EAD(GC,L2)', 'Others']
 
   def self.available_consts
   	consts = []

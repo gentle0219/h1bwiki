@@ -85,7 +85,7 @@
 	.control-group.referral-amount-box
 		= f.label :referral_amount,"Referral Amount:($)", :class => 'control-label', :id=>"referral_amount_label"
 		.controls
-			= f.text_field :referral_amount, :class => 'text_field', :"data-required"=>"true", :placeholder=>""
+			= f.text_field :referral_amount, :class => 'text_field', :placeholder=>""
 	
 	= f.submit 'Continue', :class => 'm-btn blue', :id => "btn_post_create", :style=>"font-size: 30px;height: 58px;width: 100%;"
 	.form-actions{:style=>"padding:20px 0"}
@@ -128,7 +128,8 @@
 	});	
 	$("div.authorization-check-box .controls").eq(1).width("80");
 	$("div.authorization-check-box .controls").eq(2).width("80");
-	$("div.authorization-check-box .controls").eq(3).width("150");
+	$("div.authorization-check-box .controls").eq(3).width("80");
+	$("div.authorization-check-box .controls").eq(4).width("150");
 
 
 	$("label.type-full-time").click(function(){

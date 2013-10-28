@@ -6,8 +6,8 @@
 			= f.text_field :job_title, :class => 'text_field large-field', "data-required"=>"true", "data-rangelength"=>"[5,50]"
 	.control-group
 		= f.label "Technology", :class => 'control-label'
-		.controls.custom-select
-			= f.select(:job_technology,[['Java',0],['Datastage',1]] )
+		.controls
+			= f.text_field :job_technology, :class => 'text_field', "data-required"=>"true"
 	.control-group
 		= f.label "Instruction Mode", :class => 'control-label'
 		.controls.custom-select

@@ -21,7 +21,7 @@ class PostTraining < ActiveRecord::Base
   INSTRUCTION_MODE = ['Class Room', 'Online', 'Class Room & Online']
 
   def get_techtype
-  	TECH_TYPE[self.job_technology.to_i]
+  	self.job_technology
   end
   def get_instruction_mode
   	INSTRUCTION_MODE[self.job_instruction.to_i]
