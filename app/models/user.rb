@@ -7,21 +7,24 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :company_name, :address1, :address2, :city, :user_name, :account_type, :country_id, :immigration_status, :email, :password, :password_confirmation, :remember_me, :contact_number, :approved
+  attr_accessible :first_name, :last_name, :company_name, :address1, :address2, :city, :user_name, :account_type, 
+                  :country_id, :immigration_status, :email, :password, :password_confirmation, :remember_me, 
+                  :contact_number, :approved
   # attr_accessible :title, :body
   #has_one :country
-  has_many :post_jobs
+  has_many :post_jobs,                dependent: :destroy
   has_many :applicants
   
-  has_many :post_trainings
-  has_many :post_mentors
+  has_many :post_trainings,           dependent: :destroy
+  has_many :post_mentors,             dependent: :destroy
 
-  has_many :jobseeker_jobs
-  has_many :jobseeker_trainings
-  has_many :jobseeker_mentors
+  has_many :jobseeker_jobs,           dependent: :destroy
+  has_many :jobseeker_trainings,      dependent: :destroy
+  has_many :jobseeker_mentors,        dependent: :destroy
   
   has_one :company
   has_one :contact
+  after_update :update_user
   include Mailboxer::Models::Messageable
   acts_as_messageable
   def full_name
@@ -73,4 +76,10 @@ class User < ActiveRecord::Base
     end
     recoverable
   end
+  private
+    def update_user
+      if self.account_type == "employer" and self.approved = true
+        self.confirmed_at=DateTime.now
+      end
+    end
 end
