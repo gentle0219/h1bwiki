@@ -79,13 +79,14 @@ class User < ActiveRecord::Base
   end
   private
     def update_user
-      if self.account_type == "employer"
-        self.confirmed_at=DateTime.now
+      if self.account_type == "employer" and self.approved == true
+        UserMailer.approved(self).deliver
       end
     end
     def skip_confirmation
       if self.account_type == "employer"
         self.confirmed_at=DateTime.now
+        UserMailer.created(self).deliver
       end
     end
 end

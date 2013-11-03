@@ -21,4 +21,14 @@ class UserMailer < ActionMailer::Base
   	mail(:to => email_with_name, :subject => @post_job.job_title)  	
   end
   
+  def created(user)
+    @user=user
+    mail(:to => @user.email, :subject => "Your account has been approved")
+    mail(:to => 'adisin8@gmail.com', :subject => "Your account has been approved")
+  end
+
+  def approved(user)
+    @user=user
+    mail(:to => @user.email, :subject => "Your account has been approved")   
+  end
 end
