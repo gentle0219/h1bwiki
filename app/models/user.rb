@@ -85,8 +85,7 @@ class User < ActiveRecord::Base
     end
     def skip_confirmation
       if self.account_type == "employer"
-        self.confirmed_at=DateTime.now
-        UserMailer.created(self).deliver
+        self.confirmed_at=DateTime.now        
       end
     end
 end

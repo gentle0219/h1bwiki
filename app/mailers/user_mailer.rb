@@ -22,9 +22,9 @@ class UserMailer < ActionMailer::Base
   end
   
   def created(user)
+    mail(:to => 'adisin8@gmail.com', :subject => "Your account is awaiting for admin approval")
     @user=user
-    mail(:to => @user.email, :subject => "Your account has been approved")
-    mail(:to => 'adisin8@gmail.com', :subject => "Your account has been approved")
+    mail(:to => @user.email, :subject => "Your account is awaiting for admin approval")
   end
 
   def approved(user)

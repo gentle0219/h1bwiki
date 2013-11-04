@@ -19,7 +19,11 @@ class RegistrationsController < Devise::RegistrationsController
 	      render :new
 			end		
 		else
-			super
+			@user = User.new(params[:user])
+			if session[:account_type] == 'employer'
+				UserMailer.created(@user).deliver
+			end
+			super			
 		end
 	end
 end
