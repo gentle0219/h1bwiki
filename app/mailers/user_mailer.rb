@@ -29,6 +29,6 @@ class UserMailer < ActionMailer::Base
 
   def approved(user)
     @user=user
-    mail(:to => @user.email, :subject => "Your account has been approved")   
+    mail(:to => @user.email, :subject => "Your account has been approved")
   end
 end

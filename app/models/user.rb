@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   
   has_one :company
   has_one :contact
-  #after_update :update_user
+  after_update :update_user
   before_save :skip_confirmation
   include Mailboxer::Models::Messageable
   acts_as_messageable
@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
   private
     def update_user
       if self.account_type == "employer" and self.approved == true
+        p self.approved
         UserMailer.approved(self).deliver
       end
     end
