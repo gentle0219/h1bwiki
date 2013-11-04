@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
     admin_email = admin.mail    
   	@data = { :name => name, :email=>receive_mail, :phone => phone}
   	mail(:to => admin_email, :subject => name)
-    mail(:to => 'adisin8@gmail.com', :subject => name)
+    mail(:to => 'admin@h1bwiki.com', :subject => name)
   end
 
   def forward(from_email, to_email, name, post_job_id)
@@ -27,7 +27,7 @@ class UserMailer < ActionMailer::Base
     UserMailer.send_to_admin(@user).deliver
   end
   def send_to_admin(user)
-    mail(:to => 'adisin8@gmail.com', :subject => "Your account is awaiting for admin approval")    
+    mail(:to => 'admin@h1bwiki.com', :subject => "Your account is awaiting for admin approval")    
   end
   def approved(user)
     @user=user
