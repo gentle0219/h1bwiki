@@ -27,7 +27,7 @@ class UserMailer < ActionMailer::Base
     UserMailer.send_to_admin(@user).deliver
   end
   def send_to_admin(user)
-    mail(:to => 'admin@h1bwiki.com', :subject => "Your account is awaiting for admin approval")    
+    mail(:to => 'admin@h1bwiki.com', :subject => "A new employer is awaiting for admin approval")    
   end
   def approved(user)
     @user=user
