@@ -7,8 +7,9 @@
 						%h1= @jobseeker_job.job_title
 				.row
 					- user = User.find_by_id(@jobseeker_job.user_id)
-					%p.company-name 
-						#{user.company_name.nil? ? user.user_name : user.company_name }
+					- if user.present?
+						%p.company-name 
+							#{user.company_name.nil? ? user.user_name : user.company_name }
 				.row
 					.span3
 						%strong 
@@ -30,12 +31,12 @@
 		
 		.row.last-row
 			.span2.offset3
-				-if current_user.present?
+				-if current_user.present? and user.present?
 					-if user.id != current_user.id										
 						%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@jobseeker_job.title}", :type=>"#{user.email}" } Contact
-				-else
+				-elsif user.present?
 					%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@jobseeker_job.title}", :type=>"#{user.email}" } Contact
 			.span2
 				%input.m-btn.blue{:type=>"button", :value=>"Forward"}					
 			.span2
-				%input.m-btn.blue{:type=>"button", :value=>"Close"}
+				%input.m-btn.blue{:type=>"button", :value=>"Close", :onclick=>"window.close(); window.history.back();"}

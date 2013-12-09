@@ -44,7 +44,7 @@
 									= render :partial => "emp_job_res" 
 									/= render :partial => "skill_res"
 									/= render :partial => "company_res"
-									/= render :partial => "seeker_jobs"
+									= render :partial => "seeker_jobs"
 							#mentors.tab-pane
 								.span12.search-conditions-box
 									.row
@@ -134,7 +134,8 @@
 															= link_to search_seeker_training.job_title, jobseeker_training_path(search_seeker_training), :class=>"item-title", :target => "_blink"
 														.row
 															- user = User.find_by_id(search_seeker_training.user_id)
-															%small #{user.company_name.nil? ? user.user_name : user.company_name } -	#{user.city}
+															- if user.present?
+																%small #{user.company_name.nil? ? user.user_name : user.company_name } -	#{user.city}
 													.span4
 														%p.created-date
 															Date Posted:
@@ -151,7 +152,7 @@
 																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_training.job_title}", :type=>"#{user.email}" } Contact																	
 												.row.last-row
 													.span8
-														= link_to "View Details >", jobseeker_training_path(search_seeker_training), :class=>"view-details m-btn blue", :target => "_blink"
+														= link_to "View", jobseeker_training_path(search_seeker_training), :class=>"view-details m-btn blue", :target => "_blink"
 													.span4
 														%p.post-type Trainings Wanted
 							

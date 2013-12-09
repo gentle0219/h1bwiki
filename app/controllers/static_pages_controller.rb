@@ -77,7 +77,7 @@ class StaticPagesController < ApplicationController
       if @job_type == '1'
         res0 = PostJob.find(:all, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         res1 = PostJob.find(:all, :conditions=>["lower(skill_lists.name)=lower(?)", params[:title]], :joins=>"INNER JOIN skills on  post_jobs.id=skills.skillable_id INNER JOIN skill_lists ON skills.skill_list_id=skill_lists.id")
-        rse2 = PostJob.find(:all, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
+        res2 = PostJob.find(:all, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
         @search_emp_jobs = res0 | res1 | res2
         ids = @search_emp_jobs.map { |job| job.id }
         
@@ -103,10 +103,10 @@ class StaticPagesController < ApplicationController
         res2 = PostJob.find(:all, :conditions=>["lower(users.company_name)=lower(?)", params[:title]], :joins=>"INNER JOIN users on  post_jobs.user_id=users.id")
         @search_emp_jobs = res0 | res1 | res2
         ids = @search_emp_jobs.map { |job| job.id }
-        
-        @search_emp_jobs = PostJob.where(:id=>ids).paginate(:page => params[:page_num], :per_page=>10)
-        
-        @search_seeker_jobs = JobseekerJob.search(params[:title], params[:city])
+     
+        @search_emp_jobs = PostJob.where(:id=>ids).paginate(:page => params[:page_num], :per_page=>10)        
+        @search_seeker_jobs = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+
       end
     elsif @search_type == '2'
       @search_skill_res =[]
@@ -118,7 +118,7 @@ class StaticPagesController < ApplicationController
         @search_emp_trainings = PostTraining.where(:id=>ids).paginate(:page => params[:page_num], :per_page => 10)
         @search_seeker_trainings = []
       elsif @job_type == '2'
-        @search_seeker_trainings = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        @search_seeker_trainings = JobseekerTraining.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
         @search_emp_trainings = []
         @search_company_res = []
       else
@@ -127,8 +127,8 @@ class StaticPagesController < ApplicationController
         res0 = res0 | res1
         ids = res0.map { |training| training.id }
         @search_emp_trainings = PostTraining.where(:id=>ids).paginate(:page => params[:page_num], :per_page => 10)
+        @search_seeker_trainings = JobseekerTraining.search(params[:title])
 
-        @search_seeker_trainings = JobseekerJob.search(params[:title], params[:city])
       end
     elsif @search_type == '1'
       @start = params[:indeed_page_num].nil? ? 0 : params[:indeed_page_num]      

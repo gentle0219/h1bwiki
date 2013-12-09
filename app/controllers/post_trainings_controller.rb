@@ -44,7 +44,7 @@ class PostTrainingsController < ApplicationController
   # POST /post_trainings.json
   def create
     @post_training = PostTraining.new(params[:post_training])
-
+   
     respond_to do |format|
       if @post_training.save
         format.html { redirect_to posts_view_path, notice: 'Success! Your Training/Placement Posting is Created' }

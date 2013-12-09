@@ -7,7 +7,8 @@
 						= link_to search_seeker_job.job_title, jobseeker_job_path(search_seeker_job), :class=>"item-title", :target => "_blink", style: 'text-decoration:underline;color:blue;'
 					.row
 						- user = User.find_by_id(search_seeker_job.user_id)
-						%small #{user.company_name.nil? ? user.user_name : user.company_name } -	#{user.city}
+						- if user.present?
+							%small #{user.company_name.nil? ? user.user_name : user.company_name } -	#{user.city}
 				.span4
 					%p.created-date
 						Date Posted:
