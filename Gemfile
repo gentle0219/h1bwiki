@@ -66,6 +66,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'webrick'  
+  gem 'letter_opener'
 end
 
 group :production do

@@ -18,6 +18,8 @@ class PostTrainingsController < ApplicationController
   def show
     @post_training = PostTraining.find(params[:id])
     flash[notice] = nil
+    o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+    @captcha = (0...6).map{ o[rand(o.length)] }.join
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post_training }

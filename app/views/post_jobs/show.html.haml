@@ -11,8 +11,9 @@
 						%h1= @post_job.job_title
 				.row
 					- user = User.find_by_id(@post_job.user_id)
-					%p.company-name 
-						#{user.company_name.nil? ? user.user_name : user.company_name } -	#{@post_job.job_city} ,	#{@post_job.job_state}
+					- if user.present?
+						%p.company-name 
+							#{user.company_name.nil? ? user.user_name : user.company_name } -	#{@post_job.job_city} ,	#{@post_job.job_state}
 				.row
 					.span3
 						%strong 
