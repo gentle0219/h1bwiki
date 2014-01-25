@@ -15,12 +15,12 @@
 								.span8.offset0{:style=>"margin-top: 10px;"}
 									.input-append
 										= autocomplete_field_tag 'h1bemp_name', '', search_employer_h1bemp_name_path(:js), :size=>25, :value=>params[:h1bemp_name], :style=>"height: 26px;"
-										%a{:class=>"btn", :style => "margin-top: 0px; padding: 7px 14px; width: 60px;", :href =>"javascript:search_form.submit();"}
+										%a{:class=>"btn", :style => "margin-top: 0px; padding: 7px 14px; width: 60px;margin-bottom:10px;", :href =>"javascript:search_form.submit();"}
 											// %i{:class=>"icon-search"}
 											Search
 								.row
-									%label{style:'font-size:20px;margin-left:100px;'} 
-										Looking for an H-1B Sponser?
+									%label{style:'font-size:20px;margin-left:100px; margin-top: 10px;'} 
+										Looking for an H-1B Sponsor?
 										= link_to "Post Here", "/post_main", class: "btn"
 							.span4{:style=>"border:2px solid #eee;border-radius:4px;margin-top: -45px;"}
 								.row{:style=>"background-color:#eee; padding:5px 10px;"}

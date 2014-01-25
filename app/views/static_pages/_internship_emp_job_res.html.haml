@@ -4,7 +4,7 @@
 			.row.title-row
 				.span8
 					.row
-						= link_to res["jobtitle"], res["url"], :class=>"item-title", :target => "_blink", style: 'text-decoration:underline;color:blue;'
+						= link_to res["jobtitle"], "http://www.indeed.com/rc/clk?jk="+res["jobkey"], :class=>"item-title", :target => "_blink", style: 'text-decoration:underline;color:blue;'
 					.row
 						%small= res["company"]
 						%small

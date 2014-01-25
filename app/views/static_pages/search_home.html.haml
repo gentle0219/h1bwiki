@@ -24,17 +24,17 @@
 												.row
 													= text_field_tag :title, params[:title], :placeholder => "Job Title, Keywords or Company", :style=>"width:245px;height:30px;"
 												.row
-												// %label (Job Title, Keywords or Company)
+													%label (Job Title, Keywords or Company)
 											.span3
 												.row
 													= text_field_tag :city, params[:city], :placeholder => "City", :style=>"height:30px;"
 												.row
-													// %label (Zipcode or City)
+													%label (Zipcode or City)
 											.span3
 												.row
-													= select_tag(:type, options_for_select([['All Jobs',0],['Jobs Offered',1],['Jobs Wanted',2]], @job_type), :style=>"padding-top: 10px; padding-bottom: 10px; height: 40px;")
+													= select_tag(:type, options_for_select([['All Jobs',0],['Jobs Offered',1],['Jobs Wanted',2]], @job_type), :style=>"padding-top: 10px; padding-bottom: 10px; height: 40px;margin-bottom:10px;")
 												.row
-													// %label (In: Jobs Offered or Jobs Wanted)
+													%label (In: Jobs Offered or Jobs Wanted)
 											.span2
 												.row
 													= submit_tag "Search", :name => nil, :class=>"m-btn blue", :style => "width: 120px; padding-top: 10px; padding-bottom: 10px; height: 40px ! important;"
@@ -53,10 +53,14 @@
 											.span4
 												.row
 													= text_field_tag :job_title, params[:job_title], :placeholder => "What?"
+												.row
+													%label (Job Title, Keywords or Company)
 											.span4
 												.row
 													= text_field_tag :location, params[:location], :placeholder => "Where?"
 													= hidden_field_tag :indeed_page_num, params[:indeed_page_num]
+												.row
+													%label (Zipcode or City)
 											.span2
 												.row
 													= submit_tag "Search", :name => nil, :class=>"m-btn blue"
@@ -81,9 +85,9 @@
 													%label (Zipcode or City)												
 											.span3
 												.row
-													= select_tag(:type, options_for_select([['All Trainings',0],[' Trainings Offered',1],['Trainings Wanted',2]], @job_type))
+													= select_tag(:type, options_for_select([['All Trainings',0],[' Trainings Offered',1],['Trainings Wanted',2]], @job_type), style:'margin-bottom:10px;')
 												.row
-													%label (In: Jobs Offered or Jobs Wanted)
+													%label (In: Training Offered or Training Wanted)
 											.span2
 												.row
 													= submit_tag "Search", :name => nil, :class=>"m-btn blue"
@@ -96,7 +100,7 @@
 												.row.title-row
 													.span8
 														.row
-															= link_to search_emp_training.job_title, post_training_path(search_emp_training), :class=>"item-title", :target => "_blink"
+															= link_to search_emp_training.job_title, post_training_path(search_emp_training), :class=>"item-title", :target => "_blink", style:'color:blue'
 														.row
 															- user = User.find_by_id(search_emp_training.user_id)															
 															%small #{user.company_name.nil? ? user.user_name : user.company_name } -	#{search_emp_training.job_city} ,	#{search_emp_training.job_state}
@@ -118,7 +122,7 @@
 																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_training.job_title}", :type=>"#{user.email}" } Contact
 												.row.last-row
 													.span8														
-														= link_to "View", post_training_path(search_emp_training), :class=>"m-btn blue view-details", :target => "_blink"
+														/= link_to "View", post_training_path(search_emp_training), :class=>"m-btn blue view-details", :target => "_blink"
 													.span4
 														%p.post-type Trainings Offered
 									-if @search_emp_trainings.present?

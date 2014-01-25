@@ -2,7 +2,7 @@
 	.row.account-details-page
 		.row.first-row
 			.span6
-				%p.page-title PPDM Solutions Inc
+				%p.page-title= current_user.company_name
 			.span4{:style=>"padding-top: 15px;"}
 				%a.btn.btn-primary{:href=>"/account_setup"} Update Profile
 				%a.btn.btn-success{:href=>"/change_passwd"} Change Pssword
