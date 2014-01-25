@@ -96,7 +96,7 @@ class StaticPagesController < ApplicationController
           city = "%" + city + "%"
           @search_seeker_jobs=[]
           User.find(:all, :conditions => ["city LIKE ?", city]).each do |user|
-            @search_seeker_jobs += user.jobseeker_jobs.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+            @search_seeker_jobs += user.jobseeker_jobs.paginate(:page => params[:page_num], :per_page => 10, :order => "created_at DESC")
           end
         else
           @search_seeker_jobs = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
@@ -132,7 +132,7 @@ class StaticPagesController < ApplicationController
           city = "%" + city + "%"
           @search_seeker_jobs=[]
           User.find(:all, :conditions => ["city LIKE ?", city]).each do |user|
-            @search_seeker_jobs += user.jobseeker_jobs.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+            @search_seeker_jobs += user.jobseeker_jobs.paginate(:page => params[:page_num], :per_page => 10, :order => "created_at DESC")
           end
         else
           @search_seeker_jobs = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
