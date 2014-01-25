@@ -82,7 +82,14 @@ class StaticPagesController < ApplicationController
         ids = @search_emp_jobs.map { |job| job.id }
         
         @search_emp_jobs = PostJob.where(:id=>ids).paginate(:page => params[:page_num], :per_page=>10)
-
+        if @search_emp_jobs.blank?
+          @search_emp_jobs = jobs_by_user('emp_jobs',title)
+          if @search_emp_jobs.present?
+            @search_emp_jobs = @search_emp_jobs.paginate(:page => params[:page_num], :per_page => 10)
+          else
+            @search_emp_jobs = []
+          end
+        end
         @search_seeker_jobs = []
       elsif @job_type == '2'
         if city.present?
@@ -93,7 +100,15 @@ class StaticPagesController < ApplicationController
           end
         else
           @search_seeker_jobs = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-        end        
+        end
+        if @search_seeker_jobs.blank?
+          @search_seeker_jobs = jobs_by_user('seek_jobs',title)
+          if @search_seeker_jobs.present?
+            @search_seeker_jobs = jobs_by_user('seek_jobs',title).paginate(:page => params[:page_num], :per_page => 10)
+          else
+            @search_seeker_jobs = []
+          end
+        end
         @search_emp_jobs = []
         @search_skill_res =[]
         @search_company_res = []
@@ -105,8 +120,32 @@ class StaticPagesController < ApplicationController
         ids = @search_emp_jobs.map { |job| job.id }
      
         @search_emp_jobs = PostJob.where(:id=>ids).paginate(:page => params[:page_num], :per_page=>10)        
-        @search_seeker_jobs = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
-
+        if @search_emp_jobs.blank?
+          @search_emp_jobs = jobs_by_user('emp_jobs',title)
+          if @search_emp_jobs.present?
+            @search_emp_jobs = @search_emp_jobs.paginate(:page => params[:page_num], :per_page => 10)
+          else
+            @search_emp_jobs = []
+          end
+        end
+        if city.present?
+          city = "%" + city + "%"
+          @search_seeker_jobs=[]
+          User.find(:all, :conditions => ["city LIKE ?", city]).each do |user|
+            @search_seeker_jobs += user.jobseeker_jobs.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+          end
+        else
+          @search_seeker_jobs = JobseekerJob.paginate(:page => params[:page_num], :per_page => 10, :conditions => [cond_text.join(" AND "), *cond_values], :order => "created_at DESC")
+        end
+        
+        if @search_seeker_jobs.blank?
+          @search_seeker_jobs = jobs_by_user('seek_jobs',title)
+          if @search_seeker_jobs.present?
+            @search_seeker_jobs = jobs_by_user('seek_jobs',title).paginate(:page => params[:page_num], :per_page => 10)
+          else
+            @search_seeker_jobs = []
+          end
+        end
       end
     elsif @search_type == '2'
       @search_skill_res =[]
@@ -147,7 +186,6 @@ class StaticPagesController < ApplicationController
       response = http.request(request)
       data = JSON.parse(response.body)
       @results = data["results"]
-
     end
 
   end  
@@ -235,5 +273,30 @@ class StaticPagesController < ApplicationController
     else
       redirect_to employer? ? post_main_path : jobseeker_post_main_path
     end
+  end
+
+  def jobs_by_user(opt,company)
+    jobs = []
+    res = nil
+    users = User.find(:all, :conditions => ["lower(company_name) LIKE ?", "%#{company}%".downcase])
+    
+    if users.present?
+      users.each do |u|
+        if opt == 'emp_jobs'
+          u.post_jobs.each do |pj|
+            jobs << pj
+            ids = jobs.map(&:id)
+            res = PostJob.where(id:ids)
+          end
+        elsif opt == 'seek_jobs'
+          u.jobseeker_jobs.each do |pj|
+            jobs << pj
+            ids = jobs.map(&:id)
+            res = JobseekerJob.where(id:ids)
+          end
+        end
+      end
+    end
+    return res
   end
 end
