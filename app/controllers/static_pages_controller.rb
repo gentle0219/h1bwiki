@@ -256,7 +256,11 @@ class StaticPagesController < ApplicationController
   end
 
   def forward
-    UserMailer.forward(params[:from_email], params[:to_email], params[:name], params[:post_job_id]).deliver
+    if params[:forward][:seeker_id].present?
+      UserMailer.forward(params[:from_email], params[:to_email], params[:name], params[:forward][:post_job_id],1).deliver
+    else
+      UserMailer.forward(params[:from_email], params[:to_email], params[:name], params[:forward][:post_job_id],0).deliver
+    end
     render :nothing=> true, :status => 200
   end
   

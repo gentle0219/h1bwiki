@@ -28,7 +28,7 @@
                   Job Type
               </td>
               <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
-                  <%= @post_job.get_jobtype %>
+                  <%= @post_job.get_jobtype if  @post_job.class.name == "PostJob"%>
               </td>
           </tr>
           <tr>
@@ -36,7 +36,7 @@
                   Required Skills
               </td>
               <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
-                <%= @post_job.get_skill.split(' ').join(',')%>
+                <%= @post_job.get_skill.split(' ').join(',') if  @post_job.class.name == "PostJob"%>
               </td>
           </tr>
           
@@ -45,7 +45,7 @@
                   Location
               </td>
               <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
-                  <%= @post_job.job_city %> <br>United States of America
+                  <%= @post_job.job_city if  @post_job.class.name == "PostJob"%> <br>United States of America
               </td>
           </tr>
           <tr>
@@ -53,7 +53,7 @@
                   Job duration
               </td>
               <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
-                  <%= @post_job.job_duration %>
+                  <%= @post_job.job_duration if  @post_job.class.name == "PostJob"%>
               </td>
           </tr>
           <tr>
@@ -61,7 +61,7 @@
                   PayRate
               </td>
               <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
-                  <%= @post_job.refe_amount %>
+                  <%= @post_job.refe_amount if  @post_job.class.name == "PostJob" %>
               </td>
           </tr>
           <tr>
@@ -77,7 +77,7 @@
                   Posted by
               </td>
               <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
-                <%= @post_job.user.full_name %>
+                <%= @post_job.user.full_name if @post_job.user.present?%>
               </td>
           </tr>
       </tbody>

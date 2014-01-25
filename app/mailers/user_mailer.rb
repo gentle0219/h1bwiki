@@ -13,11 +13,16 @@ class UserMailer < ActionMailer::Base
     mail(:to => 'admin@h1bwiki.com', :subject => name)
   end
 
-  def forward(from_email, to_email, name, post_job_id)
+  def forward(from_email, to_email, name, post_job_id, job_state)
     email_with_name = "#{name} < #{to_email}"
-    @post_job = PostJob.find_by_id(post_job_id)
     @name = name
-    @url = "http://h1bwiki.herokuapp.com#{post_job_path(@post_job)}"
+    if job_state == 1
+      @post_job = JobseekerJob.find_by_id(post_job_id)      
+      @url = "http://h1bwiki.herokuapp.com#{jobseeker_job_path(@post_job)}"
+    else
+      @post_job = PostJob.find_by_id(post_job_id)      
+      @url = "http://h1bwiki.herokuapp.com#{post_job_path(@post_job)}"
+    end
   	mail(:to => email_with_name, :subject => @post_job.job_title)  	
   end
   
