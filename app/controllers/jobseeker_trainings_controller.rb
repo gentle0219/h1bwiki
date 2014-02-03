@@ -16,6 +16,9 @@ class JobseekerTrainingsController < ApplicationController
   # GET /jobseeker_trainings/1.json
   def show
     @jobseeker_training = JobseekerTraining.find(params[:id])
+    
+    o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+    @captcha = (0...6).map{ o[rand(o.length)] }.join
 
     respond_to do |format|
       format.html # show.html.erb

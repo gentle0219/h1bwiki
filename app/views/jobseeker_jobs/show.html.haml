@@ -103,3 +103,26 @@
 			.modal-footer	 
 				= f.button :submit, "Forward Job", class: 'm-btn blue', style: 'margin-top: 0px;', id: 'forward_button'
 				%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close
+
+:javascript 
+	var captcha = "#{@captcha}"
+	$('#forward_button').click(function(){
+		if($('#captcha_code').val() == captcha){
+			$('#error_box').text('');
+			$.post('/static_pages/forward', {from_email:$("#from_email").val(), 
+			to_email:$("#to_email").val(),
+			name: $("#name").val(),
+			post_job_id: $("#forward_post_job_id").val()
+			}).done(function(){
+				$("#sucess_forwarded").text("Your job has been successfully forwarded");
+				$("#sucess_forwarded").css('height','250px');
+				$("#forward_button").hide();
+				$("#forward-content").hide();
+			});
+			return true;
+		}else{
+			$('#error_box').text('Please check captchacode');
+			return false;
+		}
+		
+	})

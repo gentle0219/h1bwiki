@@ -79,6 +79,8 @@ H1bwiki::Application.routes.draw do
   get "static_pages/search_indeed", :as=> "search_indeed"
 
   post "/static_pages/forward"
+  post "/static_pages/training_forward"
+
   get "account_setup" => "static_pages#account_setup"
   get "account_details" => "static_pages#account_details"
   match "update_profile" => "static_pages#update_profile"

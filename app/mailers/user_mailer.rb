@@ -26,6 +26,19 @@ class UserMailer < ActionMailer::Base
   	mail(:to => email_with_name, :subject => @post_job.job_title)  	
   end
   
+  def training_forward(from_email, to_email, name, post_job_id, job_state)
+    email_with_name = "#{name} < #{to_email}"
+    @name = name
+    if job_state == 1
+      @post_job = JobseekerTraining.find_by_id(post_job_id)      
+      @url = "http://h1bwiki.herokuapp.com#{jobseeker_job_path(@post_job)}"
+    else
+      @post_job = PostTraining.find_by_id(post_job_id)      
+      @url = "http://h1bwiki.herokuapp.com#{post_job_path(@post_job)}"
+    end
+    mail(:to => email_with_name, :subject => @post_job.job_title)   
+  end
+
   def created(user)
     @user=user
     mail(:to => @user.email, :subject => "Your account is awaiting for admin approval")

@@ -264,6 +264,16 @@ class StaticPagesController < ApplicationController
     render :nothing=> true, :status => 200
   end
   
+  def training_forward
+    if params[:forward][:seeker_id].present?
+      UserMailer.training_forward(params[:from_email], params[:to_email], params[:name], params[:forward][:post_job_id],1).deliver
+    else
+      UserMailer.training_forward(params[:from_email], params[:to_email], params[:name], params[:forward][:post_job_id],0).deliver
+    end
+    render :nothing=> true, :status => 200
+  end
+
+  
   def postings
     if !user_signed_in?
       redirect_to new_user_session_path
